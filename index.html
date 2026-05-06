@@ -561,6 +561,43 @@ function saveTests() { store.set(KEYS.tests, state.tests); }
 function addPoints(pts) {
   state.scores[state.user] = (state.scores[state.user] || 0) + pts;
   saveScores();
+  // Sync to shared leaderboard
+  fetch(PROXY_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ action: 'addPoints', user: state.user, points: pts })
+  }).catch(() => {});
+}
+async function fetchLeaderboard() {
+  try {
+    const res = await fetch(PROXY_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'getLeaderboard' })
+    });
+    const data = await res.json();
+    if (data.leaderboard) {
+      // Convert array of [name, pts] to object
+      const obj = {};
+      data.leaderboard.forEach(([n, p]) => { obj[n] = p; });
+      state.scores = obj;
+      saveScores();
+    }
+  } catch (e) {}
+}
+async function fetchTests() {
+  try {
+    const res = await fetch(PROXY_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'getTests' })
+    });
+    const data = await res.json();
+    if (data.tests) {
+      state.tests = data.tests;
+      saveTests();
+    }
+  } catch (e) {}
 }
 function recordConcept(id, correct, points) {
   const cur = state.progress[id] || { masteryStage: 0, lastSeen: null, attempts: 0, correct: 0 };
@@ -701,7 +738,7 @@ function renderHome() {
           <div class="menu-main"><div class="menu-title">Alle Kapitel</div><div class="menu-desc">Übersicht über deinen Stand</div></div>
           <span class="menu-arrow">→</span>
         </button>
-        <button class="menu-item" onclick="state.view='leaderboard';render()">
+        <button class="menu-item" onclick="openLeaderboard()">
           <div class="menu-icon">★</div>
           <div class="menu-main"><div class="menu-title">Bestenliste</div><div class="menu-desc">Punkte & Test-Rekorde</div></div>
           <span class="menu-arrow">→</span>
@@ -933,7 +970,7 @@ Regeln:
     const res = await fetch(PROXY_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ systemPrompt, userMessage: 'Antwort des Schülers:\n\n' + text }),
+      body: JSON.stringify({ action: 'evaluate', systemPrompt, userMessage: 'Antwort des Schülers:\n\n' + text }),
     });
     if (!res.ok) throw new Error('Server error ' + res.status);
     const data = await res.json();
@@ -1087,6 +1124,12 @@ function finishTest() {
   state.tests.sort((a,b) => b.pct - a.pct || a.durationSec - b.durationSec);
   state.tests = state.tests.slice(0, 30);
   saveTests();
+  // Sync to shared leaderboard
+  fetch(PROXY_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ action: 'submitTest', user: state.user, score, total: state.testQs.length, pct, durationSec: dur })
+  }).catch(() => {});
 }
 function renderTestResults() {
   const score = state.testQs.filter(q => checkRecall(state.testAnswers[q.id] || '', q.recall.accept)).length;
@@ -1211,6 +1254,13 @@ function renderLeaderboard() {
     </div>`;
 }
 function setLbTab(t) { lbTab = t; render(); }
+async function openLeaderboard() {
+  state.view = 'leaderboard';
+  render();
+  // Fetch fresh data from server in background
+  await Promise.all([fetchLeaderboard(), fetchTests()]);
+  if (state.view === 'leaderboard') render();
+}
 
 // ============================================================
 // INIT
