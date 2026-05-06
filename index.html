@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Demografie · KEN</title>
+<style>
+  :root {
+    --bg: #ffffff;
+    --bg-soft: #fafafa;
+    --bg-elev: #f4f4f4;
+    --line: #e5e5e5;
+    --line-strong: #d4d4d4;
+    --fg: #0a0a0a;
+    --fg-2: #404040;
+    --dim: #737373;
+    --muted: #a3a3a3;
+    --accent: #0a0a0a;
+    --accent-fg: #ffffff;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--bg); color: var(--fg); font-family: -apple-system, BlinkMacSystemFont, 'Inter', system-ui, sans-serif; -webkit-font-smoothing: antialiased; line-height: 1.5; }
+  body { min-height: 100vh; padding-bottom: 60px; }
+  button { font-family: inherit; cursor: pointer; }
+  input, textarea { font-family: inherit; }
+
+  .app { max-width: 640px; margin: 0 auto; padding: 0 20px; }
+  .header { position: sticky; top: 0; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); z-index: 10; margin: 0 -20px 24px; padding: 14px 20px; }
+  .header-row { max-width: 600px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+  .brand { display: flex; align-items: center; gap: 10px; cursor: pointer; }
+  .brand-mark { width: 26px; height: 26px; background: var(--fg); border-radius: 4px; }
+  .brand-name { font-size: 12px; font-weight: 600; letter-spacing: 1px; }
+  .brand-sub { font-size: 11px; color: var(--dim); margin-top: 1px; }
+  .header-right { display: flex; align-items: center; gap: 10px; }
+  .ai-badge { font-size: 9px; padding: 3px 7px; border-radius: 3px; font-weight: 700; letter-spacing: 0.5px; }
+  .ai-badge.on { background: var(--fg); color: var(--bg); }
+  .ai-badge.off { background: var(--bg-elev); color: var(--dim); border: 1px solid var(--line); }
+  .header-x { background: transparent; border: none; color: var(--dim); font-size: 22px; padding: 0; width: 26px; height: 26px; line-height: 1; }
+
+  /* Login */
+  .login { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 24px; }
+  .login-inner { max-width: 420px; width: 100%; }
+  .login-pre { font-size: 11px; letter-spacing: 1.5px; color: var(--dim); font-weight: 500; margin-bottom: 20px; }
+  .login-h1 { font-size: clamp(44px, 11vw, 60px); font-weight: 700; letter-spacing: -2px; line-height: 1; margin-bottom: 20px; }
+  .login-h1 .light { font-weight: 300; color: var(--dim); }
+  .login-lead { font-size: 15px; color: var(--fg-2); margin-bottom: 32px; line-height: 1.55; }
+  .login-form { display: flex; flex-direction: column; gap: 8px; margin-bottom: 28px; }
+  .input-text { width: 100%; padding: 14px 16px; background: var(--bg); border: 1px solid var(--line-strong); border-radius: 6px; color: var(--fg); font-size: 16px; outline: none; transition: border-color 0.15s; }
+  .input-text:focus { border-color: var(--fg); }
+  .btn-primary { padding: 14px 20px; background: var(--fg); color: var(--bg); border: none; border-radius: 6px; font-size: 15px; font-weight: 600; transition: opacity 0.15s; }
+  .btn-primary:disabled { opacity: 0.3; cursor: default; }
+  .btn-secondary { padding: 12px 18px; background: var(--bg); color: var(--fg); border: 1px solid var(--line-strong); border-radius: 6px; font-size: 14px; font-weight: 500; }
+  .login-existing { padding-top: 24px; border-top: 1px solid var(--line); }
+  .login-ex-label { font-size: 10px; letter-spacing: 1px; color: var(--dim); margin-bottom: 10px; font-weight: 500; text-transform: uppercase; }
+  .login-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .login-chip { padding: 6px 11px; background: var(--bg-soft); border: 1px solid var(--line); border-radius: 999px; font-size: 13px; color: var(--fg); }
+  .login-chip-pts { color: var(--dim); margin-left: 6px; font-size: 11px; }
+  .login-foot { margin-top: 32px; font-size: 10px; letter-spacing: 1px; color: var(--muted); text-align: center; }
+
+  /* Home */
+  .hero { padding: 12px 0 24px; border-bottom: 1px solid var(--line); margin-bottom: 24px; }
+  .hero-label { font-size: 10px; letter-spacing: 1.5px; color: var(--fg); font-weight: 600; margin-bottom: 12px; }
+  .hero-num { font-size: clamp(80px, 22vw, 110px); font-weight: 700; letter-spacing: -4px; line-height: 0.85; }
+  .hero-sub { font-size: 16px; color: var(--dim); margin-left: 10px; font-weight: 400; }
+  .hero-chips { display: flex; gap: 6px; margin-top: 14px; flex-wrap: wrap; }
+  .hero-chip { font-size: 11px; padding: 4px 9px; background: var(--bg-soft); border: 1px solid var(--line); border-radius: 999px; color: var(--fg-2); }
+  .hero-chip.weak { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+
+  .big-cta { width: 100%; padding: 18px 22px; background: var(--fg); color: var(--bg); border: none; border-radius: 8px; font-size: 16px; font-weight: 600; margin-bottom: 22px; display: flex; justify-content: space-between; align-items: center; }
+  .big-cta-arrow { font-size: 20px; }
+  .big-cta-done { width: 100%; padding: 18px 22px; background: var(--bg-soft); color: var(--dim); border: 1px solid var(--line); border-radius: 8px; font-size: 15px; font-weight: 500; cursor: default; margin-bottom: 22px; text-align: center; }
+
+  .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 22px; }
+  .stat { background: var(--bg-soft); border: 1px solid var(--line); padding: 16px; border-radius: 8px; }
+  .stat-num { font-size: 28px; font-weight: 700; letter-spacing: -1px; line-height: 1; }
+  .stat-slash { font-size: 14px; color: var(--dim); font-weight: 400; }
+  .stat-label { font-size: 11px; color: var(--dim); margin-top: 6px; letter-spacing: 0.8px; text-transform: uppercase; font-weight: 500; }
+
+  .menu { display: flex; flex-direction: column; gap: 6px; margin-bottom: 32px; }
+  .menu-item { display: flex; align-items: center; gap: 12px; padding: 14px 16px; background: var(--bg); border: 1px solid var(--line); border-radius: 8px; color: var(--fg); text-align: left; }
+  .menu-item:hover { background: var(--bg-soft); }
+  .menu-icon { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; background: var(--bg-elev); border-radius: 5px; font-size: 14px; font-weight: 700; }
+  .menu-main { flex: 1; }
+  .menu-title { font-size: 14px; font-weight: 500; }
+  .menu-desc { font-size: 12px; color: var(--dim); margin-top: 2px; }
+  .menu-arrow { color: var(--dim); font-size: 16px; }
+
+  .footer { font-size: 10px; color: var(--muted); text-align: center; margin-top: 36px; letter-spacing: 0.5px; }
+
+  /* Study */
+  .study-top { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; margin-bottom: 14px; }
+  .study-prog-num { font-size: 22px; font-weight: 700; }
+  .study-prog-denom { font-size: 13px; color: var(--dim); }
+  .study-chap { font-size: 11px; letter-spacing: 1px; font-weight: 600; text-align: center; }
+  .study-pts { font-size: 16px; font-weight: 700; text-align: right; }
+
+  .dots { display: flex; gap: 4px; margin-bottom: 26px; }
+  .dot { flex: 1; height: 2px; background: var(--line); }
+  .dot.active { background: var(--fg); }
+
+  .stage-badge { display: inline-block; font-size: 10px; letter-spacing: 1px; font-weight: 600; margin-bottom: 12px; text-transform: uppercase; padding: 4px 9px; background: var(--fg); color: var(--bg); border-radius: 3px; }
+  .concept-title { font-size: 28px; font-weight: 700; letter-spacing: -1px; line-height: 1.15; margin-bottom: 22px; }
+  .question { font-size: 18px; font-weight: 500; line-height: 1.4; margin-bottom: 20px; color: var(--fg); }
+
+  .theory-box { margin-bottom: 18px; }
+  .theory-line { font-size: 15px; line-height: 1.65; color: var(--fg-2); margin-bottom: 10px; white-space: pre-wrap; }
+  .example-box { background: var(--bg-soft); border: 1px solid var(--line); border-left: 3px solid var(--fg); padding: 14px 16px; margin-bottom: 22px; border-radius: 4px; }
+  .example-label { font-size: 10px; letter-spacing: 1px; font-weight: 600; margin-bottom: 6px; }
+  .example-text { font-size: 14px; line-height: 1.55; color: var(--fg-2); }
+
+  .input-text-correct { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+  .input-text-wrong { border-color: var(--line-strong); border-style: dashed; }
+
+  .hint-box { padding: 11px 14px; background: var(--bg-soft); border: 1px dashed var(--line-strong); border-radius: 6px; font-size: 13px; color: var(--fg-2); margin-bottom: 14px; font-style: italic; }
+  .btn-row { display: flex; gap: 8px; margin-bottom: 12px; }
+  .btn-row .btn-primary { flex: 2; }
+
+  .textarea { width: 100%; padding: 14px 16px; background: var(--bg); border: 1px solid var(--line-strong); border-radius: 6px; color: var(--fg); font-size: 15px; line-height: 1.5; outline: none; resize: vertical; min-height: 140px; transition: border-color 0.15s; }
+  .textarea:focus { border-color: var(--fg); }
+  .char-count { font-size: 11px; color: var(--muted); text-align: right; margin: 6px 0 14px; }
+
+  .mc-options { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+  .mc-option { display: flex; align-items: center; gap: 10px; padding: 14px 16px; background: var(--bg); border: 1px solid var(--line); border-radius: 6px; color: var(--fg); font-size: 15px; text-align: left; width: 100%; transition: all 0.15s; }
+  .mc-option:hover:not(:disabled) { background: var(--bg-soft); border-color: var(--line-strong); }
+  .mc-option:disabled { cursor: default; }
+  .mc-letter { font-size: 11px; color: var(--dim); width: 14px; flex-shrink: 0; font-weight: 600; }
+  .mc-text { flex: 1; line-height: 1.4; }
+  .mc-mark { font-size: 16px; font-weight: 700; }
+  .mc-correct { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+  .mc-correct .mc-letter { color: var(--bg); }
+  .mc-wrong { background: var(--bg-soft); border-color: var(--line-strong); border-style: dashed; opacity: 0.7; }
+  .mc-dimmed { opacity: 0.4; }
+
+  .feedback { padding: 13px 16px; font-weight: 600; font-size: 14px; margin-bottom: 14px; border-radius: 6px; }
+  .feedback-ok { background: var(--fg); color: var(--bg); }
+  .feedback-bad { background: var(--bg-elev); color: var(--fg); border: 1px dashed var(--line-strong); }
+  .feedback-partial { background: var(--bg-soft); color: var(--fg); border: 1px solid var(--fg); }
+  .feedback-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; font-size: 10px; letter-spacing: 1px; opacity: 0.85; }
+  .feedback-text { font-size: 14px; line-height: 1.5; font-weight: 400; }
+
+  .sol-box { border: 1px solid var(--line); padding: 13px 16px; margin-bottom: 14px; border-radius: 6px; background: var(--bg-soft); }
+  .sol-label { font-size: 10px; letter-spacing: 1px; color: var(--dim); margin-bottom: 6px; font-weight: 600; text-transform: uppercase; }
+  .sol-text { font-size: 15px; font-weight: 600; color: var(--fg); }
+  .sol-text-long { font-size: 14px; line-height: 1.6; color: var(--fg-2); }
+  .missing-list { margin: 0; padding-left: 18px; list-style: disc; }
+  .missing-item { font-size: 13px; line-height: 1.5; color: var(--fg-2); margin-bottom: 4px; }
+
+  .ai-loading { padding: 36px 20px; text-align: center; background: var(--bg-soft); border: 1px solid var(--line); border-radius: 6px; }
+  .ai-loading-dot { width: 10px; height: 10px; background: var(--fg); border-radius: 50%; margin: 0 auto 14px; animation: pulse 1s ease-in-out infinite; }
+  @keyframes pulse { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
+  .ai-loading-text { font-size: 12px; color: var(--dim); letter-spacing: 0.5px; }
+
+  .compare-block { margin-bottom: 14px; }
+  .compare-label { font-size: 10px; letter-spacing: 1px; color: var(--dim); margin-bottom: 6px; font-weight: 600; text-transform: uppercase; }
+  .compare-yours { padding: 13px 16px; background: var(--bg-soft); border-radius: 6px; font-size: 14px; line-height: 1.55; color: var(--fg-2); border: 1px solid var(--line); }
+  .compare-model { padding: 13px 16px; background: var(--fg); color: var(--bg); border-radius: 6px; font-size: 14px; line-height: 1.55; }
+  .checklist { margin: 0; padding-left: 18px; }
+  .checklist-item { font-size: 13px; line-height: 1.5; color: var(--fg-2); margin-bottom: 5px; }
+
+  .judge-prompt { padding: 13px 16px; border: 1px solid var(--fg); border-radius: 6px; font-size: 14px; line-height: 1.5; margin-bottom: 14px; background: var(--bg); }
+
+  .exit-btn { width: 100%; padding: 10px; margin-top: 12px; background: transparent; border: none; color: var(--dim); font-size: 12px; letter-spacing: 0.5px; }
+
+  .session-end { text-align: center; padding: 32px 0; }
+  .session-end-num { font-size: 88px; font-weight: 700; letter-spacing: -3px; line-height: 1; margin: 10px 0 6px; }
+  .session-end-label { font-size: 12px; color: var(--dim); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 22px; font-weight: 500; }
+  .session-end-text { font-size: 16px; line-height: 1.5; color: var(--fg-2); margin-bottom: 28px; max-width: 400px; margin-left: auto; margin-right: auto; }
+
+  .test-result-hero { text-align: center; padding: 24px 0; }
+  .test-result-num { font-size: 80px; font-weight: 700; letter-spacing: -3px; line-height: 1; }
+  .test-result-denom { font-size: 28px; color: var(--dim); font-weight: 400; }
+  .test-result-verdict { font-size: 12px; letter-spacing: 1.5px; font-weight: 700; margin: 14px 0 18px; }
+  .test-result-meta { display: flex; justify-content: center; gap: 12px; color: var(--dim); font-size: 13px; align-items: center; }
+  .test-result-meta-num { color: var(--fg); font-weight: 600; margin-right: 4px; }
+
+  .review-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 22px; }
+  .review-item { background: var(--bg-soft); border: 1px solid var(--line); border-left-width: 3px; padding: 12px 14px; border-radius: 4px; }
+  .review-item.correct { border-left-color: var(--fg); }
+  .review-head { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+  .review-idx { font-size: 11px; color: var(--dim); }
+  .review-chap { font-size: 10px; font-weight: 600; letter-spacing: 0.5px; }
+  .review-mark { margin-left: auto; font-weight: 700; font-size: 14px; }
+  .review-q { font-size: 13px; font-style: italic; margin-bottom: 6px; line-height: 1.4; }
+  .review-ans-row { font-size: 13px; color: var(--fg-2); margin-bottom: 2px; line-height: 1.5; }
+  .review-ans-label { font-size: 10px; color: var(--muted); margin-right: 4px; letter-spacing: 0.5px; text-transform: uppercase; }
+
+  .page-pre { font-size: 11px; letter-spacing: 1.5px; color: var(--dim); font-weight: 500; margin-bottom: 10px; text-transform: uppercase; }
+  .page-title { font-size: 36px; font-weight: 700; letter-spacing: -1.5px; line-height: 1.1; margin-bottom: 10px; }
+  .page-sub { color: var(--dim); font-size: 14px; line-height: 1.55; margin-bottom: 22px; }
+
+  .chap-block { margin-bottom: 24px; }
+  .chap-head { display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 6px; margin-bottom: 6px; border-bottom: 1px solid var(--line); }
+  .chap-num { font-size: 13px; font-weight: 700; margin-right: 10px; }
+  .chap-title { font-size: 14px; font-weight: 500; }
+  .chap-stats { font-size: 11px; color: var(--dim); }
+  .concept-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--line); }
+  .concept-row-name { font-size: 14px; color: var(--fg-2); flex: 1; }
+  .mastery-dots { display: flex; gap: 3px; }
+  .mastery-dot { width: 6px; height: 6px; border: 1px solid var(--dim); border-radius: 50%; }
+  .mastery-dot.filled { background: var(--fg); border-color: var(--fg); }
+
+  .tabs { display: flex; gap: 4px; padding: 3px; background: var(--bg-soft); margin-bottom: 18px; border-radius: 6px; border: 1px solid var(--line); }
+  .tab { flex: 1; padding: 9px 12px; background: transparent; border: none; font-size: 13px; font-weight: 500; color: var(--dim); border-radius: 4px; }
+  .tab.active { background: var(--bg); color: var(--fg); font-weight: 600; box-shadow: 0 1px 2px rgba(0,0,0,0.08); }
+
+  .lb-list { border-top: 1px solid var(--line); }
+  .lb-empty { padding: 30px; text-align: center; color: var(--dim); font-style: italic; font-size: 14px; }
+  .lb-row { display: grid; grid-template-columns: 36px 1fr auto; gap: 10px; padding: 12px 8px; align-items: center; border-bottom: 1px solid var(--line); }
+  .lb-row.self { background: var(--fg); color: var(--bg); border-radius: 4px; padding-left: 12px; padding-right: 12px; }
+  .lb-row.self .lb-rank, .lb-row.self .lb-time { color: var(--bg); opacity: 0.7; }
+  .lb-row.self .lb-pts { color: var(--bg); }
+  .lb-rank { font-size: 12px; font-weight: 600; color: var(--dim); }
+  .lb-name { font-size: 14px; font-weight: 500; }
+  .lb-you { font-size: 10px; opacity: 0.7; margin-left: 6px; }
+  .lb-pts { font-size: 16px; font-weight: 700; }
+  .lb-test-right { display: flex; flex-direction: column; align-items: flex-end; gap: 1px; }
+  .lb-time { font-size: 10px; color: var(--dim); }
+
+  .test-badge { font-size: 10px; letter-spacing: 1px; padding: 3px 8px; border-radius: 3px; font-weight: 700; background: var(--fg); color: var(--bg); justify-self: center; }
+
+  .loading-screen { min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+  .loading-dot { width: 8px; height: 8px; background: var(--fg); border-radius: 50%; animation: pulse 1s ease-in-out infinite; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script>
+// ============================================================
+// CONFIG
+// ============================================================
+const PROXY_URL = 'https://demografie-proxy-nuw2.vercel.app/api/evaluate';
+
+// ============================================================
+// CONTENT — 30 Konzepte mit Verständnisfokus
+// Pflichtpunkte umfassend definiert für AI-Bewertung
+// ============================================================
+const CONCEPTS = [
+  // K1
+  { id:'k1a', chapter:1, title:'Bevölkerungswachstum global',
+    theory:'Vom Jahr 0 bis 1800 brauchte die Welt 1800 Jahre, um von 200 Mio. auf 1 Mia. zu wachsen.\n\nVon 1800 bis heute (~8 Mia.) waren es nur ~220 Jahre. Das ist exponentielles Wachstum durch die Industrialisierung.\n\nMeilensteine: 1930→2 Mia, 1960→3, 1974→4, 1987→5, 1999→6, 2011→7, 2022→8.',
+    example:'Verdoppelung 1→2 Mia: 130 Jahre. Verdoppelung 2→4 Mia: 44 Jahre. Wachstum hat sich beschleunigt.',
+    recall:{ q:'Wie viele Jahre brauchte die Welt von 200 Mio. (Jahr 0) bis 1 Mia. (1800)?', accept:['1800','~1800'], hint:'Genau die Zeitspanne von Jahr 0 bis 1800.' },
+    mc:{ q:'Wann erreichte die Weltbevölkerung erstmals 1 Milliarde?', options:['Um 1700','Um 1800','Um 1900','Um 1930'], correct:1 },
+    explain:{ prompt:'Erkläre warum das Bevölkerungswachstum seit 1800 so explosiv war.',
+      model:'Seit 1800 fiel die Sterberate dramatisch (Industrialisierung: bessere Medizin, Hygiene, Ernährung), während die Geburtenrate noch lange hoch blieb. Diese geöffnete Schere zwischen tiefer Sterbe- und hoher Geburtenrate führt zu exponentiellem Wachstum.',
+      mustInclude:['Industrialisierung als Auslöser','Sterberate fiel stark (Medizin/Hygiene/Ernährung)','Geburtenrate blieb lange hoch','Schere → exponentielles Wachstum'] } },
+  { id:'k1b', chapter:1, title:'Verteilung der Menschen auf der Erde',
+    theory:'Die Menschheit ist sehr ungleich verteilt:\n• die meisten leben weniger als 1000 km vom Meer entfernt\n• die meisten leben unter 500 m Höhe\n• die meisten leben in der nördlichen Hemisphäre (10°N-68°N)\n• die südliche Hemisphäre ist deutlich schwächer besiedelt',
+    example:'Top 1 (1950): China 555 Mio → Top 1 (2050): Indien 1628 Mio. Klassische Industrieländer (Russland, Japan, Deutschland) verschwinden aus den Top 10.',
+    recall:{ q:'In welcher Höhe (über Meer) leben die meisten Menschen?', accept:['unter 500m','<500m','unter 500'], hint:'Eine Zahl in Metern, "unter X".' },
+    mc:{ q:'Welches Land wird laut Prognose 2050 das bevölkerungsreichste sein?', options:['China','USA','Indien','Nigeria'], correct:2 },
+    explain:{ prompt:'Warum sind Küstenregionen weltweit so viel dichter besiedelt als das Landesinnere?',
+      model:'Küsten bieten historisch Handel über Schifffahrt, fruchtbare Schwemmlandebenen, milderes Klima durch Meereseinfluss, leichteren Transport und Zugang zu Nahrungsquellen wie Fisch. Megastädte (New York, Shanghai, Mumbai) sind fast alle Küstenstädte. Das Landesinnere ist oft trockener oder gebirgiger und schwerer zu erreichen.',
+      mustInclude:['Handel/Schifffahrt','fruchtbare Böden/Schwemmland','milderes Klima','Transport/Zugänglichkeit'] } },
+
+  // K2
+  { id:'k2a', chapter:2, title:'Fertilitätsrate vs. Geburtenrate',
+    theory:'Wird ständig verwechselt — klassische Prüfungsfalle.\n\nGEBURTENRATE = Lebendgeborene pro 1000 Einwohner pro Jahr (in ‰).\n\nFERTILITÄTSRATE = Anzahl Kinder pro Frau im gebärfähigen Alter, im Durchschnitt.',
+    example:'Schweiz 2024: Fertilitätsrate = 1,28 Kinder pro Frau. Geburtenrate Schweiz ≈ 10‰.',
+    recall:{ q:'Wie viele Kinder pro Frau hat die Schweiz aktuell (2024)?', accept:['1,28','1.28'], hint:'Eine Zahl mit Komma, deutlich unter 2.' },
+    mc:{ q:'Was misst die Fertilitätsrate?', options:['Geburten pro 1000 Einwohner','Durchschnittliche Kinderzahl pro Frau','Anteil gebärfähiger Frauen','Geburten minus Sterbefälle'], correct:1 },
+    explain:{ prompt:'Warum ist es wichtig, zwischen Fertilitätsrate und Geburtenrate zu unterscheiden? Welche Information geht jeweils verloren wenn man nur eine kennt?',
+      model:'Die Geburtenrate (pro 1000 Einwohner) hängt stark von der Altersstruktur ab — ein altes Land hat tiefe Geburtenrate, auch wenn jede Frau viele Kinder hätte. Die Fertilitätsrate (Kinder pro Frau) zeigt das tatsächliche Geburtsverhalten unabhängig von der Altersverteilung. Nur Fertilitätsrate sagt aus, ob die Bevölkerung sich reproduziert (>2,1 nötig). Nur Geburtenrate sagt, wie viele Babys es absolut gibt.',
+      mustInclude:['Geburtenrate hängt von Altersstruktur ab','Fertilitätsrate zeigt tatsächliches Verhalten','Reproduktion: nur über Fertilität messbar','beide Indikatoren ergänzen sich'] } },
+  { id:'k2b', chapter:2, title:'Medianalter — was es wirklich aussagt',
+    theory:'MEDIANALTER: Alter, das die Bevölkerung in zwei gleich grosse Hälften teilt — 50% jünger, 50% älter.\n\nNICHT identisch mit Durchschnittsalter (Mittelwert). Median ist robuster gegen Ausreisser.\n\nLebenserwartung ≠ Medianalter.',
+    example:'Niger: Medianalter ~15 (junge Bevölkerung). Schweiz: Medianalter ~43 (überaltert). Lebenserwartung CH Frauen 85,4.',
+    recall:{ q:'Was bedeutet Medianalter in einem Satz?', accept:['teilt die bevölkerung in zwei hälften','50% jünger 50% älter','hälfte jünger hälfte älter','hälfte hälfte','mitte der bevölkerung'], hint:'Aufteilung in zwei gleiche Gruppen.' },
+    mc:{ q:'Was ist die Lebenserwartung der Frauen in der Schweiz (2022)?', options:['81,6 Jahre','83,5 Jahre','85,4 Jahre','87,2 Jahre'], correct:2 },
+    explain:{ prompt:'Was sagt ein Medianalter von 15 vs. 43 über ein Land aus — wirtschaftlich, politisch und gesellschaftlich?',
+      model:'Ein Medianalter von 15 (Niger) bedeutet sehr viele Kinder, hohe Geburtenrate, demografische Belastung durch viele Abhängige (Kinder), aber demografische Dividende möglich wenn diese Kinder erwerbstätig werden. Politisch: enormer Druck auf Bildung/Gesundheit. Ein Medianalter von 43 (CH) bedeutet überalterte Gesellschaft, Erwerbstätige tragen viele Rentner, AHV unter Druck, weniger Innovation/Risikobereitschaft, aber stabile Wirtschaft.',
+      mustInclude:['niedriges = junge Bevölkerung mit viel Kindern','hohes = überaltert mit vielen Rentnern','Belastung durch Abhängige (Kinder vs. Rentner)','wirtschaftliche Konsequenzen'] } },
+  { id:'k2c', chapter:2, title:'Säuglingssterblichkeit als Entwicklungsindikator',
+    theory:'SÄUGLINGSSTERBLICHKEIT = Zahl der gestorbenen Säuglinge (im 1. Lebensjahr) pro 1000 lebend geborenen Säuglingen.\n\nWichtigster Indikator für medizinische Versorgung und Entwicklungsstand.',
+    example:'Vor 200 Jahren: oft >300/1000. Heute: CH ~3, Niger ~80, Sierra Leone ~110.',
+    recall:{ q:'Pro wieviele Lebendgeborene wird Säuglingssterblichkeit gemessen?', accept:['1000','tausend','pro 1000'], hint:'Runde Zahl, gleiche wie bei Geburtenrate.' },
+    mc:{ q:'Welcher Zeitraum gilt als "Säuglingsalter"?', options:['1. Lebenswoche','1. Lebensmonat','1. Lebensjahr','Bis 5. Geburtstag'], correct:2 },
+    explain:{ prompt:'Warum führt eine sinkende Säuglingssterblichkeit langfristig auch zu einer sinkenden Geburtenrate?',
+      model:'Wenn Eltern sicher sein können, dass ihre Kinder überleben, müssen sie weniger Kinder bekommen, um eine ausreichende Familiengrösse zu erreichen — speziell für die Altersversorgung in Ländern ohne Rentensystem. Wo früher 6 Kinder geboren wurden, damit 3 überleben, reicht es bei 95% Überlebensrate, 2-3 zu bekommen. Dies ist einer der Hauptmechanismen des demografischen Übergangs.',
+      mustInclude:['Eltern brauchen weniger "Sicherheits"-Kinder','Altersversorgung als Motiv','Mechanismus des demografischen Übergangs','Kausalkette Sicherheit → weniger Kinder'] } },
+
+  // K3
+  { id:'k3', chapter:3, title:'Demografische Grundgleichung verstehen',
+    theory:'Wachstumsrate = (Geburten - Sterbefälle) + (Einwanderung - Auswanderung)\n              = natürliches Wachstum  +  Wanderungssaldo\n\nBeide Komponenten können positiv oder negativ sein. Gesamteffekt ergibt sich aus deren Summe.',
+    example:'Schweiz 2022: 7\'946 (natürlich) + 68\'760 (Migration) ≈ +76\'700 total. Ohne Migration: kaum Wachstum.',
+    recall:{ q:'Wachstumsrate = ? + ?', accept:['natürliches wachstum + wanderungssaldo','natur + migration','wanderungssaldo + natürliches wachstum'], hint:'Eines hat mit Geburten zu tun, das andere mit Migration.' },
+    mc:{ q:'Aussage: "Bleiben Geburten- und Sterbeziffer konstant, bleibt die Bevölkerungszahl gleich." Stimmt das?', options:['Ja, immer','Nein - wenn Geb≠Sterbe, wächst/schrumpft sie weiter','Nur wenn Migration null ist','Nur in geschlossenen Systemen'], correct:1 },
+    explain:{ prompt:'Was bedeutet es konkret für ein Land wie die Schweiz, wenn das natürliche Wachstum gegen Null geht und nur noch Migration die Bevölkerungszahl hält?',
+      model:'Wenn natürliches Wachstum gegen 0 geht (Geburten ≈ Sterbefälle), wird die Demografie komplett von Migration getrieben. Politische Folge: Migrationspolitik wird zur Bevölkerungspolitik. Ohne Zuwanderung schrumpft das Land. Risiken: Abhängigkeit von Migration für Arbeitskräfte und AHV-Finanzierung, gesellschaftliche Spannungen, Identitätsdebatten. Chancen: kulturelle Vielfalt, Fachkräfte. Das Trilemma wird akut.',
+      mustInclude:['Demografie wird Migrations-getrieben','Migrationspolitik = Bevölkerungspolitik','Risiken: Abhängigkeit / Spannungen','ohne Migration → Schrumpfen'] } },
+
+  // K4
+  { id:'k4a', chapter:4, title:'Verdoppelungszeit-Formel & Mathematik',
+    theory:'Faustformel: Verdoppelungszeit (Jahre) = 70 / Wachstumsrate (%)\n\nWoher kommt die 70? Aus Zinseszinsrechnung: ln(2) ≈ 0,693, mal 100 = 69,3 → gerundet 70.\n\nMathematik dahinter: exponentielles Wachstum N(t) = N₀ × (1+r)^t. Auflösen nach t für N(t) = 2N₀ ergibt die Formel.',
+    example:'2% Wachstum: 70/2 = 35 Jahre. 1%: 70 Jahre. 0,5%: 140 Jahre.',
+    recall:{ q:'Verdoppelungszeit (Jahre) = 70 / ?', accept:['wachstumsrate','wachstumsrate (%)','r','wachstum'], hint:'Nenner ist eine Prozentzahl.' },
+    mc:{ q:'Bei welcher Wachstumsrate verdoppelt sich die Bevölkerung in 35 Jahren?', options:['0,5%','1,0%','2,0%','3,5%'], correct:2 },
+    explain:{ prompt:'Berechne die Wachstumsrate UND Verdoppelungszeit für: 28,4 Mio Einwohner, +910\'000/Jahr. Zeige den Rechenweg.',
+      model:'Schritt 1 — Wachstumsrate: 910\'000 / 28\'400\'000 = 0,032 = 3,2%. Schritt 2 — Verdoppelungszeit: 70 / 3,2 ≈ 22 Jahre. Das ist sehr hoch — typisch für afrikanische Schwellenländer in Phase II/III des demografischen Übergangs. Kontrast Schweiz: ~0,1% natürliches Wachstum, also Verdoppelungszeit theoretisch 700 Jahre.',
+      mustInclude:['Wachstumsrate ≈ 3,2%','Verdoppelungszeit ≈ 22 Jahre','Rechenweg gezeigt','Einordnung des Ergebnisses'] } },
+
+  // K5
+  { id:'k5a', chapter:5, title:'Demografischer Übergang — die 5 Phasen',
+    theory:'Modell für den Wandel von Agrar- zu Dienstleistungsgesellschaft:\n\nI prätransformativ: beide Raten hoch, Bevölkerung konstant\nII frühtransformativ: Sterberate sinkt (Medizin), Geburten hoch — Schere öffnet sich\nIII mitteltransformativ: Geburten sinken langsam, HÖCHSTES Wachstum\nIV spättransformativ: Geburten sinken rasch (Verstädterung, Bildung Frauen)\nV posttransformativ: Geburten unter Sterbe, Bevölkerung schrumpft',
+    example:'Niger: 50‰/11‰ = Phase II. Indien: 20‰/8‰ = Phase III. Schweiz: 10‰/8‰ = Phase V.',
+    recall:{ q:'In welcher Phase ist das Wachstum am höchsten?', accept:['phase iii','phase 3','iii','3','mitteltransformativ'], hint:'Mittlere Phase — Sterberate schon tief, Geburten noch hoch.' },
+    mc:{ q:'Schweiz aktuell: 10‰ Geburten, 8‰ Sterbe. Welche Phase?', options:['Phase II','Phase III','Phase IV','Phase V'], correct:3 },
+    explain:{ prompt:'Warum öffnet sich in Phase II die Bevölkerungsschere — was passiert mit Sterberate und Geburtenrate, und warum ändern sie sich nicht zur gleichen Zeit?',
+      model:'In Phase II fällt die Sterberate stark durch externe Faktoren: bessere Ernährung, Hygiene (sauberes Wasser, Abwasser), medizinischer Fortschritt (Impfungen, Antibiotika). Diese Veränderungen wirken schnell und unabhängig von kulturellen Normen. Die Geburtenrate bleibt aber hoch oder steigt sogar leicht, weil sie an tiefer verwurzelte kulturelle, religiöse und ökonomische Faktoren gebunden ist (Kinder als Altersvorsorge, Arbeitskräfte, Tradition). Diese Trägheit der Geburtenrate gegenüber der Sterberate erzeugt die Schere und damit das maximale Bevölkerungswachstum.',
+      mustInclude:['Sterberate fällt durch externe/technische Faktoren','Geburtenrate ist kulturell verankert','unterschiedliche Reaktionsgeschwindigkeit','Schere = Wachstumsmaximum'] } },
+  { id:'k5b', chapter:5, title:'Übergang Europa vs. Entwicklungsländer',
+    theory:'Europa/Nordamerika: Übergang lief "von selbst" durch Industrialisierung. Bevölkerung wuchs 2-4-fach.\n\nEntwicklungsländer: Übergang durch IMPORTIERTE Medizin/Verhütungsmittel beschleunigt → schneller, aber Bevölkerung wuchs 7-10-fach.',
+    example:'Europa 19. Jh.: ~50 Jahre für Phase II→III. Afrika heute: oft 20-30 Jahre, aber bei viel höherem Wachstum.',
+    recall:{ q:'Um wieviel wuchs Bevölkerung in Europa beim Übergang? (z.B. "X-Y-fach")', accept:['2-4-fach','2- bis 4-fach','2 bis 4-fach','2 bis 4 fach'], hint:'Spanne mit 2 und 4.' },
+    mc:{ q:'Um wieviel wuchs Bevölkerung in vielen Entwicklungsländern?', options:['2- bis 4-fach','5- bis 7-fach','7- bis 10-fach','15- bis 20-fach'], correct:2 },
+    explain:{ prompt:'Warum wuchs die Bevölkerung in Entwicklungsländern beim Übergang prozentual stärker als in Europa, obwohl der Übergang schneller ablief?',
+      model:'Paradox: Schneller heisst nicht gleichmässig. In Europa fiel Sterberate parallel zu kulturellem Wandel (Industrialisierung, Bildung) - Geburtenrate folgte zeitnah. In Entwicklungsländern wurde Sterberate durch importierte Medizin schlagartig gesenkt, ohne dass kulturelle Strukturen mitwuchsen. Die Geburtenrate konnte erst Jahrzehnte später folgen, wenn Bildung/Verstädterung griffen. Ergebnis: viel grössere Schere und über mehr Generationen → 7-10-fach statt 2-4-fach.',
+      mustInclude:['Importierte Medizin senkt Sterberate schlagartig','Kulturelle Strukturen wachsen nicht mit','grössere Schere','längere Wachstumsphase'] } },
+
+  // K6
+  { id:'k6a', chapter:6, title:'Demografische Dividende — wie wird Bevölkerung zu Wachstum?',
+    theory:'"Demografisches Gelegenheitsfenster": Geburtenrate sinkt UND Lebenserwartung steigt → Phase mit vielen Erwerbsfähigen (15-64), wenigen Abhängigen.\n\nUN-Definition: <30% unter 15 UND <15% über 64, ODER >55% Erwerbsfähige.',
+    example:'Erfolgreich: Südkorea, Taiwan, Singapur, China (1980er-2010er). Aktuell: Indien. Nicht erreicht: Subsahara-Afrika.',
+    recall:{ q:'Was ist der erwerbsfähige Altersbereich nach UN? (z.B. "X-Y")', accept:['15-64','15 bis 64','15-64 jahre'], hint:'Untere und obere Altersgrenze.' },
+    mc:{ q:'Welches Land nutzte demografische Dividende erfolgreich?', options:['Niger','Südkorea','DR Kongo','Italien'], correct:1 },
+    explain:{ prompt:'Erkläre die VIER wirtschaftlichen Mechanismen, durch die die demografische Dividende Wachstum erzeugt — über reine Arbeitskraft hinaus.',
+      model:'(1) Mehr Arbeitskräfte → mehr Produktion. (2) Höhere Sparquote: Erwerbstätige sparen mehr als Kinder oder Rentner — mehr Ersparnisse senken Zinsen, ermöglichen Investitionen. (3) Höheres Humankapital: weniger Kinder pro Familie → mehr Geld pro Kind für Bildung → produktivere Arbeiter in der nächsten Generation. (4) Erhöhte Frauenerwerbsbeteiligung: weniger Kinder = Frauen können arbeiten gehen, was Arbeitskräftepool erweitert.',
+      mustInclude:['Mehr Arbeitskräfte/Produktion','Höhere Sparquote → Investitionen','Mehr Humankapital pro Kind durch Bildung','Frauenerwerbsbeteiligung steigt'] } },
+  { id:'k6b', chapter:6, title:'Middle-Income-Trap — die Falle nach der Dividende',
+    theory:'Risiko nach der Dividende: Löhne zu hoch für Billigproduktion, aber Wirtschaft nicht innovativ genug für hochwertige Produkte → Stagnation.\n\nVoraussetzungen, um Falle zu vermeiden: Arbeitsplätze, Kreditmarkt, gute Regierungsführung, Investitionen in Bildung VOR Fensteröffnung.',
+    example:'China heute: kämpft genau damit. Lohnniveau zu hoch für Textilfabriken, aber Halbleiter-Innovation noch nicht auf US-Niveau.',
+    recall:{ q:'Wie heisst die Falle nach der Dividende? (Englisch)', accept:['middle-income-trap','middle income trap','mittlere-einkommen-falle'], hint:'"Middle...trap".' },
+    mc:{ q:'Was ist KEINE Voraussetzung um die Falle zu vermeiden?', options:['Funktionierender Kreditmarkt','Gute Regierungsführung','Hohe Geburtenrate','Investitionen in Bildung'], correct:2 },
+    explain:{ prompt:'Warum ist Bildungsinvestition VOR der demografischen Dividende wichtiger als WÄHREND? Was ist der Mechanismus?',
+      model:'Bildung wirkt mit Verzögerung von 15-20 Jahren — die heute geborenen Kinder werden erst Ende der Dividenden-Phase erwerbstätig. Wer also erst während der Dividende investiert, hat ausgebildete Arbeiter erst NACH dem Fenster. Wer VOR der Dividende investiert (Schulen aufbauen, Lehrer ausbilden), hat zur Höchstphase eine gut ausgebildete Erwerbsbevölkerung. Crombach & Smits (2021) belegen: frühe Investoren erhalten messbar höhere Dividenden.',
+      mustInclude:['Bildung wirkt mit 15-20 Jahren Verzögerung','frühe Investition → ausgebildete Arbeiter im Fenster','späte Investition zu spät','Crombach & Smits Beleg'] } },
+
+  // K7
+  { id:'k7a', chapter:7, title:'UN-Prognose 2024 — die neuesten Zahlen',
+    theory:'Aktuelle UN-Prognose:\n• Heute: 8,2 Mia\n• Peak ~2084 mit ~10,3 Mia (2 Jahre früher als 2022 erwartet)\n• 2100: leichter Rückgang auf ~10,2 Mia\n• 80% Wahrscheinlichkeit für Peak im 21. Jh.\n\nWachstumstreiber: Subsahara-Afrika, Indien, Pakistan. Schrumpfen: Europa, China, Japan, Südkorea.',
+    example:'China 2024: Fertilitätsrate ~1,0 statt erwartete 1,2. Sinkt schneller — Hauptgrund für Korrektur nach UNTEN.',
+    recall:{ q:'Wann erreicht Weltbevölkerung Höchststand (laut UN 2024)?', accept:['2084','~2084','um 2084'], hint:'Spätes 21. Jahrhundert.' },
+    mc:{ q:'Wo werden 2100 die meisten Menschen leben?', options:['Europa und Nordamerika','Asien und Afrika (8 von 10)','Südamerika','Gleichmäßig verteilt'], correct:1 },
+    explain:{ prompt:'Warum hat die UN ihre Bevölkerungsprognose 2024 nach unten korrigiert? Welche zwei Trends sind dafür verantwortlich?',
+      model:'Erstens: Geburtenraten sinken in Asien schneller als erwartet, besonders China (1,0 statt prognostizierte 1,2) und Indien. Bei diesen riesigen Ländern führt selbst kleine Korrektur zu hunderten Millionen weniger Menschen bis 2100. Zweitens: weniger Nettomigration aus Afrika in Industrieländer als ursprünglich angenommen. Globale Fertilitätsrate liegt heute bei 2,3 (1990: 3,3) und in über 50% der Weltregionen unter dem Reproduktionsniveau von 2,1.',
+      mustInclude:['Geburtenraten Asien sinken schneller','China-Fertilität bei 1,0','geringere Migration aus Afrika','globale Fertilität 2,3 nahe Reproduktion'] } },
+  { id:'k7b', chapter:7, title:'Reproduktionsniveau — warum 2,1 und nicht 2,0',
+    theory:'Reproduktionsniveau = 2,1 Kinder pro Frau.\n\nDas ist die Zahl, die nötig wäre, damit eine Bevölkerung langfristig OHNE Migration konstant bleibt.\n\nWarum 2,1 und nicht 2,0? Sicherheitsaufschlag: nicht alle geborenen Mädchen erreichen das gebärfähige Alter (Kindersterblichkeit, Unfälle, Kinderlosigkeit).',
+    example:'Schweiz 2024: 1,28 → weit unter Reproduktion. >50% der Weltregionen unter 2,1.',
+    recall:{ q:'Wie hoch ist das Reproduktionsniveau (Kinder pro Frau)?', accept:['2,1','2.1'], hint:'Knapp über 2.' },
+    mc:{ q:'Wie viel Zeit vergeht zwischen Sinken der Geburtenrate unter 2,1 und Schrumpfen der Bevölkerung?', options:['~5 Jahre','~10 Jahre','~30 Jahre','~100 Jahre'], correct:2 },
+    explain:{ prompt:'Warum schrumpft eine Bevölkerung nicht sofort, sobald die Fertilität unter 2,1 fällt — sondern erst Jahrzehnte später?',
+      model:'Demografisches Trägheitsmoment: Wenn die Geburtenrate sinkt, bekommen die geburtenstarken Jahrgänge (z.B. Babyboomer) ihre Kinder. Selbst wenn jede einzelne dieser Frauen weniger Kinder bekommt, gibt es so viele potentielle Mütter, dass die absolute Geburtenzahl noch hoch bleibt. Erst wenn die kleineren Geburtsjahrgänge ihrerseits ins gebärfähige Alter kommen — etwa 25-30 Jahre nach Rückgang der Fertilität — schlagen weniger Geburten auf die Gesamtbevölkerung durch. Das ist warum China 2024 erst zu schrumpfen beginnt, obwohl die Geburtenrate seit den 1990ern unter 2,1 lag.',
+      mustInclude:['Trägheitsmoment durch grosse Mütter-Kohorten','geburtenstarke Jahrgänge zeugen weiter','Verzögerung 25-30 Jahre','Bsp China'] } },
+  { id:'k7c', chapter:7, title:'Weltbevölkerungskonferenz Kairo 1994',
+    theory:'Wendepunkt der internationalen Bevölkerungspolitik.\n\nVorher: Geburtenkontrolle, oft Zwang.\n\nKairo-Prinzipien:\n• Freiwilligkeit & Menschenwürde\n• Familienplanung als Recht für alle\n• Abtreibung NICHT als Mittel der Familienplanung\n• Erziehung & Stärkung von Frauen = effektivster Weg\n• 179 Staaten, 11\'000 Teilnehmer',
+    example:'Vor Kairo: China Ein-Kind-Politik mit Zwang. Nach Kairo: Äthiopien — freiwillige Reduktion durch Bildung & Gesundheit.',
+    recall:{ q:'Jahr der Weltbevölkerungskonferenz Kairo (ICPD)?', accept:['1994'], hint:'Mitte der 1990er.' },
+    mc:{ q:'Was ist laut Kairo der wirksamste Hebel?', options:['Strafen für viele Kinder','Erziehung und Stärkung von Frauen','Sterilisationsprämien','Migration'], correct:1 },
+    explain:{ prompt:'Warum gilt die Bildung von Frauen als effektivster Hebel gegen hohes Bevölkerungswachstum — welche konkreten Mechanismen wirken?',
+      model:'Mehrere kausale Mechanismen: (1) Gebildete Frauen heiraten später → spätere erste Geburt → kürzere fruchtbare Phase. (2) Gebildete Frauen verfolgen Karrieren → höhere Opportunitätskosten von Kindern. (3) Bildung erhöht ökonomische Unabhängigkeit → Frauen können selbst entscheiden über Kinderzahl. (4) Gebildete Mütter haben gesündere Kinder → niedrigere Säuglingssterblichkeit → weniger "Sicherheits"-Geburten nötig. (5) Wissen über Verhütung. (6) Vorbildwirkung in der Gemeinschaft. All diese Effekte multiplizieren sich.',
+      mustInclude:['späteres Heiraten verkürzt fruchtbare Phase','Opportunitätskosten durch Karriere','ökonomische Unabhängigkeit','niedrigere Säuglingssterblichkeit reduziert Sicherheitsgeburten'] } },
+
+  // K8
+  { id:'k8a', chapter:8, title:'Ein-Kind-Politik China — Bilanz',
+    theory:'China 1979 - ~2015: Ein-Kind-Politik mit Zwang.\n\nMethoden: Strafen >Jahresgehalt, Belohnungen für Einzelkinder, Zwangsabtreibungen bis 9. Monat.\n\nErfolg in Zahl: 1,3 Mia statt 1,6 Mia.\n\nFolgen:\n• Frauenmangel: 117 Jungen pro 100 Mädchen\n• 80 Mio verhätschelte Einzelkinder\n• Drastische Überalterung\n\nSeit 2015 gelockert, seit 2021 Drei-Kind-Politik. Geburtenrate fällt trotzdem weiter.',
+    example:'Heute warnt Demografin Cheng: "Reicht das Land schnell genug, bevor es überaltert?" Bevölkerung sinkt seit 2022.',
+    recall:{ q:'Geschlechterverhältnis China (Jungen pro 100 Mädchen)?', accept:['117','~117'], hint:'Zahl zwischen 110 und 120.' },
+    mc:{ q:'Welche Folge hatte die Ein-Kind-Politik?', options:['Höhere Geburtenrate','Frauenmangel & Überalterung','Wirtschaftskollaps','Auswanderungswelle'], correct:1 },
+    explain:{ prompt:'Diskutiere die Ein-Kind-Politik kritisch: Welche Folgen hat sie heute, mehr als 10 Jahre nach Lockerung — und warum lassen sich diese Folgen kaum noch korrigieren?',
+      model:'Trotz Lockerung 2015 und Drei-Kind-Politik 2021 ist die chinesische Geburtenrate auf ~1,0 weiter gesunken. Drei nicht-korrigierbare Folgen: (1) Frauenmangel (117:100) führt zu 30+ Mio "überschüssigen" Männern, sozialer Sprengstoff. (2) Überalterung beschleunigt: weniger junge Erwerbstätige pro Rentner als jedes andere grosse Land in dieser Phase. (3) Kulturelle Veränderung: nach 35 Jahren Einzelkindgeneration ist die Norm "ein Kind genügt" verinnerlicht — selbst mit drei Kindern erlaubt wollen Paare oft nur eines. China wird alt, bevor es reich wird. Die Politik kann Geburten nicht nachträglich erzwingen.',
+      mustInclude:['Frauenmangel als sozialer Sprengstoff','Überalterung beschleunigt','kulturelle Verinnerlichung des Einzelkindes','Geburtenrate sinkt trotz Lockerung'] } },
+  { id:'k8b', chapter:8, title:'Thailand — die Sanuk-Methode',
+    theory:'Mechai Viravaidya seit 1971: humorvoll, kreativ, freiwillig. "Sanuk" = Spass.\n\nMethoden:\n• Kondom-Aufblaswettbewerbe in Schulen\n• Lotterielose für Sterilisationen\n• Günstige Kredite an Bauern bei Verzicht auf Schwangerschaft\n• Buddhistische Mönche segnen Verhütungsmittel\n• Auf 1 sterilisierte Frau kommen 12 Männer (Weltrekord)\n\nErgebnis: Wachstum 1970er 2,4% → 2012: 0,5%.',
+    example:'Mechai in Thailand so bekannt wie Königsfamilie. Effektiv UND menschenwürdig.',
+    recall:{ q:'Architekt der Thai-Bevölkerungspolitik (Vor-/Nachname)?', accept:['mechai viravaidya','viravaidya','mechai'], hint:'Vorname Mechai.' },
+    mc:{ q:'Wieviel Männer auf 1 sterilisierte Frau in Thailand?', options:['1','4','12 (Weltrekord)','20'], correct:2 },
+    explain:{ prompt:'Warum war die Thai-Methode trotz scheinbar lächerlicher Massnahmen (Kondom-Wettbewerbe, Lotterielose) so erfolgreich? Was ist der psychologisch-kulturelle Hebel?',
+      model:'Mechai verstand: Familienplanung scheitert oft an Tabus und Scham. Indem er Verhütung in den humorvollen Alltag integrierte (Sanuk = Spass), brach er die Tabus. Kondome wurden so normal wie Zahnpasta. Die Lotterielose und Kredite waren keine Strafen sondern Belohnungen — das aktivierte Eigenmotivation statt Widerstand. Die Einbindung der Mönche legitimierte Verhütung religiös. Die Massnahmen wirkten WEIL sie kulturell anschlussfähig waren — eine Lehre die Zwangsmethoden in China und Indien gerade widerlegt haben. Erfolg ohne Menschenrechtsverletzungen.',
+      mustInclude:['Tabus durch Humor gebrochen','Belohnung statt Strafe → Eigenmotivation','religiöse Legitimation','kulturell anschlussfähig'] } },
+  { id:'k8c', chapter:8, title:'Pronatalistische Politik — warum Geld nicht hilft',
+    theory:'Pronatalistisch = Geburten FÖRDERN.\n\nStudien zeigen: Geld allein hilft kaum.\n• Ungarn: Mütter ab 2 Kindern lebenslang einkommenssteuerfrei\n• Deutschland: Elterngeld + Krippenplatzgarantie → 1,38\n• Südkorea: voll finanzierte Kinderbetreuung → 0,75 (Weltrekord-Tief)\n• Schweden (Vorzeigeland): 480 Tage Elternzeit, gratis Krippen → 1,45',
+    example:'Schweden hat ambitionierteste Familienpolitik der Welt UND nur 1,45 — unter Reproduktionsniveau.',
+    recall:{ q:'Geburtenrate Südkorea trotz finanzierter Kinderbetreuung?', accept:['0,75','0.75'], hint:'Zahl unter 1.' },
+    mc:{ q:'Welches Land hat ambitionierteste Familienpolitik aber nur 1,45?', options:['Deutschland','Schweden','Frankreich','Ungarn'], correct:1 },
+    explain:{ prompt:'Wenn nicht Geld — was sind die wahren Gründe, warum Frauen in Industrieländern weniger Kinder bekommen wollen? Nenne mindestens 3.',
+      model:'(1) "Intensive Elternschaft": Mütter verbringen heute mehr Zeit mit Kindern als Hausfrauen der 1960er — das macht Eltern abschreckend für viele. (2) Retraditionalisierung nach erstem Kind: Egal wie emanzipiert, nach Geburt bleibt mehr Last bei der Frau hängen, sie verliert Karriere/Einkommen. (3) Kulturelle Verweigerungshaltung: Studien zeigen 63% junger Frauen wollen kein Bedürfnis nach Kindern, "Sorge um den Zustand der Welt", "andere Interessen". (4) Macho-Kultur korreliert mit tiefer Fertilität (Italien, Spanien, Japan, Korea, China). (5) Individualisierung: Sozialstaat hat uns von Notwendigkeit befreit, Kinder als Altersvorsorge zu haben — Familie ist heute Lifestyle-Wahl mit Kosten-Nutzen-Rechnung.',
+      mustInclude:['intensive Elternschaft als Hürde','Retraditionalisierung trotz Emanzipation','kulturelle Verweigerung / opt-out','Macho-Kultur korreliert mit tiefer Fertilität','Individualisierung'] } },
+  { id:'k8d', chapter:8, title:'Integrative Bevölkerungspolitik — die 3 Säulen',
+    theory:'Seit Kairo 1994: Wegwende von reiner Geburtenkontrolle.\n\n3 SÄULEN:\n1. Gesundheit (besonders Mütter- und Kindersterblichkeit senken)\n2. Bildung (besonders Mädchen und Frauen)\n3. Arbeitsplätze schaffen\n\nBildung der Frauen = wirksamster Hebel.',
+    example:'Äthiopien: einstiges Hungerland → Vorzeigestaat. Kinderzahlen sinken FREIWILLIG, weil Familien Vertrauen haben + Frauen Perspektiven.',
+    recall:{ q:'Die 3 Säulen der integrativen Bevölkerungspolitik?', accept:['gesundheit, bildung, arbeit','gesundheit bildung arbeit','gesundheit / bildung / arbeit'], hint:'3 Begriffe — "ges", "bil", "arb".' },
+    mc:{ q:'Welches Land gilt als afrikanisches Vorbild?', options:['Nigeria','Äthiopien','Sierra Leone','Niger'], correct:1 },
+    explain:{ prompt:'Warum ist es entscheidend, dass alle 3 Säulen GLEICHZEITIG umgesetzt werden — und was passiert wenn eine fehlt?',
+      model:'Die Säulen verstärken sich gegenseitig. Ohne Gesundheit: Kinder sterben weiterhin → Eltern bekommen viele "Sicherheits"-Kinder. Ohne Bildung: Frauen heiraten früh und kennen keine Alternativen → hohe Geburtenrate trotz besserer Gesundheit. Ohne Arbeitsplätze: gebildete Frauen können ihre Bildung nicht in ökonomische Unabhängigkeit umsetzen, kehren zur traditionellen Rolle zurück. Beispiel Pakistan: investiert in Bildung, aber wenig Arbeitsplätze für Frauen → begrenzter Effekt. Äthiopien hingegen kombiniert alle 3 → Erfolg. Die Reihenfolge ist auch wichtig: Gesundheit zuerst (sonst sind die Eltern nicht offen für weniger Kinder), dann Bildung, dann Arbeit als Anker.',
+      mustInclude:['Säulen verstärken sich gegenseitig','ohne Gesundheit: Sicherheitskinder','ohne Bildung: Frühheirat trotz Gesundheit','ohne Arbeitsplätze: Bildung wirkungslos'] } },
+
+  // K9
+  { id:'k9a', chapter:9, title:'Tragfähigkeit — natürlich vs. wirtschaftlich',
+    theory:'TRAGFÄHIGKEIT (natürlich): Wieviele Menschen ein Gebiet aus eigenen Ressourcen ernähren kann.\n\nTRAGFÄHIGKEIT (wirtschaftlich): Inkl. Importe — in CH viel höher (CH produziert nur 3/5 Lebensmittel selbst).\n\nSÄTTIGUNGSNIVEAU: Obergrenze, ab der ein Gebiet nicht mehr versorgt werden kann.\n\nS-FÖRMIGES (logistisches) WACHSTUM: erst exponentiell, dann Abflachung am Sättigungsniveau.',
+    example:'Schweiz: natürliche Tragfähigkeit gering (Berge, wenig Boden), wirtschaftliche Tragfähigkeit hoch (Importe).',
+    recall:{ q:'Wieviel ihrer Lebensmittel produziert die Schweiz selbst?', accept:['3/5','60%','60 prozent','drei fünftel'], hint:'Bruch unter 1, etwas über Hälfte.' },
+    mc:{ q:'Wie nennt man die Wachstumskurve, die erst exponentiell ist und sich am Sättigungsniveau abflacht?', options:['Linear','Exponentiell','S-förmig (logistisch)','Sinusförmig'], correct:2 },
+    explain:{ prompt:'Welches Risiko geht ein Land ein, das wie die Schweiz seine wirtschaftliche Tragfähigkeit weit über die natürliche treibt? Bewerte die Strategie kritisch.',
+      model:'Risiko der Abhängigkeit. Bei Krisen (Krieg, Klimawandel, Lieferketten-Zusammenbrüche, Sanktionen) kann ein Land plötzlich nur noch seine natürliche Tragfähigkeit ernähren. Schweiz produziert nur 3/5 selbst — bei Importstop wären 40% der Bevölkerung schlecht versorgt. Vorteile: erlaubt Spezialisierung in hochwertige Sektoren (Pharma, Finanz), höhere Bevölkerungsdichte und Lebensstandard. Bewertung: Strategie ist rational solange globaler Handel stabil ist, aber riskant in einer fragmentierten Welt. Konsequenz: Notreserven, internationale Diversifikation der Lieferanten, strategische Selbstversorgungs-Mindestquoten.',
+      mustInclude:['Abhängigkeitsrisiko bei Krisen','40% wären unterversorgt','Vorteile: Spezialisierung/Lebensstandard','Bewertung mit Massnahmen'] } },
+  { id:'k9b', chapter:9, title:'Demografisches Trilemma',
+    theory:'Wir können nur 2 von 3 Zielen gleichzeitig erreichen:\n\n1. Dynamische Wirtschaft\n2. Ethnische / kulturelle Kontinuität (wenig Migration)\n3. Hang zur kleinen Familie (tiefe Fertilität)\n\nKleine Familie + Kontinuität → schrumpft (Japan)\nKleine Familie + Wirtschaft → braucht Migration (Schweiz)\nWirtschaft + Kontinuität → bräuchte hohe Geburten (gibt es nirgends)',
+    example:'Schweiz wählt 1+3 → Migration unverzichtbar. Japan wählt 2+3 → schrumpft drastisch.',
+    recall:{ q:'Wieviele der 3 Trilemma-Ziele kann ein Land gleichzeitig?', accept:['2','zwei','2 von 3'], hint:'Eine kleine Zahl.' },
+    mc:{ q:'Welche Kombination hat die Schweiz gewählt?', options:['Wirtschaft + Kontinuität','Wirtschaft + kleine Familie','Kontinuität + kleine Familie','Alle drei'], correct:1 },
+    explain:{ prompt:'Wende das Trilemma auf die Schweiz an: Was wären die Konsequenzen, wenn die Schweiz versuchen würde, statt Migration auf höhere Geburtenrate zu setzen?',
+      model:'Theoretisch könnte die Schweiz von 1,28 auf 2,1 gehen — aber kein Land der Welt hat das geschafft, ohne kulturellen Bruch. Israel ist Ausnahme dank ultraorthodoxer Bevölkerung. Praktisch wäre nötig: massive finanzielle Anreize (würden nicht reichen, siehe Schweden 1,45), kulturelle Wende ("Willkommenskultur fürs Baby" laut Morland), möglicherweise religiös-konservative Mehrheit. Konsequenzen: enorme Staatsausgaben für Familien, Rückbau Frauenemanzipation (Retraditionalisierung), unsicherer Erfolg, 25-Jahre-Verzögerung bis Effekt eintritt. Kosten/Nutzen: Migration ist schneller, billiger, kontrollierbarer — auch wenn sie politisch konfliktreicher ist.',
+      mustInclude:['Praxisbeispiel: kein Industrieland hat 2,1 erreicht','Kosten enorm und Erfolg unsicher','Verzögerung 25 Jahre','Vergleich mit Migration: schneller/billiger'] } },
+  { id:'k9c', chapter:9, title:'Malthus vs. Boserup — gegensätzliche Theorien',
+    theory:'MALTHUS (1798): Bevölkerung wächst geometrisch (1,2,4,8...), Nahrung nur arithmetisch (1,2,3,4...) → Hunger, Krieg, Seuchen reduzieren Bevölkerung.\n\nBOSERUP (1960er): widerlegt Malthus. Bevölkerungsdruck stimuliert Innovation in Landwirtschaft (Pflug, Düngung, Gentechnik) → Erträge steigen mit Bevölkerung.\n\nKARL MARX kritisierte Malthus: Armut ist Produkt sozialer Ungerechtigkeit, nicht des Wachstums.',
+    example:'Grüne Revolution 1960er: Indien führte Hochertragssorten ein → Verdopplung der Erträge. Boserup hatte recht.',
+    recall:{ q:'Wer widerlegte Malthus mit dem Argument, Druck führt zu Innovation?', accept:['boserup','ester boserup'], hint:'Dänische Ökonomin.' },
+    mc:{ q:'Heutiges Hauptproblem der globalen Ernährung?', options:['Absolute Knappheit','Verteilungsproblem','Klimawandel','Bevölkerungswachstum'], correct:1 },
+    explain:{ prompt:'Welche Theorie — Malthus oder Boserup — ist heute relevanter? Begründe mit aktuellen Daten und Phänomenen.',
+      model:'Beide Theorien greifen partiell. Boserup hatte recht für 200 Jahre Industrialisierung: trotz 4-fach grösserer Welt-Bevölkerung seit 1800 produzieren wir mehr Nahrung pro Kopf, dank technologischer Innovation (grüne Revolution, Düngung, Mechanisierung). Hunger heute ist Verteilungsproblem, nicht Knappheit (Europa wirft 30% weg, Afrika hungert). Aber Malthus könnte zurückkehren: Klimawandel, Wasserknappheit, Bodendegradation, Phosphor-Limit, Antibiotikaresistenz — wenn Innovation langsamer wird als ökologische Belastung steigt, bricht Boserup-Logik. Aktueller Konsens: Boserup gilt für historisch und heute, aber Malthus als Warnung für ökologische Grenzen ist nicht obsolet. Club of Rome (1973) und Planetary Boundaries Forschung sind moderne Malthus-Erben.',
+      mustInclude:['Boserup hatte recht für Industrialisierungsphase','Hunger heute = Verteilung nicht Knappheit','Malthus könnte zurückkehren wegen Ökologie','Synthese: beide Theorien partiell gültig'] } },
+
+  // K10
+  { id:'k10a', chapter:10, title:'Pyramidenformen — was sie verraten',
+    theory:'5 Grundformen:\n• DREIECK: Entwicklungsland, hohe Geb. + hohe Sterbe (Niger)\n• DREIECK MIT BREITER BASIS: Entwicklungsland, Kindersterblichkeit gesunken (Kenia)\n• ZWIEBEL: Schwellenland, Familienplanung wirkt (Mexiko)\n• BIENENKORB: Industrieland, Geb. ≈ Sterbe, Flanken senkrecht (USA)\n• URNE: Industrieland, Überalterung, breit oben (Japan, Deutschland)',
+    example:'Schweiz 2022: Bienenkorb mit Tendenz zur Urne. Wegen Migration nicht so urne-förmig wie Japan.',
+    recall:{ q:'Welche Pyramidenform hat Japan?', accept:['urne','urnenform','urnenförmig'], hint:'Vase / Behälter für Asche.' },
+    mc:{ q:'Pyramidenform Mexiko (Schwellenland mit Familienplanung)?', options:['Dreieck','Zwiebel','Bienenkorb','Urne'], correct:1 },
+    explain:{ prompt:'Vergleiche Schweiz 2022 mit Japan 2022: beide sind Industrieländer mit tiefer Fertilität. Warum sehen die Pyramiden trotzdem unterschiedlich aus?',
+      model:'Beide haben tiefe Fertilität (CH 1,28, Japan 1,2), beide alt — aber Pyramiden unterscheiden sich. Japan: fast reine Urne, breit oben, schmal unten. Grund: Japan lehnt Migration kulturell ab, hat seit 50 Jahren tiefe Geburtenrate ohne Kompensation. Schweiz: Bienenkorb mit Tendenz Urne. Grund: Migration füllt die Pyramide bei 25-40 wieder auf — junge Erwachsene wandern ein, die ohne Schweizer Kinderzeit hier sind. Bei der Schweiz sieht man eine "Migrationsbeule" zwischen 25-45. Das ist das Trilemma in einer Grafik: Japan wählt Kontinuität → Urne, Schweiz wählt Wirtschaft + Migration → ausgeglichener.',
+      mustInclude:['Japan reine Urne wegen abgelehnter Migration','Schweiz Bienenkorb dank Migration','Migrationsbeule 25-45 in CH','Trilemma sichtbar in Pyramide'] } },
+  { id:'k10b', chapter:10, title:'Pyramide lesen — Babyboom, Pillenknick, Krieg',
+    theory:'Aus Pyramiden liest man:\n• BABYBOOM: ungewöhnlich breite Schicht (Schweiz: 1940er + 1960er)\n• PILLENKNICK: scharfe Verengung ab ~1965\n• KRIEG: Einbruch in einem Jahrgang + Geburteneinschnitt während Kriegsjahre\n• MIGRATION: viele junge Erwachsene OHNE entsprechenden Kinder/Eltern-Sockel\n• GENDER-IMBALANCE: Männer-/Frauenüberschuss',
+    example:'Schweizer Pyramide 2022: Babyboom-Wölbung bei ~60-Jährigen, Pillenknick darunter, Migrationsbeule bei 25-40-Jährigen.',
+    recall:{ q:'Wie heisst die scharfe Verengung in der Pyramide ab 1965?', accept:['pillenknick'], hint:'Ein Wort, beginnt mit "Pille...".' },
+    mc:{ q:'Wie erkennt man ein Zuwanderungsland?', options:['Sehr breite Basis','Junge Erwachsene ohne Kinder/Eltern-Sockel','Symmetrische Form','Pillenknick'], correct:1 },
+    explain:{ prompt:'In einer deutschen Bevölkerungspyramide siehst du zwei tiefe Einkerbungen bei den Geburtsjahrgängen 1915-1918 und 1939-1945. Erkläre was du daraus über deutsche Geschichte ablesen kannst — und warum diese Effekte sogar bei Enkeln noch sichtbar sind.',
+      model:'Erste Kerbe 1915-1918: Erster Weltkrieg — Männer im Krieg, weniger Geburten. Zweite Kerbe 1939-1945: Zweiter Weltkrieg, gleiches Phänomen plus 5 Mio gefallene deutsche Soldaten. Echo-Effekt: Die kleinen Kriegs-Jahrgänge haben in den 1960er-70ern selbst weniger Kinder bekommen — also gibt es eine zweite, kleinere Einkerbung 25-30 Jahre nach jeder Hauptkerbe (Echo-Generation). Diese Demographie-Schatten wirken über mehrere Generationen weiter und prägen heute noch deutsche Sozialsysteme. Zusätzlich: Männerüberschuss-Defizit nach 1945 (mehr Frauen als Männer in dieser Altersgruppe noch heute sichtbar).',
+      mustInclude:['1. Weltkrieg Einkerbung 1915-18','2. Weltkrieg Einkerbung 1939-45 + Gefallene','Echo-Generation 25-30 Jahre später','Männer/Frauen Imbalance noch sichtbar'] } },
+
+  // K11
+  { id:'k11a', chapter:11, title:'Überalterung Schweiz — Folgen für AHV',
+    theory:'Hauptfolge:\n• 1950 weltweit: 34% Kinder, 8% Alte\n• 2050 weltweit: 21% Kinder, 21% Alte (Parität)\n• Industrieländer 2050: doppelt so viele Alte wie Kinder\n\nSchweiz 2022:\n• Wohnbevölkerung 8\'815\'385\n• Lebenserwartung F 85,4 / M 81,6\n• Fertilitätsrate 1,28 (Rekordtief)',
+    example:'Höpflinger: "Überalterung ist ein positiver Prozess" — Menschen leben länger und gesünder.',
+    recall:{ q:'Lebenserwartung Frauen Schweiz (2022)?', accept:['85,4','85.4'], hint:'Knapp über 85.' },
+    mc:{ q:'Fertilitätsrate Schweiz 2024 (Rekordtief)?', options:['1,1','1,28','1,5','1,7'], correct:1 },
+    explain:{ prompt:'Erkläre warum die AHV ein Umlagesystem ist (nicht Sparsystem) und welche konkreten Konsequenzen das bei Überalterung hat. Welche Reformoptionen gibt es?',
+      model:'Umlagesystem: aktive Erwerbstätige finanzieren laufend Renten der aktuellen Pensionierten. Kein individuelles Sparkonto. 1948 bei Einführung: 6,5 Erwerbstätige pro Rentner. 2025: 3,3. 2050 prognostiziert: 2,1. Zwei Möglichkeiten: Mehr Beitragszahler nötig oder weniger Rentner. Reformoptionen: (1) Rentenalter erhöhen (AHV 21 hat das für Frauen gemacht). (2) Beiträge erhöhen (politisch unbeliebt). (3) Rentenhöhe senken. (4) Mehr Migration (kontrovers, aber rein demographisch wirksam). (5) Mehrwertsteuer-Erhöhung (Querfinanzierung). (6) Dritte Säule und Pensionskasse stärken (private Komponente). Rein technisch ist das System bei aktueller Demografie nicht zukunftsfähig — Reform ist unvermeidlich.',
+      mustInclude:['Umlage: aktive zahlen für Rentner','Verhältnis Aktive:Rentner sinkt drastisch','Reformoptionen: Alter, Beiträge, Migration, MwSt','System nicht zukunftsfähig ohne Reform'] } },
+  { id:'k11b', chapter:11, title:'Generationengerechtigkeit — Höpflinger',
+    theory:'Vorwurf: Alte profitieren auf Kosten der Jungen.\n\nGenerationenbilanz Schweiz 2001: Nachhaltigkeitslücke ~58% des BIP (~250 Mia Fr).\n\nABER (Höpflinger):\n• Erbschaften: 28-30 Mia Fr/Jahr von Alt zu Jung\n• Enkelbetreuung: ~99 Mio Std/Jahr ≈ 2 Mia Fr\n• Spenden: 17% der Älteren spenden >1000 CHF/Jahr\n\nHöpflinger: Hauptproblem ist nicht ZWISCHEN, sondern INNERHALB jeder Generation.',
+    example:'Stiftung "Americans for Generational Equity" lobbyiert für Junge. Höpflinger: pauschale "Junge gegen Alte" verfehlt das Problem.',
+    recall:{ q:'Höpflingers Hauptproblem: zwischen oder innerhalb der Generationen?', accept:['innerhalb','innerhalb generation'], hint:'Nicht "zwischen", sondern...' },
+    mc:{ q:'Jährliche Erbschaften in der Schweiz (Mia CHF)?', options:['5-10','15-20','28-30','50-60'], correct:2 },
+    explain:{ prompt:'Höpflinger sagt: das Problem ist Ungleichheit innerhalb der Generationen, nicht zwischen ihnen. Warum verstärken Erbschaften und Schenkungen diese Ungleichheit innerhalb der jüngeren Generation sogar noch?',
+      model:'Erbschaften gehen an die KINDER der Reichen — nicht gleichmässig an alle Junge. Wer reiche Eltern hat, erbt 28-30 Mia Fr/Jahr Mit-Anteil. Wer aus armer Familie kommt, erbt nichts. Resultat: Innerhalb der jungen Generation öffnet sich eine Schere. Ein junger Schweizer mit reichen Eltern hat mit 35 Eigenheim, Karrierestart-Kapital und Sicherheit. Ein junger Schweizer aus armer Familie hat mit 35 keine Reserven, kein Eigenheim. Beide leben in der gleichen Generation. Höpflingers Punkt: die wahren Gewinner und Verlierer entscheiden sich nicht nach Geburtsjahr, sondern nach sozialer Klasse. Die "Junge gegen Alte" Debatte verschleiert diese tiefere Klassen-Ungerechtigkeit.',
+      mustInclude:['Erbschaften gehen nur an Kinder der Reichen','Schere innerhalb jungen Generation','soziale Klasse wichtiger als Geburtsjahr','Klassen-Ungerechtigkeit'] } },
+];
+
+// ============================================================
+// HELPERS
+// ============================================================
+function buildDailyPlan(progress, currentDay) {
+  const NEW_PER_DAY = 5;
+  const review = [];
+  CONCEPTS.forEach(c => {
+    const p = progress[c.id];
+    if (!p || !p.lastSeen) return;
+    const daysSince = currentDay - p.lastSeen;
+    const stage = p.masteryStage || 0;
+    const intervals = [0, 1, 3, 7, 999];
+    if (daysSince >= intervals[stage] && stage < 4) review.push(c);
+  });
+  const weakFirst = CONCEPTS.filter(c => {
+    const p = progress[c.id];
+    return p && p.attempts > 0 && p.correct / p.attempts < 0.5 && (p.masteryStage || 0) < 4;
+  });
+  const unseen = CONCEPTS.filter(c => !progress[c.id]);
+  const newToday = unseen.slice(0, NEW_PER_DAY);
+  const combined = [...weakFirst];
+  review.forEach(r => { if (!combined.find(c => c.id === r.id)) combined.push(r); });
+  newToday.forEach(n => combined.push(n));
+  return {
+    queue: combined,
+    masteredCount: Object.values(progress).filter(p => p.masteryStage >= 4).length,
+    totalConcepts: CONCEPTS.length,
+    weakCount: weakFirst.length,
+    newCount: newToday.length,
+    reviewCount: review.length,
+  };
+}
+function checkRecall(userAnswer, accepted) {
+  const norm = s => s.toLowerCase().trim().replace(/\s+/g, ' ').replace(/[.!?,;:]/g, '');
+  const u = norm(userAnswer);
+  if (!u) return false;
+  return accepted.some(a => {
+    const an = norm(a);
+    return u === an || u.includes(an) || an.includes(u);
+  });
+}
+function formatTime(sec) {
+  const m = Math.floor(sec / 60);
+  const s = sec % 60;
+  return `${m}:${s.toString().padStart(2, '0')}`;
+}
+function escapeHtml(t) {
+  const d = document.createElement('div');
+  d.textContent = t;
+  return d.innerHTML;
+}
+
+// ============================================================
+// STORAGE (localStorage)
+// ============================================================
+const KEYS = { user:'demo_user_v5', progress:'demo_prog_v5', scores:'demo_scores_v5', tests:'demo_tests_v5' };
+const store = {
+  get(k, def) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : def; } catch(e) { return def; } },
+  set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch(e) {} },
+  del(k) { try { localStorage.removeItem(k); } catch(e) {} }
+};
+
+// ============================================================
+// STATE
+// ============================================================
+const state = {
+  view: 'login',
+  user: '',
+  progress: {},
+  scores: {},
+  tests: [],
+  aiAvailable: null,
+  currentDay: Math.floor(Date.now() / 86400000),
+  studyConcepts: [],
+  studyIdx: 0,
+  studyStage: 'theory',
+  studySessionPts: 0,
+  testQs: [],
+  testIdx: 0,
+  testAnswers: {},
+  testStart: 0,
+  testDone: false,
+};
+
+function loadState() {
+  state.user = store.get(KEYS.user, '');
+  state.progress = store.get(KEYS.progress, {});
+  state.scores = store.get(KEYS.scores, {});
+  state.tests = store.get(KEYS.tests, []);
+  if (state.user) state.view = 'home';
+}
+function saveProg() { store.set(KEYS.progress, state.progress); }
+function saveScores() { store.set(KEYS.scores, state.scores); }
+function saveTests() { store.set(KEYS.tests, state.tests); }
+function addPoints(pts) {
+  state.scores[state.user] = (state.scores[state.user] || 0) + pts;
+  saveScores();
+}
+function recordConcept(id, correct, points) {
+  const cur = state.progress[id] || { masteryStage: 0, lastSeen: null, attempts: 0, correct: 0 };
+  state.progress[id] = {
+    masteryStage: correct ? Math.min(cur.masteryStage + 1, 4) : cur.masteryStage,
+    lastSeen: state.currentDay,
+    attempts: cur.attempts + 1,
+    correct: cur.correct + (correct ? 1 : 0),
+  };
+  saveProg();
+  if (points > 0) addPoints(points);
+}
+
+// ============================================================
+// RENDER
+// ============================================================
+const root = document.getElementById('root');
+
+function render() {
+  if (state.view === 'login') renderLogin();
+  else if (state.view === 'home') renderHome();
+  else if (state.view === 'study') renderStudy();
+  else if (state.view === 'test') renderTest();
+  else if (state.view === 'browse') renderBrowse();
+  else if (state.view === 'leaderboard') renderLeaderboard();
+}
+
+function renderHeader() {
+  const aiState = state.aiAvailable === true ? 'on' : state.aiAvailable === false ? 'off' : '';
+  const aiText = state.aiAvailable === true ? 'AI' : state.aiAvailable === false ? 'SK' : '';
+  return `
+  <div class="header">
+    <div class="header-row">
+      <div class="brand" onclick="goHome()">
+        <div class="brand-mark"></div>
+        <div>
+          <div class="brand-name">DEMOGRAFIE</div>
+          <div class="brand-sub">${escapeHtml(state.user)} · ${state.scores[state.user] || 0}P</div>
+        </div>
+      </div>
+      <div class="header-right">
+        ${aiState ? `<span class="ai-badge ${aiState}">${aiText}</span>` : ''}
+        <button class="header-x" onclick="logout()">×</button>
+      </div>
+    </div>
+  </div>`;
+}
+
+function goHome() { state.view = 'home'; render(); }
+function logout() { store.del(KEYS.user); state.user = ''; state.view = 'login'; render(); }
+
+// ============================================================
+// LOGIN
+// ============================================================
+function renderLogin() {
+  const existing = Object.entries(state.scores).sort((a,b) => b[1]-a[1]).slice(0, 8);
+  root.innerHTML = `
+    <div class="login">
+      <div class="login-inner">
+        <div class="login-pre">KEN W2A · DEMOGRAFIE</div>
+        <h1 class="login-h1">Lerne.<br>Verstehe.<br><span class="light">Bestehe.</span></h1>
+        <p class="login-lead">${CONCEPTS.length} Konzepte mit Verständnisfokus.<br>Personalisierter Tagesplan. KI-Feedback. Geteiltes Ranking.</p>
+        <div class="login-form">
+          <input class="input-text" id="loginInput" placeholder="Dein Name" maxlength="20" autofocus>
+          <button class="btn-primary" id="loginBtn" disabled>Einloggen →</button>
+        </div>
+        ${existing.length ? `
+          <div class="login-existing">
+            <div class="login-ex-label">Bisherige Nutzer</div>
+            <div class="login-chips">
+              ${existing.map(([n,p]) => `<button class="login-chip" onclick="quickLogin('${escapeHtml(n)}')">${escapeHtml(n)}<span class="login-chip-pts">${p}P</span></button>`).join('')}
+            </div>
+          </div>` : ''}
+        <div class="login-foot">KI-Feedback aktiv für Stufe 3 · Fallback auf Selbstkontrolle</div>
+      </div>
+    </div>`;
+  const input = document.getElementById('loginInput');
+  const btn = document.getElementById('loginBtn');
+  input.addEventListener('input', () => {
+    btn.disabled = !input.value.trim();
+  });
+  input.addEventListener('keydown', e => {
+    if (e.key === 'Enter' && input.value.trim()) login(input.value.trim());
+  });
+  btn.addEventListener('click', () => { if (input.value.trim()) login(input.value.trim()); });
+}
+function login(name) {
+  state.user = name;
+  store.set(KEYS.user, name);
+  state.view = 'home';
+  render();
+}
+function quickLogin(name) { login(name); }
+
+// ============================================================
+// HOME
+// ============================================================
+function renderHome() {
+  const plan = buildDailyPlan(state.progress, state.currentDay);
+  const sortedScores = Object.entries(state.scores).sort((a,b) => b[1]-a[1]);
+  const myRank = sortedScores.findIndex(([n]) => n === state.user) + 1;
+  const total = plan.queue.length;
+  root.innerHTML = `
+    ${renderHeader()}
+    <div class="app">
+      <section class="hero">
+        <div class="hero-label">HEUTE</div>
+        <div><span class="hero-num">${total}</span><span class="hero-sub">${total === 1 ? 'Konzept' : 'Konzepte'}</span></div>
+        ${total > 0 ? `
+          <div class="hero-chips">
+            ${plan.weakCount > 0 ? `<span class="hero-chip weak">${plan.weakCount} Schwach</span>` : ''}
+            ${plan.reviewCount > 0 ? `<span class="hero-chip">${plan.reviewCount} Wiederholen</span>` : ''}
+            ${plan.newCount > 0 ? `<span class="hero-chip">${plan.newCount} Neu</span>` : ''}
+          </div>` : ''}
+      </section>
+      ${total === 0
+        ? `<div class="big-cta-done">✓  Heute alles erledigt</div>`
+        : `<button class="big-cta" onclick="startStudy()">Lernsession starten<span class="big-cta-arrow">→</span></button>`}
+      <div class="stats">
+        <div class="stat">
+          <div class="stat-num">${plan.masteredCount}<span class="stat-slash">/${plan.totalConcepts}</span></div>
+          <div class="stat-label">Gemeistert</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">#${myRank || '–'}</div>
+          <div class="stat-label">Dein Rang</div>
+        </div>
+      </div>
+      <div class="menu">
+        <button class="menu-item" onclick="startTest()">
+          <div class="menu-icon">⏱</div>
+          <div class="menu-main"><div class="menu-title">Test-Modus</div><div class="menu-desc">10 Zufallsfragen · gegen die Zeit</div></div>
+          <span class="menu-arrow">→</span>
+        </button>
+        <button class="menu-item" onclick="state.view='browse';render()">
+          <div class="menu-icon">≡</div>
+          <div class="menu-main"><div class="menu-title">Alle Kapitel</div><div class="menu-desc">Übersicht über deinen Stand</div></div>
+          <span class="menu-arrow">→</span>
+        </button>
+        <button class="menu-item" onclick="state.view='leaderboard';render()">
+          <div class="menu-icon">★</div>
+          <div class="menu-main"><div class="menu-title">Bestenliste</div><div class="menu-desc">Punkte & Test-Rekorde</div></div>
+          <span class="menu-arrow">→</span>
+        </button>
+      </div>
+      <div class="footer">Lernheft Demografie · KEN R. Moor · Mai 2026</div>
+    </div>`;
+}
+function startStudy() {
+  const plan = buildDailyPlan(state.progress, state.currentDay);
+  if (plan.queue.length === 0) return;
+  state.studyConcepts = plan.queue;
+  state.studyIdx = 0;
+  state.studyStage = 'theory';
+  state.studySessionPts = 0;
+  state.view = 'study';
+  render();
+}
+function startTest() {
+  state.testQs = [...CONCEPTS].sort(() => Math.random() - 0.5).slice(0, 10);
+  state.testIdx = 0;
+  state.testAnswers = {};
+  state.testStart = Date.now();
+  state.testDone = false;
+  state.view = 'test';
+  render();
+}
+
+// ============================================================
+// STUDY FLOW
+// ============================================================
+function renderStudy() {
+  if (state.studyIdx >= state.studyConcepts.length) {
+    renderSessionEnd();
+    return;
+  }
+  const concept = state.studyConcepts[state.studyIdx];
+  const stages = ['theory', 'recall', 'mc', 'explain'];
+  const stageNames = { theory: 'LESEN', recall: 'ABRUFEN', mc: 'WÄHLEN', explain: 'ERKLÄREN' };
+
+  let stageHtml = '';
+  if (state.studyStage === 'theory') stageHtml = renderTheory(concept);
+  else if (state.studyStage === 'recall') stageHtml = renderRecall(concept);
+  else if (state.studyStage === 'mc') stageHtml = renderMc(concept);
+  else if (state.studyStage === 'explain') stageHtml = renderExplain(concept);
+
+  root.innerHTML = `
+    ${renderHeader()}
+    <div class="app">
+      <div class="study-top">
+        <div><span class="study-prog-num">${state.studyIdx + 1}</span><span class="study-prog-denom">/${state.studyConcepts.length}</span></div>
+        <div class="study-chap">K${concept.chapter} · ${stageNames[state.studyStage]}</div>
+        <div class="study-pts">+${state.studySessionPts}</div>
+      </div>
+      <div class="dots">
+        ${stages.map(s => `<div class="dot ${stages.indexOf(state.studyStage) >= stages.indexOf(s) ? 'active' : ''}"></div>`).join('')}
+      </div>
+      ${stageHtml}
+    </div>`;
+}
+
+function renderTheory(c) {
+  return `
+    <span class="stage-badge">Stufe 1 · Theorie</span>
+    <h2 class="concept-title">${escapeHtml(c.title)}</h2>
+    <div class="theory-box">
+      ${c.theory.split('\n').map(l => `<p class="theory-line">${escapeHtml(l) || '&nbsp;'}</p>`).join('')}
+    </div>
+    <div class="example-box">
+      <div class="example-label">BEISPIEL</div>
+      <div class="example-text">${escapeHtml(c.example)}</div>
+    </div>
+    <button class="btn-primary" style="width:100%" onclick="goStage('recall')">Verstanden — weiter →</button>`;
+}
+function goStage(s) { state.studyStage = s; render(); }
+
+function renderRecall(c) {
+  return `
+    <span class="stage-badge">Stufe 2 · Abrufen · +10P</span>
+    <h2 class="concept-title">${escapeHtml(c.title)}</h2>
+    <div class="question">${escapeHtml(c.recall.q)}</div>
+    <div id="recallContent">
+      <input class="input-text" id="recallInput" placeholder="Antwort tippen…" autofocus>
+      <div id="hintArea"></div>
+      <div class="btn-row">
+        <button class="btn-secondary" onclick="showHint('${c.id}')">Hinweis</button>
+        <button class="btn-primary" id="recallSubmit" onclick="submitRecall('${c.id}')" disabled>Prüfen</button>
+      </div>
+    </div>`;
+}
+function showHint(cid) {
+  const c = CONCEPTS.find(x => x.id === cid);
+  document.getElementById('hintArea').innerHTML = `<div class="hint-box">💡 ${escapeHtml(c.recall.hint)}</div>`;
+}
+function submitRecall(cid) {
+  const c = CONCEPTS.find(x => x.id === cid);
+  const input = document.getElementById('recallInput');
+  const ans = input.value;
+  if (!ans.trim()) return;
+  const ok = checkRecall(ans, c.recall.accept);
+  recordConcept(cid, ok, ok ? 10 : 0);
+  if (ok) state.studySessionPts += 10;
+  document.getElementById('recallContent').innerHTML = `
+    <input class="input-text ${ok ? 'input-text-correct' : 'input-text-wrong'}" value="${escapeHtml(ans)}" disabled>
+    <div class="feedback ${ok ? 'feedback-ok' : 'feedback-bad'}">${ok ? '✓ Richtig — +10 Punkte' : '✗ Falsch'}</div>
+    ${!ok ? `<div class="sol-box"><div class="sol-label">Richtige Antwort</div><div class="sol-text">${escapeHtml(c.recall.accept[0])}</div></div>` : ''}
+    <button class="btn-primary" style="width:100%" onclick="goStage('mc')">Weiter zu Multiple Choice →</button>`;
+}
+// Re-attach input listener via event delegation
+document.addEventListener('input', e => {
+  if (e.target && e.target.id === 'recallInput') {
+    const btn = document.getElementById('recallSubmit');
+    if (btn) btn.disabled = !e.target.value.trim();
+  }
+  if (e.target && e.target.id === 'explainText') {
+    const btn = document.getElementById('explainSubmit');
+    if (btn) btn.disabled = !e.target.value.trim();
+  }
+  if (e.target && e.target.id === 'loginInput') {
+    const btn = document.getElementById('loginBtn');
+    if (btn) btn.disabled = !e.target.value.trim();
+  }
+  if (e.target && e.target.id === 'testInput') {
+    const btn = document.getElementById('testSubmit');
+    if (btn) btn.disabled = !e.target.value.trim();
+  }
+});
+document.addEventListener('keydown', e => {
+  if (e.target && e.target.id === 'recallInput' && e.key === 'Enter') {
+    submitRecall(state.studyConcepts[state.studyIdx].id);
+  }
+  if (e.target && e.target.id === 'testInput' && e.key === 'Enter') {
+    submitTestAnswer();
+  }
+});
+
+function renderMc(c) {
+  return `
+    <span class="stage-badge">Stufe 3 · Multiple Choice · +15P</span>
+    <h2 class="concept-title">${escapeHtml(c.title)}</h2>
+    <div class="question">${escapeHtml(c.mc.q)}</div>
+    <div class="mc-options" id="mcOptions">
+      ${c.mc.options.map((opt, i) => `
+        <button class="mc-option" onclick="submitMc('${c.id}', ${i})">
+          <span class="mc-letter">${String.fromCharCode(65+i)}</span>
+          <span class="mc-text">${escapeHtml(opt)}</span>
+        </button>
+      `).join('')}
+    </div>`;
+}
+function submitMc(cid, idx) {
+  const c = CONCEPTS.find(x => x.id === cid);
+  const correct = idx === c.mc.correct;
+  if (correct) {
+    state.studySessionPts += 15;
+    recordConcept(cid, true, 15);
+  }
+  const buttons = document.querySelectorAll('#mcOptions button');
+  buttons.forEach((btn, i) => {
+    btn.disabled = true;
+    if (i === c.mc.correct) {
+      btn.classList.add('mc-correct');
+      btn.innerHTML += '<span class="mc-mark">✓</span>';
+    } else if (i === idx) {
+      btn.classList.add('mc-wrong');
+      btn.innerHTML += '<span class="mc-mark">✗</span>';
+    } else {
+      btn.classList.add('mc-dimmed');
+    }
+  });
+  const fb = document.createElement('div');
+  fb.className = 'feedback ' + (correct ? 'feedback-ok' : 'feedback-bad');
+  fb.textContent = correct ? '✓ Richtig — +15 Punkte' : '✗ Falsch';
+  document.getElementById('mcOptions').after(fb);
+  const next = document.createElement('button');
+  next.className = 'btn-primary';
+  next.style.width = '100%';
+  next.textContent = 'Weiter zum Erklären →';
+  next.onclick = () => goStage('explain');
+  fb.after(next);
+}
+
+function renderExplain(c) {
+  return `
+    <span class="stage-badge">Stufe 4 · Erklären · +25P</span>
+    <h2 class="concept-title">${escapeHtml(c.title)}</h2>
+    <div class="question">${escapeHtml(c.explain.prompt)}</div>
+    <div id="explainContent">
+      <textarea class="textarea" id="explainText" placeholder="Schreib deine Erklärung in eigenen Worten…" autofocus></textarea>
+      <div class="char-count" id="charCount">0 Zeichen</div>
+      <button class="btn-primary" id="explainSubmit" onclick="submitExplain('${c.id}')" style="width:100%" disabled>Bewerten lassen</button>
+    </div>`;
+}
+document.addEventListener('input', e => {
+  if (e.target && e.target.id === 'explainText') {
+    const cc = document.getElementById('charCount');
+    if (cc) cc.textContent = e.target.value.length + ' Zeichen';
+  }
+});
+
+async function submitExplain(cid) {
+  const c = CONCEPTS.find(x => x.id === cid);
+  const text = document.getElementById('explainText').value.trim();
+  if (!text) return;
+
+  document.getElementById('explainContent').innerHTML = `
+    <div class="ai-loading">
+      <div class="ai-loading-dot"></div>
+      <div class="ai-loading-text">KI bewertet deine Antwort…</div>
+    </div>`;
+
+  const systemPrompt = `Du bist ein strenger Geografielehrer (KEN, Schweiz, Gymnasium).
+
+Bewerte die Antwort eines Schülers auf:
+"${c.explain.prompt}"
+
+Diese Punkte MÜSSEN sinngemäss vorkommen:
+${c.explain.mustInclude.map((m, i) => (i+1) + '. ' + m).join('\n')}
+
+Antworte AUSSCHLIESSLICH als JSON:
+{"verdict":"correct"|"partial"|"wrong","text":"1-2 Sätze ehrliches Feedback auf Deutsch, hart aber fair","missing":["fehlender Punkt 1","..."]}
+
+Regeln:
+- "correct": ALLE Pflichtpunkte sinngemäss da
+- "partial": einige fehlen, aber Grundverständnis erkennbar
+- "wrong": grundlegend falsch oder Mehrheit fehlt`;
+
+  try {
+    const res = await fetch(PROXY_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ systemPrompt, userMessage: 'Antwort des Schülers:\n\n' + text }),
+    });
+    if (!res.ok) throw new Error('Server error ' + res.status);
+    const data = await res.json();
+    if (data._debugError) {
+      throw new Error('DEBUG: ' + JSON.stringify(data, null, 2));
+    }
+    const respText = data.content.filter(b => b.type === 'text').map(b => b.text).join('').trim();
+    const cleaned = respText.replace(/```json|```/g, '').trim();
+    const parsed = JSON.parse(cleaned);
+    state.aiAvailable = true;
+    showAiResult(cid, parsed, text);
+    recordConcept(cid, parsed.verdict === 'correct', parsed.verdict === 'correct' ? 25 : 0);
+    if (parsed.verdict === 'correct') state.studySessionPts += 25;
+  } catch (e) {
+    state.aiAvailable = false;
+    state.lastAiError = e.message || String(e);
+    showSelfCompare(cid, text);
+  }
+}
+
+function showAiResult(cid, ai, userText) {
+  const c = CONCEPTS.find(x => x.id === cid);
+  const fbClass = ai.verdict === 'correct' ? 'feedback-ok' : ai.verdict === 'partial' ? 'feedback-partial' : 'feedback-bad';
+  const verdictText = ai.verdict === 'correct' ? '+25P' : 'Keine Punkte';
+  document.getElementById('explainContent').innerHTML = `
+    <div class="feedback ${fbClass}">
+      <div class="feedback-head"><span>KI-FEEDBACK</span><span>${verdictText}</span></div>
+      <div class="feedback-text">${escapeHtml(ai.text)}</div>
+    </div>
+    ${ai.missing && ai.missing.length ? `
+      <div class="sol-box">
+        <div class="sol-label">Fehlt noch</div>
+        <ul class="missing-list">${ai.missing.map(m => '<li class="missing-item">' + escapeHtml(m) + '</li>').join('')}</ul>
+      </div>` : ''}
+    <div class="sol-box">
+      <div class="sol-label">Musterlösung</div>
+      <div class="sol-text-long">${escapeHtml(c.explain.model)}</div>
+    </div>
+    <button class="btn-primary" style="width:100%" onclick="nextConcept()">Nächstes Konzept →</button>`;
+  // re-render header to update AI badge
+  document.querySelector('.header').outerHTML = renderHeader();
+}
+
+function showSelfCompare(cid, userText) {
+  const c = CONCEPTS.find(x => x.id === cid);
+  const errMsg = state.lastAiError ? `<div style="font-family:monospace;font-size:11px;color:#a00;background:#fee;padding:8px;border-radius:4px;margin-bottom:10px;word-break:break-all">DEBUG: ${escapeHtml(state.lastAiError)}</div>` : '';
+  document.getElementById('explainContent').innerHTML = `
+    <div class="feedback feedback-bad">KI-Bewertung gerade nicht verfügbar. Vergleiche selbst und bewerte ehrlich.</div>
+    ${errMsg}
+    <div class="compare-block">
+      <div class="compare-label">Deine Antwort</div>
+      <div class="compare-yours">${escapeHtml(userText)}</div>
+    </div>
+    <div class="compare-block">
+      <div class="compare-label">Musterlösung</div>
+      <div class="compare-model">${escapeHtml(c.explain.model)}</div>
+    </div>
+    <div class="compare-block">
+      <div class="compare-label">Pflichtpunkte</div>
+      <ul class="checklist">
+        ${c.explain.mustInclude.map(m => '<li class="checklist-item">' + escapeHtml(m) + '</li>').join('')}
+      </ul>
+    </div>
+    <div class="judge-prompt">Hast du alle Pflichtpunkte sinngemäss getroffen? <strong>Sei ehrlich.</strong></div>
+    <div class="btn-row">
+      <button class="btn-secondary" onclick="judge('${cid}', false)">✗ Verfehlt</button>
+      <button class="btn-primary" style="flex:1" onclick="judge('${cid}', true)">✓ Getroffen +25P</button>
+    </div>`;
+  document.querySelector('.header').outerHTML = renderHeader();
+}
+
+function judge(cid, ok) {
+  if (ok) state.studySessionPts += 25;
+  recordConcept(cid, ok, ok ? 25 : 0);
+  nextConcept();
+}
+function nextConcept() {
+  state.studyIdx++;
+  state.studyStage = 'theory';
+  render();
+}
+
+function renderSessionEnd() {
+  const pts = state.studySessionPts;
+  const msg = pts >= 150 ? 'Stark. Komm morgen wieder — Spaced Repetition braucht Konstanz.'
+    : pts >= 75 ? 'Solide Session. Morgen werden die heute gelernten Konzepte wiederholt.'
+    : 'Noch wenig. Geh nochmal über die schwierigen Konzepte — sie kommen automatisch wieder.';
+  root.innerHTML = `
+    ${renderHeader()}
+    <div class="app">
+      <div class="session-end">
+        <div class="login-pre">SESSION ABGESCHLOSSEN</div>
+        <div class="session-end-num">+${pts}</div>
+        <div class="session-end-label">Punkte verdient</div>
+        <p class="session-end-text">${msg}</p>
+        <button class="btn-primary" onclick="goHome()">Zurück zur Home</button>
+      </div>
+    </div>`;
+}
+
+// ============================================================
+// TEST MODE
+// ============================================================
+function renderTest() {
+  if (state.testDone) { renderTestResults(); return; }
+  if (state.testIdx >= state.testQs.length) { finishTest(); renderTestResults(); return; }
+  const q = state.testQs[state.testIdx];
+  const elapsed = Math.round((Date.now() - state.testStart) / 1000);
+  root.innerHTML = `
+    ${renderHeader()}
+    <div class="app">
+      <div class="study-top">
+        <div><span class="study-prog-num">${state.testIdx + 1}</span><span class="study-prog-denom">/${state.testQs.length}</span></div>
+        <div class="test-badge">● TEST</div>
+        <div class="study-pts">${formatTime(elapsed)}</div>
+      </div>
+      <span class="stage-badge">K${q.chapter} · Keine Hinweise</span>
+      <h2 class="concept-title">${escapeHtml(q.title)}</h2>
+      <div class="question">${escapeHtml(q.recall.q)}</div>
+      <input class="input-text" id="testInput" placeholder="Antwort tippen…" autofocus>
+      <button class="btn-primary" id="testSubmit" onclick="submitTestAnswer()" style="width:100%" disabled>${state.testIdx < state.testQs.length - 1 ? 'Nächste Frage →' : 'Test beenden'}</button>
+      <button class="exit-btn" onclick="goHome()">Test abbrechen</button>
+    </div>`;
+}
+function submitTestAnswer() {
+  const input = document.getElementById('testInput');
+  const v = input.value.trim();
+  if (!v) return;
+  const q = state.testQs[state.testIdx];
+  state.testAnswers[q.id] = v;
+  state.testIdx++;
+  if (state.testIdx >= state.testQs.length) {
+    finishTest();
+    renderTestResults();
+  } else {
+    render();
+  }
+}
+function finishTest() {
+  state.testDone = true;
+  let score = 0;
+  state.testQs.forEach(q => {
+    const ok = checkRecall(state.testAnswers[q.id] || '', q.recall.accept);
+    if (ok) score++;
+    recordConcept(q.id, ok, 0);
+  });
+  const dur = Math.round((Date.now() - state.testStart) / 1000);
+  const pct = Math.round((score / state.testQs.length) * 100);
+  const entry = { name: state.user, score, total: state.testQs.length, pct, durationSec: dur, ts: Date.now() };
+  state.tests.push(entry);
+  state.tests.sort((a,b) => b.pct - a.pct || a.durationSec - b.durationSec);
+  state.tests = state.tests.slice(0, 30);
+  saveTests();
+}
+function renderTestResults() {
+  const score = state.testQs.filter(q => checkRecall(state.testAnswers[q.id] || '', q.recall.accept)).length;
+  const total = state.testQs.length;
+  const pct = Math.round((score/total)*100);
+  const dur = Math.round((Date.now() - state.testStart) / 1000);
+  const verdict = pct >= 80 ? 'STARK' : pct >= 60 ? 'OK' : 'NACHARBEITEN';
+  root.innerHTML = `
+    ${renderHeader()}
+    <div class="app">
+      <div class="test-result-hero">
+        <div class="login-pre">TEST FERTIG</div>
+        <div><span class="test-result-num">${score}</span><span class="test-result-denom">/${total}</span></div>
+        <div class="test-result-verdict">${verdict}</div>
+        <div class="test-result-meta">
+          <span><span class="test-result-meta-num">${pct}%</span> korrekt</span>
+          <span style="color:var(--muted)">·</span>
+          <span><span class="test-result-meta-num">${formatTime(dur)}</span> Zeit</span>
+        </div>
+      </div>
+      <div class="page-pre">Alle Fragen</div>
+      <div class="review-list">
+        ${state.testQs.map((q, i) => {
+          const userAns = state.testAnswers[q.id] || '';
+          const ok = checkRecall(userAns, q.recall.accept);
+          return `
+            <div class="review-item ${ok ? 'correct' : ''}">
+              <div class="review-head">
+                <span class="review-idx">${String(i+1).padStart(2,'0')}</span>
+                <span class="review-chap">K${q.chapter}</span>
+                <span class="review-mark">${ok ? '✓' : '✗'}</span>
+              </div>
+              <div class="review-q">${escapeHtml(q.recall.q)}</div>
+              <div class="review-ans-row"><span class="review-ans-label">Richtig:</span> ${escapeHtml(q.recall.accept[0])}</div>
+              ${!ok && userAns ? `<div class="review-ans-row" style="color:var(--dim)"><span class="review-ans-label">Du:</span> ${escapeHtml(userAns)}</div>` : ''}
+            </div>`;
+        }).join('')}
+      </div>
+      <button class="btn-primary" style="width:100%" onclick="goHome()">Zurück zur Home</button>
+    </div>`;
+}
+
+// ============================================================
+// BROWSE
+// ============================================================
+function renderBrowse() {
+  const byChap = {};
+  CONCEPTS.forEach(c => { (byChap[c.chapter] = byChap[c.chapter] || []).push(c); });
+  const chapNames = {
+    1:'Bevölkerungsentwicklung', 2:'Begriffe', 3:'Grundgleichung', 4:'Verdoppelungszeit',
+    5:'Demografischer Übergang', 6:'Demografische Dividende', 7:'Zukunft', 8:'Bevölkerungspolitik',
+    9:'Tragfähigkeit & Trilemma', 10:'Bevölkerungspyramiden', 11:'Schweiz & Folgen'
+  };
+  root.innerHTML = `
+    ${renderHeader()}
+    <div class="app">
+      <div class="page-pre">Alle Kapitel</div>
+      <h1 class="page-title">Übersicht</h1>
+      <p class="page-sub">Reihenfolge im Lernmodus folgt deinem Spaced-Repetition-Plan automatisch.</p>
+      ${Object.entries(byChap).map(([ch, items]) => {
+        const mastered = items.filter(c => (state.progress[c.id]?.masteryStage || 0) >= 4).length;
+        return `
+          <div class="chap-block">
+            <div class="chap-head">
+              <div><span class="chap-num">K${ch}</span><span class="chap-title">${chapNames[ch] || ''}</span></div>
+              <span class="chap-stats">${mastered}/${items.length}</span>
+            </div>
+            ${items.map(c => {
+              const stage = state.progress[c.id]?.masteryStage || 0;
+              return `
+                <div class="concept-row">
+                  <div class="concept-row-name">${escapeHtml(c.title)}</div>
+                  <div class="mastery-dots">
+                    ${[0,1,2,3].map(i => `<div class="mastery-dot ${stage > i ? 'filled' : ''}"></div>`).join('')}
+                  </div>
+                </div>`;
+            }).join('')}
+          </div>`;
+      }).join('')}
+    </div>`;
+}
+
+// ============================================================
+// LEADERBOARD
+// ============================================================
+let lbTab = 'overall';
+function renderLeaderboard() {
+  const sortedOverall = Object.entries(state.scores).sort((a,b) => b[1]-a[1]);
+  root.innerHTML = `
+    ${renderHeader()}
+    <div class="app">
+      <div class="page-pre">Bestenliste</div>
+      <h1 class="page-title">Ranking</h1>
+      <div class="tabs">
+        <button class="tab ${lbTab === 'overall' ? 'active' : ''}" onclick="setLbTab('overall')">Gesamt</button>
+        <button class="tab ${lbTab === 'tests' ? 'active' : ''}" onclick="setLbTab('tests')">Test-Rekorde</button>
+      </div>
+      ${lbTab === 'overall' ? `
+        <p class="page-sub">+10P Recall · +15P Multiple Choice · +25P Erklären. Lokal pro Gerät gespeichert.</p>
+        <div class="lb-list">
+          ${sortedOverall.length === 0 ? '<div class="lb-empty">Noch niemand. Sei der Erste.</div>' : ''}
+          ${sortedOverall.map(([n,p], i) => `
+            <div class="lb-row ${n === state.user ? 'self' : ''}">
+              <div class="lb-rank">${String(i+1).padStart(2,'0')}</div>
+              <div class="lb-name">${escapeHtml(n)}${n === state.user ? '<span class="lb-you">· du</span>' : ''}</div>
+              <div class="lb-pts">${p}</div>
+            </div>`).join('')}
+        </div>` : `
+        <p class="page-sub">Test-Modus: 10 Zufallsfragen, sortiert nach % und Zeit.</p>
+        <div class="lb-list">
+          ${state.tests.length === 0 ? '<div class="lb-empty">Noch keine Tests gemacht.</div>' : ''}
+          ${state.tests.map((e, i) => `
+            <div class="lb-row ${e.name === state.user ? 'self' : ''}">
+              <div class="lb-rank">${String(i+1).padStart(2,'0')}</div>
+              <div class="lb-name">${escapeHtml(e.name)}</div>
+              <div class="lb-test-right">
+                <span class="lb-pts">${e.pct}%</span>
+                <span class="lb-time">${formatTime(e.durationSec)}</span>
+              </div>
+            </div>`).join('')}
+        </div>`}
+    </div>`;
+}
+function setLbTab(t) { lbTab = t; render(); }
+
+// ============================================================
+// INIT
+// ============================================================
+loadState();
+render();
+</script>
+</body>
+</html>
