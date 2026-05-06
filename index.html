@@ -512,9 +512,10 @@ function escapeHtml(t) {
 }
 
 // ============================================================
-// STORAGE (localStorage)
+// STORAGE (localStorage) - pro User
 // ============================================================
-const KEYS = { user:'demo_user_v5', progress:'demo_prog_v5', scores:'demo_scores_v5', tests:'demo_tests_v5' };
+const KEYS = { user:'demo_user_v5', scores:'demo_scores_v5', tests:'demo_tests_v5' };
+function progressKey(user) { return 'demo_prog_v5_' + user; }
 const store = {
   get(k, def) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : def; } catch(e) { return def; } },
   set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch(e) {} },
@@ -545,12 +546,16 @@ const state = {
 
 function loadState() {
   state.user = store.get(KEYS.user, '');
-  state.progress = store.get(KEYS.progress, {});
   state.scores = store.get(KEYS.scores, {});
   state.tests = store.get(KEYS.tests, []);
-  if (state.user) state.view = 'home';
+  if (state.user) {
+    state.progress = store.get(progressKey(state.user), {});
+    state.view = 'home';
+  } else {
+    state.progress = {};
+  }
 }
-function saveProg() { store.set(KEYS.progress, state.progress); }
+function saveProg() { if (state.user) store.set(progressKey(state.user), state.progress); }
 function saveScores() { store.set(KEYS.scores, state.scores); }
 function saveTests() { store.set(KEYS.tests, state.tests); }
 function addPoints(pts) {
@@ -605,7 +610,7 @@ function renderHeader() {
 }
 
 function goHome() { state.view = 'home'; render(); }
-function logout() { store.del(KEYS.user); state.user = ''; state.view = 'login'; render(); }
+function logout() { store.del(KEYS.user); state.user = ''; state.progress = {}; state.view = 'login'; render(); }
 
 // ============================================================
 // LOGIN
@@ -645,6 +650,7 @@ function renderLogin() {
 function login(name) {
   state.user = name;
   store.set(KEYS.user, name);
+  state.progress = store.get(progressKey(name), {});
   state.view = 'home';
   render();
 }
