@@ -1219,6 +1219,23 @@ async function submitAnswer(c, stageKey, isTest){
   }
 }
 
+function extractText(d){
+  // Anthropic API native shape: {content:[{type:'text', text:'...'}]}
+  if (d && Array.isArray(d.content) && d.content[0] && typeof d.content[0].text === 'string'){
+    return d.content[0].text;
+  }
+  // Simplified shapes
+  if (typeof d?.text === 'string') return d.text;
+  if (typeof d?.completion === 'string') return d.completion;
+  if (typeof d?.message === 'string') return d.message;
+  if (typeof d?.response === 'string') return d.response;
+  if (typeof d?.content === 'string') return d.content;
+  if (typeof d === 'string') return d;
+  return '';
+}
+function stripCodeFences(s){
+  return String(s||'').replace(/```(?:json)?\s*/gi, '').replace(/```/g, '').trim();
+}
 async function callAI(systemPrompt, userMessage){
   try{
     const r = await fetch(PROXY_URL, {
@@ -1229,9 +1246,7 @@ async function callAI(systemPrompt, userMessage){
     if (!r.ok) throw new Error('HTTP '+r.status);
     const d = await r.json();
     if (d._debugError) throw new Error(d._debugError);
-    // Try to parse JSON from response
-    let raw = d.text || d.content || d.message || d.response || (typeof d === 'string' ? d : '');
-    if (typeof raw === 'object') raw = JSON.stringify(raw);
+    const raw = stripCodeFences(extractText(d));
     const parsed = tryParseJSON(raw);
     if (!parsed || !parsed.verdict) throw new Error('parse');
     return parsed;
@@ -1404,7 +1419,8 @@ async function callRawAI(systemPrompt, userMessage){
     if (!r.ok) return null;
     const d = await r.json();
     if (d._debugError) return null;
-    return d.text || d.content || d.message || d.response || '';
+    const txt = extractText(d);
+    return txt ? stripCodeFences(txt) : null;
   } catch(e){ return null; }
 }
 
