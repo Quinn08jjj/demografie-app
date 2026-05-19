@@ -1237,23 +1237,39 @@ function stripCodeFences(s){
   return String(s||'').replace(/```(?:json)?\s*/gi, '').replace(/```/g, '').trim();
 }
 async function callAI(systemPrompt, userMessage){
-  try{
-    const r = await fetch(PROXY_URL, {
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({action:'evaluate', systemPrompt, userMessage})
-    });
-    if (!r.ok) throw new Error('HTTP '+r.status);
-    const d = await r.json();
-    if (d._debugError) throw new Error(d._debugError);
-    const raw = stripCodeFences(extractText(d));
-    const parsed = tryParseJSON(raw);
-    if (!parsed || !parsed.verdict) throw new Error('parse');
-    return parsed;
-  } catch(e){
-    console.warn('AI call failed', e);
-    return null;
+  const maxAttempts = 3;
+  for (let attempt = 1; attempt <= maxAttempts; attempt++){
+    try{
+      const r = await fetch(PROXY_URL, {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({action:'evaluate', systemPrompt, userMessage})
+      });
+      if (!r.ok) throw new Error('HTTP '+r.status);
+      const d = await r.json();
+      if (d._debugError){
+        const isOverload = d.anthropicStatus === 529 || (d.anthropicResponse && d.anthropicResponse.error && d.anthropicResponse.error.type === 'overloaded_error');
+        if (isOverload && attempt < maxAttempts){
+          console.warn('AI overloaded, retrying… attempt '+attempt);
+          await new Promise(res => setTimeout(res, 1500 * attempt));
+          continue;
+        }
+        throw new Error(d._debugError);
+      }
+      const raw = stripCodeFences(extractText(d));
+      const parsed = tryParseJSON(raw);
+      if (!parsed || !parsed.verdict) throw new Error('parse');
+      return parsed;
+    } catch(e){
+      console.warn('AI call failed (attempt '+attempt+')', e);
+      if (attempt < maxAttempts){
+        await new Promise(res => setTimeout(res, 1500 * attempt));
+        continue;
+      }
+      return null;
+    }
   }
+  return null;
 }
 function tryParseJSON(s){
   if (!s) return null;
@@ -1411,17 +1427,34 @@ WICHTIG: ERKLÄRE das Konzept einfach in 3-5 Sätzen, gib HINWEISE, aber VERRATE
   helpBtn.disabled = false;
 }
 async function callRawAI(systemPrompt, userMessage){
-  try{
-    const r = await fetch(PROXY_URL, {
-      method:'POST', headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({action:'evaluate', systemPrompt, userMessage})
-    });
-    if (!r.ok) return null;
-    const d = await r.json();
-    if (d._debugError) return null;
-    const txt = extractText(d);
-    return txt ? stripCodeFences(txt) : null;
-  } catch(e){ return null; }
+  const maxAttempts = 3;
+  for (let attempt = 1; attempt <= maxAttempts; attempt++){
+    try{
+      const r = await fetch(PROXY_URL, {
+        method:'POST', headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({action:'evaluate', systemPrompt, userMessage})
+      });
+      if (!r.ok) throw new Error('HTTP '+r.status);
+      const d = await r.json();
+      if (d._debugError){
+        const isOverload = d.anthropicStatus === 529 || (d.anthropicResponse && d.anthropicResponse.error && d.anthropicResponse.error.type === 'overloaded_error');
+        if (isOverload && attempt < maxAttempts){
+          await new Promise(res => setTimeout(res, 1500 * attempt));
+          continue;
+        }
+        return null;
+      }
+      const txt = extractText(d);
+      return txt ? stripCodeFences(txt) : null;
+    } catch(e){
+      if (attempt < maxAttempts){
+        await new Promise(res => setTimeout(res, 1500 * attempt));
+        continue;
+      }
+      return null;
+    }
+  }
+  return null;
 }
 
 /* ================================================================
