@@ -306,7 +306,8 @@
       <div class="stat-chips" id="heroChips"></div>
     </div>
     <div class="action-stack">
-      <button class="btn btn-primary btn-big" id="startStudyBtn">Lernsession starten</button>
+      <button class="btn btn-primary btn-big" id="startStudyBtn">📚 Lernen (Theorie + Verständnis)</button>
+      <button class="btn btn-primary btn-big" id="startMathBtn" style="background:linear-gradient(135deg,#9a3412 0%,#7c2d12 100%);box-shadow:0 4px 12px rgba(154,52,18,0.25),0 1px 2px rgba(154,52,18,0.15)">✏️ Rechnen üben</button>
       <button class="btn btn-secondary hidden" id="reviewMistakesBtn">Fehler wiederholen (0)</button>
       <button class="btn btn-secondary" id="testModeBtn">Test-Modus</button>
     </div>
@@ -1477,9 +1478,16 @@ function selectTopic(topicId){
 /* ================================================================
    HOME
 ================================================================ */
-function buildDailyPlan(){
-  const concepts = CONCEPTS_BY_TOPIC[state.topic] || [];
-  // Filter out mastered (stage 4)
+// typeFilter: 'all' (default) | 'lecture' (theorie+verständnis) | 'math' (rechnung)
+function buildDailyPlan(typeFilter){
+  typeFilter = typeFilter || 'all';
+  const concepts = (CONCEPTS_BY_TOPIC[state.topic] || []).filter(c => {
+    if (typeFilter === 'all') return true;
+    const t = getConceptType(c);
+    if (typeFilter === 'lecture') return t === 'theorie' || t === 'verständnis';
+    if (typeFilter === 'math') return t === 'rechnung';
+    return true;
+  });
   const eligible = concepts.filter(c => {
     const p = state.progress[c.id];
     return !p || (p.masteryStage || 0) < 4;
@@ -1494,32 +1502,39 @@ function buildDailyPlan(){
 
 function goHome(){
   loadUserState();
-  const plan = buildDailyPlan();
+  const lecturePlan = buildDailyPlan('lecture');
+  const mathPlan = buildDailyPlan('math');
+  const totalCount = lecturePlan.queue.length + mathPlan.queue.length;
   const concepts = CONCEPTS_BY_TOPIC[state.topic] || [];
   const masteredCount = concepts.filter(c => (state.progress[c.id]?.masteryStage || 0) >= 4).length;
 
-  document.getElementById('heroNum').textContent = plan.queue.length;
-  document.getElementById('heroLabel').textContent = plan.queue.length === 1 ? 'Konzept heute' : 'Konzepte heute';
+  document.getElementById('heroNum').textContent = totalCount;
+  document.getElementById('heroLabel').textContent = totalCount === 1 ? 'Konzept heute' : 'Konzepte heute';
 
   const chips = document.getElementById('heroChips');
   chips.innerHTML = '';
-  if (plan.mistakeCount > 0){
+  if (lecturePlan.queue.length > 0){
     const c = document.createElement('span'); c.className='stat-chip';
-    c.innerHTML = `<strong>${plan.mistakeCount}</strong> Fehler`;
+    c.innerHTML = `📚 <strong>${lecturePlan.queue.length}</strong> Lernen`;
     chips.appendChild(c);
   }
-  if (plan.newCount > 0){
+  if (mathPlan.queue.length > 0){
     const c = document.createElement('span'); c.className='stat-chip';
-    c.innerHTML = `<strong>${plan.newCount}</strong> Neu`;
+    c.innerHTML = `✏️ <strong>${mathPlan.queue.length}</strong> Rechnen`;
     chips.appendChild(c);
   }
-  if (plan.queue.length === 0){
+  if (totalCount === 0){
     const c = document.createElement('span'); c.className='stat-chip';
     c.textContent = 'Alles erledigt — Test machen?';
     chips.appendChild(c);
   }
 
-  document.getElementById('startStudyBtn').disabled = plan.queue.length === 0;
+  const startBtn = document.getElementById('startStudyBtn');
+  startBtn.disabled = lecturePlan.queue.length === 0;
+  startBtn.textContent = `📚 Lernen (${lecturePlan.queue.length})`;
+  const mathBtn = document.getElementById('startMathBtn');
+  mathBtn.disabled = mathPlan.queue.length === 0;
+  mathBtn.textContent = `✏️ Rechnen üben (${mathPlan.queue.length})`;
   document.getElementById('masteredVal').textContent = `${masteredCount}/${concepts.length}`;
 
   const reviewBtn = document.getElementById('reviewMistakesBtn');
@@ -1547,6 +1562,7 @@ function startStudy(mode, opts){
   opts = opts || {};
   state.studyMode = mode;
   state.studyLZ = opts.lz || null;
+  state.studyTypeFilter = opts.typeFilter || 'all';
   state.studyIdx = 0;
   state.sessionStartTime = Date.now();
   state.sessionStartPts = getMyPoints();
@@ -1556,7 +1572,7 @@ function startStudy(mode, opts){
   const concepts = CONCEPTS_BY_TOPIC[state.topic] || [];
 
   if (mode === 'normal'){
-    state.studyConcepts = buildDailyPlan().queue;
+    state.studyConcepts = buildDailyPlan(state.studyTypeFilter).queue;
   } else if (mode === 'mistakes'){
     state.studyConcepts = state.mistakes.map(id => concepts.find(c=>c.id===id)).filter(Boolean);
   } else if (mode === 'lz'){
@@ -1604,7 +1620,10 @@ function renderStudy(){
   document.getElementById('studyProgressText').textContent = `${idx+1}/${total}`;
   document.getElementById('studyProgressFill').style.width = `${((idx)/total)*100}%`;
   const modeLabels = {normal:'Lernen', mistakes:'Fehler', lz:'LZ-Lernen', 'test-quick':'Schnelltest', 'test-full':'Prüfung'};
-  document.getElementById('studyModeBadge').textContent = modeLabels[state.studyMode] || '';
+  let label = modeLabels[state.studyMode] || '';
+  if (state.studyMode === 'normal' && state.studyTypeFilter === 'math') label = '✏️ Rechnen';
+  else if (state.studyMode === 'normal' && state.studyTypeFilter === 'lecture') label = '📚 Lernen';
+  document.getElementById('studyModeBadge').textContent = label;
 
   const container = document.getElementById('studyContent');
   const lzInfo = (LZ_INFO[state.topic]||[]).find(l => l.id === c.lz);
@@ -2093,17 +2112,21 @@ async function fetchLeaderboard(){
     });
     const d = await r.json();
     const all = d.leaderboard || d.entries || d.users || [];
-    // Filter for current topic prefix
+    // Proxy gibt Tuples ["name", points] zurück — handle beide Formate
+    const normalized = all.map(e => {
+      if (Array.isArray(e)) return {user: String(e[0]||''), points: Number(e[1])||0};
+      return {user: String(e.user||e.name||''), points: Number(e.points||e.score)||0};
+    });
     const prefix = state.topic + '__';
-    const filtered = all
-      .map(e => ({user: (e.user||e.name||''), points: (e.points||e.score||0)}))
+    const filtered = normalized
       .filter(e => e.user.startsWith(prefix))
       .map(e => ({user: e.user.slice(prefix.length), points: e.points}))
       .sort((a,b)=>b.points - a.points);
     state.leaderboard = filtered;
     state.myRank = null;
+    const myUser = String(state.user||'').toLowerCase();
     for (let i=0; i<filtered.length; i++){
-      if (filtered[i].user === state.user){ state.myRank = i+1; break; }
+      if (filtered[i].user.toLowerCase() === myUser){ state.myRank = i+1; break; }
     }
     return filtered;
   } catch(e){
@@ -2184,7 +2207,8 @@ function goTestLZSelect(){
 function init(){
   // Wire static handlers
   document.getElementById('logoutBtn').onclick = logout;
-  document.getElementById('startStudyBtn').onclick = ()=>startStudy('normal');
+  document.getElementById('startStudyBtn').onclick = ()=>startStudy('normal', {typeFilter:'lecture'});
+  document.getElementById('startMathBtn').onclick = ()=>startStudy('normal', {typeFilter:'math'});
   document.getElementById('reviewMistakesBtn').onclick = ()=>{
     if (state.mistakes.length === 0) return;
     startStudy('mistakes');
