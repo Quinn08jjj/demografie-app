@@ -3,30 +3,34 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#ffffff">
+<meta name="theme-color" content="#f3f1ea">
 <title>Lernapp — Multi-Topic</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&display=swap" rel="stylesheet">
 <style>
   *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
   :root{
-    --bg:#fafaf9;
-    --fg:#0a0a0a;
-    --fg-soft:#525252;
-    --fg-muted:#a3a3a3;
-    --bg-soft:#f5f5f4;
-    --bg-softer:#efeeec;
-    --line:#e7e5e4;
-    --line-strong:#d6d3d1;
-    --ok:#0a0a0a;
-    --warn:#737373;
-    --bad:#171717;
-    --shadow-sm: 0 1px 2px rgba(15,15,15,0.04), 0 1px 1px rgba(15,15,15,0.02);
-    --shadow-md: 0 4px 12px rgba(15,15,15,0.05), 0 2px 4px rgba(15,15,15,0.03);
-    --shadow-lg: 0 12px 28px rgba(15,15,15,0.08), 0 4px 10px rgba(15,15,15,0.04);
-    --shadow-xl: 0 20px 48px rgba(15,15,15,0.10), 0 8px 16px rgba(15,15,15,0.05);
-    --glass-bg: rgba(255,255,255,0.72);
-    --card-bg: rgba(255,255,255,0.85);
+    --bg:#f3f1ea;
+    --fg:#1c1b18;
+    --fg-soft:#5c594f;
+    --fg-muted:#9a958a;
+    --bg-soft:#ece9df;
+    --bg-softer:#e5e1d5;
+    --line:#dcd8cb;
+    --line-strong:#c6c1b1;
+    --ok:#1c1b18;
+    --warn:#8a8578;
+    --bad:#1c1b18;
+    --shadow-sm: none;
+    --shadow-md: none;
+    --shadow-lg: 0 1px 3px rgba(40,38,32,0.06);
+    --shadow-xl: 0 2px 10px rgba(40,38,32,0.08);
+    --glass-bg: #f6f4ee;
+    --card-bg: #fbfaf6;
+    --serif: 'Fraunces', Georgia, 'Times New Roman', serif;
   }
-  html,body{background:linear-gradient(180deg,#fafaf9 0%,#f5f5f4 100%);background-attachment:fixed;color:var(--fg);font-family:-apple-system,BlinkMacSystemFont,"Inter","Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased;line-height:1.5}
+  html,body{background:var(--bg);color:var(--fg);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased;line-height:1.55}
   body{min-height:100vh;min-height:100dvh;padding-bottom:env(safe-area-inset-bottom)}
   button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit;font-size:inherit}
   input,textarea{font-family:inherit;font-size:inherit;color:inherit;background:transparent;border:none;outline:none;width:100%}
@@ -34,19 +38,19 @@
   .app{max-width:640px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column}
 
   /* Header */
-  .hdr{position:sticky;top:0;background:var(--glass-bg);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid rgba(0,0,0,0.06);z-index:50;padding:14px 20px;padding-top:max(14px,env(safe-area-inset-top))}
+  .hdr{position:sticky;top:0;background:var(--glass-bg);border-bottom:1px solid var(--line);z-index:50;padding:14px 20px;padding-top:max(14px,env(safe-area-inset-top))}
   .hdr-row{display:flex;align-items:center;gap:10px}
   .brand{display:flex;align-items:center;gap:10px;flex:1;min-width:0}
-  .brand-ico{width:32px;height:32px;border-radius:8px;background:var(--fg);color:var(--bg);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;flex-shrink:0}
-  .brand-name{font-weight:600;font-size:15px;letter-spacing:-0.01em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .brand-ico{width:34px;height:34px;border-radius:3px;background:var(--fg);color:var(--bg);display:flex;align-items:center;justify-content:center;font-weight:600;font-size:16px;flex-shrink:0;font-family:var(--serif)}
+  .brand-name{font-weight:600;font-size:15px;letter-spacing:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-family:var(--serif)}
   .hdr-stats{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--fg-soft)}
-  .ai-badge{display:inline-flex;align-items:center;gap:4px;padding:4px 9px;background:rgba(255,255,255,0.6);border:1px solid rgba(0,0,0,0.06);border-radius:8px;font-size:11px;font-weight:500;letter-spacing:0.02em;box-shadow:var(--shadow-sm)}
+  .ai-badge{display:inline-flex;align-items:center;gap:5px;padding:4px 9px;background:transparent;border:1px solid var(--line-strong);border-radius:3px;font-size:11px;font-weight:500;letter-spacing:0.02em}
   .ai-badge.ok{color:var(--fg)}
   .ai-badge.off{color:var(--fg-muted)}
   .ai-dot{width:6px;height:6px;border-radius:50%;background:var(--fg)}
   .ai-badge.off .ai-dot{background:var(--fg-muted)}
   .pts{font-weight:600;color:var(--fg);font-size:13px}
-  .ico-btn{width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:8px;color:var(--fg-soft);font-size:18px}
+  .ico-btn{width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:5px;color:var(--fg-soft);font-size:18px}
   .ico-btn:hover{background:var(--bg-softer);color:var(--fg)}
 
   /* Main view container */
@@ -55,45 +59,45 @@
   @keyframes fadeIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
 
   /* Typography */
-  h1{font-size:32px;font-weight:700;letter-spacing:-0.02em;line-height:1.15}
-  h2{font-size:22px;font-weight:600;letter-spacing:-0.015em;line-height:1.2}
-  h3{font-size:16px;font-weight:600;letter-spacing:-0.01em}
+  h1{font-family:var(--serif);font-size:31px;font-weight:600;letter-spacing:-0.005em;line-height:1.15}
+  h2{font-family:var(--serif);font-size:23px;font-weight:600;letter-spacing:0;line-height:1.2}
+  h3{font-size:15px;font-weight:600;letter-spacing:0}
   .muted{color:var(--fg-soft)}
-  .label{font-size:12px;text-transform:uppercase;letter-spacing:0.08em;color:var(--fg-muted);font-weight:500}
+  .label{font-size:11px;text-transform:uppercase;letter-spacing:0.1em;color:var(--fg-muted);font-weight:600}
 
   /* Buttons */
-  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 20px;border-radius:10px;font-weight:600;font-size:15px;transition:transform .12s ease, box-shadow .2s ease, background .15s ease;border:1px solid transparent;width:100%;line-height:1.2}
-  .btn:active{transform:scale(.98)}
-  .btn-primary{background:var(--fg);color:var(--bg);box-shadow:0 4px 12px rgba(15,15,15,0.18), 0 1px 2px rgba(15,15,15,0.10)}
-  .btn-primary:hover{background:#1f1f1f;box-shadow:0 8px 20px rgba(15,15,15,0.22), 0 2px 4px rgba(15,15,15,0.12);transform:translateY(-1px)}
-  .btn-secondary{background:var(--card-bg);color:var(--fg);border-color:rgba(0,0,0,0.08);box-shadow:var(--shadow-sm)}
-  .btn-secondary:hover{background:#ffffff;box-shadow:var(--shadow-md);transform:translateY(-1px)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 20px;border-radius:5px;font-weight:600;font-size:15px;transition:background .15s ease, border-color .15s ease, color .15s ease;border:1px solid transparent;width:100%;line-height:1.2}
+  .btn:active{transform:translateY(1px)}
+  .btn-primary{background:var(--fg);color:var(--bg)}
+  .btn-primary:hover{background:#34322c}
+  .btn-secondary{background:transparent;color:var(--fg);border-color:var(--line-strong)}
+  .btn-secondary:hover{background:var(--bg-soft);border-color:var(--fg-soft)}
   .btn-ghost{background:transparent;color:var(--fg-soft);padding:8px 12px;font-size:14px}
   .btn-ghost:hover{color:var(--fg)}
-  .btn-big{padding:20px 20px;font-size:17px;border-radius:12px}
+  .btn-big{padding:18px 20px;font-size:16px;border-radius:6px}
   .btn:disabled{opacity:.4;cursor:not-allowed;box-shadow:none;transform:none}
   .btn-row{display:flex;gap:8px}
   .btn-row .btn{flex:1}
 
   /* Cards */
-  .card{background:var(--card-bg);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(0,0,0,0.04);border-radius:16px;padding:20px;margin-bottom:14px;box-shadow:var(--shadow-md);transition:box-shadow .2s ease, transform .15s ease}
+  .card{background:var(--card-bg);border:1px solid var(--line);border-radius:8px;padding:20px;margin-bottom:14px;transition:border-color .15s ease, background .15s ease}
   .card-hover{cursor:pointer}
-  .card-hover:hover{box-shadow:var(--shadow-lg);transform:translateY(-2px);border-color:rgba(0,0,0,0.08)}
-  .card-disabled{opacity:.45;cursor:not-allowed;box-shadow:var(--shadow-sm)}
-  .card-disabled:hover{transform:none;box-shadow:var(--shadow-sm);border-color:rgba(0,0,0,0.04)}
+  .card-hover:hover{border-color:var(--line-strong);background:#ffffff}
+  .card-disabled{opacity:.5;cursor:not-allowed}
+  .card-disabled:hover{border-color:var(--line);background:var(--card-bg)}
 
   /* Login */
   .login-wrap{padding-top:40px;text-align:center}
-  .login-input{margin:24px 0;padding:18px 20px;background:var(--card-bg);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(0,0,0,0.06);border-radius:14px;font-size:17px;text-align:center;box-shadow:var(--shadow-sm);transition:box-shadow .2s ease, border-color .15s ease}
-  .login-input:focus{border-color:var(--fg);box-shadow:var(--shadow-md)}
+  .login-input{margin:24px 0;padding:16px 18px;background:var(--card-bg);border:1px solid var(--line-strong);border-radius:6px;font-size:17px;text-align:center;transition:border-color .15s ease}
+  .login-input:focus{border-color:var(--fg)}
   .chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:20px}
-  .chip{padding:8px 14px;background:var(--bg-softer);border:1px solid var(--line);border-radius:20px;font-size:14px;color:var(--fg-soft);cursor:pointer;transition:all .15s ease}
+  .chip{padding:7px 14px;background:transparent;border:1px solid var(--line-strong);border-radius:4px;font-size:14px;color:var(--fg-soft);cursor:pointer;transition:all .15s ease}
   .chip:hover{border-color:var(--fg);color:var(--fg)}
   .chip-strong{background:var(--fg);color:var(--bg);border-color:var(--fg)}
 
   /* Topic select */
   .topic-card{padding:24px;display:flex;align-items:center;gap:16px}
-  .topic-ico{width:48px;height:48px;border-radius:10px;background:var(--bg-softer);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:20px;flex-shrink:0}
+  .topic-ico{width:48px;height:48px;border-radius:4px;background:var(--bg-softer);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-weight:600;font-size:21px;flex-shrink:0;font-family:var(--serif)}
   .topic-ico.active{background:var(--fg);color:var(--bg);border-color:var(--fg)}
   .topic-info{flex:1;min-width:0}
   .topic-name{font-weight:600;font-size:17px;margin-bottom:2px}
@@ -102,16 +106,16 @@
 
   /* Home hero */
   .hero{text-align:center;padding:32px 0 24px}
-  .hero-num{font-size:clamp(80px,22vw,110px);font-weight:700;letter-spacing:-0.04em;line-height:.95;color:var(--fg)}
+  .hero-num{font-family:var(--serif);font-size:clamp(78px,21vw,104px);font-weight:500;letter-spacing:-0.02em;line-height:.95;color:var(--fg)}
   .hero-label{font-size:16px;color:var(--fg-soft);margin-top:6px}
   .stat-chips{display:flex;justify-content:center;gap:10px;margin-top:20px;flex-wrap:wrap}
-  .stat-chip{padding:6px 12px;background:var(--bg-softer);border:1px solid var(--line);border-radius:16px;font-size:13px;color:var(--fg-soft)}
+  .stat-chip{padding:5px 12px;background:transparent;border:1px solid var(--line);border-radius:4px;font-size:13px;color:var(--fg-soft)}
   .stat-chip strong{color:var(--fg);font-weight:600}
 
   .action-stack{display:flex;flex-direction:column;gap:12px;margin:28px 0}
   .stat-row{display:flex;gap:12px;margin:20px 0}
-  .stat-box{flex:1;padding:16px;background:var(--card-bg);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(0,0,0,0.04);border-radius:14px;text-align:center;box-shadow:var(--shadow-sm)}
-  .stat-box-val{font-size:22px;font-weight:700;letter-spacing:-0.01em}
+  .stat-box{flex:1;padding:16px;background:var(--card-bg);border:1px solid var(--line);border-radius:8px;text-align:center}
+  .stat-box-val{font-family:var(--serif);font-size:24px;font-weight:500;letter-spacing:0}
   .stat-box-label{font-size:11px;text-transform:uppercase;color:var(--fg-muted);letter-spacing:.06em;margin-top:2px}
 
   .menu-links{margin-top:18px;border-top:1px solid var(--line);padding-top:10px}
@@ -124,36 +128,51 @@
   .study-progress{display:flex;align-items:center;gap:10px;margin-bottom:20px;font-size:13px;color:var(--fg-soft)}
   .progress-bar{flex:1;height:4px;background:var(--bg-softer);border-radius:2px;overflow:hidden}
   .progress-fill{height:100%;background:var(--fg);transition:width .3s ease}
-  .stage-pill{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;background:var(--bg-softer);border:1px solid var(--line);border-radius:14px;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--fg-soft);margin-bottom:14px}
+  .stage-pill{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;background:transparent;border:1px solid var(--line-strong);border-radius:4px;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--fg-soft);margin-bottom:14px}
   .stage-pill.active{background:var(--fg);color:var(--bg);border-color:var(--fg)}
-  .concept-title{font-size:22px;font-weight:700;letter-spacing:-0.015em;margin-bottom:8px;line-height:1.2}
-  .lz-tag{display:inline-block;padding:2px 8px;background:var(--bg-softer);border:1px solid var(--line);border-radius:4px;font-size:11px;color:var(--fg-soft);font-weight:600;margin-bottom:10px}
+  .concept-title{font-family:var(--serif);font-size:24px;font-weight:600;letter-spacing:0;margin-bottom:8px;line-height:1.22}
+  .lz-tag{display:inline-block;padding:2px 8px;background:var(--bg-softer);border:1px solid var(--line);border-radius:3px;font-size:11px;color:var(--fg-soft);font-weight:600;margin-bottom:10px}
   .theory-text{font-size:15px;line-height:1.65;color:var(--fg);white-space:pre-wrap;margin:10px 0 14px}
   .theory-text pre.ascii,.example-box pre.ascii{white-space:pre;word-break:normal;overflow-x:auto;font-family:"SF Mono","Menlo","Monaco",monospace;font-size:12.5px;line-height:1.45;background:var(--bg-softer);border:1px solid var(--line);border-radius:8px;padding:12px 14px;margin:10px 0;color:var(--fg)}
-  .example-box{background:var(--card-bg);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(0,0,0,0.04);border-left:3px solid var(--fg);padding:16px 18px;margin:14px 0;border-radius:4px 14px 14px 4px;font-size:14px;line-height:1.6;white-space:pre-wrap;box-shadow:var(--shadow-sm)}
+  .example-box{background:var(--card-bg);border:1px solid var(--line);border-left:2px solid var(--fg);padding:16px 18px;margin:14px 0;border-radius:0 6px 6px 0;font-size:14px;line-height:1.6;white-space:pre-wrap}
   .example-box .label{display:block;margin-bottom:6px}
-  .begriffe-box{background:var(--bg-softer);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:14px 0}
+  .begriffe-box{background:var(--bg-softer);border:1px solid var(--line);border-radius:6px;padding:14px 16px;margin:14px 0}
   .begriffe-box .label{display:block;margin-bottom:8px}
   .begriffe-list{display:flex;flex-wrap:wrap;gap:6px}
-  .begriff-chip{display:inline-block;padding:5px 11px;background:var(--bg);border:1px solid var(--line-strong);border-radius:14px;font-size:13px;color:var(--fg);font-weight:500}
+  .begriff-chip{display:inline-block;padding:5px 11px;background:var(--bg);border:1px solid var(--line-strong);border-radius:4px;font-size:13px;color:var(--fg);font-weight:500}
 
   .q-box{margin-top:18px}
   .q-prompt{font-size:16px;font-weight:500;line-height:1.5;margin-bottom:12px}
-  textarea.q-input{padding:16px 18px;background:var(--card-bg);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(0,0,0,0.06);border-radius:14px;min-height:120px;font-size:15px;line-height:1.5;resize:vertical;box-shadow:var(--shadow-sm);transition:box-shadow .2s ease, border-color .15s ease}
-  textarea.q-input:focus{border-color:rgba(0,0,0,0.2);box-shadow:var(--shadow-md)}
+  textarea.q-input{padding:16px 18px;background:var(--card-bg);border:1px solid var(--line-strong);border-radius:6px;min-height:120px;font-size:15px;line-height:1.5;resize:vertical;transition:border-color .15s ease}
+  textarea.q-input:focus{border-color:var(--fg-soft)}
+
+  /* Multiple Choice */
+  .mc-q{padding:16px 0;border-bottom:1px solid var(--line)}
+  .mc-q:first-child{padding-top:4px}
+  .mc-q:last-of-type{border-bottom:none}
+  .mc-q .q-prompt{font-size:15px;font-weight:500;margin-bottom:10px}
+  .mc-options{display:flex;flex-direction:column;gap:8px}
+  .mc-option{display:flex;align-items:flex-start;gap:10px;padding:11px 14px;border:1px solid var(--line-strong);border-radius:6px;cursor:pointer;transition:border-color .15s ease, background .15s ease;font-size:14px;line-height:1.45}
+  .mc-option:hover{border-color:var(--fg-soft);background:var(--bg-soft)}
+  .mc-option input{width:auto;margin-top:2px;flex-shrink:0;accent-color:var(--fg)}
+  .mc-option.mc-correct{border-color:var(--fg);background:var(--bg-softer)}
+  .mc-option.mc-correct span{font-weight:600}
+  .mc-option.mc-wrong{border-color:var(--line-strong);opacity:.55;text-decoration:line-through}
+  .mc-explain{margin-top:10px;font-size:13px;line-height:1.55;color:var(--fg-soft);border-left:2px solid var(--line-strong);padding-left:12px}
+  .mc-explain .label{display:block;margin-bottom:3px}
 
   /* Feedback boxes */
-  .feedback{margin:14px 0;padding:18px;border-radius:14px;font-size:14px;line-height:1.55;animation:slideUp .25s ease;box-shadow:var(--shadow-md)}
+  .feedback{margin:14px 0;padding:18px;border-radius:8px;font-size:14px;line-height:1.55;animation:slideUp .25s ease}
   @keyframes slideUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-  .feedback-ok{background:linear-gradient(135deg, #0a0a0a 0%, #1f1f1f 100%);color:var(--bg);border:1px solid var(--fg);box-shadow:0 8px 24px rgba(15,15,15,0.18)}
+  .feedback-ok{background:var(--fg);color:var(--bg);border:1px solid var(--fg)}
   .feedback-ok .fb-title{color:var(--bg)}
-  .feedback-partial{background:var(--card-bg);color:var(--fg);border:1px solid rgba(0,0,0,0.12)}
-  .feedback-bad{background:var(--card-bg);color:var(--fg);border:1px dashed rgba(0,0,0,0.3)}
-  .fb-title{font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+  .feedback-partial{background:var(--card-bg);color:var(--fg);border:1px solid var(--line-strong);border-left:2px solid var(--fg-soft)}
+  .feedback-bad{background:var(--card-bg);color:var(--fg);border:1px dashed var(--line-strong)}
+  .fb-title{font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px}
   .fb-missing{margin-top:8px;font-size:13px;opacity:.85}
   .fb-missing ul{margin:4px 0 0 16px}
 
-  .ai-help-box{background:var(--card-bg);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(0,0,0,0.06);border-radius:14px;padding:16px;margin:12px 0;font-size:14px;line-height:1.55;white-space:pre-wrap;box-shadow:var(--shadow-sm)}
+  .ai-help-box{background:var(--card-bg);border:1px solid var(--line);border-left:2px solid var(--line-strong);border-radius:0 6px 6px 0;padding:16px;margin:12px 0;font-size:14px;line-height:1.55;white-space:pre-wrap}
   .ai-help-box .label{display:block;margin-bottom:6px}
 
   /* Loading */
@@ -162,7 +181,7 @@
   @keyframes pulse{0%,100%{opacity:.3;transform:scale(.8)}50%{opacity:1;transform:scale(1)}}
 
   /* Self-compare */
-  .self-compare{margin:14px 0;padding:18px;background:var(--card-bg);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(0,0,0,0.06);border-radius:14px;box-shadow:var(--shadow-sm)}
+  .self-compare{margin:14px 0;padding:18px;background:var(--card-bg);border:1px solid var(--line);border-radius:8px}
   .sc-section{margin-bottom:12px}
   .sc-section:last-of-type{margin-bottom:0}
   .sc-label{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--fg-muted);font-weight:600;margin-bottom:4px}
@@ -172,8 +191,8 @@
   .sc-buttons .btn{flex:1;padding:10px 12px;font-size:14px}
 
   /* Browse */
-  .lz-block{background:var(--card-bg);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(0,0,0,0.04);border-radius:14px;margin-bottom:10px;overflow:hidden;box-shadow:var(--shadow-sm);transition:box-shadow .2s ease}
-  .lz-block:hover{box-shadow:var(--shadow-md)}
+  .lz-block{background:var(--card-bg);border:1px solid var(--line);border-radius:8px;margin-bottom:10px;overflow:hidden;transition:border-color .15s ease}
+  .lz-block:hover{border-color:var(--line-strong)}
   .lz-head{padding:14px 18px;cursor:pointer;display:flex;align-items:center;gap:10px;font-weight:600}
   .lz-head:hover{background:var(--bg-softer)}
   .lz-head .lz-count{font-size:12px;color:var(--fg-muted);font-weight:500;margin-left:auto;margin-right:8px}
@@ -203,17 +222,17 @@
 
   /* Session end */
   .end-wrap{text-align:center;padding:40px 0}
-  .end-num{font-size:clamp(70px,18vw,90px);font-weight:700;letter-spacing:-0.03em;line-height:1}
+  .end-num{font-family:var(--serif);font-size:clamp(68px,17vw,86px);font-weight:500;letter-spacing:-0.01em;line-height:1}
   .end-label{font-size:14px;color:var(--fg-soft);text-transform:uppercase;letter-spacing:.08em;margin-top:6px}
   .end-msg{margin:24px auto;max-width:380px;font-size:16px;line-height:1.55;color:var(--fg-soft)}
   .end-stats{display:flex;justify-content:center;gap:24px;margin:24px 0;flex-wrap:wrap}
   .end-stat{text-align:center}
-  .end-stat-val{font-size:24px;font-weight:700;letter-spacing:-0.01em}
+  .end-stat-val{font-family:var(--serif);font-size:25px;font-weight:500;letter-spacing:0}
   .end-stat-lbl{font-size:11px;text-transform:uppercase;color:var(--fg-muted);letter-spacing:.06em;margin-top:2px}
 
   /* Test menu */
   .test-card{padding:24px;cursor:pointer;text-align:left;margin-bottom:12px}
-  .test-card-title{font-size:18px;font-weight:600;margin-bottom:6px}
+  .test-card-title{font-family:var(--serif);font-size:19px;font-weight:600;margin-bottom:6px}
   .test-card-desc{font-size:14px;color:var(--fg-soft);line-height:1.5}
   .test-card-meta{margin-top:12px;font-size:12px;color:var(--fg-muted);text-transform:uppercase;letter-spacing:.06em}
 
@@ -243,14 +262,15 @@
   .legend-item{display:inline-flex;align-items:center;gap:5px}
 
   /* Question type chips */
-  .type-chip{display:inline-flex;align-items:center;gap:5px;padding:3px 9px;border-radius:6px;font-size:11px;font-weight:600;letter-spacing:0.02em;margin-left:6px;vertical-align:middle}
-  .type-theorie{background:#eef4ff;color:#1e40af;border:1px solid #c7d8ff}
-  .type-verstand{background:#f3edff;color:#6b21a8;border:1px solid #d8c5ff}
-  .type-rechnung{background:#fff3e8;color:#9a3412;border:1px solid #ffd1a8}
+  .type-chip{display:inline-flex;align-items:center;gap:5px;padding:3px 9px;border-radius:3px;font-size:11px;font-weight:600;letter-spacing:0.02em;margin-left:6px;vertical-align:middle}
+  .type-theorie{background:var(--bg-softer);color:var(--fg-soft);border:1px solid var(--line-strong)}
+  .type-verstand{background:transparent;color:var(--fg-soft);border:1px solid var(--line-strong)}
+  .type-rechnung{background:var(--fg);color:var(--bg);border:1px solid var(--fg)}
+  .type-mc{background:var(--bg-softer);color:var(--fg);border:1px solid var(--fg-soft)}
   .type-line{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--fg-soft);margin:6px 0 14px}
   .type-line .type-chip{margin-left:0}
   .type-filters{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
-  .type-filter-btn{padding:6px 12px;background:var(--bg-softer);border:1px solid var(--line);border-radius:16px;font-size:12px;font-weight:600;cursor:pointer;color:var(--fg-soft);transition:all .15s ease}
+  .type-filter-btn{padding:6px 12px;background:transparent;border:1px solid var(--line-strong);border-radius:4px;font-size:12px;font-weight:600;cursor:pointer;color:var(--fg-soft);transition:all .15s ease}
   .type-filter-btn:hover{border-color:var(--fg);color:var(--fg)}
   .type-filter-btn.active{background:var(--fg);color:var(--bg);border-color:var(--fg)}
   .concept-item .type-chip{margin-left:auto;font-size:10px;padding:1px 6px}
@@ -281,7 +301,7 @@
   <!-- LOGIN -->
   <section class="view" id="view-login">
     <div class="login-wrap">
-      <div style="font-size:48px;font-weight:700;letter-spacing:-0.03em;line-height:1">Lernapp</div>
+      <div style="font-family:var(--serif);font-size:46px;font-weight:600;letter-spacing:-0.01em;line-height:1">Lernapp</div>
       <p class="muted mt-2">Multi-Topic Lernsystem mit KI-Bewertung</p>
       <input type="text" class="login-input" id="loginInput" placeholder="Dein Name" maxlength="20" autocomplete="off">
       <button class="btn btn-primary" id="loginBtn">Weiter →</button>
@@ -306,10 +326,9 @@
       <div class="stat-chips" id="heroChips"></div>
     </div>
     <div class="action-stack">
-      <button class="btn btn-primary btn-big" id="startStudyBtn">📚 Lernen (Theorie + Verständnis)</button>
-      <button class="btn btn-primary btn-big" id="startMathBtn" style="background:linear-gradient(135deg,#9a3412 0%,#7c2d12 100%);box-shadow:0 4px 12px rgba(154,52,18,0.25),0 1px 2px rgba(154,52,18,0.15)">✏️ Rechnen üben</button>
+      <button class="btn btn-primary btn-big" id="startLernenBtn">Lernen — Theorie &amp; Multiple Choice</button>
+      <button class="btn btn-secondary btn-big" id="startSchreibenBtn">Schreiben — Fragen mit KI-Korrektur</button>
       <button class="btn btn-secondary hidden" id="reviewMistakesBtn">Fehler wiederholen (0)</button>
-      <button class="btn btn-secondary" id="testModeBtn">Test-Modus</button>
     </div>
     <div class="stat-row">
       <div class="stat-box"><div class="stat-box-val" id="masteredVal">0/0</div><div class="stat-box-label">Gemeistert</div></div>
@@ -352,29 +371,6 @@
     <div class="lb-list" id="lbList"><div class="loading"><span class="dot"></span> lädt…</div></div>
   </section>
 
-  <!-- TEST MENU -->
-  <section class="view" id="view-testmenu">
-    <span class="back-link" id="testBack">← zurück</span>
-    <div class="sect-head"><h1>Test-Modus</h1><p class="muted">Wähle deinen Prüfungstyp</p></div>
-    <div class="card test-card card-hover" id="testQuickCard">
-      <div class="test-card-title">⚡ Schnelltest</div>
-      <div class="test-card-desc">10 Fragen aus deinen schwächsten Konzepten. Kein Theorie-Schritt, keine Musterlösung — wie eine Mini-Prüfung.</div>
-      <div class="test-card-meta">~10 Min · 10 Fragen</div>
-    </div>
-    <div class="card test-card card-hover" id="testFullCard">
-      <div class="test-card-title">📝 Prüfungssimulation</div>
-      <div class="test-card-desc">Alle Konzepte eines Lernziels in Prüfungsform. Vollständige Bilanz am Ende.</div>
-      <div class="test-card-meta">Lernziel-spezifisch</div>
-    </div>
-  </section>
-
-  <!-- TEST LZ SELECT -->
-  <section class="view" id="view-testlz">
-    <span class="back-link" id="testlzBack">← zurück</span>
-    <div class="sect-head"><h1>Lernziel wählen</h1><p class="muted">Welches LZ willst du prüfen?</p></div>
-    <div id="testlzList"></div>
-  </section>
-
   <!-- SESSION END -->
   <section class="view" id="view-end">
     <div class="end-wrap">
@@ -396,6 +392,8 @@ const STORAGE_PREFIX = 'app_v7_';
 const NEW_PER_DAY = 5;
 const PTS_QUICK = 15;
 const PTS_EXPLAIN = 25;
+const PTS_MC = 6;          // pro richtig beantworteter Multiple-Choice-Frage
+const MC_COUNT = 4;        // wie viele MC-Fragen pro Konzept generiert werden
 
 /* ================================================================
    TOPICS & CONTENT
@@ -403,6 +401,7 @@ const PTS_EXPLAIN = 25;
 const TOPICS = [
   {id:'chemie', name:'Chemie', icon:'C', desc:'Mol, Bindungen, Salze, Labor', active:true},
   {id:'geschichte', name:'Geschichte', icon:'G', desc:'Französische Revolution, Schweiz 1798–1848, Industrielle Revolution', active:true},
+  {id:'geografie', name:'Geografie', icon:'🌍', desc:'Energie & Klimawandel', active:true},
   {id:'wirtschaft', name:'Wirtschaft', icon:'W', desc:'In Vorbereitung — bald verfügbar', active:false}
 ];
 
@@ -435,6 +434,20 @@ const LZ_INFO = {
     {id:'LZ10', name:'M3 · Industrialisierung der Schweiz (Wasserkraft & Textil)'},
     {id:'LZ11', name:'M3 · Soziale Frage (Pauperismus & Arbeiterklasse)'},
     {id:'LZ12', name:'M3 · Antworten auf die Soziale Frage'}
+  ],
+  geografie: [
+    {id:'LZ1',  name:'Treibhauseffekt (natürlich & anthropogen)'},
+    {id:'LZ2',  name:'Rückkopplungsprozesse (positiv & negativ)'},
+    {id:'LZ3',  name:'Treibhausgase im Detail'},
+    {id:'LZ4',  name:'Ursachen des Klimawandels'},
+    {id:'LZ5',  name:'Kohlenstoffkreislauf'},
+    {id:'LZ6',  name:'Folgen des Klimawandels (Welt & Schweiz)'},
+    {id:'LZ7',  name:'Kippelemente'},
+    {id:'LZ8',  name:'Internationale Klimapolitik (Kyoto & Paris)'},
+    {id:'LZ9',  name:'Schweizer Klimapolitik'},
+    {id:'LZ10', name:'Massnahmen & Strategien'},
+    {id:'LZ11', name:'Energieformen & -träger'},
+    {id:'LZ12', name:'Energie Schweiz'}
   ]
 };
 
@@ -1275,6 +1288,392 @@ const CONCEPTS_BY_TOPIC = {
       }
     }
 
+  ],
+  geografie: [
+{
+  id:`geo-lz1-a`, lz:`LZ1`,
+  title:`Der natürliche Treibhauseffekt`,
+  theory:`Der natürliche Treibhauseffekt ist die Grundvoraussetzung für Leben, wie wir es kennen. Ohne ihn wäre es auf der Erde im Durchschnitt rund 30°C kälter, die Oberfläche wäre also lebensfeindlich vereist.\nVerantwortlich sind natürliche Treibhausgase in der Atmosphäre: H₂O (Wasserdampf), CO₂, CH₄, N₂O und O₃. Sie wirken wie das Glasdach eines Gewächshauses und halten Wärmestrahlung zurück.\nDer Ablauf folgt einer klaren Logik:\n1. Kurzwellige Sonnenstrahlung durchdringt die Atmosphäre weitgehend ungehindert und trifft auf die Erdoberfläche.\n2. Die Oberfläche erwärmt sich und wandelt die Energie in langwellige Wärmestrahlung um, die sie wieder abgibt.\n3. Die Treibhausgase absorbieren diese langwellige Rückstrahlung und geben sie zum Teil wieder zur Erde zurück.\nEntscheidend ist also der Unterschied zwischen kurzwelliger Einstrahlung (durchlässig) und langwelliger Ausstrahlung (zurückgehalten). Genau diese Asymmetrie erwärmt die unteren Atmosphärenschichten und macht die Erde bewohnbar.`,
+  example:`Merkhilfe: Wie ein Auto in der Sonne. Das Sonnenlicht kommt durch die Scheiben hinein, die entstehende Wärme kann aber kaum entweichen, deshalb wird es im Inneren deutlich heisser.`,
+  begriffe:[`natürlicher Treibhauseffekt`,`kurzwellige Sonnenstrahlung`,`langwellige Wärmestrahlung`,`Treibhausgase`],
+  quick:{
+    q:`Warum gelangt die Sonnenstrahlung relativ leicht zur Erdoberfläche, während die von der Erde abgegebene Strahlung von den Treibhausgasen zurückgehalten wird?`,
+    mustInclude:[`kurzwellig`,`langwellig`,`Wärmestrahlung`,`absorbieren`]
+  },
+  explain:{
+    prompt:`Erkläre, warum es ohne den natürlichen Treibhauseffekt deutlich kälter auf der Erde wäre, und beschreibe dabei den Strahlungsablauf Schritt für Schritt.`,
+    model:`Ohne den natürlichen Treibhauseffekt wäre es auf der Erde rund 30°C kälter, sie wäre also weitgehend vereist und lebensfeindlich. Der Effekt entsteht durch natürliche Treibhausgase in der Atmosphäre wie H₂O, CO₂, CH₄, N₂O und O₃. Zunächst trifft kurzwellige Sonnenstrahlung auf die Erdoberfläche und durchdringt die Atmosphäre dabei weitgehend ungehindert. Die Oberfläche wandelt diese Energie in langwellige Wärmestrahlung um und gibt sie wieder ab. Die Treibhausgase absorbieren diese langwellige Rückstrahlung und geben sie zum Teil zur Erde zurück. Dadurch geht weniger Wärme ins Weltall verloren und die unteren Atmosphärenschichten erwärmen sich. Erst dieser Mechanismus macht die Erde überhaupt bewohnbar.`,
+    mustInclude:[`30 Grad kälter`,`Treibhausgase`,`kurzwellig`,`langwellige Rückstrahlung`]
+  }
+},
+{
+  id:`geo-lz1-b`, lz:`LZ1`,
+  title:`Anthropogener Treibhauseffekt`,
+  theory:`Man muss zwischen zwei Dingen klar unterscheiden: dem natürlichen und dem anthropogenen Treibhauseffekt. Anthropogen bedeutet vom Menschen verursacht.\nDer natürliche Treibhauseffekt existiert ganz ohne Zutun des Menschen und macht die Erde bewohnbar. Der anthropogene Treibhauseffekt kommt nicht an dessen Stelle, sondern obendrauf: Der Mensch emittiert zusätzliche Treibhausgase, die den bereits vorhandenen natürlichen Effekt verstärken. Deshalb spricht man auch vom verstärkten Treibhauseffekt.\nDie Folge dieser Verstärkung ist eine Erhöhung der Durchschnittstemperatur der Atmosphäre. Mehr Treibhausgase bedeuten, dass ein grösserer Anteil der langwelligen Wärmestrahlung zurückgehalten und zur Erde zurückgegeben wird, statt ins Weltall zu entweichen.\nWichtig für das Verständnis: Der Treibhauseffekt selbst ist also nichts Schlechtes, im Gegenteil. Problematisch ist allein die zusätzliche, menschengemachte Verstärkung, weil sie das über lange Zeit stabile Temperaturgleichgewicht stört und so zum Klimawandel führt.`,
+  example:`Bild: Eine bereits warme Decke (natürlicher Effekt) wird durch eine zweite, vom Menschen aufgelegte Decke (anthropogener Effekt) noch dicker, sodass darunter die Temperatur steigt.`,
+  begriffe:[`anthropogen`,`verstärkter Treibhauseffekt`,`Emission`,`Durchschnittstemperatur`],
+  quick:{
+    q:`Ein Mitschüler sagt: Der Treibhauseffekt ist grundsätzlich schädlich und sollte abgeschafft werden. Worin liegt der Denkfehler?`,
+    mustInclude:[`natürlicher Treibhauseffekt`,`bewohnbar`,`anthropogen`,`Verstärkung`]
+  },
+  explain:{
+    prompt:`Worin unterscheidet sich der anthropogene vom natürlichen Treibhauseffekt, und warum führt der anthropogene Anteil zu einem Problem?`,
+    model:`Der natürliche Treibhauseffekt entsteht durch von Natur aus vorhandene Treibhausgase und macht die Erde überhaupt erst bewohnbar. Der anthropogene Treibhauseffekt ist dagegen vom Menschen verursacht. Der Mensch emittiert zusätzliche Treibhausgase, die den natürlichen Treibhauseffekt nicht ersetzen, sondern verstärken. Deshalb spricht man auch vom verstärkten Treibhauseffekt. Durch diese zusätzlichen Gase wird mehr langwellige Wärmestrahlung zurückgehalten, was zu einer Erhöhung der Durchschnittstemperatur der Atmosphäre führt. Der Treibhauseffekt an sich ist also nicht das Problem, sondern allein die menschengemachte Verstärkung, weil sie das stabile Temperaturgleichgewicht stört und den Klimawandel antreibt.`,
+    mustInclude:[`anthropogen`,`zusätzliche Treibhausgase`,`verstärken`,`Durchschnittstemperatur`]
+  }
+},
+{
+  id:`geo-lz2-a`, lz:`LZ2`,
+  title:`Positive und negative Rückkopplung`,
+  theory:`Rückkopplung beschreibt, wie ein System auf eine Störung reagiert. Man unterscheidet zwei gegensätzliche Typen, und es ist wichtig, die Begriffe nicht im Alltagssinn von gut und schlecht zu verstehen.\nEine negative Rückkopplung wirkt dämpfend beziehungsweise stabilisierend. Nach einer Störung kehrt das System wieder in einen stabilen Zustand zurück, die Auslenkung wird also ausgeglichen. Ein Beispiel ist der Wechsel von Eiszeiten und Warmzeiten, bei dem sich das Klima immer wieder einpendelt.\nEine positive Rückkopplung ist dagegen selbstverstärkend. Hier verstärkt eine Störung sich selbst, das System entfernt sich also immer weiter vom Ausgangszustand, statt zurückzukehren.\nMan darf negativ und positiv hier nicht mit schädlich und nützlich verwechseln. Negativ meint gegenwirkend und damit stabilisierend, positiv meint gleichgerichtet und damit verstärkend. Gerade beim Klimawandel sind die positiven, also selbstverstärkenden Rückkopplungen besonders kritisch, weil sie eine einmal angestossene Erwärmung weiter antreiben können.`,
+  example:`Eselsbrücke: negativ wie ein Bremspedal, das die Bewegung dämpft und das System beruhigt; positiv wie ein Schneeball, der beim Rollen immer grösser wird.`,
+  begriffe:[`negative Rückkopplung`,`positive Rückkopplung`,`Störung`,`stabiler Zustand`],
+  quick:{
+    q:`Warum ist es irreführend, negative Rückkopplung mit schädlich und positive Rückkopplung mit nützlich gleichzusetzen?`,
+    mustInclude:[`dämpfend`,`selbstverstärkend`,`stabiler Zustand`,`Störung`]
+  },
+  explain:{
+    prompt:`Erkläre den Unterschied zwischen negativer und positiver Rückkopplung und begründe, warum positive Rückkopplungen für den Klimawandel besonders kritisch sind.`,
+    model:`Eine negative Rückkopplung wirkt dämpfend und stabilisierend. Nach einer Störung kehrt das System wieder in einen stabilen Zustand zurück, wie beim Wechsel von Eiszeiten und Warmzeiten. Eine positive Rückkopplung ist dagegen selbstverstärkend, das heisst eine Störung verstärkt sich selbst und das System entfernt sich immer weiter vom Ausgangszustand. Die Begriffe negativ und positiv bezeichnen also nicht schädlich oder nützlich, sondern dämpfend oder verstärkend. Für den Klimawandel sind positive Rückkopplungen besonders kritisch, weil sie eine einmal angestossene Erwärmung immer weiter antreiben. Dadurch kann sich der Prozess verselbstständigen und ist nur noch schwer aufzuhalten.`,
+    mustInclude:[`negative Rückkopplung`,`positive Rückkopplung`,`stabiler Zustand`,`selbstverstärkend`]
+  }
+},
+{
+  id:`geo-lz2-b`, lz:`LZ2`,
+  title:`Eis-Albedo und Wasserdampf`,
+  theory:`Zwei positive Rückkopplungen sind für die Klimaerwärmung zentral, weil beide eine Erwärmung selbstverstärkend weiter antreiben.\nDie erste ist die Eis-Albedo-Rückkopplung. Albedo bezeichnet das Rückstrahlvermögen einer Oberfläche. Helles Eis hat eine hohe Albedo und wirft viel Sonnenstrahlung zurück. Die Kette lautet: Erwärmung führt dazu, dass Eis schmilzt, dadurch sinkt die Albedo. Die nun dunklere Oberfläche aus Wasser oder Boden absorbiert mehr Wärme, was die Erwärmung weiter verstärkt und noch mehr Eis schmelzen lässt.\nDie zweite ist die Wasserdampf-Rückkopplung. Hier gilt: Erwärmung führt zu mehr Wasserdampf in der Atmosphäre, weil wärmere Luft mehr Feuchtigkeit aufnehmen kann. Da Wasserdampf selbst ein Treibhausgas ist, verstärkt sich der Treibhauseffekt, was zu noch mehr Erwärmung führt.\nIn beiden Fällen schliesst sich der Kreis: Das Ergebnis verstärkt die ursprüngliche Ursache. Genau das macht sie zu positiven, also selbstverstärkenden Rückkopplungen.`,
+  example:`Beispiel Arktis: Schmelzendes Meereis legt dunkles Wasser frei, das deutlich mehr Sonnenenergie schluckt als die zuvor weisse Eisfläche, wodurch sich die Region überdurchschnittlich erwärmt.`,
+  begriffe:[`Albedo`,`Rückstrahlvermögen`,`Eis-Albedo-Rückkopplung`,`Wasserdampf-Rückkopplung`],
+  quick:{
+    q:`Beschreibe, wie schmelzendes Eis über die Albedo die Erwärmung weiter beschleunigt.`,
+    mustInclude:[`Eis schmilzt`,`weniger Albedo`,`mehr Wärmeabsorption`,`Erwärmung`]
+  },
+  explain:{
+    prompt:`Erläutere die Eis-Albedo- und die Wasserdampf-Rückkopplung und begründe, warum es sich bei beiden um positive Rückkopplungen handelt.`,
+    model:`Bei der Eis-Albedo-Rückkopplung führt eine Erwärmung dazu, dass Eis schmilzt. Dadurch sinkt die Albedo, also das Rückstrahlvermögen der Oberfläche. Die nun dunklere Fläche absorbiert mehr Wärme, was zu noch mehr Erwärmung und weiterem Abschmelzen führt. Bei der Wasserdampf-Rückkopplung führt eine Erwärmung zu mehr Wasserdampf in der Atmosphäre. Da Wasserdampf ein Treibhausgas ist, verstärkt sich dadurch der Treibhauseffekt und es kommt zu noch mehr Erwärmung. Beide sind positive Rückkopplungen, weil das Ergebnis die ursprüngliche Ursache verstärkt und sich der Prozess so selbst antreibt.`,
+    mustInclude:[`Albedo`,`Wärmeabsorption`,`Wasserdampf`,`selbstverstärkend`]
+  }
+},
+{
+  id:`geo-lz3-a`, lz:`LZ3`,
+  title:`Treibhausgase im Vergleich`,
+  theory:`Nicht jedes Treibhausgas trägt gleich stark zum verstärkten Treibhauseffekt bei. Entscheidend sind zwei Grössen: der Anteil am anthropogenen Effekt und die Wirksamkeit pro Molekül im Vergleich zu CO₂.\nCO₂ ist mit über 60 Prozent des anthropogenen Effekts der wichtigste Treiber, vor allem wegen der riesigen freigesetzten Mengen aus fossilen Brennstoffen. Andere Gase sind pro Molekül viel wirksamer, werden aber in kleineren Mengen freigesetzt.\nDie folgende Tabelle stellt die Wirksamkeit gegenüber CO₂ und die Hauptquellen gegenüber:\n~~~\nGas   | Wirksamkeit vs CO2 | Quelle\nCO2   | 1x                 | fossile Brennstoffe\nCH4   | 23x                | Viehzucht, Reis, Deponien\nN2O   | 310x               | Düngemittel, fossile Brennstoffe\nF-Gas | bis 22000x         | nur anthropogen\n~~~\nMan erkennt: Eine hohe Wirksamkeit pro Molekül allein macht ein Gas noch nicht zum Hauptproblem. Erst Wirksamkeit mal Menge ergibt den tatsächlichen Beitrag, weshalb das schwächere, aber massenhaft freigesetzte CO₂ den grössten Anteil hat.`,
+  example:`Merksatz: Wirksamkeit allein zählt nicht, die Menge entscheidet mit. CO₂ ist schwach pro Molekül, aber wegen der enormen Mengen aus fossilen Brennstoffen trotzdem der grösste anthropogene Treiber.`,
+  begriffe:[`anthropogener Effekt`,`Wirksamkeit`,`Menge`,`fossile Brennstoffe`],
+  quick:{
+    q:`Fluorierte Gase sind bis zu 22000-mal wirksamer als CO₂. Warum ist trotzdem CO₂ und nicht das F-Gas der wichtigste Treiber des anthropogenen Treibhauseffekts?`,
+    mustInclude:[`Menge`,`Wirksamkeit`,`fossile Brennstoffe`,`über 60 Prozent`]
+  },
+  explain:{
+    prompt:`Begründe, warum CO₂ trotz vergleichsweise geringer Wirksamkeit pro Molekül den grössten Anteil am anthropogenen Treibhauseffekt hat, und ordne CH₄, N₂O und die fluorierten Gase ein.`,
+    model:`Der tatsächliche Beitrag eines Treibhausgases hängt sowohl von seiner Wirksamkeit pro Molekül als auch von der freigesetzten Menge ab. CO₂ ist pro Molekül vergleichsweise schwach, wird aber in enormen Mengen aus der Verbrennung fossiler Brennstoffe freigesetzt und verursacht so über 60 Prozent des anthropogenen Effekts. CH₄ ist mit 23-mal stärkerer Wirkung pro Molekül deutlich wirksamer, trägt aber nur rund 20 Prozent bei. N₂O ist sogar 310-mal wirksamer als CO₂, hat aber nur einen Anteil von 4 bis 6 Prozent. Die fluorierten Gase sind mit bis zu 22000-mal stärkerer Wirkung am wirksamsten, machen aber wegen der geringen Mengen nur etwa 1,5 Prozent aus. Entscheidend ist also Wirksamkeit mal Menge, weshalb das schwächere CO₂ trotzdem den grössten Anteil hat.`,
+    mustInclude:[`über 60 Prozent`,`fossile Brennstoffe`,`Wirksamkeit`,`Menge`]
+  }
+},
+{
+  id:`geo-lz3-b`, lz:`LZ3`,
+  title:`Wasserdampf als Sonderfall`,
+  theory:`Unter den Treibhausgasen nimmt Wasserdampf H₂O eine Sonderrolle ein, die man klar von den menschengemachten Gasen trennen muss.\nWasserdampf ist das mit Abstand wichtigste Treibhausgas des natürlichen Treibhauseffekts und macht davon rund zwei Drittel aus. Anders als bei CO₂ oder CH₄ gibt es jedoch keinen direkten menschlichen Einfluss auf die Wasserdampfmenge. Der Mensch kann den Wasserdampfgehalt der Atmosphäre nicht unmittelbar durch Emissionen steuern.\nDer entscheidende Punkt ist der indirekte Weg: Mehr Wärme bedeutet mehr Wasserdampf, weil wärmere Luft mehr Feuchtigkeit aufnehmen kann. Dadurch wirkt Wasserdampf als Verstärker. Wenn andere Gase wie CO₂ die Temperatur erhöhen, steigt automatisch auch der Wasserdampfgehalt und verstärkt die Erwärmung zusätzlich.\nSo schliesst sich der Bogen zur positiven Rückkopplung: Wasserdampf ist nicht der Auslöser der menschengemachten Erwärmung, aber er verstärkt sie über die Wasserdampf-Rückkopplung erheblich. Genau deshalb wird er nicht zum anthropogenen Anteil gezählt, ist aber für dessen Wirkung sehr bedeutsam.`,
+  example:`Vergleich: Wasserdampf ist kein Zündfunke, sondern ein Brandbeschleuniger. Den Funken liefern die menschengemachten Gase wie CO₂, doch der entstehende Wasserdampf lässt das Feuer der Erwärmung noch heisser brennen.`,
+  begriffe:[`Wasserdampf`,`zwei Drittel`,`natürlicher Treibhauseffekt`,`Verstärker`],
+  quick:{
+    q:`Warum wird Wasserdampf nicht zum anthropogenen Treibhauseffekt gezählt, spielt aber für die menschengemachte Erwärmung trotzdem eine wichtige Rolle?`,
+    mustInclude:[`kein direkter Einfluss`,`mehr Wärme`,`mehr Wasserdampf`,`Verstärker`]
+  },
+  explain:{
+    prompt:`Erkläre die Sonderrolle des Wasserdampfs unter den Treibhausgasen und begründe, warum er als Verstärker, aber nicht als direkter Auslöser der menschengemachten Erwärmung gilt.`,
+    model:`Wasserdampf ist das wichtigste Treibhausgas des natürlichen Treibhauseffekts und macht davon rund zwei Drittel aus. Auf die Wasserdampfmenge gibt es jedoch keinen direkten menschlichen Einfluss, der Mensch kann sie nicht unmittelbar durch Emissionen steuern. Stattdessen gilt der Zusammenhang: Mehr Wärme führt zu mehr Wasserdampf, weil wärmere Luft mehr Feuchtigkeit aufnehmen kann. Wenn andere Gase wie CO₂ die Temperatur erhöhen, steigt dadurch auch der Wasserdampfgehalt und verstärkt die Erwärmung zusätzlich. Damit wirkt Wasserdampf als Verstärker über die Wasserdampf-Rückkopplung, ist aber nicht der eigentliche Auslöser der menschengemachten Erwärmung. Aus diesem Grund wird er nicht zum anthropogenen Anteil gezählt, bleibt für dessen Wirkung aber sehr bedeutsam.`,
+    mustInclude:[`zwei Drittel`,`kein direkter Einfluss`,`mehr Wasserdampf`,`Verstärker`]
+  }
+},
+{
+  id:`geo-lz4-a`, lz:`LZ4`,
+  title:`Natürliche Ursachen des Klimawandels`,
+  theory:`Das Klima der Erde hat sich auch ohne den Menschen immer wieder verändert. Wichtige natürliche Ursachen sind astronomische Zyklen, die bestimmen, wie viel Sonnenstrahlung die Erde erreicht.\nDie Erdumlaufbahn verändert ihre Form in einem Zyklus von rund 96.000 Jahren. Die Erdachse vollführt eine Kreiselbewegung mit einem Zyklus von etwa 23.000 Jahren. Zusätzlich schwankt die Neigung der Erdachse in einem 40.000-Jahres-Zyklus zwischen 21,5° und 24,5°. Diese drei Faktoren steuern, wie stark und wo die Sonneneinstrahlung auf die Erde trifft, und gelten als Auslöser der Eiszeiten.\nKurzfristiger wirken Sonnenflecken, deren Aktivität in Zyklen von 7 bis 17 Jahren schwankt und die Strahlungsleistung der Sonne leicht verändert.\nAuch die Erde selbst greift ein: Plattentektonik und Vulkanausbrüche schleudern Asche in die Atmosphäre. Diese Asche reflektiert Sonnenlicht und wirkt dadurch kurzfristig kühlend auf das Klima.`,
+  example:`Merkhilfe: Die Erde wackelt (23.000 J.), kippt (40.000 J.) und kreist auf wechselnder Bahn (96.000 J.) – diese langsamen Schwankungen treiben die Eiszeiten an.`,
+  begriffe:[`Erdumlaufbahn`,`Neigung der Erdachse`,`Sonnenflecken`,`Vulkanasche`],
+  quick:{
+    q:`Warum kann ein grosser Vulkanausbruch das globale Klima vorübergehend abkühlen, obwohl dabei auch Gase freigesetzt werden?`,
+    mustInclude:[`Asche`,`Sonnenlicht reflektieren`,`kühlende Wirkung`]
+  },
+  explain:{
+    prompt:`Erkläre, wieso die astronomischen Zyklen als natürliche Ursachen für den Wechsel von Warm- und Kaltzeiten gelten. Gehe auf mindestens zwei der drei Zyklen ein.`,
+    model:`Die astronomischen Zyklen verändern, wie viel Sonnenstrahlung die Erde erreicht und wie diese über die Erdoberfläche verteilt wird. Die Form der Erdumlaufbahn schwankt in einem Zyklus von rund 96.000 Jahren und bestimmt den Abstand zur Sonne. Die Neigung der Erdachse verändert sich im 40.000-Jahres-Zyklus zwischen 21,5° und 24,5° und beeinflusst die Stärke der Jahreszeiten. Die Kreiselbewegung der Erdachse läuft in einem Zyklus von etwa 23.000 Jahren und verschiebt, zu welcher Jahreszeit die Erde der Sonne am nächsten steht. Verstärken sich diese Effekte, gelangt in bestimmten Regionen weniger Sonnenenergie auf die Erde, was Kaltzeiten begünstigt. Umgekehrt führt mehr Einstrahlung zu Warmzeiten. Weil diese Zyklen sehr langsam ablaufen, verändern sie das Klima über viele Jahrtausende hinweg.`,
+    mustInclude:[`Erdumlaufbahn`,`Neigung der Erdachse`,`Kreiselbewegung`,`Sonnenstrahlung`]
+  }
+},
+{
+  id:`geo-lz4-b`, lz:`LZ4`,
+  title:`Anthropogene Ursachen des Klimawandels`,
+  theory:`Anthropogene Ursachen sind die vom Menschen verursachten Eingriffe, die das Klima verändern. Sie laufen viel schneller ab als die natürlichen Zyklen und sind für die heutige rasche Erwärmung entscheidend.\nDie wichtigste Ursache ist die Verbrennung fossiler Brennstoffe: Kohle, Erdöl und Erdgas. Dabei wird Kohlenstoff, der über Millionen Jahre im Boden gespeichert war, als CO₂ in die Atmosphäre freigesetzt.\nEine weitere Ursache ist die Entwaldung beziehungsweise Brandrodung. Wälder binden CO₂; werden sie gerodet oder verbrannt, fällt dieser Speicher weg und zusätzliches CO₂ gelangt in die Luft.\nAuch die Landwirtschaft trägt bei: Viehzucht und Reisanbau setzen klimawirksame Gase frei. Hinzu kommen industrielle Prozesse sowie die Trockenlegung von Mooren. Moore speichern sehr viel Kohlenstoff; werden sie entwässert, wird dieser Kohlenstoff freigesetzt.\nGemeinsam ist diesen Ursachen, dass sie zusätzliche Treibhausgase in die Atmosphäre bringen und so den natürlichen Treibhauseffekt verstärken.`,
+  example:`Beispiel: Wird ein Moor trockengelegt, um Ackerland zu gewinnen, zersetzt sich der gespeicherte Kohlenstoff und entweicht als CO₂ – aus einem Speicher wird eine Quelle.`,
+  begriffe:[`fossile Brennstoffe`,`Brandrodung`,`Viehzucht`,`Trockenlegung von Mooren`],
+  quick:{
+    q:`Ein Landwirt legt ein Moor trocken, um die Fläche zu bewirtschaften. Warum ist das aus Klimasicht problematisch?`,
+    mustInclude:[`Moore speichern Kohlenstoff`,`Freisetzung`,`CO₂`]
+  },
+  explain:{
+    prompt:`Begründe, warum die Verbrennung fossiler Brennstoffe als Hauptursache des heutigen, vom Menschen verursachten Klimawandels gilt.`,
+    model:`Bei der Verbrennung fossiler Brennstoffe wie Kohle, Erdöl und Erdgas wird Kohlenstoff freigesetzt, der zuvor über sehr lange Zeiträume im Boden gespeichert war. Dieser Kohlenstoff gelangt als CO₂ in die Atmosphäre und verstärkt dort den Treibhauseffekt. Fossile Brennstoffe werden in grossen Mengen für Energie, Verkehr und Industrie genutzt, weshalb ihr Beitrag besonders gross ist. Im Gegensatz zu den natürlichen Klimazyklen läuft dieser Eingriff sehr schnell ab. Dadurch steigt die CO₂-Konzentration in der Atmosphäre rascher, als sich das Klimasystem anpassen kann. Andere anthropogene Ursachen wie Entwaldung, Landwirtschaft oder die Trockenlegung von Mooren kommen hinzu, doch die fossile Verbrennung liefert den grössten zusätzlichen CO₂-Beitrag.`,
+    mustInclude:[`fossile Brennstoffe`,`CO₂`,`Treibhauseffekt`,`schnell`]
+  }
+},
+{
+  id:`geo-lz5-a`, lz:`LZ5`,
+  title:`Speicher im Kohlenstoffkreislauf`,
+  theory:`Der Kohlenstoffkreislauf beschreibt, wie Kohlenstoff zwischen verschiedenen Speichern der Erde ausgetauscht wird. Die Mengen werden in Gigatonnen Kohlenstoff (GtC) angegeben.\nDer mit Abstand grösste Speicher ist die Lithosphäre, also das Gestein, mit 75.000.000 GtC. Im Vergleich dazu sind alle anderen Speicher klein. Die Tiefsee enthält 37.100 GtC, Sedimente 1.750 GtC, der Boden 1.700 GtC und der Permafrost 1.200 GtC.\nFür den Klimawandel besonders wichtig sind drei Speicher: Fossile Energieträger mit 928 GtC, die Atmosphäre mit 591 GtC und die Vegetation mit 450 GtC.\n~~~\nSpeicher              GtC\nLithosphaere    75 000 000\nTiefsee             37 100\nSedimente            1 750\nBoden                1 700\nPermafrost           1 200\nFossile Traeger        928\nAtmosphaere            591\nVegetation             450\n~~~\nDie Speichergrössen zeigen, wo viel Kohlenstoff gebunden ist und welche Mengen der Mensch zusätzlich bewegt.`,
+  example:`Zum Einordnen: Die Atmosphäre (591 GtC) ist im Vergleich zur Lithosphäre (75 Millionen GtC) ein winziger Speicher – schon kleine Verschiebungen wirken sich dort stark aus.`,
+  begriffe:[`Gigatonnen Kohlenstoff`,`Lithosphäre`,`Atmosphäre`,`fossile Energieträger`],
+  quick:{
+    q:`Warum kann die Atmosphäre durch menschliche Aktivitäten relativ rasch zusätzlichen Kohlenstoff aufnehmen, obwohl sie nur 591 GtC speichert?`,
+    mustInclude:[`kleiner Speicher`,`Lithosphäre`,`grosse Wirkung`]
+  },
+  explain:{
+    prompt:`Erkläre anhand der Speichergrössen, warum die Verschiebung von Kohlenstoff aus den fossilen Energieträgern in die Atmosphäre für das Klima so bedeutsam ist.`,
+    model:`Die fossilen Energieträger speichern 928 GtC, die Atmosphäre nur 591 GtC. Verbrennt der Mensch fossile Energieträger, wird der dort gebundene Kohlenstoff als CO₂ in die Atmosphäre verschoben. Weil die Atmosphäre im Vergleich zur Lithosphäre mit 75.000.000 GtC ein sehr kleiner Speicher ist, fallen solche Verschiebungen dort stark ins Gewicht. Schon vergleichsweise geringe Mengen erhöhen die CO₂-Konzentration in der Atmosphäre deutlich. Das verstärkt den Treibhauseffekt und trägt zur Erwärmung bei. Der Vergleich der Speichergrössen macht also klar, warum der Mensch mit der Nutzung fossiler Energieträger eine grosse Wirkung erzielt, obwohl die bewegten Mengen gegenüber dem Gesteinsspeicher klein erscheinen.`,
+    mustInclude:[`fossile Energieträger`,`Atmosphäre`,`591 GtC`,`kleiner Speicher`]
+  }
+},
+{
+  id:`geo-lz5-b`, lz:`LZ5`,
+  title:`Prozesse und anthropogene Störung`,
+  theory:`Im Kohlenstoffkreislauf bewegen Prozesse den Kohlenstoff zwischen den Speichern. Bei der Fotosynthese nehmen Pflanzen CO₂ auf und bauen daraus Biomasse. Umgekehrt geben Atmung und Zersetzung den Kohlenstoff als CO₂ wieder an die Atmosphäre ab.\nDer Vulkanismus setzt durch Ausgasung CO₂ frei. Die Verwitterung von Gestein bindet dagegen CO₂ und entzieht es so der Atmosphäre. Auch der Ozean ist ein wichtiger CO₂-Speicher: CO₂ löst sich im Wasser, und mariner Plankton nimmt Kohlenstoff auf.\nIn einem ungestörten Kreislauf halten sich Aufnahme und Abgabe weitgehend die Waage.\nDer Mensch stört dieses Gleichgewicht: Die Verbrennung fossiler Brennstoffe beschleunigt den Austausch auf unnatürliche Weise, weil Kohlenstoff freigesetzt wird, der sonst über sehr lange Zeit gespeichert geblieben wäre. Dadurch nimmt der Kohlenstoff in der Atmosphäre jährlich um 5,1 GtC zu. Diese Zunahme zeigt, dass mehr CO₂ in die Atmosphäre gelangt, als die natürlichen Speicher aufnehmen können.`,
+  example:`Beispiel: Fotosynthese und Atmung sind wie Ein- und Ausatmen des Kreislaufs. Die fossile Verbrennung kippt diese Balance, sodass jährlich +5,1 GtC in der Atmosphäre verbleiben.`,
+  begriffe:[`Fotosynthese`,`Atmung und Zersetzung`,`Verwitterung`,`Ozean als CO₂-Speicher`],
+  quick:{
+    q:`Wieso bezeichnet man die Verbrennung fossiler Brennstoffe als unnatürliche Beschleunigung des Kohlenstoffkreislaufs?`,
+    mustInclude:[`fossile Brennstoffe`,`lange gespeichert`,`schnelle Freisetzung`]
+  },
+  explain:{
+    prompt:`Erkläre, wie die natürlichen Prozesse den Kohlenstoffkreislauf im Gleichgewicht halten und warum die jährliche Zunahme von 5,1 GtC ein Zeichen für eine Störung ist.`,
+    model:`Im natürlichen Kohlenstoffkreislauf nehmen Prozesse wie Fotosynthese und die Verwitterung von Gestein CO₂ auf, während Atmung, Zersetzung und Vulkanismus CO₂ wieder freisetzen. Auch der Ozean nimmt über die Lösung von CO₂ und den marinen Plankton Kohlenstoff auf. In einem ungestörten Kreislauf halten sich diese Aufnahme und Abgabe weitgehend die Waage. Der Mensch stört dieses Gleichgewicht durch die Verbrennung fossiler Brennstoffe, wodurch lange gespeicherter Kohlenstoff zusätzlich freigesetzt wird. Dadurch nimmt der Kohlenstoff in der Atmosphäre jährlich um 5,1 GtC zu. Diese Zunahme zeigt, dass die natürlichen Speicher das zusätzliche CO₂ nicht vollständig aufnehmen können. Der Austausch wird also auf unnatürliche Weise beschleunigt und das Gleichgewicht verschoben.`,
+    mustInclude:[`Fotosynthese`,`Gleichgewicht`,`fossile Brennstoffe`,`5,1 GtC`]
+  }
+},
+{
+  id:`geo-lz6-a`, lz:`LZ6`,
+  title:`Weltweite Folgen des Klimawandels`,
+  theory:`Der Klimawandel hat weltweit spürbare Folgen. Eine der bekanntesten ist der Meeresspiegelanstieg. Seit 1900 stieg der Meeresspiegel um rund 1,3 mm pro Jahr, aktuell sind es bereits 3,7 mm pro Jahr. Der Anstieg hat sich also deutlich beschleunigt und bedroht Küstenregionen und tiefliegende Inselstaaten.\nZudem treten Extremereignisse häufiger auf: Hitzewellen, Dürren und Überschwemmungen nehmen zu. Solche Ereignisse gefährden Menschen, Landwirtschaft und Infrastruktur.\nEine weitere Folge ist der Verlust von Biodiversität, weil sich viele Arten nicht schnell genug an die veränderten Bedingungen anpassen können.\nBesonders gefährlich sind sogenannte Compound Risks: Hier treffen mehrere Klimafolgen gleichzeitig oder nacheinander zusammen, etwa eine Dürre gefolgt von einer Überschwemmung. Die Kombination verstärkt die Schäden, weil sich die Folgen gegenseitig verschärfen und Systeme weniger Zeit zur Erholung haben.`,
+  example:`Beispiel: Eine lange Dürre trocknet Böden aus; folgt darauf ein Starkregen, kann das Wasser schlechter versickern und es kommt eher zu Überschwemmungen – ein typisches Compound Risk.`,
+  begriffe:[`Meeresspiegelanstieg`,`Extremereignisse`,`Biodiversität`,`Compound Risks`],
+  quick:{
+    q:`Was sagt der Vergleich von 1,3 mm pro Jahr seit 1900 mit aktuell 3,7 mm pro Jahr über die Entwicklung des Meeresspiegels aus?`,
+    mustInclude:[`Beschleunigung`,`Meeresspiegelanstieg`,`Küstenregionen`]
+  },
+  explain:{
+    prompt:`Erkläre, warum Compound Risks gefährlicher sein können als einzelne Klimafolgen. Nutze ein Beispiel.`,
+    model:`Compound Risks bezeichnen die Kombination mehrerer Klimafolgen, die gleichzeitig oder kurz nacheinander auftreten. Einzelne Folgen wie eine Dürre oder eine Überschwemmung sind für sich schon belastend, doch treffen sie zusammen, verstärken sie sich gegenseitig. Ein Beispiel ist eine lange Dürre, die den Boden austrocknet, gefolgt von einem Starkregen. Das Wasser kann dann schlechter versickern, wodurch das Überschwemmungsrisiko steigt. Weil mehrere Belastungen aufeinandertreffen, haben betroffene Systeme weniger Zeit, sich zwischen den Ereignissen zu erholen. Dadurch fallen die Schäden insgesamt grösser aus als bei einem einzelnen Ereignis. Compound Risks sind deshalb eine besondere Herausforderung für den Umgang mit dem Klimawandel.`,
+    mustInclude:[`Compound Risks`,`Kombination`,`gegenseitig verstärken`,`Beispiel`]
+  }
+},
+{
+  id:`geo-lz6-b`, lz:`LZ6`,
+  title:`Folgen für die Schweiz`,
+  theory:`Auch die Schweiz ist vom Klimawandel stark betroffen. Die Szenarien Klima CH2025 beschreiben die erwarteten Veränderungen, teils für eine sogenannte 3°C-Welt.\nDie Schweizer Mitteltemperatur ist seit vorindustrieller Zeit bereits um 2,0°C gestiegen; in einer 3°C-Welt wären es +3,8°C. Mit der Erwärmung fällt weniger Schnee, weil die Nullgradgrenze steigt – in einer 3°C-Welt um 550 m nach oben.\nDie Hitze wird extremer: Die wärmste Nacht ist um 3,2°C wärmer, in einer 3°C-Welt um 3,8°C. Gleichzeitig nehmen Starkniederschläge zu und werden heftiger (+11%). Die Sommer werden trockener; in einer 3°C-Welt sinkt die Bodenfeuchte um 44%.\nWeitere Folgen sind Gletscherschmelze und Permafrostrückgang sowie die Migration von Tier- und Pflanzenarten. Durch heftigere Niederschläge steigen das Überschwemmungsrisiko und die Gefahr von Hangrutschungen.`,
+  example:`Merkhilfe: In einer 3°C-Welt verschiebt sich die Nullgradgrenze um 550 m nach oben – Schnee fällt seltener und höher, was Wintertourismus und Wasserspeicherung betrifft.`,
+  begriffe:[`Klima CH2025`,`Nullgradgrenze`,`Starkniederschläge`,`Bodenfeuchte`],
+  quick:{
+    q:`Warum führt eine steigende Nullgradgrenze in der Schweiz zu weniger Schnee, und welche Folgen kann das haben?`,
+    mustInclude:[`Nullgradgrenze`,`weniger Schnee`,`Gletscherschmelze`]
+  },
+  explain:{
+    prompt:`Beschreibe anhand der Szenarien Klima CH2025, wie sich der Klimawandel in der Schweiz auf Temperatur, Niederschlag und Schnee auswirkt, und begründe, warum dadurch das Überschwemmungsrisiko steigt.`,
+    model:`Nach den Szenarien Klima CH2025 ist die Schweizer Mitteltemperatur seit vorindustrieller Zeit bereits um 2,0°C gestiegen, in einer 3°C-Welt wären es +3,8°C. Mit der Erwärmung steigt die Nullgradgrenze, in einer 3°C-Welt um 550 m, weshalb weniger Schnee fällt und Gletscher schmelzen. Gleichzeitig nehmen die Starkniederschläge zu und werden um 11% heftiger. Auch die Hitze verschärft sich, etwa bei der wärmsten Nacht, und die Sommer werden trockener, mit einer um 44% geringeren Bodenfeuchte in einer 3°C-Welt. Heftigere Starkniederschläge bedeuten, dass in kurzer Zeit grosse Wassermengen fallen. Trockene, ausgehärtete Böden können dieses Wasser schlechter aufnehmen, sodass es rascher abfliesst. Dadurch steigen das Überschwemmungsrisiko und die Gefahr von Hangrutschungen.`,
+    mustInclude:[`Klima CH2025`,`Nullgradgrenze`,`Starkniederschläge`,`Überschwemmungsrisiko`]
+  }
+},
+{
+  id:`geo-lz7-a`, lz:`LZ7`,
+  title:`Kippelemente im Klimasystem`,
+  theory:`Kippelemente sind kritische Bestandteile des Klimasystems, die bei einer bestimmten Erwärmung nicht allmählich, sondern abrupt reagieren. Wird die jeweilige Kipp-Temperatur überschritten, springt das Element in einen neuen Zustand, der irreversibel ist - er lässt sich also auch dann nicht mehr rückgängig machen, wenn die Temperatur später wieder sinkt.\nDas Tückische daran ist die Nichtlinearität: Lange passiert scheinbar wenig, dann erfolgt der Umschwung sehr schnell. Oft verstärken sich Kippprozesse selbst. Schmilzt etwa das helle Meereis, liegt darunter dunkles Wasser, das mehr Sonnenenergie aufnimmt, wodurch die Erwärmung und damit das Schmelzen weiter zunehmen (Rückkopplung).\nBesonders heikel ist, dass mehrere Kippelemente schon ab 1,5 Grad Celsius erreicht werden können. Das Pariser Ziel von 1,5 Grad ist deshalb keine willkürliche Zahl, sondern markiert eine Schwelle, ab der erste irreversible Veränderungen drohen. Zudem können Kippelemente sich gegenseitig auslösen und so Kettenreaktionen (Kipp-Kaskaden) anstossen.`,
+  example:`Merkhilfe: kippt nicht zurück. Anders als beim Lichtschalter, den man wieder hochdrücken kann, bleibt ein gekipptes Element im neuen Zustand - selbst bei sinkender Temperatur.`,
+  begriffe:[`Kipp-Temperatur`,`Irreversibilität`,`Rückkopplung`,`Kipp-Kaskade`,`Nichtlinearität`],
+  quick:{
+    q:`Warum gilt das Pariser 1,5-Grad-Ziel als so bedeutsam, wenn man die Kipp-Temperaturen der Kippelemente betrachtet?`,
+    mustInclude:[`1,5 Grad`,`mehrere Kippelemente`,`irreversibel`]
+  },
+  explain:{
+    prompt:`Erkläre, warum Kippelemente besonders gefährlich sind und weshalb man von Nichtlinearität und Irreversibilität spricht.`,
+    model:`Kippelemente sind kritische Teile des Klimasystems, die ab einer bestimmten Erwärmung abrupt in einen neuen Zustand kippen. Gefährlich sind sie, weil dieser Wechsel nicht linear verläuft: Über lange Zeit verändert sich wenig, dann erfolgt der Umschwung sehr schnell und ist kaum vorhersehbar. Der neue Zustand ist irreversibel, also auch bei sinkender Temperatur nicht mehr umkehrbar. Verstärkt wird dies durch Rückkopplungen, etwa wenn schmelzendes helles Meereis dunkles Wasser freilegt, das mehr Sonnenenergie aufnimmt und die Erwärmung weiter antreibt. Zusätzlich können Kippelemente sich gegenseitig anstossen und Kipp-Kaskaden auslösen. Da bereits ab 1,5 Grad Celsius mehrere Kippelemente erreicht werden, drohen schon bei scheinbar geringer Erwärmung dauerhafte Schäden.`,
+    mustInclude:[`abrupt`,`irreversibel`,`Rückkopplung`,`1,5 Grad`,`Kipp-Kaskade`]
+  }
+},
+{
+  id:`geo-lz7-b`, lz:`LZ7`,
+  title:`Wichtige Kippelemente und ihre Schwellen`,
+  theory:`Forschende haben mehrere Kippelemente identifiziert und ihnen jeweils eine Kipp-Temperatur zugeordnet, ab der ein Umkippen droht. Mehrere besonders empfindliche Elemente liegen bereits bei rund 1,5 Grad Celsius Erwärmung, andere folgen bei höheren Werten.\nDie folgende Übersicht ordnet die wichtigsten Kippelemente ihrer jeweiligen Schwelle zu:\n~~~\nKippelement                        | Kippt ab\nArktisches Winter-Meereis (Kollaps)| 1,5 C\nGrönländisches Eisschild           | 1,5 C\nBorealer Permafrost                | 1,5 C\nTropische Korallenriffe            | 1,5 C\nWestantarktisches Eisschild        | 1,5-3,7 C\nAmazonas-Regenwald                 | 2,0-3,7 C\nAtlantische Umwälzung (AMOC)       | 2,0-3,7 C\n~~~\nMan erkennt zwei Gruppen: vier Elemente kippen schon bei 1,5 Grad, drei weitere erst bei stärkerer Erwärmung. Die AMOC ist die atlantische Umwälzzirkulation, eine grosse Meeresströmung, die unter anderem das Klima Europas mitprägt. Ihr Kollaps hätte daher weitreichende Folgen.`,
+  example:`Eselsbrücke fuer die 1,5-Grad-Gruppe: Eis und Leben am Limit - arktisches Meereis, Groenland-Eis, Permafrost und Korallen reagieren am empfindlichsten.`,
+  begriffe:[`Grönländisches Eisschild`,`AMOC`,`Permafrost`,`Korallenriffe`,`Amazonas-Regenwald`],
+  quick:{
+    q:`Nenne zwei Kippelemente, die bereits ab 1,5 Grad Celsius kippen können, und eines, das erst bei höherer Erwärmung gefährdet ist.`,
+    mustInclude:[`1,5 Grad`,`Grönland`,`AMOC`]
+  },
+  explain:{
+    prompt:`Ordne die genannten Kippelemente nach ihrer Kipp-Temperatur und erläutere, warum gerade die Schwelle von 1,5 Grad Celsius kritisch ist.`,
+    model:`Die Kippelemente lassen sich grob in zwei Gruppen einteilen. Bereits ab 1,5 Grad Celsius drohen der Kollaps des arktischen Winter-Meereises, der Verlust des grönländischen Eisschilds, das Abschmelzen des borealen Permafrosts und das Absterben der tropischen Korallenriffe. Erst bei höherer Erwärmung folgen das westantarktische Eisschild bei 1,5 bis 3,7 Grad sowie der Amazonas-Regenwald und die atlantische Umwälzzirkulation AMOC bei jeweils 2,0 bis 3,7 Grad. Die Schwelle von 1,5 Grad ist kritisch, weil dort gleich vier Kippelemente gleichzeitig gefährdet sind. Schon eine vergleichsweise geringe Erwärmung kann also mehrere irreversible Prozesse zugleich anstossen.`,
+    mustInclude:[`1,5 Grad`,`Permafrost`,`AMOC`,`2,0 bis 3,7 Grad`]
+  }
+},
+{
+  id:`geo-lz8-a`, lz:`LZ8`,
+  title:`Von Rio über Kyoto nach Paris`,
+  theory:`Die internationale Klimapolitik entwickelte sich in mehreren Schritten. Den Anfang machte 1992 die Klimarahmenkonvention von Rio (UNFCCC). Sie war die erste völkerrechtliche Grundlage und bildet bis heute das Fundament aller späteren Abkommen.\n1997 folgte das Kyoto-Protokoll. Es legte erstmals verbindliche Reduktionsziele fest, allerdings nur für die Industrieländer (Annex 1). Damit Reduktionen möglichst kostengünstig erreicht werden konnten, schuf Kyoto drei flexible Mechanismen: den Clean Development Mechanism (CDM), den International Emissions Trading (IET) und Joint Implementation (JI). Beim CDM finanziert ein Industrieland ein Klimaprojekt in einem Entwicklungsland und erhält dafür Emissionsgutschriften.\n2015 wurde am COP21 das Pariser Abkommen beschlossen. Es will die Erderwärmung deutlich unter 2 Grad Celsius halten, möglichst sogar auf 1,5 Grad. Erstmals werden alle Staaten in die Pflicht genommen, nicht nur die Industrieländer. Der Weg führte also von einer reinen Absichtserklärung über verbindliche, aber begrenzte Ziele hin zu einem weltweit umfassenden Abkommen.`,
+  example:`Merkfolge mit Jahreszahlen: Rio 1992 als Fundament, Kyoto 1997 als erster verbindlicher Schritt nur fuer Industrielaender, Paris 2015 fuer alle Staaten.`,
+  begriffe:[`UNFCCC`,`Kyoto-Protokoll`,`Annex 1`,`CDM`,`Pariser Abkommen`],
+  quick:{
+    q:`Worin unterscheidet sich das Pariser Abkommen grundlegend vom Kyoto-Protokoll, wenn man betrachtet, welche Staaten zu Reduktionen verpflichtet werden?`,
+    mustInclude:[`Kyoto nur Industrieländer`,`Annex 1`,`Paris alle Staaten`]
+  },
+  explain:{
+    prompt:`Beschreibe die Entwicklung der internationalen Klimapolitik von Rio 1992 bis Paris 2015 und erkläre die Bedeutung der Kyoto-Mechanismen, insbesondere des CDM.`,
+    model:`Die internationale Klimapolitik begann 1992 mit der Klimarahmenkonvention von Rio (UNFCCC), die als erste völkerrechtliche Grundlage das Fundament aller späteren Abkommen bildet. 1997 folgte das Kyoto-Protokoll mit den ersten verbindlichen Reduktionszielen, die jedoch nur für die Industrieländer (Annex 1) galten. Um die Ziele kostengünstig zu erreichen, führte Kyoto drei Mechanismen ein: den Clean Development Mechanism (CDM), den International Emissions Trading (IET) und Joint Implementation (JI). Beim CDM finanziert ein Industrieland ein Klimaprojekt in einem Entwicklungsland und erhält dafür Emissionsgutschriften. 2015 wurde am COP21 das Pariser Abkommen beschlossen, das die Erderwärmung deutlich unter 2 Grad, möglichst auf 1,5 Grad, begrenzen will. Anders als Kyoto verpflichtet es erstmals alle Staaten und nicht nur die Industrieländer.`,
+    mustInclude:[`UNFCCC`,`Annex 1`,`CDM`,`Emissionsgutschriften`,`alle Staaten`]
+  }
+},
+{
+  id:`geo-lz8-b`, lz:`LZ8`,
+  title:`Pariser Abkommen und COP-Meilensteine`,
+  theory:`Das Pariser Abkommen von 2015 stützt sich auf ein neues Prinzip: Statt von oben verordneter Ziele meldet jeder Staat selbst, wie viel er reduzieren will. Diese Selbstverpflichtungen heissen NDCs (National Determined Contributions). Sie werden alle 5 Jahre überprüft und sollen schrittweise verschärft werden. Bis 2050 soll eine Balance zwischen Emissionen und Senken erreicht werden, also Netto-Null. Die zentrale Schwäche: Es gibt keine Sanktionsmechanismen, die Ziele sind freiwillig.\nDie Umsetzung wird an den jährlichen Klimakonferenzen (COP) weiterentwickelt:\n~~~\nKonferenz                 | Ergebnis\nCOP26 Glasgow 2021        | Indien Netto-Null bis 2070\nCOP27 Sharm-El-Sheikh 2022| Loss and Damage Fund\nCOP28 Dubai 2023          | Fossil Fuel Phase-Out\nCOP29 Baku 2024           | neues Klimafinanzierungsziel\nCOP30 Belem 2025          | (Konferenz)\n~~~\nDer Loss and Damage Fund soll besonders betroffene Länder für Klimaschäden entschädigen, der Fossil Fuel Phase-Out beschreibt den angestrebten Ausstieg aus fossilen Energieträgern.`,
+  example:`Eselsbruecke NDC: jedes Land bringt seinen eigenen Beitrag mit. Ueberprueft wird alle 5 Jahre, Ziel ist Netto-Null bis 2050.`,
+  begriffe:[`NDCs`,`Netto-Null`,`Loss and Damage Fund`,`Fossil Fuel Phase-Out`,`Sanktionsmechanismen`],
+  quick:{
+    q:`Das Pariser Abkommen setzt auf freiwillige NDCs. Welche Schwäche ergibt sich daraus für die Durchsetzung der Klimaziele?`,
+    mustInclude:[`NDCs`,`freiwillig`,`keine Sanktionen`]
+  },
+  explain:{
+    prompt:`Erkläre, wie das Pariser Abkommen über NDCs funktioniert, und bewerte seine zentrale Schwäche. Nenne zudem zwei konkrete COP-Meilensteine.`,
+    model:`Das Pariser Abkommen funktioniert über National Determined Contributions (NDCs): Jeder Staat legt selbst fest, wie viel er reduzieren will, statt feste Ziele vorgeschrieben zu bekommen. Diese Beiträge werden alle 5 Jahre überprüft und sollen schrittweise verschärft werden, mit dem Ziel der Netto-Null bis 2050, also einer Balance zwischen Emissionen und Senken. Die zentrale Schwäche liegt darin, dass die Ziele freiwillig sind und es keine Sanktionsmechanismen gibt. Ein Staat, der seine NDCs nicht erfüllt, muss also keine Strafe befürchten, was die Wirksamkeit schwächt. An den COP-Konferenzen wird das Abkommen weiterentwickelt: Am COP27 in Sharm-El-Sheikh 2022 wurde der Loss and Damage Fund beschlossen, am COP28 in Dubai 2023 der Fossil Fuel Phase-Out.`,
+    mustInclude:[`NDCs`,`alle 5 Jahre`,`keine Sanktionsmechanismen`,`Loss and Damage Fund`,`Fossil Fuel Phase-Out`]
+  }
+},
+{
+  id:`geo-lz9-a`, lz:`LZ9`,
+  title:`Energiestrategie 2050 und Energiegesetz`,
+  theory:`Nach dem Reaktorunglück von Fukushima 2011 beschloss die Schweiz eine grundlegende energiepolitische Neuausrichtung: die Energiestrategie 2050. Sie verfolgt drei Stossrichtungen: den schrittweisen Ausstieg aus der Kernenergie, den massiven Ausbau erneuerbarer Energien (Solar, Wind, Wasserkraft, Biomasse, Geothermie) sowie die Steigerung der Energieeffizienz.\nUmgesetzt wurde diese Strategie zunächst durch das Energiegesetz, das am 21. Mai 2017 mit 58,2 Prozent Ja angenommen wurde. Es enthält mehrere konkrete Vorgaben:\n~~~\nVorgabe                          | Wert\nNeue AKW                         | verboten\nEnergieverbrauch pro Person      | -43% bis 2035\nStromverbrauch pro Person        | -13% bis 2035\nCO2-Norm Fahrzeuge               | max. 95 g/km\nMittel Gebaeudesanierung         | max. 450 Mio. CHF/Jahr\n~~~\nDie Strategie setzt also gleichzeitig beim Angebot (mehr Erneuerbare statt Atomkraft) und bei der Nachfrage (weniger Verbrauch durch Effizienz) an. Der Verzicht auf neue AKW war dabei der politisch entscheidende Schritt.`,
+  example:`Auswendig: Energiegesetz 2017, 58,2 Prozent Ja. Kernpunkte minus 43 Prozent Energieverbrauch und minus 13 Prozent Stromverbrauch bis 2035, Fahrzeuge maximal 95 Gramm pro Kilometer.`,
+  begriffe:[`Energiestrategie 2050`,`Fukushima 2011`,`Energiegesetz`,`erneuerbare Energien`,`Energieeffizienz`],
+  quick:{
+    q:`Welches Ereignis löste die Energiestrategie 2050 aus, und welche drei Stossrichtungen verfolgt sie?`,
+    mustInclude:[`Fukushima 2011`,`Ausstieg Kernenergie`,`erneuerbare Energien`]
+  },
+  explain:{
+    prompt:`Erläutere Auslöser und Ziele der Energiestrategie 2050 und nenne die wichtigsten konkreten Vorgaben des Energiegesetzes von 2017.`,
+    model:`Auslöser der Energiestrategie 2050 war das Reaktorunglück von Fukushima 2011, das eine energiepolitische Neuausrichtung der Schweiz anstiess. Die Strategie verfolgt drei Stossrichtungen: den schrittweisen Ausstieg aus der Kernenergie, den massiven Ausbau erneuerbarer Energien wie Solar, Wind, Wasserkraft, Biomasse und Geothermie sowie die Steigerung der Energieeffizienz. Umgesetzt wurde sie durch das Energiegesetz, das am 21. Mai 2017 mit 58,2 Prozent Ja angenommen wurde. Es verbietet neue AKW und schreibt vor, dass der Energieverbrauch pro Person bis 2035 um 43 Prozent und der Stromverbrauch um 13 Prozent sinken soll. Zudem gilt für Fahrzeuge eine CO₂-Norm von maximal 95 Gramm pro Kilometer, und für Gebäudesanierungen stehen maximal 450 Millionen CHF pro Jahr bereit.`,
+    mustInclude:[`Fukushima 2011`,`58,2 Prozent`,`-43% Energieverbrauch`,`95 g/km`,`keine neuen AKW`]
+  }
+},
+{
+  id:`geo-lz9-b`, lz:`LZ9`,
+  title:`CO₂-Gesetz, Klimaschutzgesetz und Abstimmungen`,
+  theory:`Die jüngere Schweizer Klimapolitik lässt sich an mehreren Volksabstimmungen ablesen, die teils gegensätzlich ausfielen. Das zeigt, wie umkämpft das Thema ist.\n~~~\nVorlage                  | Datum         | Ergebnis\nCO2-Gesetz               | 13.06.2021    | NEIN 51,6%\nKlimaschutzgesetz        | 18.06.2023    | JA 59,1%\nKlimafonds-Initiative    | 08.03.2026    | NEIN 70,7%\n~~~\nDas CO₂-Gesetz hätte das Pariser Abkommen in Schweizer Recht umgesetzt, unter anderem mit einer CO₂-Abgabe auf Flüge, schärferen Importeurspflichten und einem Gebäudeprogramm. Es wurde am 13. Juni 2021 mit 51,6 Prozent Nein knapp abgelehnt.\nZwei Jahre später nahm das Volk am 18. Juni 2023 das Klimaschutzgesetz mit 59,1 Prozent Ja an. Es legt fest, dass die Schweiz bis 2050 klimaneutral werden soll, und sieht finanzielle Unterstützung für den Heizungswechsel, die Förderung klimafreundlicher Technologien für Unternehmen sowie verbindliche Vereinbarungen mit der Finanzbranche vor. Das Budget beträgt maximal 3,2 Milliarden CHF über 10 Jahre. Die Klimafonds-Initiative wurde 2026 mit 70,7 Prozent Nein deutlich verworfen.`,
+  example:`Merke den Gegensatz: CO2-Gesetz 2021 abgelehnt (Nein 51,6 Prozent), aber Klimaschutzgesetz 2023 angenommen (Ja 59,1 Prozent) mit Ziel klimaneutral bis 2050.`,
+  begriffe:[`CO₂-Gesetz`,`Klimaschutzgesetz`,`klimaneutral 2050`,`Volksabstimmung`,`Finanzbranche`],
+  quick:{
+    q:`Das CO₂-Gesetz 2021 wurde abgelehnt, das Klimaschutzgesetz 2023 angenommen. Welche zentralen Inhalte hatte das angenommene Klimaschutzgesetz?`,
+    mustInclude:[`klimaneutral bis 2050`,`Heizungswechsel`,`3,2 Milliarden CHF`]
+  },
+  explain:{
+    prompt:`Vergleiche das abgelehnte CO₂-Gesetz von 2021 mit dem angenommenen Klimaschutzgesetz von 2023 hinsichtlich Inhalt und Abstimmungsergebnis.`,
+    model:`Das CO₂-Gesetz wurde am 13. Juni 2021 mit 51,6 Prozent Nein knapp abgelehnt. Es hätte das Pariser Abkommen in Schweizer Recht umgesetzt, unter anderem mit einer CO₂-Abgabe auf Flüge, schärferen Importeurspflichten und einem Gebäudeprogramm. Im Gegensatz dazu nahm das Volk am 18. Juni 2023 das Klimaschutzgesetz mit 59,1 Prozent Ja an. Dieses Gesetz legt fest, dass die Schweiz bis 2050 klimaneutral werden soll, und sieht finanzielle Unterstützung für den Heizungswechsel, die Förderung klimafreundlicher Technologien für Unternehmen sowie verbindliche Vereinbarungen mit der Finanzbranche vor. Das Budget beträgt maximal 3,2 Milliarden CHF über 10 Jahre. Während also ein Vorschlag mit konkreten Abgaben scheiterte, fand wenig später ein Gesetz mit Förderansatz und klarem Netto-Null-Ziel eine Mehrheit.`,
+    mustInclude:[`51,6 Prozent Nein`,`59,1 Prozent Ja`,`klimaneutral bis 2050`,`3,2 Milliarden CHF`,`Finanzbranche`]
+  }
+},
+{
+  id:`geo-lz10-a`, lz:`LZ10`,
+  title:`Minderung und Anpassung als Grundansätze`,
+  theory:`Im Umgang mit dem Klimawandel gibt es zwei grundsätzlich verschiedene Stossrichtungen, die sich ergänzen.\nDie Minderung (Mitigation) setzt an der Ursache an: Sie reduziert den Ausstoss von Treibhausgasen, damit sich das Klima gar nicht erst weiter aufheizt. Beispiele sind der Umstieg auf erneuerbare Energien oder eine CO₂-Abgabe.\nDie Anpassung (Adaption) akzeptiert dagegen, dass sich das Klima bereits verändert, und versucht, die Empfindlichkeit der Gesellschaft gegenüber den Folgen zu verringern. Dazu gehören etwa Hochwasserschutz, Bewässerungssysteme oder hitzeresistente Pflanzen.\nWichtig ist die Logik dahinter: Selbst wenn wir heute alle Emissionen stoppen würden, bliebe das bereits ausgestossene CO₂ jahrzehntelang in der Atmosphäre. Deshalb reicht Minderung allein nicht, und beide Ansätze müssen parallel verfolgt werden.\nZur konkreten Umsetzung dienen drei Strategien: Effizienz (gleicher Output mit weniger Input), Suffizienz (genügsamer Lebensstil mit bewusstem Verzicht) und Konsistenz (Kreislaufwirtschaft ohne Abfall).`,
+  example:`Eine Staumauer gegen Hochwasser ist Anpassung, ein Hybridauto Minderung. Merksatz: Minderung bekämpft die Ursache, Anpassung mildert die Folge.`,
+  begriffe:[`Minderung (Mitigation)`,`Anpassung (Adaption)`,`Treibhausgas-Emissionen`,`Empfindlichkeit`],
+  quick:{
+    q:`Eine Gemeinde baut ein neues Bewässerungssystem für trockene Sommer und führt gleichzeitig eine CO₂-Abgabe ein. Ordne beide Massnahmen den zwei Grundansätzen zu und begründe kurz.`,
+    mustInclude:[`Anpassung`,`Minderung`,`Folgen`,`Emissionen`]
+  },
+  explain:{
+    prompt:`Begründe, warum reine Minderung (Mitigation) nicht ausreicht und Anpassung (Adaption) zusätzlich nötig ist.`,
+    model:`Die Minderung reduziert die Treibhausgas-Emissionen und setzt damit an der Ursache des Klimawandels an. Das bereits ausgestossene CO₂ verbleibt jedoch über Jahrzehnte in der Atmosphäre und wirkt weiter. Selbst ein sofortiger Emissionsstopp würde die schon angestossene Erwärmung also nicht rückgängig machen. Deshalb braucht es zusätzlich die Anpassung, welche die Empfindlichkeit der Gesellschaft gegenüber den Klimafolgen verringert. Beispiele sind Hochwasserschutz oder hitzeresistente Pflanzen. Nur die Kombination beider Ansätze ermöglicht es, sowohl künftige Erwärmung zu begrenzen als auch mit den bereits eintretenden Folgen umzugehen.`,
+    mustInclude:[`Ursache`,`Folgen`,`CO₂ bleibt in der Atmosphäre`,`Kombination`]
+  }
+},
+{
+  id:`geo-lz10-b`, lz:`LZ10`,
+  title:`Strategien und wirksamste Massnahmen`,
+  theory:`Massnahmen gegen den Klimawandel lassen sich nach Strategien und nach Kategorien ordnen.\nDie drei Strategien sind: Effizienz (gleicher Nutzen mit weniger Energie, etwa LED statt Glühbirne oder Hybridauto), Suffizienz (genügsamer Lebensstil mit Verzicht, etwa Carsharing oder weniger fliegen) und Konsistenz (Kreislaufwirtschaft ohne Abfall, etwa Biotreibstoff aus Abfällen).\nDie Massnahmen-Kategorien zeigen, wer handelt: freiwillige wirtschaftliche (Labels, Zertifizierungen), juristische (Verbote, Vorschriften), politische (Raumplanung, Gesundheit), marktwirtschaftliche (Emissionshandel, CO₂-Abgabe) und technische (CCS-Abscheidung und -Speicherung, Geoengineering, erneuerbare Energien).\nBesonders aufschlussreich ist die Wirksamkeit individueller Massnahmen, gemessen an der jährlichen CO₂-Einsparung:\n~~~\nweniger Kinder        58,6 t\nautoloses Leben        2,4 t\nein Flug weniger       1,6 t\npflanzliche Ernaehrung 0,8 t\nRecycling / LED       <0,3 t\n~~~\nDaraus folgt: Massnahmen mit grossem Hebel werden öffentlich oft wenig diskutiert, während kleine wie Recycling stark betont werden.`,
+  example:`Carsharing ist Suffizienz, ein effizienterer Motor ist Effizienz, Treibstoff aus Abfall ist Konsistenz.`,
+  begriffe:[`Effizienz`,`Suffizienz`,`Konsistenz`,`CO₂-Einsparung`],
+  quick:{
+    q:`Jemand ersetzt alle Lampen durch LED und recycelt konsequent, fliegt aber weiterhin jährlich über den Atlantik. Beurteile mithilfe der Einsparungszahlen, wie wirksam dieses Verhalten fürs Klima ist.`,
+    mustInclude:[`Flug 1,6 t`,`Recycling unter 0,3 t`,`Hebel`,`gering`]
+  },
+  explain:{
+    prompt:`Unterscheide die drei Strategien Effizienz, Suffizienz und Konsistenz und erkläre an je einem Beispiel, wie sie Emissionen senken.`,
+    model:`Effizienz bedeutet, denselben Output mit weniger Input zu erreichen. Eine LED liefert gleich viel Licht wie eine Glühbirne, braucht aber deutlich weniger Strom, sodass weniger Energie und damit weniger CO₂ anfallen. Suffizienz setzt auf einen genügsamen Lebensstil und bewussten Verzicht. Wer Carsharing nutzt oder seltener fliegt, senkt den Verbrauch, indem er die nachgefragte Menge verringert. Konsistenz zielt auf eine Kreislaufwirtschaft ohne Abfall, etwa indem Biotreibstoff aus Abfällen gewonnen wird und Stoffe im Kreislauf bleiben. Effizienz verbessert also die Technik, Suffizienz verändert das Verhalten, und Konsistenz verändert die Art der Stoffnutzung. Gemeinsam wirken sie stärker als jede Strategie für sich.`,
+    mustInclude:[`gleicher Output weniger Input`,`Verzicht`,`Kreislaufwirtschaft`,`Beispiel`]
+  }
+},
+{
+  id:`geo-lz11-a`, lz:`LZ11`,
+  title:`Energieformen und Umwandlungskette`,
+  theory:`Energie tritt in verschiedenen Formen auf: kinetische (Bewegung), potenzielle (Lage), Strahlungs-, chemische, thermische, elektrische und Kernenergie. Diese Formen lassen sich ineinander umwandeln, was die Grundlage jeder Energienutzung ist.\nAuf dem Weg zum Verbraucher durchläuft Energie eine Umwandlungskette: Primärenergie (Rohform wie Kohle oder Sonnenlicht) wird zu Sekundärenergie (etwa Strom oder Benzin) veredelt, gelangt als Endenergie zum Verbraucher und wird schliesslich zu Nutzenergie, dem tatsächlich gewünschten Effekt wie Licht oder Wärme.\nBei jeder Umwandlung gehen Verluste, meist als Abwärme, verloren. Global bleiben von 100 Prozent Primärenergie nur 29 Prozent als Nutzenergie übrig. Besonders drastisch ist eine Glühbirne: Nur 5 Prozent werden zu Licht, 95 Prozent gehen als Wärme verloren.\nDaraus folgt: Der Wirkungsgrad ist entscheidend. Wer Verluste in der Kette senkt, spart Primärenergie, ohne auf den gewünschten Nutzen zu verzichten.`,
+  example:`Kohle (Primär) wird im Kraftwerk zu Strom (Sekundär), kommt aus der Steckdose (End) und erzeugt in der Lampe Licht (Nutz).`,
+  begriffe:[`Primärenergie`,`Sekundärenergie`,`Nutzenergie`,`Wirkungsgrad`],
+  quick:{
+    q:`Eine Glühbirne setzt nur 5 Prozent der zugeführten Energie in Licht um. Erkläre, wohin der Rest geht und an welcher Stelle der Umwandlungskette dieser Verlust auftritt.`,
+    mustInclude:[`95 Prozent Wärme`,`Endenergie zu Nutzenergie`,`Verlust`,`Wirkungsgrad`]
+  },
+  explain:{
+    prompt:`Erkläre die Umwandlungskette von der Primär- zur Nutzenergie und begründe, warum global nur 29 Prozent als Nutzenergie ankommen.`,
+    model:`Die Umwandlungskette beginnt mit der Primärenergie, der Rohform wie Kohle, Erdöl oder Sonnenlicht. Diese wird zu Sekundärenergie veredelt, etwa zu Strom oder Benzin. Als Endenergie gelangt sie zum Verbraucher und wird dort zu Nutzenergie, also dem eigentlich gewünschten Effekt wie Licht oder Wärme. Bei jedem dieser Schritte entstehen Verluste, vor allem in Form von Abwärme. Weil sich diese Verluste über die gesamte Kette aufsummieren, bleiben von 100 Prozent Primärenergie global nur 29 Prozent als Nutzenergie übrig. Ein hoher Wirkungsgrad der einzelnen Umwandlungen ist deshalb entscheidend, um Primärenergie zu sparen.`,
+    mustInclude:[`Primärenergie`,`Sekundärenergie`,`Endenergie`,`Verluste als Abwärme`]
+  }
+},
+{
+  id:`geo-lz11-b`, lz:`LZ11`,
+  title:`Energieträger, graue Energie, Fussabdruck`,
+  theory:`Energieträger teilt man in erneuerbare und nicht erneuerbare ein. Erneuerbar sind Wasserkraft, Windenergie, Solarenergie, Geothermie und Biomasse; sie stehen praktisch unbegrenzt zur Verfügung. Nicht erneuerbar sind Kohle, Erdöl, Erdgas und die Kernenergie (Uran); ihre Vorräte sind endlich.\nEin oft unterschätzter Begriff ist die graue Energie. Sie umfasst die gesamte Energie, die für Herstellung, Transport und Entsorgung eines Produkts aufgewendet wird. Ein scheinbar sparsames Gerät kann also eine schlechte Bilanz haben, wenn seine Produktion sehr energieintensiv war. Graue Energie macht den wahren Energieverbrauch eines Produkts sichtbar.\nWie hoch der Gesamtverbrauch einer Gesellschaft ist, zeigt der ökologische Fussabdruck. Für die Schweiz liegt er 2,9-mal höher, als global verfügbar wäre. Würden alle Menschen so leben wie die Schweiz, bräuchte es fast drei Erden. Das verdeutlicht, dass der heutige Lebensstil die natürlichen Ressourcen deutlich übernutzt.`,
+  example:`Ein Smartphone verbraucht im Betrieb wenig Strom, doch seine graue Energie aus Produktion und Transport ist hoch.`,
+  begriffe:[`erneuerbare Energieträger`,`nicht erneuerbare Energieträger`,`graue Energie`,`ökologischer Fussabdruck`],
+  quick:{
+    q:`Warum kann ein im Betrieb sparsames Produkt trotzdem eine schlechte Energiebilanz haben? Nenne den entscheidenden Begriff und erkläre ihn.`,
+    mustInclude:[`graue Energie`,`Herstellung`,`Transport`,`Entsorgung`]
+  },
+  explain:{
+    prompt:`Erkläre, was der ökologische Fussabdruck der Schweiz von 2,9 Erden aussagt und welche Rolle die graue Energie für eine ehrliche Energiebilanz spielt.`,
+    model:`Der ökologische Fussabdruck der Schweiz ist 2,9-mal so gross wie das, was global pro Person verfügbar wäre. Würden alle Menschen so leben wie die Schweiz, bräuchte es fast drei Erden, um den Verbrauch zu decken. Das zeigt, dass der Lebensstil die natürlichen Ressourcen deutlich übernutzt. Die graue Energie ergänzt dieses Bild, weil sie die Energie für Herstellung, Transport und Entsorgung eines Produkts erfasst. Ein Gerät kann im Betrieb sparsam sein, durch eine energieintensive Produktion aber dennoch eine schlechte Bilanz aufweisen. Nur wer die graue Energie mitrechnet, erkennt den wahren Energieverbrauch und damit den tatsächlichen Beitrag zum überhöhten Fussabdruck.`,
+    mustInclude:[`2,9 Erden`,`Übernutzung der Ressourcen`,`graue Energie`,`wahrer Verbrauch`]
+  }
+},
+{
+  id:`geo-lz12-a`, lz:`LZ12`,
+  title:`Endenergieverbrauch der Schweiz 2024`,
+  theory:`Der Endenergieverbrauch der Schweiz lag 2024 bei einem Total von 776 220 TJ. Aufschlussreich ist die Verteilung auf die Energieträger, weil sie zeigt, wie stark die Schweiz noch von fossilen Quellen abhängt.\nDie Anteile verteilen sich wie folgt:\n~~~\nErdölbrennstoffe   34,9 %\nElektrizität       27,4 %\nTreibstoffe        26,7 %\nGas (brutto)       15,3 %\nUebrige            ca. 10 %\n~~~\nErdölbrennstoffe (vor allem fürs Heizen) und Treibstoffe (für den Verkehr) zusammen machen über 60 Prozent aus und sind beide fossil. Das zeigt, dass Wärme und Mobilität die grossen Baustellen der Energiewende sind.\nDie Elektrizität liefert gut ein Viertel; bei ihr dominieren Wasserkraft und Kernkraft. Strom ist damit der Bereich mit dem höchsten Anteil bereits CO₂-armer Quellen.\nDaraus folgt: Eine Dekarbonisierung gelingt vor allem, wenn fossile Brenn- und Treibstoffe durch Strom aus erneuerbaren Quellen ersetzt werden.`,
+  example:`Ein mit Heizöl beheiztes Haus und ein Benzinauto fallen beide in die grossen fossilen Anteile (Erdölbrennstoffe und Treibstoffe).`,
+  begriffe:[`Endenergieverbrauch`,`Erdölbrennstoffe`,`Treibstoffe`,`Elektrizität`],
+  quick:{
+    q:`Erdölbrennstoffe und Treibstoffe machen zusammen über 60 Prozent des Schweizer Endenergieverbrauchs aus. Was bedeutet das für die Schwerpunkte einer wirksamen Energiewende?`,
+    mustInclude:[`fossil`,`Wärme und Mobilität`,`über 60 Prozent`,`ersetzen durch Strom`]
+  },
+  explain:{
+    prompt:`Beurteile anhand der Verbrauchsanteile 2024, in welchen Bereichen die Schweiz die grössten Fortschritte bei der Dekarbonisierung machen muss.`,
+    model:`Erdölbrennstoffe machen mit 34,9 Prozent den grössten Anteil aus und werden vor allem zum Heizen genutzt. Die Treibstoffe folgen mit 26,7 Prozent und stammen aus dem Verkehr. Beide sind fossil und verursachen damit direkt CO₂-Emissionen. Zusammen liegen sie bei über 60 Prozent, sodass Wärme und Mobilität die zentralen Handlungsfelder sind. Die Elektrizität mit 27,4 Prozent stützt sich dagegen stark auf Wasserkraft und Kernkraft und ist bereits weitgehend CO₂-arm. Die grössten Fortschritte sind deshalb möglich, wenn fossile Brenn- und Treibstoffe durch Strom aus erneuerbaren Quellen ersetzt werden, etwa durch Wärmepumpen und Elektromobilität.`,
+    mustInclude:[`Erdölbrennstoffe 34,9 Prozent`,`Treibstoffe 26,7 Prozent`,`fossil`,`Strom aus erneuerbaren Quellen`]
+  }
+},
+{
+  id:`geo-lz12-b`, lz:`LZ12`,
+  title:`Stromproduktion und Energiestrategie 2050`,
+  theory:`Die Schweizer Stromproduktion muss zu jeder Tageszeit zur Nachfrage passen. Verschiedene Kraftwerkstypen übernehmen dabei unterschiedliche Rollen.\nKernkraftwerke liefern Bandenergie: Sie laufen konstant und decken die Grundlast, also den Strombedarf, der immer vorhanden ist. Laufwasserkraftwerke produzieren ebenfalls gleichmässig. Speicherkraftwerke dagegen sind flexibel und liefern Spitzenenergie: Sie können rasch hochgefahren werden und decken Bedarfsspitzen, die morgens hoch und nachts tief sind.\nDie Energiestrategie 2050 gibt die Richtung vor. Zentral ist der Atomausstieg: Es werden keine neuen AKW gebaut, bestehende laufen bis zum Ende ihrer Lebensdauer. Gleichzeitig sollen Solar, Wind, Geothermie und Biomasse massiv ausgebaut werden. Konkret soll der Anteil der neuen erneuerbaren Energien von 3 Prozent (2012) auf über 14 500 GWh bis 2035 steigen.\nDaraus folgt eine Herausforderung: Fällt die konstante Bandenergie der AKW weg, muss die schwankende Produktion aus Sonne und Wind durch flexible und speicherfähige Lösungen ausgeglichen werden.`,
+  example:`Morgens beim Aufstehen steigt der Verbrauch sprunghaft; ein Speicherkraftwerk wird hochgefahren und liefert diese Spitzenenergie.`,
+  begriffe:[`Bandenergie`,`Spitzenenergie`,`Atomausstieg`,`Energiestrategie 2050`],
+  quick:{
+    q:`Die Energiestrategie 2050 sieht den Atomausstieg und einen Ausbau von Solar und Wind vor. Welches Problem entsteht dadurch für die Stromversorgung, wenn AKW als Bandenergie wegfallen?`,
+    mustInclude:[`Bandenergie wegfallend`,`Solar und Wind schwanken`,`Ausgleich`,`Speicher`]
+  },
+  explain:{
+    prompt:`Erkläre den Unterschied zwischen Band- und Spitzenenergie und begründe, warum der Atomausstieg neue Anforderungen an flexible Kraftwerke und Speicher stellt.`,
+    model:`Bandenergie ist konstant erzeugter Strom, der die Grundlast deckt, also den immer vorhandenen Bedarf. Kernkraftwerke und Laufwasserkraftwerke liefern solche gleichmässige Energie. Spitzenenergie deckt dagegen kurzfristige Bedarfsspitzen, die etwa morgens hoch und nachts tief sind; Speicherkraftwerke übernehmen dies, weil sie sich flexibel hoch- und herunterfahren lassen. Die Energiestrategie 2050 sieht den Atomausstieg vor, sodass die konstante Bandenergie der AKW langfristig wegfällt. Gleichzeitig werden Solar und Wind ausgebaut, deren Produktion jedoch je nach Wetter und Tageszeit stark schwankt. Damit Angebot und Nachfrage trotzdem übereinstimmen, braucht es vermehrt flexible Kraftwerke und Speicher, die Überschüsse aufnehmen und bei Engpässen abgeben.`,
+    mustInclude:[`Bandenergie konstant Grundlast`,`Spitzenenergie flexibel`,`Atomausstieg`,`Solar und Wind schwanken`]
+  }
+}
   ]
 };
 
@@ -1304,7 +1703,12 @@ const CONCEPT_TYPES = {
   'hist-lz9-a':'verständnis',  'hist-lz9-b':'verständnis',
   'hist-lz10-a':'verständnis', 'hist-lz10-b':'verständnis',
   'hist-lz11-a':'verständnis', 'hist-lz11-b':'verständnis',
-  'hist-lz12-a':'verständnis', 'hist-lz12-b':'verständnis'
+  'hist-lz12-a':'verständnis', 'hist-lz12-b':'verständnis',
+  // Geografie — Energie & Klimawandel
+  'geo-lz1-a':'verständnis', 'geo-lz1-b':'verständnis', 'geo-lz2-a':'verständnis', 'geo-lz2-b':'verständnis', 'geo-lz3-a':'verständnis', 'geo-lz3-b':'theorie',
+  'geo-lz4-a':'verständnis', 'geo-lz4-b':'verständnis', 'geo-lz5-a':'verständnis', 'geo-lz5-b':'verständnis', 'geo-lz6-a':'verständnis', 'geo-lz6-b':'verständnis',
+  'geo-lz7-a':'verständnis', 'geo-lz7-b':'theorie', 'geo-lz8-a':'verständnis', 'geo-lz8-b':'theorie', 'geo-lz9-a':'theorie', 'geo-lz9-b':'theorie',
+  'geo-lz10-a':'verständnis', 'geo-lz10-b':'verständnis', 'geo-lz11-a':'verständnis', 'geo-lz11-b':'verständnis', 'geo-lz12-a':'verständnis', 'geo-lz12-b':'verständnis'
 };
 const TYPE_INFO = {
   'theorie':     {label:'Theorie',    icon:'📖', desc:'Lernbar im Bus',       cssClass:'type-theorie'},
@@ -1322,6 +1726,313 @@ function typeChipHtml(c, withDesc){
 }
 
 /* ================================================================
+   MULTIPLE-CHOICE-FRAGEN — fest hinterlegt, 2 pro Konzept
+   (kein KI-Aufruf; nur der Schreiben-Modus nutzt die KI)
+================================================================ */
+const MC_BY_ID = {
+'chem-lz1-a': [
+  {q:`Was gibt die molare Masse M eines Elements an und wo findet man sie?`, options:[`Die Anzahl Teilchen pro Gramm, ablesbar an der Avogadro-Zahl`, `Den Wert in g/mol, der im PSE steht und zahlenmäßig der relativen Atommasse entspricht`, `Das Volumen von einem Mol Gas in Litern`, `Die Masse eines einzelnen Atoms in Kilogramm`], correct:1, explain:`Laut Theorie steht M (in g/mol) im PSE und entspricht zahlenmäßig der relativen Atommasse.`},
+  {q:`Eine Probe hat die Masse m und die molare Masse M ist bekannt. Wie berechnet man die Stoffmenge n?`, options:[`n = M / m`, `n = m · M`, `n = m / M`, `n = m · Nₐ`], correct:2, explain:`Der angegebene Zusammenhang lautet n = m / M.`}
+],
+'chem-lz3-b': [
+  {q:`In welche Richtungen im PSE steigt der Metallcharakter?`, options:[`Nach rechts und nach oben`, `Nach links und nach unten`, `Nach rechts und nach unten`, `Nur nach oben, unabhängig von links/rechts`], correct:1, explain:`Laut Theorie steigt der Metallcharakter nach links und nach unten, mit Maximum unten links.`},
+  {q:`Welche Aussage über Nichtmetalle trifft laut Theorie zu?`, options:[`Sie haben eine hohe EN und bilden Anionen`, `Sie haben eine niedrige EN und bilden Kationen`, `Sie sind glänzend und gute Stromleiter`, `Sie geben Elektronen besonders leicht ab`], correct:0, explain:`Nichtmetalle haben laut Theorie eine hohe EN, nehmen Elektronen auf und bilden Anionen.`}
+],
+'chem-lz5-b': [
+  {q:`Was beschreibt die Gitterenergie eines Ionengitters?`, options:[`Die Energie, die nötig ist, um ein Salz in Wasser zu lösen`, `Die Energie, die frei wird, wenn aus gasförmigen Ionen ein Mol Ionengitter entsteht`, `Die Energie, die ein Gitter beim Schmelzen aufnimmt`, `Die Energie, die bei der Bildung eines einzelnen Moleküls frei wird`], correct:1, explain:`Die Gitterenergie ist laut Theorie die beim Entstehen eines Mols Ionengitter aus gasförmigen Ionen frei werdende Energie.`},
+  {q:`Warum ist die Gitterenergie von MgO deutlich negativer als die von NaCl?`, options:[`Weil MgO Moleküle statt Ionen bildet`, `Weil Natrium schwerer ist als Magnesium`, `Weil MgO höhere Ladungen (2+, 2−) als NaCl (1+, 1−) hat`, `Weil NaCl einen größeren Ionenabstand mit höheren Ladungen besitzt`], correct:2, explain:`Je höher die Ladungen und je kleiner die Ionen, desto negativer die Gitterenergie, und MgO trägt die höheren Ladungen 2+/2−.`}
+],
+'chem-lz7-a': [
+  {q:`Warum leiten Salze den elektrischen Strom nur in Lösung oder Schmelze, nicht aber im festen Zustand?`, options:[`Weil im festen Zustand die Ionen unbeweglich sind, in Lösung oder Schmelze aber frei beweglich`, `Weil feste Salze keine Ionen enthalten`, `Weil sich die Ladungen im Feststoff gegenseitig aufheben`, `Weil Wasser selbst den Strom leitet, das Salz aber nicht`], correct:0, explain:`Im Feststoff sind die Ionen unbeweglich, beim Lösen oder Schmelzen werden sie frei beweglich und damit leitfähig.`},
+  {q:`Wodurch erklärt sich, dass Salze zwar hart, aber spröde sind?`, options:[`Die Ionen sind nur locker gebunden und fallen leicht auseinander`, `Salze bestehen aus weichen Molekülschichten`, `Bei einem Schlag verschieben sich Ebenen, gleiche Ladungen treffen aufeinander und stoßen sich ab`, `Die Gitterenergie ist zu niedrig, um Härte zu erzeugen`], correct:2, explain:`Laut Theorie verschieben sich bei einem Schlag die Ebenen, sodass gleiche Ladungen aufeinandertreffen, sich abstoßen und das Salz bricht.`}
+],
+'chem-lz10-c': [
+  {q:`Was gilt beim Verdünnen einer Lösung laut Theorie?`, options:[`Sowohl Massenanteil als auch Stoffmasse bleiben konstant`, `Der Massenanteil ändert sich, aber die Stoffmasse bleibt konstant`, `Die Stoffmasse ändert sich, aber der Massenanteil bleibt konstant`, `Beide Größen verdoppeln sich`], correct:1, explain:`Beim Verdünnen bleibt die Stoffmasse konstant, während sich der Massenanteil ändert.`},
+  {q:`Welcher Dichtewert ρ gilt näherungsweise für verdünnte Wasser-Lösungen?`, options:[`etwa 0,5 g/mL`, `etwa 2,0 g/mL`, `etwa 1,0 g/mL`, `genau 100 g/mL`], correct:2, explain:`Laut Theorie ist ρ bei verdünnten Wasser-Lösungen näherungsweise 1,0 g/mL.`}
+],
+'hist-lz2-b': [
+  {q:`Welches Wahlrecht legte die Verfassung von 1791 fest?`, options:[`Allgemeines Wahlrecht für alle erwachsenen Männer und Frauen`, `Ein klassengebundenes Wahlrecht, bei dem nur Aktivbürger wählen durften`, `Ein Wahlrecht ausschließlich für den Adel`, `Gar kein Wahlrecht, da der König allein entschied`], correct:1, explain:`Das Wahlrecht war klassengebunden, nur steuerzahlende Aktivbürger waren wahlberechtigt.`},
+  {q:`Welche Aussage über die Stellung des Königs in der Verfassung von 1791 trifft zu?`, options:[`Er blieb absoluter Monarch ohne Einschränkungen`, `Er wurde vollständig abgeschafft und durch eine Republik ersetzt`, `Er behielt die Exekutive und ein suspensives Veto, war aber eingehegt`, `Er war nur noch ein gewähltes Mitglied der Nationalversammlung`], correct:2, explain:`Der König behielt laut Theorie die Exekutive und ein suspensives Veto, war aber als eingehegter Monarch gebunden.`}
+],
+'hist-lz5-b': [
+  {q:`Wer regierte vor 1798 in den städtischen Orten wie Bern oder Zürich?`, options:[`Eine kleine, fast geschlossene Schicht von Patrizier-Familien`, `Die gesamte männliche Bevölkerung über die Landsgemeinde`, `Vom König eingesetzte Statthalter`, `Gewählte Vertreter der Landbevölkerung`], correct:0, explain:`In den Städten verteilten rund 50 bis 100 Patrizier-Familien pro Stadt die Ratssitze unter sich.`},
+  {q:`Wie organisierten die ländlichen Orte wie Uri oder Schwyz ihre politische Mitbestimmung?`, options:[`Durch ein klassengebundenes Wahlrecht nach Vermögen`, `Durch Landsgemeinde-Demokratie, bei der alle wehrfähigen Männer direkt abstimmten`, `Durch erbliche Patrizier-Räte wie in den Städten`, `Durch von Bern ernannte Vögte`], correct:1, explain:`Die ländlichen Orte hatten Landsgemeinde-Demokratie, bei der alle wehrfähigen Männer direkt abstimmten.`}
+],
+'hist-lz8-b': [
+  {q:`Welche grundlegende Veränderung brachte die Bundesverfassung von 1848?`, options:[`Sie verwandelte den Bundesstaat zurück in einen losen Staatenbund`, `Sie verwandelte die Schweiz vom losen Staatenbund in einen modernen Bundesstaat`, `Sie führte die absolute Monarchie ein`, `Sie schaffte die Kantone vollständig ab`], correct:1, explain:`Die Verfassung von 1848 verwandelte die Schweiz vom losen Staatenbund in einen modernen Bundesstaat.`},
+  {q:`Wie sind National- und Ständerat laut Verfassung von 1848 zusammengesetzt?`, options:[`Beide werden vollständig von den Kantonsregierungen bestimmt`, `Der Nationalrat hat 2 Sitze pro Kanton, der Ständerat wird nach Bevölkerung gewählt`, `Der Nationalrat wird vom Volk nach Bevölkerung gewählt, der Ständerat hat 2 Sitze pro Kanton`, `Beide Kammern werden vom Bundesrat ernannt`], correct:2, explain:`Der Nationalrat wird per Volkswahl nach Bevölkerung besetzt, der Ständerat zählt 2 Sitze pro Kanton.`}
+],
+'hist-lz11-b': [
+  {q:`Was regelte das erste eidgenössische Fabrikgesetz von 1877?`, options:[`Es erlaubte Kinderarbeit ab 6 Jahren wieder ausdrücklich`, `Es verbot Kinderarbeit unter 14 Jahren und begrenzte die Arbeitszeit auf 11 Stunden pro Tag`, `Es führte den Achtstundentag für alle ein`, `Es verbot ausschließlich die Frauenarbeit in Fabriken`], correct:1, explain:`Das Fabrikgesetz von 1877 verbot Kinder unter 14, begrenzte die Arbeitszeit auf 11h/Tag und verbot Sonntagsarbeit.`},
+  {q:`Warum wurden Frauen und Kinder in den Fabriken bevorzugt eingestellt?`, options:[`Weil sie körperlich stärker waren als die Männer`, `Weil sie billiger und weniger gewerkschaftsfähig waren`, `Weil das Gesetz Männerarbeit verbot`, `Weil sie eine bessere Schulbildung hatten`], correct:1, explain:`Laut Theorie wurden Frauen und Kinder bevorzugt eingestellt, weil sie billiger und weniger gewerkschaftsfähig waren.`}
+],
+'geo-lz2-b': [
+  {q:`Wie wirkt die Eis-Albedo-Rückkopplung bei einer Erwärmung?`, options:[`Schmelzendes Eis senkt die Albedo, die dunklere Oberfläche absorbiert mehr Wärme und verstärkt die Erwärmung`, `Schmelzendes Eis erhöht die Albedo und kühlt die Oberfläche ab`, `Mehr Eis bildet sich, wodurch weniger Wärme aufgenommen wird`, `Die Albedo bleibt konstant, sodass keine Verstärkung auftritt`], correct:0, explain:`Schmelzendes Eis senkt die Albedo, die dunklere Wasser- oder Bodenfläche absorbiert mehr Wärme und treibt die Erwärmung weiter an.`},
+  {q:`Warum wirkt die Wasserdampf-Rückkopplung selbstverstärkend?`, options:[`Weil Wasserdampf die Sonnenstrahlung wie helles Eis zurückwirft`, `Weil wärmere Luft weniger Feuchtigkeit aufnimmt und so abkühlt`, `Weil mehr Wasserdampf als Treibhausgas den Treibhauseffekt verstärkt und so weitere Erwärmung bewirkt`, `Weil Wasserdampf die Albedo der Oberfläche erhöht`], correct:2, explain:`Wärmere Luft nimmt mehr Wasserdampf auf, der als Treibhausgas den Treibhauseffekt und damit die Erwärmung weiter verstärkt.`}
+],
+'geo-lz5-b': [
+  {q:`Welcher Prozess entzieht der Atmosphäre laut Theorie CO₂?`, options:[`Der Vulkanismus durch Ausgasung`, `Die Atmung von Lebewesen`, `Die Zersetzung von Biomasse`, `Die Verwitterung von Gestein`], correct:3, explain:`Die Verwitterung von Gestein bindet CO₂ und entzieht es so der Atmosphäre.`},
+  {q:`Um wie viel nimmt der Kohlenstoff in der Atmosphäre durch die menschliche Störung jährlich zu?`, options:[`um 5,1 GtC`, `um 2,9 GtC`, `um 51 GtC`, `um 0,5 GtC`], correct:0, explain:`Laut Theorie nimmt der atmosphärische Kohlenstoff jährlich um 5,1 GtC zu.`}
+],
+'geo-lz8-b': [
+  {q:`Was ist laut Theorie die zentrale Schwäche des Pariser Abkommens von 2015?`, options:[`Die Ziele werden von oben verordnet und sind zu streng`, `Es gibt keine Sanktionsmechanismen, die Ziele sind freiwillig`, `Die NDCs werden nur alle 50 Jahre überprüft`, `Es schließt die meisten Staaten von der Teilnahme aus`], correct:1, explain:`Laut Theorie fehlen Sanktionsmechanismen, die Ziele sind freiwillig.`},
+  {q:`Welches Ergebnis wird der COP27 in Sharm-El-Sheikh 2022 zugeordnet?`, options:[`Fossil Fuel Phase-Out`, `Indien Netto-Null bis 2070`, `Loss and Damage Fund`, `neues Klimafinanzierungsziel`], correct:2, explain:`In der Tabelle ist der COP27 in Sharm-El-Sheikh 2022 der Loss and Damage Fund zugeordnet.`}
+],
+'geo-lz11-b': [
+  {q:`Welche Energieträger zählt die Theorie zu den nicht erneuerbaren?`, options:[`Wasserkraft, Wind und Solarenergie`, `Geothermie und Biomasse`, `Kohle, Erdöl, Erdgas und Kernenergie`, `Sonnen- und Windenergie`], correct:2, explain:`Nicht erneuerbar sind laut Theorie Kohle, Erdöl, Erdgas und die Kernenergie.`},
+  {q:`Was umfasst der Begriff der grauen Energie?`, options:[`Nur die Energie, die ein Gerät im laufenden Betrieb verbraucht`, `Die gesamte Energie für Herstellung, Transport und Entsorgung eines Produkts`, `Ausschließlich die Energie aus nicht erneuerbaren Quellen`, `Die Energie, die beim Recycling zurückgewonnen wird`], correct:1, explain:`Graue Energie umfasst die gesamte Energie für Herstellung, Transport und Entsorgung eines Produkts.`}
+],
+'chem-lz1-b': [
+  {q:`Welche Umstellung der Grundformel n = m/M ist korrekt, um die Masse zu berechnen?`, options:[`m = n / M`, `m = n · M`, `m = M / n`, `m = M − n`], correct:1, explain:`Die Theorie gibt für die Masse die Umstellung m = n · M an.`},
+  {q:`Wie wird das Kristallwasser bei der Berechnung der molaren Masse von CuSO₄·5H₂O behandelt?`, options:[`Es wird abgezogen, weil es kein Salz ist`, `Es zählt zur molaren Masse mit`, `Es wird halbiert berücksichtigt`, `Es spielt keine Rolle für M`], correct:1, explain:`Laut Theorie zählt das Kristallwasser zur molaren Masse mit, M(CuSO₄·5H₂O) ergibt 249.6 g/mol.`}
+],
+'chem-lz4-a': [
+  {q:`Welcher Bindungstyp liegt vor, wenn ein Metall und ein Nichtmetall mit einer EN-Differenz über 1.7 verbunden sind?`, options:[`Metallbindung`, `Ionenbindung`, `unpolare Atombindung`, `polare Atombindung`], correct:1, explain:`Metall plus Nichtmetall mit ΔEN über 1.7 ergibt laut Theorie eine Ionenbindung mit vollständiger Elektronenübertragung.`},
+  {q:`Wodurch entsteht laut Theorie die elektrische Leitfähigkeit der Metallbindung?`, options:[`Durch vollständige Elektronenübertragung auf Anionen`, `Durch frei bewegliche Valenzelektronen zwischen positiven Atomrümpfen`, `Durch Partialladungen δ⁺ und δ⁻`, `Durch symmetrisches Teilen von Elektronenpaaren`], correct:1, explain:`Das Elektronengas aus frei beweglichen Valenzelektronen erklärt laut Theorie die Leitfähigkeit der Metalle.`}
+],
+'chem-lz5-c': [
+  {q:`Welche Ladung trägt ein einatomiges Ion aus der Hauptgruppe VI nach der Edelgasregel?`, options:[`1+`, `2−`, `3−`, `2+`], correct:1, explain:`Laut Theorie bilden Elemente der Gruppe VI wie Oxid und Sulfid Ionen mit der Ladung 2−.`},
+  {q:`Wie heißt das Anion, das vom Element Chlor abgeleitet wird?`, options:[`Chlorat`, `Chlorid`, `Chlor-Ion`, `Chlorit`], correct:1, explain:`Anionen erhalten laut Theorie die Endung -id, also heißt das Chlor-Anion Chlorid.`}
+],
+'chem-lz8-a': [
+  {q:`Welche Aussage über die beiden Teilschritte des Lösungsvorgangs ist laut Theorie richtig?`, options:[`Das Zerlegen des Ionengitters ist exotherm`, `Die Hydratation ist endotherm`, `Das Zerlegen des Gitters ist endotherm, die Hydratation exotherm`, `Beide Teilschritte sind endotherm`], correct:2, explain:`Laut Theorie ist das Zerlegen des Ionengitters endotherm und die Hydratation exotherm.`},
+  {q:`Wie ordnen sich die Wassermoleküle bei der Hydratation um ein positives Ion an?`, options:[`Die O-Seite des Wassers mit δ⁻ zeigt zum Ion`, `Die H-Seite des Wassers mit δ⁺ zeigt zum Ion`, `Die Wassermoleküle bleiben ungeordnet`, `Beide Seiten des Wassers zeigen gleich stark zum Ion`], correct:0, explain:`Laut Theorie zeigt bei positiven Ionen die O-Seite des Wassers mit Partialladung δ⁻ zum Ion.`}
+],
+'chem-lz10-d': [
+  {q:`Warum soll das wasserfreie Salz nach dem Glühen im Exsikkator abkühlen, bevor man es wiegt?`, options:[`Damit es schneller erkaltet als an der Luft`, `Damit es kein Wasser aus der Luft wieder aufnimmt und das Ergebnis verfälscht`, `Damit sich das Salz wieder mit Kristallwasser füllt`, `Damit der Tiegel nicht zerspringt`], correct:1, explain:`Laut Theorie wird im Exsikkator abgekühlt, damit das wasserfreie Salz die Messung nicht durch erneute Wasseraufnahme verfälscht.`},
+  {q:`Wie bestimmt man die Masse des ausgetriebenen Kristallwassers experimentell?`, options:[`Man wiegt nur den leeren Tiegel`, `Man bildet den Massenverlust zwischen Probe vor und nach dem Erhitzen`, `Man addiert die Massen vor und nach dem Erhitzen`, `Man misst das Volumen des entstandenen Dampfes`], correct:1, explain:`Laut Theorie entspricht der Massenverlust zwischen m₁ und m₂ dem ausgetriebenen Wasser.`}
+],
+'hist-lz3-a': [
+  {q:`Welches Ereignis vom 10. August 1792 führte zum Sturz der Monarchie in Frankreich?`, options:[`Die Hinrichtung Ludwigs XVI.`, `Der Tuilerien-Sturm`, `Die Septembermorde`, `Der Aufstand in der Vendée`], correct:1, explain:`Laut Theorie wurde durch den Tuilerien-Sturm am 10. August 1792 die Monarchie gestürzt und der König gefangen genommen.`},
+  {q:`Was geschah laut Zeittafel mit der Verfassung von 1793?`, options:[`Sie wurde dauerhaft in Kraft gesetzt`, `Sie wurde verabschiedet, dann sofort bis Kriegsende suspendiert`, `Sie wurde vom König unterzeichnet`, `Sie wurde nie verabschiedet`], correct:1, explain:`Laut Theorie wurde die Verfassung 1793 verabschiedet, danach jedoch sofort bis Kriegsende suspendiert.`}
+],
+'hist-lz6-a': [
+  {q:`Welches Grundprinzip kennzeichnet die Helvetische Verfassung von 1798 bezüglich der Souveränität?`, options:[`Die Souveränität liegt bei den einzelnen Kantonen`, `Es ist ein Einheitsstaat, die Souveränität liegt beim Bund`, `Die Souveränität liegt beim König`, `Jede Gemeinde ist souverän`], correct:1, explain:`Laut Theorie war die Helvetik ein Einheitsstaat, dessen Souveränität beim Bund und nicht bei den Kantonen lag.`},
+  {q:`Welche Aussage zum Wahlrecht der Helvetischen Verfassung 1798 trifft zu?`, options:[`Allgemeines Männerwahlrecht, Frauen ausgeschlossen`, `Allgemeines Wahlrecht für Männer und Frauen`, `Nur Adlige durften wählen`, `Es gab gar kein Wahlrecht`], correct:0, explain:`Laut Theorie galt ein allgemeines Männerwahlrecht in Stufenwahl, während Frauen ausgeschlossen waren.`}
+],
+'hist-lz9-a': [
+  {q:`Welche Rolle spielt die Agrarrevolution laut Theorie für die Industrialisierung Englands?`, options:[`Sie war eine Folge der Industrialisierung`, `Sie war eine Voraussetzung und setzte Arbeitskräfte frei`, `Sie verhinderte die Abwanderung in die Städte`, `Sie spielte keine Rolle`], correct:1, explain:`Laut Theorie war die Agrarrevolution eine Voraussetzung, die durch Enclosures landlose Arbeitskräfte für die Städte freisetzte.`},
+  {q:`Was sagt die Theorie über das Zusammenwirken der fünf Faktoren der Industrialisierung?`, options:[`Ein einzelner Faktor wie Kohle reicht bereits aus`, `Alle fünf Faktoren müssen zusammen wirken`, `Nur Kapital und Kolonien sind entscheidend`, `Die Faktoren wirken nacheinander, nie gleichzeitig`], correct:1, explain:`Laut Theorie müssen alle fünf Faktoren zusammen wirken, kein einzelner reicht aus.`}
+],
+'hist-lz12-a': [
+  {q:`Welche Lösung der Sozialen Frage vertrat der Liberalismus laut Theorie?`, options:[`Revolution und Abschaffung des Privateigentums`, `Selbsthilfe durch Bildung, Sparkassen und Vereine`, `Staatliche Sozialversicherungen von oben`, `Karitative Werke der Kirchen`], correct:1, explain:`Laut Theorie setzte der Liberalismus auf Selbsthilfe durch Bildung, Sparkassen und Selbsthilfevereine ohne Staatseingriff.`},
+  {q:`Was kennzeichnete Bismarcks staatlich-soziale Antwort nach dem Prinzip Zuckerbrot und Peitsche?`, options:[`Nur Sozialgesetze ohne jede Repression`, `Sozialgesetze und gleichzeitig das Anti-Sozialistengesetz`, `Ausschließlich die Förderung von Genossenschaften`, `Die Forderung nach einer klassenlosen Gesellschaft`], correct:1, explain:`Laut Theorie verband Bismarck Sozialgesetze von 1883 bis 1889 mit dem gleichzeitigen Anti-Sozialistengesetz von 1878 bis 1890.`}
+],
+'geo-lz3-a': [
+  {q:`Warum ist CO₂ trotz geringerer Wirksamkeit pro Molekül der wichtigste Treiber des anthropogenen Treibhauseffekts?`, options:[`Weil es pro Molekül am stärksten wirkt`, `Weil es in riesigen Mengen aus fossilen Brennstoffen freigesetzt wird`, `Weil es das einzige anthropogene Treibhausgas ist`, `Weil es 310-mal wirksamer als andere Gase ist`], correct:1, explain:`Laut Theorie ergibt erst Wirksamkeit mal Menge den Beitrag, weshalb das massenhaft freigesetzte CO₂ den größten Anteil hat.`},
+  {q:`Welches Gas ist laut Tabelle pro Molekül rund 310-mal so wirksam wie CO₂?`, options:[`Methan CH₄`, `Distickstoffmonoxid N₂O`, `F-Gase`, `Ozon O₃`], correct:1, explain:`Laut Tabelle hat N₂O eine Wirksamkeit von 310-mal gegenüber CO₂.`}
+],
+'geo-lz6-a': [
+  {q:`Wie hat sich die Geschwindigkeit des Meeresspiegelanstiegs laut Theorie entwickelt?`, options:[`Von 3,7 mm pro Jahr auf 1,3 mm pro Jahr verlangsamt`, `Von rund 1,3 mm pro Jahr seit 1900 auf aktuell 3,7 mm pro Jahr beschleunigt`, `Sie ist konstant bei 1,3 mm pro Jahr geblieben`, `Sie ist auf null gesunken`], correct:1, explain:`Laut Theorie stieg der Meeresspiegel seit 1900 um rund 1,3 mm pro Jahr und hat sich auf aktuell 3,7 mm pro Jahr beschleunigt.`},
+  {q:`Was versteht die Theorie unter Compound Risks?`, options:[`Ein einzelnes, isoliertes Extremereignis`, `Das gleichzeitige oder aufeinanderfolgende Zusammentreffen mehrerer Klimafolgen`, `Den langsamen Verlust der Biodiversität`, `Eine reine Verlangsamung des Meeresspiegelanstiegs`], correct:1, explain:`Laut Theorie sind Compound Risks das gleichzeitige oder nacheinander erfolgende Zusammentreffen mehrerer Klimafolgen, deren Schäden sich gegenseitig verstärken.`}
+],
+'geo-lz9-a': [
+  {q:`Was war der politisch entscheidende Schritt der Energiestrategie 2050?`, options:[`Der Ausbau der Wasserkraft`, `Der Verzicht auf neue AKW`, `Die Senkung der CO₂-Norm für Fahrzeuge`, `Die Steigerung der Gebäudesanierungsmittel`], correct:1, explain:`Laut Theorie war das Verbot neuer AKW der politisch entscheidende Schritt der Energiestrategie 2050.`},
+  {q:`Welche Vorgabe macht das Energiegesetz laut Tabelle für den Energieverbrauch pro Person bis 2035?`, options:[`minus 13 Prozent`, `minus 43 Prozent`, `minus 95 Prozent`, `minus 58,2 Prozent`], correct:1, explain:`Laut Tabelle soll der Energieverbrauch pro Person bis 2035 um 43 Prozent sinken.`}
+],
+'geo-lz12-a': [
+  {q:`Welche zwei fossilen Energieträger machen laut Theorie zusammen über 60 Prozent des Endenergieverbrauchs aus?`, options:[`Elektrizität und Gas`, `Erdölbrennstoffe und Treibstoffe`, `Gas und Übrige`, `Treibstoffe und Elektrizität`], correct:1, explain:`Laut Theorie machen Erdölbrennstoffe mit 34,9 Prozent und Treibstoffe mit 26,7 Prozent zusammen über 60 Prozent aus.`},
+  {q:`Warum gilt Elektrizität laut Theorie als der Bereich mit dem höchsten Anteil CO₂-armer Quellen?`, options:[`Weil sie den größten Anteil am Gesamtverbrauch hat`, `Weil bei ihr Wasserkraft und Kernkraft dominieren`, `Weil sie nur aus Erdöl gewonnen wird`, `Weil sie vor allem fürs Heizen genutzt wird`], correct:1, explain:`Laut Theorie dominieren bei der Elektrizität Wasserkraft und Kernkraft, weshalb sie den höchsten Anteil bereits CO₂-armer Quellen hat.`}
+],
+'chem-lz1-c': [
+  {q:`Was beschreibt die Stoffmengenkonzentration c gemäss der Theorie?`, options:[`Die Masse des Lösungsmittels pro Liter`, `Wie viele Mol pro Liter Lösung gelöst sind`, `Das Volumen des Lösungsmittels allein`, `Die Anzahl Atome pro Mol`], correct:1, explain:`Laut Definition gibt c an, wie viele Mol pro Liter Lösung gelöst sind.`},
+  {q:`Eine Stammlösung wird verdünnt. Welche Beziehung gilt laut Theorie?`, options:[`c eins mal V eins gleich c zwei mal V zwei`, `c eins plus V eins gleich c zwei plus V zwei`, `c eins durch V eins gleich c zwei durch V zwei`, `c eins mal c zwei gleich V eins mal V zwei`], correct:0, explain:`Beim Verdünnen bleibt die Stoffmenge gleich, daher gilt c eins mal V eins gleich c zwei mal V zwei.`}
+],
+'chem-lz4-b': [
+  {q:`Was besagt die Oktettregel?`, options:[`Atome streben immer genau 4 Valenzelektronen an`, `Atome geben grundsätzlich alle Elektronen ab`, `Atome streben die Elektronenkonfiguration des nächsten Edelgases an`, `Atome bilden nie kovalente Bindungen`], correct:2, explain:`Die Oktettregel besagt, dass Atome die Edelgaskonfiguration des nächsten Edelgases anstreben.`},
+  {q:`Auf welchem der drei Wege erreicht ein Nichtmetall wie Chlor die Edelgaskonfiguration typischerweise?`, options:[`Durch Abgabe von drei Elektronen`, `Durch Aufnahme eines Elektrons zu Cl minus`, `Durch Abgabe eines Protons`, `Durch Verlust seiner äussersten Schale`], correct:1, explain:`Nichtmetalle wie Chlor nehmen Elektronen auf, Chlor wird zu Cl minus wie Argon.`}
+],
+'chem-lz6-a': [
+  {q:`Welche Ladung trägt das Sulfat-Ion SO₄?`, options:[`einfach negativ`, `zweifach negativ`, `dreifach negativ`, `einfach positiv`], correct:1, explain:`Sulfat SO₄ ist laut Liste ein zweifach negativ geladenes Anion.`},
+  {q:`Was unterscheidet laut Merkregel Sulfat von Sulfit?`, options:[`Sulfit hat ein Sauerstoffatom weniger und die Endung -it`, `Sulfit ist ein Kation`, `Sulfat trägt eine geringere Ladung`, `Sulfit enthält Stickstoff statt Schwefel`], correct:0, explain:`Die Merkregel besagt, dass weniger Sauerstoff die Endung -it ergibt, also Sulfit SO₃ gegenüber Sulfat SO₄.`}
+],
+'chem-lz8-b': [
+  {q:`Wann ist der Lösungsvorgang laut Theorie exotherm, sodass sich die Lösung erwärmt?`, options:[`Wenn der Betrag der Hydratationsenergie kleiner als der der Gitterenergie ist`, `Wenn der Betrag der Hydratationsenergie grösser als der der Gitterenergie ist`, `Wenn beide Beträge exakt gleich sind`, `Wenn keine Hydratation stattfindet`], correct:1, explain:`Ist der Betrag der Hydratationsenergie grösser als der der Gitterenergie, wird ΔH der Lösung negativ und der Vorgang exotherm.`},
+  {q:`Wie lautet die energetische Bilanz beim Lösen gemäss Theorie?`, options:[`ΔH Lösung gleich ΔH Gitter mal ΔH Hydratation`, `ΔH Lösung gleich ΔH Gitter plus ΔH Hydratation`, `ΔH Lösung gleich ΔH Gitter geteilt durch ΔH Hydratation`, `ΔH Lösung gleich nur ΔH Gitter`], correct:1, explain:`Die Theorie gibt die Bilanz als ΔH Lösung gleich ΔH Gitter plus ΔH Hydratation an.`}
+],
+'chem-lz10-e': [
+  {q:`Welches Reagenz weist Chlorid-Ionen durch einen weissen Niederschlag nach?`, options:[`Bariumchlorid`, `verdünnte Salzsäure`, `Silbernitrat`, `Kalkwasser`], correct:2, explain:`Silbernitrat bildet mit Chlorid einen weissen Niederschlag von AgCl.`},
+  {q:`Wie weist man Carbonat-Ionen laut Theorie nach?`, options:[`Zugabe von verdünnter Salzsäure führt zu Gasentwicklung von CO₂`, `Zugabe von Silbernitrat ergibt einen gelben Niederschlag`, `Zugabe von Bariumchlorid ergibt BaSO₄`, `Es entsteht ein blauer Niederschlag`], correct:0, explain:`Bei Carbonat entsteht mit verdünnter HCl sprudelndes CO₂, das Kalkwasser trübt.`}
+],
+'hist-lz3-b': [
+  {q:`Mit welchem Ereignis endete die Schreckensherrschaft?`, options:[`Mit der Hinrichtung Marie-Antoinettes im Oktober 1793`, `Mit dem Sturz und der Hinrichtung Robespierres im Juli 1794`, `Mit Napoleons Staatsstreich 1799`, `Mit der Gründung des Direktoriums 1795`], correct:1, explain:`Die Schreckensherrschaft endete mit dem Sturz Robespierres am 9. Thermidor, er wurde am 28. Juli 1794 guillotiniert.`},
+  {q:`Welche wirtschaftliche Massnahme gehörte zum Terror gegen den inneren Feind und die Versorgung?`, options:[`Die Einführung einer Einkommenssteuer`, `Das Höchstpreisgesetz für Lebensmittel`, `Die Abschaffung aller Zölle`, `Die Privatisierung der Getreidemärkte`], correct:1, explain:`Das Höchstpreisgesetz, das Maximum, legte die Lebensmittelpreise per Dekret fest.`}
+],
+'hist-lz6-b': [
+  {q:`Welche der fünf Ursachen beschreibt den Gegensatz zwischen dem französischen Modell und der bisherigen Ordnung der Schweiz?`, options:[`Der Zentralismus stiess auf die föderale Tradition kantonaler Selbstverwaltung`, `Die Industrialisierung verdrängte die Landwirtschaft`, `Die Einführung des Frauenstimmrechts spaltete die Kantone`, `Die Kontinentalsperre wurde aufgehoben`], correct:0, explain:`Eine Ursache war der Zusammenstoss des Zentralismus mit der jahrhundertealten föderalen kantonalen Selbstverwaltung.`},
+  {q:`Womit endete die Helvetik im Februar 1803?`, options:[`Mit dem Stecklikrieg`, `Mit der Mediationsakte nach Napoleons Eingriff`, `Mit dem Abzug der französischen Truppen`, `Mit der Niederlage Redings in der Innerschweiz`], correct:1, explain:`Die Helvetik endete im Februar 1803 mit der Mediationsakte, nachdem Napoleon eingegriffen hatte.`}
+],
+'hist-lz9-b': [
+  {q:`In welchem Sektor begann laut Theorie die Industrielle Revolution?`, options:[`Im Bergbau`, `Im Eisenbahnbau`, `Im Textil-Sektor bei der Baumwoll-Verarbeitung`, `In der Metallverarbeitung`], correct:2, explain:`Die Industrielle Revolution begann im Textil-Sektor, speziell bei der Baumwoll-Verarbeitung.`},
+  {q:`Warum eignete sich der Textilsektor besonders als Leitsektor?`, options:[`Weil nur wenige Menschen Kleidung benötigten`, `Weil Baumwolle ausschliesslich in England wuchs`, `Weil Spinnen und Weben repetitive, mechanisierbare Bewegungen sind`, `Weil keine Rohstoffe nötig waren`], correct:2, explain:`Spinnen und Weben sind repetitive Bewegungen und daher gut mechanisierbar, zudem war der Markt riesig.`}
+],
+'hist-lz12-b': [
+  {q:`Welche Forderungen des Landesstreiks von 1918 wurden in den Folgejahrzehnten umgesetzt?`, options:[`Nur die Abrüstung`, `Fast alle Forderungen, etwa 48-Stunden-Woche, AHV und Frauenstimmrecht`, `Keine einzige Forderung`, `Ausschliesslich die Proportionalwahl`], correct:1, explain:`Obwohl der Streik kurzfristig scheiterte, wurden in den Folgejahrzehnten fast alle Forderungen umgesetzt.`},
+  {q:`Was vereinbarten Gewerkschaften und Arbeitgeber im Friedensabkommen der MEM von 1937?`, options:[`Sofortige Lohnerhöhungen für alle Branchen`, `Keine Streiks und Aussperrungen, dafür Verhandlungen und Gesamtarbeitsverträge`, `Die Abschaffung der Gewerkschaften`, `Die Einführung der 48-Stunden-Woche`], correct:1, explain:`Das Friedensabkommen MEM legte fest, auf Streiks und Aussperrungen zu verzichten und stattdessen zu verhandeln sowie GAV abzuschliessen.`}
+],
+'geo-lz3-b': [
+  {q:`Welche Sonderrolle hat Wasserdampf unter den Treibhausgasen?`, options:[`Er ist das wichtigste Treibhausgas des natürlichen Treibhauseffekts und macht davon rund zwei Drittel aus`, `Er ist das einzige menschengemachte Treibhausgas`, `Er hat keinerlei Treibhauswirkung`, `Er macht nur einen winzigen Bruchteil des natürlichen Effekts aus`], correct:0, explain:`Wasserdampf ist das wichtigste Treibhausgas des natürlichen Treibhauseffekts und stellt davon rund zwei Drittel.`},
+  {q:`Warum wird Wasserdampf nicht zum anthropogenen Anteil gezählt?`, options:[`Weil er gar nicht in der Atmosphäre vorkommt`, `Weil der Mensch ihn nicht direkt durch Emissionen steuern kann, sondern nur indirekt über die Temperatur`, `Weil er die Erwärmung abschwächt`, `Weil er schwerer als CO₂ ist`], correct:1, explain:`Es gibt keinen direkten menschlichen Einfluss auf die Wasserdampfmenge, er wirkt nur indirekt als Verstärker über die Temperatur.`}
+],
+'geo-lz6-b': [
+  {q:`Um wie viel Grad ist die Schweizer Mitteltemperatur seit vorindustrieller Zeit bereits gestiegen?`, options:[`um 1,0 Grad`, `um 2,0 Grad`, `um 3,8 Grad`, `um 5,5 Grad`], correct:1, explain:`Laut Theorie ist die Schweizer Mitteltemperatur bereits um 2,0 Grad gestiegen.`},
+  {q:`Welche Folge des Klimawandels für die Schweiz nennt die Theorie im Zusammenhang mit heftigeren Niederschlägen?`, options:[`Sinkende Nullgradgrenze`, `Steigendes Überschwemmungsrisiko und Gefahr von Hangrutschungen`, `Mehr Schneefall im Winter`, `Zunahme der Gletscher`], correct:1, explain:`Durch heftigere Niederschläge steigen laut Theorie das Überschwemmungsrisiko und die Gefahr von Hangrutschungen.`}
+],
+'geo-lz9-b': [
+  {q:`Wie fiel die Abstimmung zum Klimaschutzgesetz vom 18. Juni 2023 aus?`, options:[`Nein mit 51,6 Prozent`, `Ja mit 59,1 Prozent`, `Nein mit 70,7 Prozent`, `Ja mit 48,4 Prozent`], correct:1, explain:`Das Klimaschutzgesetz wurde am 18. Juni 2023 mit 59,1 Prozent Ja angenommen.`},
+  {q:`Welches Ziel legt das Klimaschutzgesetz laut Theorie fest?`, options:[`Die Schweiz soll bis 2035 aus der Kernkraft aussteigen`, `Die Schweiz soll bis 2050 klimaneutral werden`, `Die Schweiz soll eine CO₂-Abgabe auf Flüge einführen`, `Die Schweiz soll bis 2030 alle Heizungen verbieten`], correct:1, explain:`Das Klimaschutzgesetz legt fest, dass die Schweiz bis 2050 klimaneutral werden soll.`}
+],
+'geo-lz12-b': [
+  {q:`Welche Rolle übernehmen Kernkraftwerke in der Schweizer Stromproduktion laut Theorie?`, options:[`Sie liefern flexible Spitzenenergie`, `Sie liefern konstante Bandenergie und decken die Grundlast`, `Sie werden nur nachts hochgefahren`, `Sie decken ausschliesslich morgendliche Bedarfsspitzen`], correct:1, explain:`Kernkraftwerke laufen konstant, liefern Bandenergie und decken damit die Grundlast.`},
+  {q:`Was ist ein zentraler Punkt der Energiestrategie 2050?`, options:[`Der Bau mehrerer neuer Kernkraftwerke`, `Der Atomausstieg, bei dem keine neuen AKW gebaut werden`, `Die sofortige Abschaltung aller bestehenden AKW`, `Der Verzicht auf erneuerbare Energien`], correct:1, explain:`Zentral ist der Atomausstieg, es werden keine neuen AKW gebaut und bestehende laufen bis zum Ende ihrer Lebensdauer.`}
+],
+'chem-lz2-a': [
+  {q:`Was bestimmt laut Theorie das chemische Verhalten eines Atoms?`, options:[`Die Anzahl der Neutronen im Kern`, `Die Valenzelektronen in der äußersten Schale`, `Die Gesamtzahl aller Protonen`, `Die inneren Elektronen des Atomrumpfs`], correct:1, explain:`Die Valenzelektronen der äußersten Schale bestimmen das chemische Verhalten.`},
+  {q:`Welche Ladung trägt der Atomrumpf eines Chlor-Atoms aus Gruppe VII?`, options:[`Cl⁷⁺`, `Cl⁻`, `Cl¹⁺`, `Cl⁸⁺`], correct:0, explain:`Der Atomrumpf trägt eine positive Ladung gleich der Hauptgruppen-Nummer, bei Cl also 7⁺.`}
+],
+'chem-lz4-c': [
+  {q:`Wie viele Valenzelektronen müssen für die Lewis-Formel von NH₃ insgesamt verteilt werden?`, options:[`5 Elektronen`, `6 Elektronen`, `8 Elektronen`, `10 Elektronen`], correct:2, explain:`N steuert 5 und drei H je 1 bei, zusammen also 8 Valenzelektronen.`},
+  {q:`Welches Atom wird beim Zeichnen des Skeletts meist als zentrales Atom in die Mitte gesetzt?`, options:[`Das Atom mit der höchsten Elektronegativität`, `Das Atom mit den meisten freien Paaren`, `Das Wasserstoffatom`, `Das Atom mit der niedrigsten Elektronegativität`], correct:3, explain:`Laut Vorgehen ist das zentrale Atom dasjenige mit der niedrigsten Elektronegativität.`}
+],
+'chem-lz6-b': [
+  {q:`Welche Salzformel ergibt sich nach der Über-Kreuz-Methode für Al³⁺ und O²⁻?`, options:[`AlO`, `Al₃O₂`, `Al₂O₃`, `Al₂O₂`], correct:2, explain:`Die Ladungszahlen werden über Kreuz getauscht, was Al₂O₃ ergibt.`},
+  {q:`Warum erhält NH₄ in der Formel von Ammoniumsulfat eine Klammer, SO₄ jedoch nicht?`, options:[`Weil zwei NH₄ vorkommen, SO₄ aber nur den Index 1 hat`, `Weil NH₄ ein Kation und SO₄ ein Anion ist`, `Weil NH₄ mehr Atome enthält als SO₄`, `Weil SO₄ keine Ladung trägt`], correct:0, explain:`Mehratomige Ionen bekommen nur bei einer Indexzahl größer als 1 eine Klammer, daher (NH₄)₂, aber SO₄ mit Index 1.`}
+],
+'chem-lz9-a': [
+  {q:`Was geschieht bei der Elektrolyse an der Kathode (Minuspol)?`, options:[`Oxidation durch Elektronenabgabe`, `Reduktion durch Elektronenaufnahme`, `Anziehung der Anionen`, `Verbrennung des Kohlenstoffs`], correct:1, explain:`An der Kathode werden Kationen angezogen und durch Elektronenaufnahme reduziert.`},
+  {q:`Warum wird beim Hall-Héroult-Verfahren Kryolith eingesetzt?`, options:[`Es liefert die nötigen Aluminium-Ionen`, `Es erhöht die elektrische Spannung`, `Es senkt den Schmelzpunkt von Al₂O₃ auf etwa 950°C`, `Es verhindert das Verbrennen der Anoden`], correct:2, explain:`Al₂O₃ wird in geschmolzenem Kryolith gelöst, wodurch der Schmelzpunkt auf rund 950°C sinkt.`}
+],
+'hist-lz1-a': [
+  {q:`Wann bricht laut Davies J-Kurve eine Revolution aus?`, options:[`Im tiefsten und dauerhaften Elend`, `Wenn nach einem Aufschwung ein plötzlicher Bruch folgt`, `Wenn Erwartungen und Lebenslage gleichmäßig steigen`, `Wenn die Erwartungen dauerhaft niedrig bleiben`], correct:1, explain:`Revolutionen brechen aus, wenn auf einen Aufstieg ein plötzlicher Bruch der Lebenslage folgt.`},
+  {q:`Was treibt nach Davies die Revolution letztlich an?`, options:[`Das materielle Elend allein`, `Die enttäuschte Erwartung und die wahrgenommene Lücke`, `Der Sieg im US-Unabhängigkeitskrieg`, `Die gelungene Adelsreform`], correct:1, explain:`Nicht das Elend allein, sondern die enttäuschte Erwartung treibt die Revolution.`}
+],
+'hist-lz4-a': [
+  {q:`Wodurch wurde die alte föderale Eidgenossenschaft 1798 ersetzt?`, options:[`Durch einen zentralistischen Einheitsstaat nach französischem Vorbild`, `Durch einen losen Staatenbund mit starker Tagsatzung`, `Durch 13 souveräne Orte mit Untertanengebieten`, `Durch eine Monarchie unter Napoleon`], correct:0, explain:`Die föderale Schweiz wurde durch einen zentralistischen Einheitsstaat nach französischem Vorbild ersetzt.`},
+  {q:`Welche Aussage zur Helvetischen Republik trifft laut Theorie zu?`, options:[`Die Kantone blieben souveräne Orte`, `Die Untertanenverhältnisse wurden abgeschafft und alle Bürger formal gleichgestellt`, `Die Tagsatzung wurde zur starken Zentrale ausgebaut`, `Die Patrizier behielten ihre Herrschaft`], correct:1, explain:`Die Helvetische Republik schaffte die Untertanenverhältnisse ab und stellte alle Bürger formal gleich.`}
+],
+'hist-lz7-a': [
+  {q:`Was kennzeichnet die Restauration (1815–1830) laut Theorie?`, options:[`Liberale Verfassungen in zwölf Kantonen`, `Einen zentralistischen Einheitsstaat`, `22 souveräne Kantone mit zurückkehrenden Patriziern`, `Die Wiederherstellung der Untertanenverhältnisse`], correct:2, explain:`Die Restauration brachte 22 souveräne Kantone, in denen die Patrizier zurückkehrten.`},
+  {q:`Welche Kern-Spannung erzeugte nach 1830 den Druck Richtung Bundesstaat?`, options:[`Demokratie auf Kantonsebene, aber schwacher Staatenbund auf Bundesebene`, `Starke Zentralgewalt gegen schwache Kantone`, `Fehlende Neutralität in der Aussenpolitik`, `Wiedereingeführte Untertanenverhältnisse`], correct:0, explain:`Kantonal funktionierte die Demokratie, doch der Bundesvertrag 1815 hielt einen schwachen Staatenbund aufrecht, was den Druck Richtung Bundesstaat erzeugte.`}
+],
+'hist-lz10-a': [
+  {q:`Welche Energiequelle ersetzte in der Schweizer Industrialisierung die fehlende Kohle?`, options:[`Erdöl aus dem Mittelland`, `Wasserkraft aus Gefälle und Flüssen`, `Importierte Steinkohle aus dem Meer`, `Windkraft in den Alpen`], correct:1, explain:`Statt Kohle nutzte die Schweiz die Wasserkraft von Gefälle und Flüssen.`},
+  {q:`Welchen Beitrag leistete der Bundesstaat 1848 zur Industrialisierung?`, options:[`Er führte die Kantonszölle neu ein`, `Er hob die Kantonszölle auf und schuf so einen Binnenmarkt`, `Er verbot die Heimindustrie`, `Er senkte die Bedeutung der Eisenbahn`], correct:1, explain:`Die Aufhebung der Kantonszölle schuf den ersten echten Binnenmarkt.`}
+],
+'geo-lz1-a': [
+  {q:`Wie kalt wäre es auf der Erde im Durchschnitt ohne den natürlichen Treibhauseffekt?`, options:[`Rund 10°C kälter`, `Rund 30°C kälter`, `Rund 30°C wärmer`, `Genau gleich warm`], correct:1, explain:`Ohne den natürlichen Treibhauseffekt wäre es im Durchschnitt rund 30°C kälter.`},
+  {q:`Worin besteht die entscheidende Asymmetrie beim natürlichen Treibhauseffekt?`, options:[`Kurzwellige Einstrahlung ist durchlässig, langwellige Ausstrahlung wird zurückgehalten`, `Langwellige Einstrahlung wird durchgelassen, kurzwellige zurückgehalten`, `Beide Strahlungsarten werden gleichermaßen zurückgehalten`, `Beide Strahlungsarten durchdringen die Atmosphäre ungehindert`], correct:0, explain:`Kurzwellige Sonnenstrahlung ist durchlässig, während langwellige Wärmestrahlung von den Treibhausgasen zurückgehalten wird.`}
+],
+'geo-lz4-a': [
+  {q:`Über welchen Zeitraum verändert die Erdumlaufbahn laut Theorie ihre Form?`, options:[`Etwa 23.000 Jahre`, `Etwa 40.000 Jahre`, `Rund 96.000 Jahre`, `7 bis 17 Jahre`], correct:2, explain:`Die Erdumlaufbahn verändert ihre Form in einem Zyklus von rund 96.000 Jahren.`},
+  {q:`Wie wirkt die Asche von Vulkanausbrüchen auf das Klima?`, options:[`Sie erwärmt das Klima langfristig`, `Sie reflektiert Sonnenlicht und wirkt kurzfristig kühlend`, `Sie absorbiert langwellige Strahlung und erwärmt die Erde`, `Sie hat keinen Einfluss auf das Klima`], correct:1, explain:`Vulkanasche reflektiert Sonnenlicht und wirkt dadurch kurzfristig kühlend.`}
+],
+'geo-lz7-a': [
+  {q:`Was kennzeichnet ein Kippelement im Klimasystem?`, options:[`Es reagiert allmählich und vollständig umkehrbar`, `Es reagiert ab einer Kipp-Temperatur abrupt und irreversibel`, `Es reagiert nur, wenn die Temperatur dauerhaft sinkt`, `Es bleibt von der Erwärmung unbeeinflusst`], correct:1, explain:`Ein Kippelement springt bei Überschreiten der Kipp-Temperatur abrupt in einen neuen, irreversiblen Zustand.`},
+  {q:`Warum verstärkt schmelzendes Meereis die Erwärmung zusätzlich?`, options:[`Weil Eis mehr Sonnenenergie aufnimmt als Wasser`, `Weil das darunterliegende dunkle Wasser mehr Sonnenenergie aufnimmt`, `Weil Eis langwellige Strahlung abgibt`, `Weil weniger Wasserdampf entsteht`], correct:1, explain:`Unter dem hellen Eis liegt dunkles Wasser, das mehr Sonnenenergie aufnimmt und so eine verstärkende Rückkopplung auslöst.`}
+],
+'geo-lz10-a': [
+  {q:`Woran setzt die Minderung (Mitigation) im Umgang mit dem Klimawandel an?`, options:[`An der Ursache, indem sie den Ausstoß von Treibhausgasen reduziert`, `An den Folgen, indem sie die Gesellschaft anpasst`, `An der Bewässerung von Feldern`, `Am Bau von Hochwasserschutz`], correct:0, explain:`Die Minderung setzt an der Ursache an und reduziert den Ausstoß von Treibhausgasen.`},
+  {q:`Warum reicht Minderung allein laut Theorie nicht aus?`, options:[`Weil erneuerbare Energien zu teuer sind`, `Weil bereits ausgestoßenes CO₂ jahrzehntelang in der Atmosphäre bleibt`, `Weil die Anpassung die Emissionen erhöht`, `Weil Treibhausgase sofort wieder abgebaut werden`], correct:1, explain:`Das bereits ausgestoßene CO₂ bleibt jahrzehntelang in der Atmosphäre, weshalb zusätzlich Anpassung nötig ist.`}
+],
+'chem-lz2-b': [
+  {q:`Wie viele Kugelwolken können die Valenzelektronen laut Modell maximal um den Atomrumpf bilden, und wie viele Elektronen passen pro Wolke?`, options:[`Maximal 8 Wolken mit je 1 Elektron`, `Maximal 4 Wolken mit je 1 oder 2 Elektronen`, `Maximal 2 Wolken mit je 4 Elektronen`, `Maximal 4 Wolken mit je 3 Elektronen`], correct:1, explain:`Die Valenzelektronen halten sich in maximal 4 Kugelwolken auf, wobei jede Wolke 1 oder 2 Elektronen aufnehmen kann.`},
+  {q:`Warum kann ein Stickstoffatom mit 5 Valenzelektronen genau 3 Bindungen eingehen?`, options:[`Weil alle 5 Elektronen ungepaart sind`, `Weil es 1 einzelnes Elektron und 4 freie Paare besitzt`, `Weil es 3 einzelne Elektronen und 1 freies Paar besitzt`, `Weil es 5 einzelne Elektronen besitzt`], correct:2, explain:`N hat 3 einzeln besetzte Wolken (bindungsfähig) und ein freies Paar, also sind 3 Bindungen möglich.`}
+],
+'chem-lz4-d': [
+  {q:`Wie wird die Ladung beim Zählen der Valenzelektronen eines Anions berücksichtigt?`, options:[`Pro negative Ladung wird 1 Elektron dazugerechnet`, `Pro negative Ladung wird 1 Elektron abgezogen`, `Die Ladung wird ignoriert`, `Pro negative Ladung werden 2 Elektronen dazugerechnet`], correct:0, explain:`Bei einem Anion wird pro negativer Ladung ein Elektron dazugerechnet.`},
+  {q:`Wie viele Valenzelektronen werden für das Sulfat-Ion SO₄²⁻ insgesamt gezählt?`, options:[`24 Elektronen`, `30 Elektronen`, `36 Elektronen`, `32 Elektronen`], correct:3, explain:`S(6) plus 4 mal O(6) plus 2 für die Ladung ergibt 32 Valenzelektronen.`}
+],
+'chem-lz6-c': [
+  {q:`Welche Formel ergibt sich beim Ladungsausgleich über Kreuz für Bariumphosphat aus Ba²⁺ und PO₄³⁻?`, options:[`BaPO₄`, `Ba₃(PO₄)₂`, `Ba₂(PO₄)₃`, `Ba(PO₄)₂`], correct:1, explain:`Über Kreuz ergeben Ba²⁺ und PO₄³⁻ die Formel Ba₃(PO₄)₂.`},
+  {q:`Warum schreibt man bei Eisen(III)-sulfid Fe₂S₃ ohne Klammern um das S?`, options:[`Weil Eisen kein Übergangsmetall ist`, `Weil Sulfid ein einatomiges Anion ist`, `Weil der Index kleiner als 2 ist`, `Weil die Ladungen gleich sind`], correct:1, explain:`Bei einatomigen Anionen wird keine Klammer gesetzt, daher AlCl₃ und Fe₂S₃ statt mit Klammer.`}
+],
+'chem-lz10-a': [
+  {q:`Welches Volumenmessgerät besitzt laut Genauigkeitshierarchie die höchste Präzision?`, options:[`Messzylinder`, `Becherglas`, `Vollpipette`, `Messpipette`], correct:2, explain:`Die Vollpipette liefert ein festes Volumen mit der höchsten Präzision von rund 0.03 mL.`},
+  {q:`An welcher Stelle wird der Meniskus beim Ablesen einer Flüssigkeit korrekt bestimmt?`, options:[`Am unteren Rand des Meniskus auf Augenhöhe`, `Am oberen Rand des Meniskus von oben`, `In der Mitte des Meniskus schräg von unten`, `Am oberen Rand auf Augenhöhe`], correct:0, explain:`Man liest den unteren Rand des Meniskus auf Augenhöhe ab.`}
+],
+'hist-lz1-b': [
+  {q:`Was geschah am 17. Juni 1789 in Versailles?`, options:[`Das Pariser Volk stürmte die Bastille`, `Der 3. Stand erklärte sich zur Nationalversammlung`, `Der Adel verzichtete auf seine Privilegien`, `Die Erklärung der Menschenrechte wurde verkündet`], correct:1, explain:`Am 17. Juni 1789 erklärte sich der 3. Stand zur Nationalversammlung.`},
+  {q:`Warum gilt der Sturm auf die Bastille eher als Symbol denn als militärisches Ziel?`, options:[`Weil die Bastille bereits zerstört war`, `Weil dort die Generalstände tagten`, `Weil sie 1789 nur 7 Gefangene hatte und für königliche Willkür stand`, `Weil sie ausserhalb von Paris lag`], correct:2, explain:`Die Bastille hatte nur 7 Gefangene und war ein Symbol königlicher Willkür, kein militärisches Ziel.`}
+],
+'hist-lz4-b': [
+  {q:`Wie viele souveräne Kantone schuf die Mediationsakte von 1803?`, options:[`18 Kantone`, `22 Kantone`, `19 Kantone`, `6 Kantone`], correct:2, explain:`Die Mediation 1803 schuf 19 souveräne Kantone mit Bund und Tagsatzung.`},
+  {q:`Welche Neuerung kennzeichnet die Mediationsakte hinsichtlich der früheren Untertanengebiete?`, options:[`Sie wurden aufgelöst und Frankreich zugeschlagen`, `6 neue Kantone wurden als gleichberechtigte Glieder aufgenommen`, `Sie blieben weiterhin Untertanengebiete`, `Sie wurden zu einem zentralistischen Einheitsstaat`], correct:1, explain:`Sechs frühere Untertanengebiete wie Aargau und Waadt wurden als gleichberechtigte Kantone aufgenommen.`}
+],
+'hist-lz7-b': [
+  {q:`Welches Ereignis löste 1830 die Regenerations-Welle in der Schweiz aus?`, options:[`Die Pariser Julirevolution`, `Der Wiener Kongress`, `Der Basler Stadt-Land-Krieg`, `Die Mediationsakte`], correct:0, explain:`Die Pariser Julirevolution von 1830 löste die schweizerische Regenerations-Welle aus.`},
+  {q:`Welche Forderung gehörte zum Modell der Ustertag-Versammlung von 1830?`, options:[`Rückkehr der Patrizier an die Macht`, `Abschaffung der kantonalen Verfassungen`, `Volkssouveränität als Verfassungsprinzip`, `Beibehaltung der Pressezensur`], correct:2, explain:`Der Ustertag forderte unter anderem Volkssouveränität als Verfassungsprinzip.`}
+],
+'hist-lz10-b': [
+  {q:`Welche Energiequelle prägte die Industrialisierung der Schweiz im Gegensatz zu England?`, options:[`Steinkohle und Dampf`, `Wasserkraft`, `Erdöl`, `Atomkraft`], correct:1, explain:`Die Schweiz nutzte dezentrale Wasserkraft, während England auf konzentrierte Steinkohle und Dampf setzte.`},
+  {q:`Wie zeigt sich das Profil des 19. Jahrhunderts in der heutigen Schweizer Wirtschaft?`, options:[`Sie wird von Megastädten und Massenware dominiert`, `Sie ist immer noch KMU-geprägt mit Hidden Champions in Nischen`, `Sie besteht fast nur aus Grosskonzernen`, `Sie exportiert vor allem billige Rohstoffe`], correct:1, explain:`Die Schweizer Wirtschaft ist weiterhin KMU-geprägt mit wertdichten Nischenprodukten wie im 19. Jahrhundert.`}
+],
+'geo-lz1-b': [
+  {q:`In welchem Verhältnis steht der anthropogene zum natürlichen Treibhauseffekt?`, options:[`Er ersetzt den natürlichen Effekt vollständig`, `Er kommt obendrauf und verstärkt den natürlichen Effekt`, `Er schwächt den natürlichen Effekt ab`, `Er hat mit dem natürlichen Effekt nichts zu tun`], correct:1, explain:`Der anthropogene Effekt tritt nicht an die Stelle des natürlichen, sondern kommt obendrauf und verstärkt ihn.`},
+  {q:`Was ist laut Theorie das eigentlich Problematische am Treibhauseffekt?`, options:[`Der Treibhauseffekt an sich, da er schädlich ist`, `Der natürliche Effekt, weil er die Erde unbewohnbar macht`, `Die zusätzliche menschengemachte Verstärkung`, `Dass langwellige Strahlung ins Weltall entweicht`], correct:2, explain:`Problematisch ist allein die zusätzliche menschengemachte Verstärkung, die das Temperaturgleichgewicht stört.`}
+],
+'geo-lz4-b': [
+  {q:`Welche Ursache gilt laut Theorie als die wichtigste anthropogene Ursache des Klimawandels?`, options:[`Die Verbrennung fossiler Brennstoffe`, `Die Viehzucht`, `Die Trockenlegung von Mooren`, `Der Reisanbau`], correct:0, explain:`Die wichtigste Ursache ist die Verbrennung fossiler Brennstoffe wie Kohle, Erdöl und Erdgas.`},
+  {q:`Warum trägt die Trockenlegung von Mooren zum Klimawandel bei?`, options:[`Weil Moore Sauerstoff verbrauchen`, `Weil entwässerte Moore ihren gespeicherten Kohlenstoff freisetzen`, `Weil Moore Wasserkraft blockieren`, `Weil Moore Methan binden`], correct:1, explain:`Moore speichern sehr viel Kohlenstoff, der bei Entwässerung freigesetzt wird.`}
+],
+'geo-lz7-b': [
+  {q:`Welches Kippelement kippt laut Übersicht bereits ab rund 1,5 Grad Celsius?`, options:[`Amazonas-Regenwald`, `Atlantische Umwälzung AMOC`, `Grönländisches Eisschild`, `Westantarktisches Eisschild`], correct:2, explain:`Das Grönländische Eisschild gehört zu den vier Elementen, die schon ab 1,5 Grad kippen.`},
+  {q:`Was bezeichnet die Abkürzung AMOC in der Übersicht der Kippelemente?`, options:[`Das arktische Meereis`, `Die atlantische Umwälzzirkulation`, `Den borealen Permafrost`, `Die antarktische Korallenzone`], correct:1, explain:`AMOC steht für die atlantische Umwälzzirkulation, eine grosse Meeresströmung, die das Klima Europas mitprägt.`}
+],
+'geo-lz10-b': [
+  {q:`Welche der drei Strategien beschreibt einen genügsamen Lebensstil mit Verzicht?`, options:[`Effizienz`, `Konsistenz`, `Suffizienz`, `Kreislaufwirtschaft`], correct:2, explain:`Suffizienz bedeutet einen genügsamen Lebensstil mit Verzicht, etwa Carsharing oder weniger fliegen.`},
+  {q:`Welche individuelle Massnahme hat laut Tabelle mit Abstand die grösste jährliche CO₂-Einsparung?`, options:[`Recycling und LED`, `Weniger Kinder`, `Autoloses Leben`, `Pflanzliche Ernährung`], correct:1, explain:`Mit 58,6 Tonnen hat weniger Kinder die mit Abstand grösste Einsparung.`}
+],
+'chem-lz3-a': [
+  {q:`Zwei Atome bilden eine Bindung. Ihre EN-Differenz ΔEN beträgt 2.1. Welcher Bindungstyp liegt laut Theorie vor?`, options:[`Unpolare Atombindung`,`Polare Atombindung`,`Ionenbindung`,`Metallbindung`], correct:2, explain:`Laut Theorie führt ein ΔEN über 1.7 zu einer Ionenbindung.`},
+  {q:`Welche Aussage über die EN-Trends im Periodensystem ist laut Theorie korrekt?`, options:[`Die EN nimmt nach links und nach unten zu`,`Die EN nimmt nach rechts und nach oben zu`,`Die EN ist in einer Gruppe überall gleich`,`Die EN ist unten links am höchsten`], correct:1, explain:`Die EN steigt innerhalb einer Periode nach rechts und innerhalb einer Gruppe nach oben, mit dem Maximum oben rechts.`}
+],
+'chem-lz5-a': [
+  {q:`Warum gibt ein Metall bei der Reaktion mit einem Nichtmetall Elektronen ab?`, options:[`Weil es eine hohe Elektronegativität hat`,`Weil es eine niedrige Elektronegativität hat`,`Weil es zum Anion werden will`,`Weil es bereits Edelgaskonfiguration besitzt`], correct:1, explain:`Das Metall hat eine niedrige EN und gibt deshalb seine Valenzelektronen ab, wodurch ein Kation entsteht.`},
+  {q:`Bei der Bildung von MgO werden pro Atom wie viele Elektronen übertragen?`, options:[`1 Elektron`,`2 Elektronen`,`3 Elektronen`,`Keine Elektronen, es entsteht eine Atombindung`], correct:1, explain:`Laut Theorie werden bei Mg und O je 2 Elektronen übertragen, sodass Mg²⁺ und O²⁻ entstehen.`}
+],
+'chem-lz6-d': [
+  {q:`Was darf man laut Theorie beim Ausgleichen einer Reaktionsgleichung auf keinen Fall tun?`, options:[`Koeffizienten vor die Formeln setzen`,`Mit kleinsten ganzen Zahlen arbeiten`,`Die Formeln der Stoffe verändern`,`Aggregatzustände dazuschreiben`], correct:2, explain:`Die Formeln dürfen nicht geändert werden, ausgeglichen wird nur über Koeffizienten vor den Formeln.`},
+  {q:`In welcher Reihenfolge sollte man die Atomsorten laut Tipp ausgleichen?`, options:[`Wasserstoff, Sauerstoff, Nichtmetalle, Metalle`,`Metalle, dann übrige Nichtmetalle, dann Sauerstoff, dann Wasserstoff`,`Sauerstoff zuerst, dann Metalle`,`Es spielt keine Rolle, in welcher Reihenfolge man vorgeht`], correct:1, explain:`Der Tipp empfiehlt zuerst Metalle, dann Nichtmetalle außer O und H, dann Sauerstoff und zuletzt Wasserstoff.`}
+],
+'chem-lz10-b': [
+  {q:`An welcher Stelle der rauschenden Flamme erhitzt man laut Theorie die Probe?`, options:[`Im inneren dunklen Kern`,`Im mittleren blauen Mantel`,`Am äußeren blauen Saum bzw. an der Spitze`,`Direkt am Luftloch`], correct:2, explain:`Der äußere blaue Saum bzw. die Spitze ist die oxidierende, heißeste Zone mit etwa 1500°C, dort erhitzt man die Probe.`},
+  {q:`Welche Eigenschaft hat die leuchtende Flamme bei geschlossenem Luftloch?`, options:[`Sie ist blau und sehr heiß`,`Sie verbrennt vollständig`,`Sie ist gelb-orange und relativ kühl mit Rußbildung`,`Sie erreicht bis 1500°C`], correct:2, explain:`Bei geschlossenem Luftloch ist die Flamme gelb-orange, relativ kühl und bildet wegen unvollständiger Verbrennung Ruß.`}
+],
+'hist-lz2-a': [
+  {q:`Welches Lager wollte den König laut Tabelle behalten?`, options:[`Die Feuillants`,`Die Girondisten`,`Die Jakobiner`,`Die Montagnards`], correct:0, explain:`Die Feuillants strebten eine konstitutionelle Monarchie an und wollten den König behalten.`},
+  {q:`Welches Lager forderte als einziges das allgemeine Wahlrecht für Männer und Preiskontrollen?`, options:[`Die Feuillants`,`Die Girondisten`,`Die Jakobiner`,`Der liberale Adel`], correct:2, explain:`Laut Tabelle setzten nur die Jakobiner auf allgemeines Männerwahlrecht und Preiskontrollen.`}
+],
+'hist-lz5-a': [
+  {q:`Wie funktionierte die Beschlussfassung an der Tagsatzung laut Theorie?`, options:[`Mehrheitsentscheid nach Bevölkerungszahl`,`Jeder Ort eine Stimme, Einstimmigkeit nötig`,`Bern hatte als grösster Stand zwei Stimmen`,`Nur die katholischen Stände durften abstimmen`], correct:1, explain:`An der Tagsatzung hatte jeder Ort eine Stimme und es brauchte Einstimmigkeit, keine Mehrheitsentscheide.`},
+  {q:`Welchen Status hatten die Gemeinen Herrschaften wie Aargau oder Thurgau?`, options:[`Vollberechtigte Kantone mit eigener Tagsatzungsstimme`,`Zugewandte Orte mit eigenem Bündnisvertrag`,`Untertanengebiete ohne politische Rechte, verwaltet durch Landvögte`,`Unabhängige Republiken außerhalb der Eidgenossenschaft`], correct:2, explain:`Die Gemeinen Herrschaften waren Untertanengebiete ohne politische Rechte und wurden durch wechselnde Landvögte verwaltet.`}
+],
+'hist-lz8-a': [
+  {q:`Wie erklärt die Theorie die Polarisierung im Sonderbundskrieg am besten?`, options:[`Allein durch den konfessionellen Gegensatz katholisch gegen reformiert`,`Allein durch den politischen Streit um die Bundesreform`,`Durch die Überlagerung der konfessionellen und der politischen Achse`,`Durch einen reinen Machtkampf zwischen zwei Generälen`], correct:2, explain:`Laut Theorie stimmen beide Lesarten teilweise und erst ihre Überlagerung erzeugte die Polarisierung.`},
+  {q:`Was war laut Theorie eine Schlüssel-Leistung von General Dufour nach dem Sieg?`, options:[`Harte Bestrafung der unterlegenen Kantone`,`Versöhnungspolitik, die eine Integration in den Bundesstaat ermöglichte`,`Auflösung der Tagsatzung`,`Einführung des allgemeinen Wahlrechts`], correct:1, explain:`Dufour verfolgte eine Versöhnungspolitik, sodass die unterlegenen Kantone nicht bestraft wurden und 1848 integriert werden konnten.`}
+],
+'hist-lz11-a': [
+  {q:`Was unterscheidet den Pauperismus laut Theorie von traditioneller Armut?`, options:[`Er betrifft nur einzelne Bettler durch persönliches Pech`,`Er ist eine strukturelle Massenarmut mitten im wachsenden Reichtum`,`Er tritt nur in Zeiten wirtschaftlichen Niedergangs auf`,`Er wird vollständig durch Familie und Pfarrei aufgefangen`], correct:1, explain:`Der Pauperismus ist neu, weil er ganze Bevölkerungsschichten strukturell betrifft, und zwar mitten im Wirtschaftswachstum.`},
+  {q:`Welches Merkmal kennzeichnet die neu entstehende Arbeiterklasse laut Theorie?`, options:[`Sie besitzt eigene Produktionsmittel`,`Sie lebt überwiegend von der Landwirtschaft`,`Sie verdient ausschliesslich durch Lohnarbeit ohne Eigentum an Produktionsmitteln`, `Sie ist finanziell unabhängig vom Fabrikanten`], correct:2, explain:`Die Arbeiterklasse lebt ausschliesslich von Lohnarbeit, besitzt keine Produktionsmittel und ist vom Fabrikanten abhängig.`}
+],
+'geo-lz2-a': [
+  {q:`Was bedeutet eine negative Rückkopplung laut Theorie?`, options:[`Sie wirkt dämpfend und stabilisierend, das System kehrt zum stabilen Zustand zurück`,`Sie verstärkt eine Störung selbst`,`Sie ist immer schädlich für das System`,`Sie entfernt das System dauerhaft vom Ausgangszustand`], correct:0, explain:`Eine negative Rückkopplung wirkt gegenwirkend und stabilisierend, sodass die Auslenkung ausgeglichen wird.`},
+  {q:`Warum sind beim Klimawandel besonders die positiven Rückkopplungen kritisch?`, options:[`Weil sie das Klima stabilisieren`,`Weil sie nützlich für die Umwelt sind`,`Weil sie selbstverstärkend eine angestossene Erwärmung weiter antreiben`,`Weil sie Eis- und Warmzeiten ausgleichen`], correct:2, explain:`Positive Rückkopplungen sind selbstverstärkend und können eine einmal angestossene Erwärmung immer weiter antreiben.`}
+],
+'geo-lz5-a': [
+  {q:`Welcher ist laut Theorie der mit Abstand grösste Kohlenstoffspeicher?`, options:[`Die Atmosphäre mit 591 GtC`,`Die Tiefsee mit 37.100 GtC`,`Die Lithosphäre mit 75.000.000 GtC`,`Die fossilen Energieträger mit 928 GtC`], correct:2, explain:`Die Lithosphäre ist mit 75.000.000 GtC der mit Abstand grösste Speicher.`},
+  {q:`Wie viel Kohlenstoff enthält die Atmosphäre laut den angegebenen Zahlen?`, options:[`450 GtC`,`591 GtC`,`928 GtC`,`1.200 GtC`], correct:1, explain:`Laut Tabelle enthält die Atmosphäre 591 GtC.`}
+],
+'geo-lz8-a': [
+  {q:`Welches Abkommen legte laut Theorie erstmals verbindliche Reduktionsziele fest, allerdings nur für die Industrieländer?`, options:[`Die Klimarahmenkonvention von Rio 1992`,`Das Kyoto-Protokoll 1997`,`Das Pariser Abkommen 2015`,`Der COP21-Beschluss`], correct:1, explain:`Das Kyoto-Protokoll von 1997 legte erstmals verbindliche Reduktionsziele fest, jedoch nur für die Annex-1-Industrieländer.`},
+  {q:`Was ist laut Theorie das zentrale Temperaturziel des Pariser Abkommens?`, options:[`Die Erwärmung deutlich unter 2 Grad, möglichst auf 1,5 Grad zu halten`,`Die Erwärmung auf genau 3 Grad zu begrenzen`,`Die Emissionen nur der Industrieländer zu senken`,`Den Meeresspiegel um 2 Grad zu senken`], correct:0, explain:`Das Pariser Abkommen will die Erderwärmung deutlich unter 2 Grad und möglichst auf 1,5 Grad halten.`}
+],
+'geo-lz11-a': [
+  {q:`Wie viel Prozent der globalen Primärenergie bleiben laut Theorie als Nutzenergie übrig?`, options:[`5 Prozent`,`29 Prozent`,`50 Prozent`,`95 Prozent`], correct:1, explain:`Laut Theorie bleiben global von 100 Prozent Primärenergie nur 29 Prozent als Nutzenergie übrig.`},
+  {q:`In welcher Reihenfolge durchläuft Energie laut Theorie die Umwandlungskette zum Verbraucher?`, options:[`Nutzenergie, Endenergie, Sekundärenergie, Primärenergie`,`Sekundärenergie, Primärenergie, Endenergie, Nutzenergie`,`Primärenergie, Sekundärenergie, Endenergie, Nutzenergie`,`Endenergie, Nutzenergie, Primärenergie, Sekundärenergie`], correct:2, explain:`Die Kette führt von Primärenergie über Sekundärenergie und Endenergie zur Nutzenergie.`}
+]
+};
+
+/* ================================================================
    STATE
 ================================================================ */
 const state = {
@@ -1334,9 +2045,12 @@ const state = {
   myRank: null,
   studyConcepts: [], // queue
   studyIdx: 0,
-  studyStage: 'theory', // theory | quick | explain
-  studyMode: 'normal',  // normal | mistakes | lz | test-quick | test-full
-  studyLZ: null,        // for lz mode + test-full
+  studyStage: 'theory', // theory | mc | quick | explain
+  studyMode: 'normal',  // normal | mistakes | lz
+  studyTrack: 'lernen', // lernen (Theorie + Multiple Choice) | schreiben (Schreibfragen, KI)
+  studyLZ: null,
+  mcCache: {},          // {conceptId: [mc-questions]} — pro Session zwischengespeichert
+  currentMC: null,
   sessionStartTime: 0,
   sessionStartPts: 0,
   sessionCorrect: 0,
@@ -1430,7 +2144,16 @@ function doLogin(){
   if (!/^[a-z0-9_äöüß]{1,20}$/i.test(val)) { alert('Nur Buchstaben/Zahlen, max 20 Zeichen.'); return; }
   state.user = val;
   localStorage.setItem(k('user'), val);
+  trackLogin(val);
   goTopicSelect();
+}
+function trackLogin(name){
+  try{
+    fetch(PROXY_URL, {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({action:'addPoints', user: 'logins__' + name, points: 1})
+    });
+  } catch(e){ /* silent */ }
 }
 function logout(){
   state.user = null; state.topic = null;
@@ -1478,63 +2201,42 @@ function selectTopic(topicId){
 /* ================================================================
    HOME
 ================================================================ */
-// typeFilter: 'all' (default) | 'lecture' (theorie+verständnis) | 'math' (rechnung)
-function buildDailyPlan(typeFilter){
-  typeFilter = typeFilter || 'all';
-  const concepts = (CONCEPTS_BY_TOPIC[state.topic] || []).filter(c => {
-    if (typeFilter === 'all') return true;
-    const t = getConceptType(c);
-    if (typeFilter === 'lecture') return t === 'theorie' || t === 'verständnis';
-    if (typeFilter === 'math') return t === 'rechnung';
-    return true;
-  });
-  const eligible = concepts.filter(c => {
-    const p = state.progress[c.id];
-    return !p || (p.masteryStage || 0) < 4;
-  });
-  const unseen = eligible.filter(c => !state.progress[c.id]);
-  const newToday = unseen.slice(0, NEW_PER_DAY);
-  const mistakesToReview = state.mistakes
+// Eine Tagesliste pro Fach: Fehler zuerst, dann neue/unfertige Konzepte (Mastery < 4).
+// Gilt für beide Modi (Lernen & Schreiben) — dieselbe Konzept-Auswahl.
+function buildDailyPlan(){
+  const concepts = CONCEPTS_BY_TOPIC[state.topic] || [];
+  const eligible = concepts.filter(c => (state.progress[c.id]?.masteryStage || 0) < 4);
+  const mistakeQueue = state.mistakes
     .map(id => concepts.find(c => c.id === id))
-    .filter(c => c && !newToday.find(n => n.id === c.id));
-  return { queue: [...mistakesToReview, ...newToday], newCount: newToday.length, mistakeCount: mistakesToReview.length };
+    .filter(Boolean);
+  const mistakeIds = new Set(mistakeQueue.map(c => c.id));
+  const fresh = eligible.filter(c => !mistakeIds.has(c.id)).slice(0, NEW_PER_DAY);
+  return { queue: [...mistakeQueue, ...fresh], newCount: fresh.length, mistakeCount: mistakeQueue.length };
 }
 
 function goHome(){
   loadUserState();
-  const lecturePlan = buildDailyPlan('lecture');
-  const mathPlan = buildDailyPlan('math');
-  const totalCount = lecturePlan.queue.length + mathPlan.queue.length;
+  const plan = buildDailyPlan();
   const concepts = CONCEPTS_BY_TOPIC[state.topic] || [];
   const masteredCount = concepts.filter(c => (state.progress[c.id]?.masteryStage || 0) >= 4).length;
+  const openCount = plan.queue.length;
 
-  document.getElementById('heroNum').textContent = totalCount;
-  document.getElementById('heroLabel').textContent = totalCount === 1 ? 'Konzept heute' : 'Konzepte heute';
+  document.getElementById('heroNum').textContent = openCount;
+  document.getElementById('heroLabel').textContent = openCount === 1 ? 'Konzept offen' : 'Konzepte offen';
 
   const chips = document.getElementById('heroChips');
   chips.innerHTML = '';
-  if (lecturePlan.queue.length > 0){
-    const c = document.createElement('span'); c.className='stat-chip';
-    c.innerHTML = `📚 <strong>${lecturePlan.queue.length}</strong> Lernen`;
-    chips.appendChild(c);
-  }
-  if (mathPlan.queue.length > 0){
-    const c = document.createElement('span'); c.className='stat-chip';
-    c.innerHTML = `✏️ <strong>${mathPlan.queue.length}</strong> Rechnen`;
-    chips.appendChild(c);
-  }
-  if (totalCount === 0){
-    const c = document.createElement('span'); c.className='stat-chip';
-    c.textContent = 'Alles erledigt — Test machen?';
-    chips.appendChild(c);
-  }
+  const addChip = (html)=>{ const s = document.createElement('span'); s.className = 'stat-chip'; s.innerHTML = html; chips.appendChild(s); };
+  if (plan.mistakeCount > 0) addChip(`<strong>${plan.mistakeCount}</strong> zu wiederholen`);
+  if (plan.newCount > 0) addChip(`<strong>${plan.newCount}</strong> neu`);
+  if (openCount === 0) addChip('Alles gemeistert — stark!');
 
-  const startBtn = document.getElementById('startStudyBtn');
-  startBtn.disabled = lecturePlan.queue.length === 0;
-  startBtn.textContent = `📚 Lernen (${lecturePlan.queue.length})`;
-  const mathBtn = document.getElementById('startMathBtn');
-  mathBtn.disabled = mathPlan.queue.length === 0;
-  mathBtn.textContent = `✏️ Rechnen üben (${mathPlan.queue.length})`;
+  const lernenBtn = document.getElementById('startLernenBtn');
+  const schreibenBtn = document.getElementById('startSchreibenBtn');
+  lernenBtn.disabled = openCount === 0;
+  schreibenBtn.disabled = openCount === 0;
+  lernenBtn.textContent = openCount ? `Lernen — Theorie & Multiple Choice (${openCount})` : 'Lernen — alles gemeistert';
+  schreibenBtn.textContent = openCount ? `Schreiben — Fragen mit KI (${openCount})` : 'Schreiben — alles gemeistert';
   document.getElementById('masteredVal').textContent = `${masteredCount}/${concepts.length}`;
 
   const reviewBtn = document.getElementById('reviewMistakesBtn');
@@ -1560,10 +2262,11 @@ function goHome(){
 ================================================================ */
 function startStudy(mode, opts){
   opts = opts || {};
-  state.studyMode = mode;
+  state.studyMode = mode;                       // normal | mistakes | lz
+  state.studyTrack = opts.track || 'lernen';    // lernen | schreiben
   state.studyLZ = opts.lz || null;
-  state.studyTypeFilter = opts.typeFilter || 'all';
   state.studyIdx = 0;
+  state.currentMC = null;
   state.sessionStartTime = Date.now();
   state.sessionStartPts = getMyPoints();
   state.sessionCorrect = 0;
@@ -1572,29 +2275,10 @@ function startStudy(mode, opts){
   const concepts = CONCEPTS_BY_TOPIC[state.topic] || [];
 
   if (mode === 'normal'){
-    state.studyConcepts = buildDailyPlan(state.studyTypeFilter).queue;
+    state.studyConcepts = buildDailyPlan().queue;
   } else if (mode === 'mistakes'){
     state.studyConcepts = state.mistakes.map(id => concepts.find(c=>c.id===id)).filter(Boolean);
   } else if (mode === 'lz'){
-    state.studyConcepts = concepts.filter(c => c.lz === state.studyLZ);
-  } else if (mode === 'test-quick'){
-    const seenSorted = concepts
-      .filter(c => state.progress[c.id])
-      .sort((a, b) => {
-        const pa = state.progress[a.id]; const pb = state.progress[b.id];
-        const accA = pa.attempts ? pa.correct/pa.attempts : 0;
-        const accB = pb.attempts ? pb.correct/pb.attempts : 0;
-        return accA - accB;
-      });
-    let pool = seenSorted.slice(0, 10);
-    if (pool.length < 10){
-      // fill with random unseen
-      const unseen = concepts.filter(c => !state.progress[c.id]);
-      const shuffled = unseen.sort(()=>Math.random()-0.5);
-      pool = pool.concat(shuffled.slice(0, 10 - pool.length));
-    }
-    state.studyConcepts = pool.slice(0,10);
-  } else if (mode === 'test-full'){
     state.studyConcepts = concepts.filter(c => c.lz === state.studyLZ);
   }
 
@@ -1604,8 +2288,8 @@ function startStudy(mode, opts){
     return;
   }
 
-  // For test modes, skip theory: start at 'quick'
-  state.studyStage = (mode === 'test-quick' || mode === 'test-full') ? 'quick' : 'theory';
+  // Lernen-Track startet mit Theorie, Schreiben-Track direkt mit der ersten Schreibfrage.
+  state.studyStage = state.studyTrack === 'lernen' ? 'theory' : 'quick';
   renderStudy();
 }
 
@@ -1619,11 +2303,9 @@ function renderStudy(){
   // Progress
   document.getElementById('studyProgressText').textContent = `${idx+1}/${total}`;
   document.getElementById('studyProgressFill').style.width = `${((idx)/total)*100}%`;
-  const modeLabels = {normal:'Lernen', mistakes:'Fehler', lz:'LZ-Lernen', 'test-quick':'Schnelltest', 'test-full':'Prüfung'};
-  let label = modeLabels[state.studyMode] || '';
-  if (state.studyMode === 'normal' && state.studyTypeFilter === 'math') label = '✏️ Rechnen';
-  else if (state.studyMode === 'normal' && state.studyTypeFilter === 'lecture') label = '📚 Lernen';
-  document.getElementById('studyModeBadge').textContent = label;
+  const trackLabel = state.studyTrack === 'lernen' ? 'Lernen' : 'Schreiben';
+  const modeExtra = state.studyMode === 'mistakes' ? ' · Fehler' : (state.studyMode === 'lz' ? ' · LZ' : '');
+  document.getElementById('studyModeBadge').textContent = trackLabel + modeExtra;
 
   const container = document.getElementById('studyContent');
   const lzInfo = (LZ_INFO[state.topic]||[]).find(l => l.id === c.lz);
@@ -1638,26 +2320,30 @@ function renderStudy(){
       <div class="theory-text">${formatTheory(c.theory)}</div>
       ${c.example ? `<div class="example-box"><span class="label">Beispiel</span>${formatTheory(c.example)}</div>` : ''}
       ${(c.begriffe && c.begriffe.length) ? `<div class="begriffe-box"><span class="label">Begriffe — musst du kennen</span><div class="begriffe-list">${c.begriffe.map(b=>`<span class="begriff-chip">${escapeHtml(b)}</span>`).join('')}</div></div>` : ''}
-      <button class="btn btn-primary mt-4" id="toQuickBtn">Verstanden — Frage 1 →</button>
+      <button class="btn btn-primary mt-4" id="toMcBtn">Verstanden — zu den Fragen →</button>
     `;
-    document.getElementById('toQuickBtn').onclick = ()=>{ state.studyStage = 'quick'; renderStudy(); };
+    document.getElementById('toMcBtn').onclick = ()=>{ state.studyStage = 'mc'; renderStudy(); };
+    show('view-study');
+  }
+  else if (state.studyStage === 'mc'){
+    renderMC(c, lzLabel);   // async — verwaltet eigenes Loading + show()
   }
   else if (state.studyStage === 'quick'){
     renderQuestion(c, lzLabel, 'quick');
+    show('view-study');
   }
   else if (state.studyStage === 'explain'){
     renderQuestion(c, lzLabel, 'explain');
+    show('view-study');
   }
-
-  show('view-study');
 }
 
 function renderQuestion(c, lzLabel, stageKey){
   const container = document.getElementById('studyContent');
   const q = c[stageKey];
-  const isTest = state.studyMode === 'test-quick' || state.studyMode === 'test-full';
+  const isTest = false;
   const pts = stageKey === 'quick' ? PTS_QUICK : PTS_EXPLAIN;
-  const stageName = stageKey === 'quick' ? 'Quick' : 'Explain';
+  const stageName = stageKey === 'quick' ? 'Schreibfrage 1' : 'Schreibfrage 2';
   const qText = stageKey === 'quick' ? q.q : q.prompt;
 
   container.innerHTML = `
@@ -1678,6 +2364,77 @@ function renderQuestion(c, lzLabel, stageKey){
   document.getElementById('qInput').focus();
   document.getElementById('submitBtn').onclick = ()=>submitAnswer(c, stageKey, isTest);
   document.getElementById('aiHelpBtn').onclick = ()=>requestAIHelp(c, stageKey);
+}
+
+/* ================================================================
+   MULTIPLE CHOICE (fest aus MC_BY_ID, lokal ausgewertet — keine KI)
+================================================================ */
+function renderMC(c, lzLabel){
+  const qs = MC_BY_ID[c.id] || [];
+  const container = document.getElementById('studyContent');
+  const head = `
+    <div class="lz-tag">${lzLabel}</div>
+    <div class="stage-pill active">Multiple Choice</div>
+    <div class="concept-title">${escapeHtml(c.title)}</div>
+    ${typeChipHtml(c, true)}`;
+  if (qs.length === 0){
+    container.innerHTML = head + `
+      <div class="feedback feedback-partial mt-3"><div class="fb-title">Keine MC-Fragen</div><div>Für dieses Konzept sind noch keine Multiple-Choice-Fragen hinterlegt.</div></div>
+      <button class="btn btn-primary mt-4" id="mcSkipBtn">Weiter →</button>`;
+    show('view-study');
+    document.getElementById('mcSkipBtn').onclick = ()=>{ recordAnswer(c, 'mc', true, 0); advanceStudy(); };
+    return;
+  }
+  state.currentMC = qs;
+  container.innerHTML = head + `<div id="mcArea">` + qs.map((q, qi)=>`
+    <div class="mc-q" data-qi="${qi}">
+      <div class="q-prompt">${qi+1}. ${escapeHtml(q.q)}</div>
+      <div class="mc-options">
+        ${q.options.map((opt, oi)=>`<label class="mc-option"><input type="radio" name="mcq${qi}" value="${oi}"><span>${escapeHtml(opt)}</span></label>`).join('')}
+      </div>
+    </div>
+  `).join('') + `<button class="btn btn-primary mt-4" id="mcCheckBtn">Auswerten →</button><div id="mcResult"></div></div>`;
+  show('view-study');
+  document.getElementById('mcCheckBtn').onclick = ()=>submitMC(c);
+}
+
+function submitMC(c){
+  const qs = state.currentMC || [];
+  let correctCount = 0;
+  qs.forEach((q, qi)=>{
+    const sel = document.querySelector(`input[name="mcq${qi}"]:checked`);
+    const chosen = sel ? parseInt(sel.value, 10) : -1;
+    if (chosen === q.correct) correctCount++;
+    const block = document.querySelector(`.mc-q[data-qi="${qi}"]`);
+    if (!block) return;
+    block.querySelectorAll('.mc-option').forEach((lab, oi)=>{
+      const input = lab.querySelector('input'); if (input) input.disabled = true;
+      if (oi === q.correct) lab.classList.add('mc-correct');
+      else if (oi === chosen) lab.classList.add('mc-wrong');
+    });
+    if (q.explain){
+      const ex = document.createElement('div');
+      ex.className = 'mc-explain';
+      ex.innerHTML = `<span class="label">${chosen === q.correct ? 'Richtig' : 'Erklärung'}</span>${escapeHtml(q.explain)}`;
+      block.appendChild(ex);
+    }
+  });
+
+  const total = qs.length;
+  const earned = correctCount * PTS_MC;
+  const passed = total ? (correctCount / total) >= 0.5 : false;
+  const checkBtn = document.getElementById('mcCheckBtn');
+  if (checkBtn) checkBtn.style.display = 'none';
+  const last = state.studyIdx === state.studyConcepts.length - 1;
+  document.getElementById('mcResult').innerHTML = `
+    <div class="feedback ${passed ? 'feedback-ok' : 'feedback-partial'}">
+      <div class="fb-title">${correctCount}/${total} richtig${earned ? ` · +${earned} P` : ''}</div>
+      <div>${passed ? 'Gut gemacht — die Theorie sitzt.' : 'Schau dir die markierten Lösungen an und lies die Theorie nochmals.'}</div>
+    </div>
+    <button class="btn btn-primary mt-4" id="mcNextBtn">${last ? 'Session abschließen →' : 'Nächstes Konzept →'}</button>
+  `;
+  recordAnswer(c, 'mc', passed, earned);
+  document.getElementById('mcNextBtn').onclick = ()=>advanceStudy();
 }
 
 function formatTheory(text){
@@ -1711,6 +2468,8 @@ function buildSystemPrompt(c, stageKey){
     context = `Du bist Chemielehrer am Gymnasium (KEN W2A, Schweiz). Du bewertest fair und mit Augenmaß — wie ein guter Lehrer, der versteht, dass Schüler nicht jeden Pflichtpunkt wörtlich nennen können. Wenn die KERNIDEE richtig und das fachliche Verständnis erkennbar ist, ist die Antwort RICHTIG. Tippfehler in Formeln sind ok, solange die richtige Substanz erkennbar ist. Sei großzügig bei Formulierungen, streng nur bei sachlichen Fehlern.`;
   } else if (state.topic === 'geschichte'){
     context = `Du bist Geschichtslehrer am Gymnasium (KEN W2A, Schweiz). Du prüfst VERSTÄNDNIS, nicht Jahreszahl-Auswendiglernen. Bewertet wird: Kausalketten (warum führte X zu Y), Akteurslogik (was wollten die Beteiligten aus IHRER Sicht), Strukturvergleiche (z.B. Helvetik vs. Bundesverfassung, England vs. Schweiz). Eine Antwort ist RICHTIG, wenn die historische Zusammenhangs-Logik erkennbar ist — auch wenn einzelne Begriffe nicht wörtlich auftauchen. Sei großzügig bei Formulierungen, streng nur bei sachlichen Verdrehungen (z.B. Akteure/Phasen falsch zugeordnet, Ursache/Wirkung verdreht). Tippfehler in Eigennamen sind ok.`;
+  } else if (state.topic === 'geografie'){
+    context = `Du bist Geografielehrer am Gymnasium (KEN W2A, Schweiz) im Fach Geografie (Energie & Klimawandel). Du prüfst VERSTÄNDNIS und Zusammenhänge: Treibhauseffekt, Rückkopplungen, Treibhausgase, Kohlenstoffkreislauf, Folgen, Kippelemente, Klimapolitik (Kyoto, Paris, Schweizer Gesetze), Massnahmen und Energie. Eine Antwort ist RICHTIG, wenn die fachliche Kernidee und die Zusammenhänge erkennbar sind — auch wenn nicht jeder Begriff wörtlich vorkommt. Zahlen und Jahreszahlen müssen nur ungefähr (richtige Größenordnung) stimmen. Sei großzügig bei Formulierungen, streng nur bei echten Sachfehlern (z.B. positive und negative Rückkopplung verwechselt, Kyoto und Paris vertauscht, Ursache und Wirkung verdreht).`;
   } else {
     context = `Du bist Lehrer am Gymnasium (KEN W2A, Schweiz) im Fach ${topicName}. Du bewertest fair, mit Augenmaß — Kernidee zählt, nicht jeder einzelne Pflichtpunkt wörtlich.`;
   }
@@ -1842,7 +2601,7 @@ function showAIResult(c, stageKey, ans, result, isTest){
       ${missingHtml}
     </div>
     ${showModel}
-    <button class="btn btn-primary mt-4" id="nextBtn">${nextBtnLabel(stageKey, isTest)}</button>
+    <button class="btn btn-primary mt-4" id="nextBtn">${nextBtnLabel(stageKey)}</button>
   `;
   recordAnswer(c, stageKey, correct, earned);
   document.getElementById('nextBtn').onclick = ()=>advanceStudy();
@@ -1878,11 +2637,8 @@ function showSelfCompareUI(c, stageKey, ans, isTest){
   };
 }
 
-function nextBtnLabel(stageKey, isTest){
-  if (state.studyMode === 'test-quick' || state.studyMode === 'test-full'){
-    return state.studyIdx === state.studyConcepts.length - 1 ? 'Test abschließen →' : 'Nächste Frage →';
-  }
-  if (stageKey === 'quick') return 'Weiter zur Explain-Frage →';
+function nextBtnLabel(stageKey){
+  if (stageKey === 'quick') return 'Weiter zur Schreibfrage 2 →';
   return state.studyIdx === state.studyConcepts.length - 1 ? 'Session abschließen →' : 'Nächstes Konzept →';
 }
 
@@ -1921,21 +2677,24 @@ function recordAnswer(c, stageKey, correct, earned){
 }
 
 function advanceStudy(){
-  const isTest = state.studyMode === 'test-quick' || state.studyMode === 'test-full';
-  if (isTest){
-    state.studyIdx++;
-    if (state.studyIdx >= state.studyConcepts.length){ return finishStudy(); }
-    state.studyStage = 'quick';
-    renderStudy();
+  if (state.studyTrack === 'lernen'){
+    // Lernen: Theorie -> Multiple Choice -> nächstes Konzept
+    if (state.studyStage === 'mc'){
+      state.studyIdx++;
+      if (state.studyIdx >= state.studyConcepts.length){ return finishStudy(); }
+      state.studyStage = 'theory';
+      renderStudy();
+    }
     return;
   }
+  // Schreiben: Schreibfrage 1 (quick) -> Schreibfrage 2 (explain) -> nächstes Konzept
   if (state.studyStage === 'quick'){
     state.studyStage = 'explain';
     renderStudy();
   } else if (state.studyStage === 'explain'){
     state.studyIdx++;
     if (state.studyIdx >= state.studyConcepts.length){ return finishStudy(); }
-    state.studyStage = 'theory';
+    state.studyStage = 'quick';
     renderStudy();
   }
 }
@@ -1945,7 +2704,7 @@ async function requestAIHelp(c, stageKey){
   const resultEl = document.getElementById('qResult');
   helpBtn.disabled = true;
   resultEl.innerHTML = `<div class="loading"><span class="dot"></span> KI denkt nach…</div>`;
-  const teacherRole = state.topic === 'chemie' ? 'Chemielehrer' : (state.topic === 'geschichte' ? 'Geschichtslehrer' : 'Lehrer');
+  const teacherRole = state.topic === 'chemie' ? 'Chemielehrer' : (state.topic === 'geschichte' ? 'Geschichtslehrer' : (state.topic === 'geografie' ? 'Geografielehrer' : 'Lehrer'));
   const sys = `Du bist ein hilfsbereiter ${teacherRole} am Schweizer Gymnasium. Der Schüler steckt fest bei folgendem Konzept:
 KONZEPT: ${c.title}
 FRAGE: ${stageKey === 'quick' ? c.quick.q : c.explain.prompt}
@@ -2012,18 +2771,10 @@ function finishStudy(){
   `;
 
   let msg = '';
-  const isTest = state.studyMode === 'test-quick' || state.studyMode === 'test-full';
-  if (isTest){
-    if (acc >= 90) msg = 'Stark. Das war Prüfungs-Niveau.';
-    else if (acc >= 70) msg = 'Solide — ein paar Schwachstellen noch.';
-    else if (acc >= 50) msg = 'Da geht mehr. Schau dir die Fehler-Konzepte nochmal an.';
-    else msg = 'Nochmal in die Theorie — dann erneut probieren.';
-  } else {
-    if (acc >= 90) msg = 'Sehr gut. Du hast die Konzepte drauf.';
-    else if (acc >= 70) msg = 'Gut gemacht. Weiter so.';
-    else if (acc >= 50) msg = 'Übung macht den Meister — die falschen Konzepte landen in der Fehler-Liste.';
-    else msg = 'Schwierig — geh die Konzepte nochmal in Ruhe durch.';
-  }
+  if (acc >= 90) msg = 'Sehr gut. Du hast die Konzepte drauf.';
+  else if (acc >= 70) msg = 'Gut gemacht. Weiter so.';
+  else if (acc >= 50) msg = 'Übung macht den Meister — die falschen Konzepte landen in der Fehler-Liste.';
+  else msg = 'Schwierig — geh die Konzepte nochmal in Ruhe durch.';
   document.getElementById('endMsg').textContent = msg;
   document.getElementById('endHomeBtn').onclick = ()=>goHome();
   show('view-end');
@@ -2043,17 +2794,18 @@ function renderBrowse(){
   const browseList = document.getElementById('browseList');
   browseList.innerHTML = '';
 
-  // Filter buttons
+  // Filter buttons — nur Typen anzeigen, die im Fach vorkommen (kein "(0)")
   const counts = {all: concepts.length, theorie:0, verständnis:0, rechnung:0};
   concepts.forEach(c=>{ counts[getConceptType(c)]++; });
+  if (browseFilter !== 'all' && !counts[browseFilter]) browseFilter = 'all';
   const filterBar = document.createElement('div');
   filterBar.className = 'type-filters';
-  filterBar.innerHTML = `
-    <button class="type-filter-btn ${browseFilter==='all'?'active':''}" data-flt="all">Alle (${counts.all})</button>
-    <button class="type-filter-btn ${browseFilter==='theorie'?'active':''}" data-flt="theorie">📖 Theorie (${counts.theorie})</button>
-    <button class="type-filter-btn ${browseFilter==='verständnis'?'active':''}" data-flt="verständnis">💭 Verständnis (${counts.verständnis})</button>
-    <button class="type-filter-btn ${browseFilter==='rechnung'?'active':''}" data-flt="rechnung">✏️ Rechnung (${counts.rechnung})</button>
-  `;
+  const mkFlt = (flt, label)=> `<button class="type-filter-btn ${browseFilter===flt?'active':''}" data-flt="${flt}">${label} (${counts[flt]})</button>`;
+  let bar = mkFlt('all','Alle');
+  if (counts.theorie) bar += mkFlt('theorie','Theorie');
+  if (counts['verständnis']) bar += mkFlt('verständnis','Verständnis');
+  if (counts.rechnung) bar += mkFlt('rechnung','Rechnung');
+  filterBar.innerHTML = bar;
   browseList.appendChild(filterBar);
   filterBar.querySelectorAll('[data-flt]').forEach(b=>{
     b.onclick = ()=>{ browseFilter = b.dataset.flt; renderBrowse(); };
@@ -2085,7 +2837,7 @@ function renderBrowse(){
         </div>
         <div class="lz-buttons">
           <button class="btn btn-primary" data-lzlearn="${lz.id}">Lernen</button>
-          <button class="btn btn-secondary" data-lztest="${lz.id}">Test</button>
+          <button class="btn btn-secondary" data-lzwrite="${lz.id}">Schreiben</button>
         </div>
       </div>
     `;
@@ -2094,10 +2846,10 @@ function renderBrowse(){
     browseList.appendChild(block);
   });
   browseList.querySelectorAll('[data-lzlearn]').forEach(b=>{
-    b.onclick = (e)=>{ e.stopPropagation(); startStudy('lz', {lz: b.dataset.lzlearn}); };
+    b.onclick = (e)=>{ e.stopPropagation(); startStudy('lz', {lz: b.dataset.lzlearn, track:'lernen'}); };
   });
-  browseList.querySelectorAll('[data-lztest]').forEach(b=>{
-    b.onclick = (e)=>{ e.stopPropagation(); startStudy('test-full', {lz: b.dataset.lztest}); };
+  browseList.querySelectorAll('[data-lzwrite]').forEach(b=>{
+    b.onclick = (e)=>{ e.stopPropagation(); startStudy('lz', {lz: b.dataset.lzwrite, track:'schreiben'}); };
   });
 }
 
@@ -2166,61 +2918,22 @@ async function goLeaderboard(){
 }
 
 /* ================================================================
-   TEST MENU
-================================================================ */
-function goTestMenu(){
-  document.getElementById('testQuickCard').onclick = ()=>{
-    const concepts = CONCEPTS_BY_TOPIC[state.topic] || [];
-    if (concepts.filter(c=>state.progress[c.id]).length === 0 && concepts.length === 0){
-      alert('Keine Konzepte verfügbar.'); return;
-    }
-    startStudy('test-quick');
-  };
-  document.getElementById('testFullCard').onclick = ()=>{
-    goTestLZSelect();
-  };
-  show('view-testmenu');
-}
-function goTestLZSelect(){
-  const concepts = CONCEPTS_BY_TOPIC[state.topic] || [];
-  const lzList = LZ_INFO[state.topic] || [];
-  const list = document.getElementById('testlzList');
-  list.innerHTML = '';
-  lzList.forEach(lz=>{
-    const count = concepts.filter(c=>c.lz===lz.id).length;
-    const card = document.createElement('div');
-    card.className = 'card card-hover';
-    card.innerHTML = `<div class="topic-card" style="padding:0">
-      <div class="topic-ico">${lz.id.replace('LZ','')}</div>
-      <div class="topic-info"><div class="topic-name">${lz.id}: ${escapeHtml(lz.name)}</div><div class="topic-meta">${count} Konzepte</div></div>
-      <div class="topic-arrow">→</div>
-    </div>`;
-    card.onclick = ()=> startStudy('test-full', {lz: lz.id});
-    list.appendChild(card);
-  });
-  show('view-testlz');
-}
-
-/* ================================================================
    INIT & WIRE UP
 ================================================================ */
 function init(){
   // Wire static handlers
   document.getElementById('logoutBtn').onclick = logout;
-  document.getElementById('startStudyBtn').onclick = ()=>startStudy('normal', {typeFilter:'lecture'});
-  document.getElementById('startMathBtn').onclick = ()=>startStudy('normal', {typeFilter:'math'});
+  document.getElementById('startLernenBtn').onclick = ()=>startStudy('normal', {track:'lernen'});
+  document.getElementById('startSchreibenBtn').onclick = ()=>startStudy('normal', {track:'schreiben'});
   document.getElementById('reviewMistakesBtn').onclick = ()=>{
     if (state.mistakes.length === 0) return;
-    startStudy('mistakes');
+    startStudy('mistakes', {track:'schreiben'});
   };
-  document.getElementById('testModeBtn').onclick = goTestMenu;
   document.getElementById('goBrowse').onclick = goBrowse;
   document.getElementById('goLeaderboard').onclick = goLeaderboard;
   document.getElementById('goSwitchTopic').onclick = goTopicSelect;
   document.getElementById('browseBack').onclick = goHome;
   document.getElementById('lbBack').onclick = goHome;
-  document.getElementById('testBack').onclick = goHome;
-  document.getElementById('testlzBack').onclick = goTestMenu;
 
   // Restore session
   const savedUser = localStorage.getItem(k('user'));
