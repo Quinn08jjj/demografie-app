@@ -103,6 +103,9 @@
   .topic-name{font-weight:600;font-size:17px;margin-bottom:2px}
   .topic-meta{font-size:13px;color:var(--fg-soft)}
   .topic-arrow{font-size:18px;color:var(--fg-muted)}
+  .topic-done{opacity:.55}
+  .topic-done:hover{opacity:.82}
+  .topic-badge{display:inline-block;margin-left:8px;padding:2px 8px;border:1px solid var(--line-strong);border-radius:3px;font-size:11px;font-weight:600;color:var(--fg-soft);vertical-align:middle;letter-spacing:.03em}
 
   /* Home hero */
   .hero{text-align:center;padding:32px 0 24px}
@@ -399,8 +402,8 @@ const MC_COUNT = 4;        // wie viele MC-Fragen pro Konzept generiert werden
    TOPICS & CONTENT
 ================================================================ */
 const TOPICS = [
-  {id:'chemie', name:'Chemie', icon:'C', desc:'Mol, Bindungen, Salze, Labor', active:true},
-  {id:'geschichte', name:'Geschichte', icon:'G', desc:'Französische Revolution, Schweiz 1798–1848, Industrielle Revolution', active:true},
+  {id:'chemie', name:'Chemie', icon:'C', desc:'Mol, Bindungen, Salze, Labor', active:true, done:true},
+  {id:'geschichte', name:'Geschichte', icon:'G', desc:'Französische Revolution, Schweiz 1798–1848, Industrielle Revolution', active:true, done:true},
   {id:'geografie', name:'Geografie', icon:'🌍', desc:'Energie & Klimawandel', active:true},
   {id:'wirtschaft', name:'Wirtschaft', icon:'W', desc:'In Vorbereitung — bald verfügbar', active:false}
 ];
@@ -2172,16 +2175,25 @@ function goTopicSelect(){
   list.innerHTML = '';
   TOPICS.forEach(tp=>{
     const card = document.createElement('div');
-    card.className = 'card topic-card ' + (tp.active ? 'card-hover' : 'card-disabled');
+    let cls = 'card topic-card ';
+    if (!tp.active) cls += 'card-disabled';
+    else if (tp.done) cls += 'card-hover topic-done';
+    else cls += 'card-hover';
+    card.className = cls;
     const concepts = CONCEPTS_BY_TOPIC[tp.id] || [];
-    const meta = tp.active ? `${concepts.length} Konzepte · ${(LZ_INFO[tp.id]||[]).length} Lernziele` : tp.desc;
+    let meta;
+    if (!tp.active) meta = tp.desc;
+    else if (tp.done) meta = `${concepts.length} Konzepte · abgeschlossen`;
+    else meta = `${concepts.length} Konzepte · ${(LZ_INFO[tp.id]||[]).length} Lernziele`;
+    const badge = tp.done ? `<span class="topic-badge">Abgeschlossen</span>` : '';
+    const arrow = !tp.active ? '—' : (tp.done ? '✓' : '→');
     card.innerHTML = `
-      <div class="topic-ico ${tp.active?'active':''}">${tp.icon}</div>
+      <div class="topic-ico ${(tp.active && !tp.done) ? 'active' : ''}">${tp.icon}</div>
       <div class="topic-info">
-        <div class="topic-name">${tp.name}</div>
+        <div class="topic-name">${tp.name}${badge}</div>
         <div class="topic-meta">${meta}</div>
       </div>
-      <div class="topic-arrow">${tp.active ? '→' : '—'}</div>
+      <div class="topic-arrow">${arrow}</div>
     `;
     if (tp.active){
       card.onclick = ()=>{ selectTopic(tp.id); };
