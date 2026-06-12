@@ -164,6 +164,28 @@
   .mc-explain{margin-top:10px;font-size:13px;line-height:1.55;color:var(--fg-soft);border-left:2px solid var(--line-strong);padding-left:12px}
   .mc-explain .label{display:block;margin-bottom:3px}
 
+  /* Creator-Konsole */
+  .cc-stats{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
+  .cc-stat{flex:1;min-width:84px;padding:12px 10px;border:1px solid var(--line);border-radius:8px;text-align:center;background:var(--card-bg)}
+  .cc-stat b{font-family:var(--serif);font-size:22px;font-weight:600;display:block;line-height:1}
+  .cc-stat span{font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:var(--fg-muted)}
+  .cc-filter{width:100%;padding:11px 14px;border:1px solid var(--line-strong);border-radius:6px;font-size:14px;margin:14px 0}
+  .cc-c{border:1px solid var(--line);border-radius:8px;margin-bottom:7px;background:var(--card-bg);overflow:hidden}
+  .cc-c-head{padding:10px 14px;cursor:pointer;display:flex;align-items:center;gap:8px;font-weight:600;font-size:14px}
+  .cc-c-head:hover{background:var(--bg-soft)}
+  .cc-id{font-family:"SF Mono","Menlo",monospace;font-size:11px;color:var(--fg-muted);margin-left:auto}
+  .cc-pill{display:inline-block;font-size:10px;padding:1px 7px;border:1px solid var(--line-strong);border-radius:3px;color:var(--fg-soft)}
+  .cc-c-body{display:none;padding:2px 14px 14px;border-top:1px solid var(--line)}
+  .cc-c.open .cc-c-body{display:block}
+  .cc-sec{margin-top:12px}
+  .cc-label{font-size:10px;text-transform:uppercase;letter-spacing:.07em;color:var(--fg-muted);font-weight:700;margin-bottom:3px}
+  .cc-q{font-size:13.5px;line-height:1.5}
+  .cc-theory{font-size:12.5px;line-height:1.5;white-space:pre-wrap;color:var(--fg-soft);max-height:170px;overflow:auto;border-left:2px solid var(--line);padding-left:10px}
+  .cc-opt{font-size:13px;padding:2px 0 2px 18px;position:relative;color:var(--fg-soft)}
+  .cc-opt.ok{color:var(--fg);font-weight:600}
+  .cc-opt.ok:before{content:"\2713";position:absolute;left:0;color:var(--fg)}
+  .cc-mini{font-size:11.5px;color:var(--fg-muted);margin-top:3px}
+
   /* Feedback boxes */
   .feedback{margin:14px 0;padding:18px;border-radius:8px;font-size:14px;line-height:1.55;animation:slideUp .25s ease}
   @keyframes slideUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
@@ -383,6 +405,16 @@
       <div class="end-msg" id="endMsg">Gut gemacht.</div>
       <button class="btn btn-primary" id="endHomeBtn" style="max-width:280px;margin:0 auto;display:flex">Zurück zur Übersicht</button>
     </div>
+  </section>
+
+  <!-- CREATOR-KONSOLE (über #creator erreichbar, für Schüler verborgen) -->
+  <section class="view" id="view-creator">
+    <span class="back-link" id="creatorBack">← zurück</span>
+    <div class="sect-head"><h1>Creator-Konsole</h1><p class="muted">Alle Inhalte auf einen Blick</p></div>
+    <div class="cc-stats" id="ccStats"></div>
+    <div id="ccLb"></div>
+    <input class="cc-filter" id="ccFilter" placeholder="Filtern: Titel, ID, Fragetext …" autocomplete="off">
+    <div id="ccList"></div>
   </section>
 </div>
 
@@ -4432,6 +4464,82 @@ async function goLeaderboard(){
 /* ================================================================
    INIT & WIRE UP
 ================================================================ */
+/* ================================================================
+   CREATOR-KONSOLE (Inhalts-Übersicht, geöffnet über #creator)
+================================================================ */
+function goCreator(){ renderCreator(); show('view-creator'); }
+function ccEsc(s){ return escapeHtml(String(s==null?'':s)); }
+function renderCreator(){
+  const subjects = TOPICS.filter(t => (CONCEPTS_BY_TOPIC[t.id]||[]).length);
+  let totLZ=0, totC=0, totMC=0;
+  subjects.forEach(t=>{
+    totLZ += (LZ_INFO[t.id]||[]).length;
+    const cs = CONCEPTS_BY_TOPIC[t.id]||[];
+    totC += cs.length;
+    cs.forEach(c=> totMC += (MC_BY_ID[c.id]||[]).length);
+  });
+  const stats = [['Fächer',subjects.length],['Lernziele',totLZ],['Konzepte',totC],['MC-Fragen',totMC],['Schreibfragen',totC*2]];
+  document.getElementById('ccStats').innerHTML = stats.map(s=>`<div class="cc-stat"><b>${s[1]}</b><span>${s[0]}</span></div>`).join('');
+  creatorLeaderboard();
+  window.__ccData = [];
+  subjects.forEach(t => (CONCEPTS_BY_TOPIC[t.id]||[]).forEach(c => window.__ccData.push({topic:t, c})));
+  ccRenderList('');
+  const f = document.getElementById('ccFilter');
+  f.value=''; f.oninput = ()=> ccRenderList(f.value.trim().toLowerCase());
+}
+function ccRenderList(q){
+  const list = document.getElementById('ccList');
+  const items = (window.__ccData||[]).filter(o=>{
+    if(!q) return true;
+    const c=o.c;
+    const hay = (c.id+' '+c.title+' '+((c.quick&&c.quick.q)||'')+' '+((c.explain&&c.explain.prompt)||'')).toLowerCase();
+    return hay.indexOf(q) !== -1;
+  });
+  let html=''; let cur=null;
+  items.forEach(o=>{
+    if(o.topic.id!==cur){ cur=o.topic.id; const n=(CONCEPTS_BY_TOPIC[o.topic.id]||[]).length; html+=`<div class="label" style="margin:16px 0 6px">${ccEsc(o.topic.name)} · ${n} Konzepte</div>`; }
+    html += ccConceptHtml(o.c);
+  });
+  list.innerHTML = items.length ? html : '<div class="empty"><div class="empty-title">Nichts gefunden</div></div>';
+  list.querySelectorAll('.cc-c-head').forEach(h=> h.onclick = ()=> h.parentElement.classList.toggle('open'));
+}
+function ccConceptHtml(c){
+  const mc = MC_BY_ID[c.id]||[];
+  const must = a => (a&&a.length)?`<div class="cc-mini">Stichworte: ${ccEsc(a.join(', '))}</div>`:'';
+  const mcHtml = mc.map((m,i)=>`
+    <div class="cc-sec">
+      <div class="cc-label">Multiple Choice ${i===0?'· einfach':'· schwer'}</div>
+      <div class="cc-q">${ccEsc(m.q)}</div>
+      ${(m.options||[]).map((o,oi)=>`<div class="cc-opt ${oi===m.correct?'ok':''}">${ccEsc(o)}</div>`).join('')}
+      <div class="cc-mini">→ ${ccEsc(m.explain)}</div>
+    </div>`).join('');
+  return `
+   <div class="cc-c">
+     <div class="cc-c-head"><span>${ccEsc(c.title)}</span><span class="cc-pill">${ccEsc(c.lz)}</span><span class="cc-pill">${ccEsc(getConceptType(c))}</span><span class="cc-id">${ccEsc(c.id)}</span></div>
+     <div class="cc-c-body">
+       <div class="cc-sec"><div class="cc-label">Theorie</div><div class="cc-theory">${ccEsc(c.theory)}</div></div>
+       ${c.example?`<div class="cc-sec"><div class="cc-label">Beispiel</div><div class="cc-theory">${ccEsc(c.example)}</div></div>`:''}
+       <div class="cc-sec"><div class="cc-label">Schreibfrage 1 (KI-Korrektur)</div><div class="cc-q">${ccEsc(c.quick&&c.quick.q)}</div>${must(c.quick&&c.quick.mustInclude)}</div>
+       <div class="cc-sec"><div class="cc-label">Schreibfrage 2 (KI-Korrektur)</div><div class="cc-q">${ccEsc(c.explain&&c.explain.prompt)}</div>${must(c.explain&&c.explain.mustInclude)}<div class="cc-label" style="margin-top:6px">Musterlösung</div><div class="cc-theory">${ccEsc(c.explain&&c.explain.model)}</div></div>
+       ${mcHtml}
+     </div>
+   </div>`;
+}
+async function creatorLeaderboard(){
+  const el = document.getElementById('ccLb');
+  el.innerHTML = '<div class="cc-label">Bestenliste (alle Fächer)</div><div class="loading"><span class="dot"></span> lädt…</div>';
+  try{
+    const r = await fetch(PROXY_URL, {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({action:'getLeaderboard'})});
+    const d = await r.json();
+    const all = d.leaderboard || d.entries || d.users || [];
+    const rows = all.map(e=> Array.isArray(e) ? {u:String(e[0]||''), p:Number(e[1])||0} : {u:String(e.user||e.name||''), p:Number(e.points||e.score)||0})
+      .filter(e=> e.u && e.u.indexOf('logins__')!==0)
+      .sort((a,b)=> b.p-a.p).slice(0,25);
+    el.innerHTML = '<div class="cc-label">Bestenliste — alle Fächer (Top 25)</div>' +
+      (rows.length ? rows.map((e,i)=>`<div class="lb-row"><div class="lb-rank">${i+1}</div><div class="lb-name">${ccEsc(e.u)}</div><div class="lb-pts">${e.p}</div></div>`).join('') : '<div class="muted">keine Einträge</div>');
+  }catch(e){ el.innerHTML = '<div class="cc-label">Bestenliste</div><div class="muted">nicht erreichbar</div>'; }
+}
+
 function init(){
   // Wire static handlers
   document.getElementById('logoutBtn').onclick = logout;
@@ -4446,6 +4554,15 @@ function init(){
   document.getElementById('goSwitchTopic').onclick = goTopicSelect;
   document.getElementById('browseBack').onclick = goHome;
   document.getElementById('lbBack').onclick = goHome;
+  document.getElementById('creatorBack').onclick = ()=>{
+    if (history.replaceState) history.replaceState(null, '', location.pathname + location.search);
+    if (state.user && state.topic) goHome();
+    else if (state.user) goTopicSelect();
+    else { initLogin(); show('view-login'); }
+  };
+
+  // Creator-Konsole direkt über #creator öffnen (umgeht Login)
+  if (location.hash === '#creator'){ goCreator(); return; }
 
   // Restore session
   const savedUser = localStorage.getItem(k('user'));
