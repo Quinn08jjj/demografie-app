@@ -186,6 +186,10 @@
   .cc-opt.ok:before{content:"\2713";position:absolute;left:0;color:var(--fg)}
   .cc-mini{font-size:11.5px;color:var(--fg-muted);margin-top:3px}
 
+  /* Wirtschaft-Grafiken */
+  .econ-fig{margin:14px 0;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--card-bg)}
+  .econ-fig svg{display:block;width:100%;height:auto;max-width:380px;margin:0 auto}
+
   /* Feedback boxes */
   .feedback{margin:14px 0;padding:18px;border-radius:8px;font-size:14px;line-height:1.55;animation:slideUp .25s ease}
   @keyframes slideUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
@@ -437,7 +441,7 @@ const TOPICS = [
   {id:'chemie', name:'Chemie', icon:'C', desc:'Mol, Bindungen, Salze, Labor', active:true, done:true},
   {id:'geschichte', name:'Geschichte', icon:'G', desc:'Französische Revolution, Schweiz 1798–1848, Industrielle Revolution', active:true, done:true},
   {id:'geografie', name:'Geografie', icon:'🌍', desc:'Energie & Klimawandel', active:true},
-  {id:'wirtschaft', name:'Wirtschaft', icon:'W', desc:'In Vorbereitung — bald verfügbar', active:false}
+  {id:'wirtschaft', name:'Wirtschaft', icon:'W', desc:'VWL: Markt, Angebot & Nachfrage, Staat', active:true}
 ];
 
 const LZ_INFO = {
@@ -483,6 +487,17 @@ const LZ_INFO = {
     {id:'LZ10', name:'Massnahmen & Strategien'},
     {id:'LZ11', name:'Energieformen & -träger'},
     {id:'LZ12', name:'Energie Schweiz'}
+  ],
+  wirtschaft: [
+    {id:'LZ1', name:'Volkswirtschaft — Grundlagen & Knappheit'},
+    {id:'LZ2', name:'Wirtschaftssysteme & Rolle des Staates'},
+    {id:'LZ3', name:'Volkswirtschaftslehre (VWL)'},
+    {id:'LZ4', name:'Markt & Marktformen'},
+    {id:'LZ5', name:'Nachfrage'},
+    {id:'LZ6', name:'Angebot'},
+    {id:'LZ7', name:'Marktgleichgewicht & Wohlfahrt'},
+    {id:'LZ8', name:'Staatliche Markteingriffe'},
+    {id:'LZ9', name:'Preiselastizität'}
   ]
 };
 
@@ -1709,6 +1724,246 @@ const CONCEPTS_BY_TOPIC = {
     mustInclude:[`Bandenergie konstant Grundlast`,`Spitzenenergie flexibel`,`Atomausstieg`,`Solar und Wind schwanken`]
   }
 }
+  ],
+  wirtschaft: [
+{
+  id:`wirt-lz1-a`, lz:`LZ1`,
+  title:`Volkswirtschaft & Knappheit`,
+  theory:`Eine Volkswirtschaft umfasst alle Einrichtungen, Tätigkeiten und Verfahren, mit denen ein Volk knappe Ressourcen nutzt, um Güter und Dienstleistungen zu produzieren und zu verteilen. Das übergeordnete Ziel ist dabei, die Bedürfnisse der Menschen zu befriedigen.\nDas zentrale Problem jeder Volkswirtschaft ist die Knappheit. Sie entsteht aus einem grundlegenden Missverhältnis: Die Bedürfnisse der Menschen sind grundsätzlich unbegrenzt, während die verfügbaren Ressourcen begrenzt sind.\nGenau dieses Missverhältnis zwingt jede Gesellschaft und jeden Einzelnen zu Auswahl und Priorisierung. Da nicht alle Wünsche gleichzeitig erfüllt werden können, muss entschieden werden, welche Bedürfnisse zuerst befriedigt werden und auf welche verzichtet wird.\nKnappheit ist somit kein vorübergehender Engpass, sondern die dauerhafte Grundbedingung des Wirtschaftens. Ohne Knappheit gäbe es kein ökonomisches Problem und keine Notwendigkeit, Entscheidungen über den Einsatz von Ressourcen zu treffen.`,
+  example:`Ein Schüler hat am Samstag nur begrenzte Zeit. Er möchte gleichzeitig lernen, Sport treiben und Freunde treffen. Weil die Ressource Zeit knapp ist, muss er auswählen und priorisieren, also auf etwas verzichten.`,
+  begriffe:[`Volkswirtschaft`,`Knappheit`,`Ressourcen`,`Bedürfnisse`,`Priorisierung`],
+  quick:{ q:`Warum zwingt Knappheit die Menschen zum Wirtschaften?`, mustInclude:[`Bedürfnisse`,`Ressourcen`,`Auswahl`] },
+  explain:{ prompt:`Erkläre, wie das Verhältnis von Bedürfnissen und Ressourcen zum Grundproblem der Knappheit führt und welche Folge das hat.`, model:`Die Bedürfnisse der Menschen sind unbegrenzt, während die verfügbaren Ressourcen begrenzt sind. Aus diesem Missverhältnis entsteht das zentrale Problem der Knappheit. Weil nicht alle Bedürfnisse gleichzeitig befriedigt werden können, zwingt die Knappheit zu Auswahl und Priorisierung. Es muss also entschieden werden, welche Bedürfnisse Vorrang haben und auf welche verzichtet wird. Eine Volkswirtschaft nutzt dabei knappe Ressourcen, um Güter und Dienstleistungen zu produzieren und zu verteilen. Ziel ist es, die Bedürfnisse der Menschen möglichst gut zu befriedigen.`, mustInclude:[`unbegrenzt`,`begrenzt`,`Knappheit`,`Priorisierung`] }
+},
+{
+  id:`wirt-lz1-b`, lz:`LZ1`,
+  title:`Die drei Grundfragen`,
+  theory:`Jede Volkswirtschaft muss unabhängig von ihrer Organisationsform drei Grundfragen beantworten. Diese ergeben sich unmittelbar aus dem Problem der Knappheit, denn knappe Ressourcen müssen bewusst eingesetzt werden.\nDie erste Frage lautet: WAS soll produziert werden? Es muss entschieden werden, welche Güter und Dienstleistungen hergestellt werden und welche Bedürfnisse dabei Vorrang haben.\nDie zweite Frage lautet: WIE soll produziert werden? Hier geht es um die eingesetzten Technologien und Verfahren sowie darum, wer sich an der Produktion beteiligt.\nDie dritte Frage lautet: FÜR WEN soll produziert werden? Es muss geklärt werden, wer die produzierten Güter erhält, also ob die Verteilung nach Bedarf oder nach Leistung erfolgt.\nAls Merktipp gilt: Was – Wie – Für wen. Man spricht deshalb auch von den drei W-Fragen, die jede Wirtschaftsordnung auf ihre eigene Weise beantwortet.`,
+  example:`In einem Bäckerei-Betrieb zeigt sich: WAS = Brot oder lieber Kuchen? WIE = von Hand oder mit Maschinen? FÜR WEN = Verkauf an zahlende Kunden, also Verteilung nach Leistung beziehungsweise Kaufkraft.`,
+  begriffe:[`Grundfragen`,`Was-Frage`,`Wie-Frage`,`Für-wen-Frage`,`Verteilung`],
+  quick:{ q:`Nenne die drei Grundfragen und ordne ihnen je ein Stichwort zu.`, mustInclude:[`Was`,`Wie`,`Für wen`] },
+  explain:{ prompt:`Beschreibe die drei Grundfragen einer Volkswirtschaft und erkläre, worum es bei jeder geht.`, model:`Jede Volkswirtschaft muss drei Grundfragen beantworten. Die Was-Frage klärt, welche Güter und Dienstleistungen produziert werden und welche Bedürfnisse Vorrang haben. Die Wie-Frage betrifft die Technologien und Verfahren der Produktion sowie die Frage, wer sich daran beteiligt. Die Für-wen-Frage klärt, wer die produzierten Güter erhält, also ob nach Bedarf oder nach Leistung verteilt wird. Zusammengefasst gilt der Merktipp Was – Wie – Für wen, weshalb man von den drei W-Fragen spricht. Jede Wirtschaftsordnung beantwortet diese Fragen auf ihre eigene Weise.`, mustInclude:[`Was`,`Wie`,`Für wen`,`Verteilung`] }
+},
+{
+  id:`wirt-lz1-c`, lz:`LZ1`,
+  title:`Historische Entwicklung der Wirtschaft`,
+  theory:`Die wirtschaftliche Entwicklung der Menschheit lässt sich in acht Epochen gliedern, die jeweils neue Formen der Produktion, des Handels und der Organisation hervorbrachten.\n~~~\n1 Jaeger & Sammler   Subsistenz, keine Institutionen\n2 Neolith. Revolution sesshafte Landwirtschaft, Stadtstaaten\n3 Antike Hochkulturen Handel/Seidenstrasse, Muenzsysteme\n4 Feudalismus         Dreifelderwirtschaft, Zuenfte, Kirche\n5 Kolon./Merkantilism. Expansion, Dreieckshandel, Absolutismus\n6 Industrie/Kapitalism Dampfmaschine, Fabriken, Proletariat\n7 Info/Globalisierung  Digitalisierung, UNO/WTO/IWF\n8 Zukunft KI/Nachhalt. Automatisierung, Klimawandel, Plattform\n~~~\nVon der reinen Selbstversorgung der Jäger und Sammler führte der Weg über die sesshafte Landwirtschaft, den überregionalen Handel der Antike und die ständische Ordnung des Feudalismus.\nMit Kolonialismus, Industrialisierung und Globalisierung wurde die Wirtschaft zunehmend vernetzt. Die Zukunft prägen Künstliche Intelligenz und Nachhaltigkeit.\nAls Merkhilfe für die Reihenfolge dient: J-N-A-F-K-I-I-K.`,
+  example:`Die Dampfmaschine steht beispielhaft für das Industriezeitalter: Sie ermöglichte Fabriken und liess eine neue Klasse entstehen, das Proletariat.`,
+  begriffe:[`Epochen`,`Subsistenz`,`Feudalismus`,`Industrialisierung`,`Globalisierung`],
+  quick:{ q:`Bringe drei Epochen in die richtige Reihenfolge und nenne je ein Merkmal.`, mustInclude:[`Epochen`,`Reihenfolge`,`Merkmal`] },
+  explain:{ prompt:`Skizziere die historische Entwicklung der Wirtschaft entlang der acht Epochen mit je einem Kennzeichen.`, model:`Die Entwicklung beginnt bei den Jägern und Sammlern, die in reiner Subsistenz ohne Institutionen lebten. Mit der Neolithischen Revolution entstanden sesshafte Landwirtschaft und erste Stadtstaaten. In den Antiken Hochkulturen prägten Handel, etwa über die Seidenstrasse, und Münzsysteme die Wirtschaft. Der Feudalismus brachte Dreifelderwirtschaft, Zünfte und die Macht der Kirche. Es folgten Kolonialismus und Merkantilismus mit Expansion und Dreieckshandel sowie das Industriezeitalter mit Dampfmaschine, Fabriken und Proletariat. Das Informationszeitalter steht für Digitalisierung und Globalisierung mit Organisationen wie UNO, WTO und IWF. Die Zukunft schliesslich ist von Künstlicher Intelligenz und Nachhaltigkeit geprägt. Als Merkhilfe dient die Reihenfolge J-N-A-F-K-I-I-K.`, mustInclude:[`Subsistenz`,`Feudalismus`,`Industriezeitalter`,`Globalisierung`] }
+},
+{
+  id:`wirt-lz2-a`, lz:`LZ2`,
+  title:`Die drei Wirtschaftssysteme`,
+  svgKey:`spectrum`,
+  theory:`Wirtschaftssysteme lassen sich auf einem Spektrum zwischen zwei Polen anordnen: links die freie Marktwirtschaft, rechts die Planwirtschaft, in der Mitte als Mischsystem die soziale Marktwirtschaft. Die Grafik zeigt diesen Übergang als Pfeil von einem Extrem zum anderen.\nIn der freien Marktwirtschaft entscheiden private Unternehmen, was produziert wird. Der Markt steuert das Geschehen, die Preise bilden sich allein durch Angebot und Nachfrage, und es herrscht Privateigentum. Vorteil ist die hohe Effizienz und Innovationskraft, Nachteil sind Ungleichheit und mögliche Monopole. Historisches Beispiel sind die USA.\nIn der Planwirtschaft entscheidet der Staat alles, er setzt auch die Preise fest, und es gilt Staatseigentum. Vorteil sind Planbarkeit und Vollbeschäftigung, Nachteil sind Ineffizienz und Mangelwirtschaft. Beispiele sind die DDR und Nordkorea.\nDie soziale Marktwirtschaft verbindet beides: Staat und Private wirken zusammen, der Markt wird durch staatliche Eingriffe ergänzt, neben Privatbesitz bestehen Staatsbetriebe. Vorteil ist die Balance zwischen Freiheit und Gerechtigkeit, Nachteil ist die Bürokratie. Beispiele sind die Schweiz und Deutschland.`,
+  begriffe:[`Freie Marktwirtschaft`,`Planwirtschaft`,`Soziale Marktwirtschaft`,`Angebot und Nachfrage`,`Privateigentum`,`Staatseigentum`,`Mischsystem`],
+  quick:{ q:`Wer bestimmt in der freien Marktwirtschaft, was produziert wird, und wie entstehen die Preise?`, mustInclude:[`private Unternehmen`,`Markt`,`Angebot`,`Nachfrage`] },
+  explain:{ prompt:`Vergleiche die drei Wirtschaftssysteme hinsichtlich Entscheidungsträger, Preisbildung und Eigentum und ordne sie auf dem Spektrum ein.`, model:`Auf dem Spektrum steht links die freie Marktwirtschaft, rechts die Planwirtschaft und in der Mitte als Mischsystem die soziale Marktwirtschaft. In der freien Marktwirtschaft entscheiden private Unternehmen, die Preise bilden sich durch Angebot und Nachfrage, und es herrscht Privateigentum. In der Planwirtschaft entscheidet der Staat alles, er setzt die Preise fest, und es gilt Staatseigentum. Die soziale Marktwirtschaft verbindet beide Pole: Staat und Private entscheiden gemeinsam, der Markt wird durch staatliche Eingriffe ergänzt, und neben Privatbesitz bestehen Staatsbetriebe. So steht Effizienz dem Schutz vor Ungleichheit gegenüber, während die soziale Marktwirtschaft eine Balance anstrebt. Beispiele sind die USA, die DDR sowie die Schweiz und Deutschland.`, mustInclude:[`freie Marktwirtschaft`,`Planwirtschaft`,`soziale Marktwirtschaft`,`Angebot und Nachfrage`,`Staat`,`Privateigentum`] }
+},
+{
+  id:`wirt-lz2-b`, lz:`LZ2`,
+  title:`Soziale Marktwirtschaft & Staatsfunktionen`,
+  svgKey:`stateFunctions`,
+  theory:`Die Schweiz hat eine soziale Marktwirtschaft, in der der Staat lenkend eingreift. Ihm kommen drei Grundfunktionen zu, die die Grafik gegenüberstellt.\nDie Allokation sorgt dafür, dass Ressourcen effizient verteilt und gelenkt werden, etwa beim Bau von Strassen oder bei Bildung und Gesundheit. Die Umverteilung gleicht die Einkommensungleichheit aus, zum Beispiel über Steuern, Sozialhilfe und Renten. Die Stabilisation soll Konjunkturschwankungen abmildern, etwa durch Zinssenkungen oder Konjunkturprogramme.\nUm diese Funktionen zu erfüllen, stehen dem Staat vier Massnahmen der Wirtschaftspolitik zur Verfügung. Erstens kann er Rechtsvorschriften erlassen, etwa das Arbeitsgesetz mit maximal 50 Stunden pro Woche. Zweitens kann er selbst als Marktteilnehmer auftreten, etwa über die SBB oder die Energie- und Wasserversorgung. Drittens gestaltet er das Steuersystem, beispielsweise mit der progressiven Einkommenssteuer und der Vermögenssteuer. Viertens ergreift er direkte Massnahmen, etwa Direktzahlungen an die Landwirtschaft oder Überbrückungskredite während Covid.`,
+  example:`Während der Covid-Pandemie senkte der Staat über Überbrückungskredite und Kurzarbeitsentschädigung gezielt die Belastung der Unternehmen. Das ist eine direkte Massnahme, die zugleich die Funktion der Stabilisation erfüllt.`,
+  begriffe:[`Allokation`,`Umverteilung`,`Stabilisation`,`Wirtschaftspolitik`,`Rechtsvorschriften`,`Marktteilnehmer`,`Steuersystem`,`Konjunktur`],
+  quick:{ q:`Nenne die drei Funktionen des Staates und ordne jeder ein Beispiel zu.`, mustInclude:[`Allokation`,`Umverteilung`,`Stabilisation`] },
+  explain:{ prompt:`Erkläre die drei Staatsfunktionen und zeige an je einem Beispiel, mit welchen Massnahmen der Staat sie umsetzt.`, model:`Der Staat hat drei Grundfunktionen. Die Allokation verteilt und lenkt Ressourcen effizient, etwa beim Bau von Strassen oder bei Bildung und Gesundheit. Die Umverteilung gleicht die Einkommensungleichheit aus, zum Beispiel über Steuern, Sozialhilfe und Renten. Die Stabilisation mildert Konjunkturschwankungen ab, etwa durch Zinssenkungen oder Konjunkturprogramme. Dazu nutzt der Staat vier Massnahmen der Wirtschaftspolitik. Er erlässt Rechtsvorschriften wie das Arbeitsgesetz, tritt als Marktteilnehmer auf wie bei der SBB, gestaltet das Steuersystem über die progressive Einkommenssteuer und ergreift direkte Massnahmen wie Direktzahlungen an die Landwirtschaft. So verbindet die soziale Marktwirtschaft Markt und staatliche Lenkung.`, mustInclude:[`Allokation`,`Umverteilung`,`Stabilisation`,`Wirtschaftspolitik`,`Rechtsvorschriften`,`Steuersystem`] }
+},
+{
+  id:`wirt-lz2-c`, lz:`LZ2`,
+  title:`Direktzahlungen in der Landwirtschaft`,
+  theory:`Seit 1993 hat der Bund die Förderung der Landwirtschaft grundlegend umgestellt. Bauern erhalten staatliche Gelder nicht mehr für die produzierte Menge, sondern für erbrachte Gemeinwohlleistungen. Dazu zählen der Schutz der Artenvielfalt, das Tierwohl, die Unterstützung von Betrieben in Berggebieten und eine umweltfreundliche Produktion.\nDer Umfang dieser Direktzahlungen beträgt rund 2,8 Milliarden CHF pro Jahr. Das System gilt jedoch als sehr komplex und verursacht viel Bürokratie, weshalb immer wieder Reformen gefordert werden.\nAus Sicht der Staatsfunktionen erfüllen die Direktzahlungen zwei Aufgaben: die Allokation, da Ressourcen gezielt gelenkt werden, und die Umverteilung, da das Einkommen der Bauern gesichert wird.\nDie rechtliche Grundlage bildet Artikel 104 der Bundesverfassung. Er nennt vier Hauptaufgaben des Bundes: die sichere Versorgung der Bevölkerung, die Erhaltung der natürlichen Lebensgrundlagen und der Kulturlandschaft, die dezentrale Besiedlung des Landes sowie die Förderung einer nachhaltigen und marktgerichteten Produktion.`,
+  example:`Ein Bergbauer, der seine Wiesen extensiv bewirtschaftet und seltene Pflanzenarten schützt, erhält Direktzahlungen für diese Gemeinwohlleistung, auch wenn er dadurch weniger Milch oder Fleisch produziert als ein Betrieb im Tal.`,
+  begriffe:[`Direktzahlungen`,`Gemeinwohlleistungen`,`Artenvielfalt`,`Tierwohl`,`Allokation`,`Umverteilung`,`Artikel 104 BV`,`Bürokratie`],
+  quick:{ q:`Wofür erhalten Bauern seit 1993 Direktzahlungen, und welche zwei Staatsfunktionen werden damit erfüllt?`, mustInclude:[`Gemeinwohlleistungen`,`Allokation`,`Umverteilung`] },
+  explain:{ prompt:`Erkläre das System der Direktzahlungen seit 1993, seinen Umfang und seine rechtliche Grundlage und ordne es den Staatsfunktionen zu.`, model:`Seit 1993 erhalten Bauern Direktzahlungen nicht mehr für die produzierte Menge, sondern für erbrachte Gemeinwohlleistungen wie den Schutz der Artenvielfalt, das Tierwohl, die Unterstützung von Berggebieten und eine umweltfreundliche Produktion. Der Umfang beträgt rund 2,8 Milliarden CHF pro Jahr, doch das System ist komplex und verursacht viel Bürokratie. Aus Sicht der Staatsfunktionen erfüllen die Direktzahlungen die Allokation, da Ressourcen gelenkt werden, und die Umverteilung, da das Einkommen der Bauern gesichert wird. Die rechtliche Grundlage bildet Artikel 104 der Bundesverfassung, der die sichere Versorgung, die Erhaltung der Lebensgrundlagen und Kulturlandschaft, die dezentrale Besiedlung und die nachhaltige, marktgerichtete Produktion als Aufgaben nennt.`, mustInclude:[`Gemeinwohlleistungen`,`2,8 Milliarden`,`Allokation`,`Umverteilung`,`Artikel 104`] }
+},
+{
+  id:`wirt-lz3-a`, lz:`LZ3`,
+  title:`VWL — Begriff & Zweck`,
+  theory:`Die Volkswirtschaftslehre (VWL) ist die Wissenschaft, die untersucht, wie knappe Ressourcen genutzt werden, um die Bedürfnisse der Gesellschaft bestmöglich zu befriedigen. Im Zentrum steht also das Grundproblem der Knappheit: Die Mittel sind begrenzt, die Bedürfnisse aber praktisch unbegrenzt.\nWichtig ist die Unterscheidung zwischen zwei Begriffen: Die Volkswirtschaft (englisch economy) bezeichnet das Wirtschaftssystem selbst, also die Gesamtheit der wirtschaftlichen Vorgänge in einem Land. Die Volkswirtschaftslehre (englisch economics) ist dagegen die Wissenschaft, die dieses System untersucht und erklärt.\nDie VWL betreibt zwei Arten von Forschung. Die beschreibende Forschung fragt: Was passiert? Sie stellt zum Beispiel fest, dass zwischen Männern und Frauen Einkommensunterschiede existieren. Die erklärende Forschung fragt dagegen: Warum passiert es? Sie sucht nach den Ursachen, also warum diese Einkommensunterschiede bestehen. Beschreibung und Erklärung ergänzen sich: Zuerst muss man wissen, was geschieht, bevor man ergründen kann, warum es geschieht.`,
+  example:`Beschreibend: Frauen verdienen im Durchschnitt weniger als Männer. Erklärend: Warum ist das so (z.B. Branchenwahl, Teilzeit, Diskriminierung)?`,
+  begriffe:[`Volkswirtschaftslehre (VWL)`,`Volkswirtschaft (economy)`,`Knappheit`,`beschreibende Forschung`,`erklärende Forschung`,`Bedürfnisse`],
+  quick:{ q:`Was ist der Unterschied zwischen Volkswirtschaft und Volkswirtschaftslehre?`, mustInclude:[`Volkswirtschaft`,`System`,`Wissenschaft`] },
+  explain:{ prompt:`Erkläre, was die Volkswirtschaftslehre ist und welche zwei Arten von Forschung sie betreibt.`, model:`Die Volkswirtschaftslehre ist die Wissenschaft, die untersucht, wie knappe Ressourcen genutzt werden, um die Bedürfnisse der Gesellschaft bestmöglich zu befriedigen. Man muss sie von der Volkswirtschaft unterscheiden: Die Volkswirtschaft ist das Wirtschaftssystem selbst, die Volkswirtschaftslehre ist die Wissenschaft davon. Die VWL betreibt zwei Arten von Forschung. Die beschreibende Forschung fragt, was passiert, etwa dass Einkommensunterschiede zwischen Männern und Frauen existieren. Die erklärende Forschung fragt, warum etwas passiert, also warum diese Unterschiede bestehen. Beide Arten ergänzen sich, weil man zuerst wissen muss, was geschieht, bevor man erklären kann, warum.`, mustInclude:[`Wissenschaft`,`knappe Ressourcen`,`beschreibende`,`erklärende`] }
+},
+{
+  id:`wirt-lz3-b`, lz:`LZ3`,
+  title:`Geschichte der Volkswirtschaftslehre`,
+  theory:`Die Geschichte der VWL lässt sich in vier Phasen gliedern (Merkhilfe KNKA: Klassik – Neoklassik – Keynes – Aktuell).\nDie klassische Tradition geht auf Adam Smith und David Ricardo zurück. Smith prägte das Bild der unsichtbaren Hand: Der freie Markt reguliert sich selbst, wenn jeder seinen Eigennutz verfolgt. Ricardo entwickelte die Theorie der komparativen Kostenvorteile. Karl Marx trat als Kritiker des Kapitalismus auf.\nDie neoklassische Tradition entstand Ende des 19. Jahrhunderts (Walras, Marshall, Pareto). Sie arbeitet mit mathematischer Modellierung und nimmt rationale Akteure an, die ihren Nutzen bzw. Gewinn maximieren.\nDer Keynesianismus entstand in den 1930er-Jahren nach der Weltwirtschaftskrise. John Maynard Keynes argumentierte, dass in Krisen staatliche Eingriffe nötig sind. Er gilt als Begründer der Makroökonomie.\nAktuelle Ansätze sind unter anderem die Verhaltensökonomie, die neue Institutionenökonomik, die Post-Keynesianer sowie Themen wie Nachhaltigkeit und Digitalisierung.`,
+  example:`Komparative Kostenvorteile (Ricardo): Auch wenn ein Land alles günstiger produziert, lohnt sich Handel, wenn jedes Land sich auf das spezialisiert, was es relativ am besten kann.`,
+  begriffe:[`klassische Tradition`,`unsichtbare Hand`,`komparative Kostenvorteile`,`neoklassische Tradition`,`Keynesianismus`,`Makroökonomie`,`KNKA`],
+  quick:{ q:`Wofür steht die Merkhilfe KNKA und in welcher Reihenfolge?`, mustInclude:[`Klassik`,`Neoklassik`,`Keynes`] },
+  explain:{ prompt:`Beschreibe die vier Phasen der VWL-Geschichte und ordne je einen zentralen Vertreter oder Gedanken zu.`, model:`Die VWL-Geschichte gliedert sich in vier Phasen (Merkhilfe KNKA). Die klassische Tradition geht auf Adam Smith zurück, der das Bild der unsichtbaren Hand und des sich selbst regulierenden freien Marktes prägte; David Ricardo entwickelte die komparativen Kostenvorteile. Die neoklassische Tradition entstand Ende des 19. Jahrhunderts und arbeitet mit mathematischer Modellierung und rationalen, nutzenmaximierenden Akteuren. Der Keynesianismus entstand in den 1930er-Jahren nach der Weltwirtschaftskrise; John Maynard Keynes forderte staatliche Eingriffe in Krisen und begründete die Makroökonomie. Aktuelle Ansätze sind etwa die Verhaltensökonomie und die neue Institutionenökonomik sowie Nachhaltigkeit und Digitalisierung.`, mustInclude:[`klassische`,`neoklassische`,`Keynesianismus`,`Makroökonomie`] }
+},
+{
+  id:`wirt-lz3-c`, lz:`LZ3`,
+  title:`Schwierigkeiten der VWL`,
+  theory:`Die VWL stösst auf drei zentrale Schwierigkeiten.\nErstens die Datensammlung: Es ist schwierig, alle relevanten Daten zu erheben. Daten sind oft veraltet, unvollständig oder verzerrt. Anders als im Physik-Labor lassen sich in der Wirtschaft keine sauberen Kontrollgruppen bilden, weil man eine ganze Volkswirtschaft nicht unter Laborbedingungen testen kann.\nZweitens die Interpretation: Dieselben Daten können je nach Ideologie unterschiedlich gedeutet werden. Besonders wichtig ist der Grundsatz, dass Kausalität nicht gleich Korrelation ist. Beispiel: Steigende Eiskrem-Verkäufe und die Zahl der Ertränkungen steigen gemeinsam an. Es gibt aber keinen Kausalzusammenhang, denn beide hängen von einer dritten Grösse ab, nämlich der Hitze.\nDrittens der Pluralismus: Es gibt kein Patentrezept. Verschiedene Theorien sind in verschiedenen Situationen sinnvoll. Das Bild der Blinden und des Elefanten verdeutlicht dies: Jeder ertastet nur einen Teil und beschreibt damit nur einen Ausschnitt der Realität.`,
+  example:`Korrelation ohne Kausalität: Eiskrem-Verkäufe und Ertränkungen steigen zusammen, weil beide von der Hitze abhängen, nicht weil das eine das andere verursacht.`,
+  begriffe:[`Datensammlung`,`Kontrollgruppen`,`Interpretation`,`Ideologie`,`Kausalität`,`Korrelation`,`Pluralismus`],
+  quick:{ q:`Warum gilt der Grundsatz Kausalität ist nicht gleich Korrelation? Nenne das Eiskrem-Beispiel.`, mustInclude:[`Korrelation`,`Kausalität`,`Hitze`] },
+  explain:{ prompt:`Erkläre die drei Schwierigkeiten der VWL und veranschauliche die Interpretationsschwierigkeit am Eiskrem-Beispiel.`, model:`Die VWL hat drei zentrale Schwierigkeiten. Erstens die Datensammlung: Daten sind schwer zu erheben und oft veraltet, unvollständig oder verzerrt, und anders als im Physik-Labor lassen sich keine Kontrollgruppen bilden. Zweitens die Interpretation: Dieselben Daten werden je nach Ideologie unterschiedlich gedeutet, und Kausalität ist nicht gleich Korrelation. So steigen Eiskrem-Verkäufe und Ertränkungen gemeinsam an, doch das eine verursacht nicht das andere; beide hängen von der Hitze ab. Drittens der Pluralismus: Es gibt kein Patentrezept, verschiedene Theorien passen zu verschiedenen Situationen. Das Bild der Blinden und des Elefanten zeigt, dass jeder nur einen Teil der Realität erfasst.`, mustInclude:[`Datensammlung`,`Interpretation`,`Korrelation`,`Pluralismus`] }
+},
+{
+  id:`wirt-lz4-a`, lz:`LZ4`,
+  title:`Markt & zahlungskräftige Nachfrage`,
+  theory:`Ein Markt ist jedes Zusammentreffen von Angebot und Nachfrage. Das kann ein physischer Ort sein, etwa ein Wochenmarkt, aber auch etwas Abstraktes wie ein Online-Marktplatz oder die Börse. Entscheidend ist nicht der Ort, sondern dass Anbieter und Nachfrager aufeinandertreffen.\nFür das Verständnis des Marktes ist eine Unterscheidung zentral: Ein Bedürfnis oder Konsumwunsch bedeutet nur, dass jemand etwas haben will. Eine Nachfrage liegt erst dann vor, wenn jemand etwas haben will UND es sich auch leisten kann. Nachfrage setzt also zweierlei voraus: Kaufkraft (das nötige Geld) und Kaufwille (die Absicht zu kaufen).\nDaraus folgt der wichtige Merksatz: Auf dem Markt zählt nur die zahlungskräftige Nachfrage, nicht das blosse Bedürfnis. Wer sich ein Gut zwar wünscht, es aber nicht bezahlen kann, tritt am Markt nicht als Nachfrager auf. Für das Marktgeschehen ist deshalb allein die zahlungskräftige Nachfrage relevant.`,
+  example:`Jemand möchte ein teures Auto (Bedürfnis), hat aber kein Geld dafür. Am Markt zählt er nicht als Nachfrager, weil die Kaufkraft fehlt.`,
+  begriffe:[`Markt`,`Angebot`,`Nachfrage`,`Bedürfnis/Konsumwunsch`,`Kaufkraft`,`Kaufwille`,`zahlungskräftige Nachfrage`],
+  quick:{ q:`Was unterscheidet ein blosses Bedürfnis von einer Nachfrage?`, mustInclude:[`Bedürfnis`,`Kaufkraft`,`Kaufwille`] },
+  explain:{ prompt:`Erkläre, was ein Markt ist und warum auf dem Markt nur die zahlungskräftige Nachfrage zählt.`, model:`Ein Markt ist jedes Zusammentreffen von Angebot und Nachfrage, ob physisch wie ein Wochenmarkt oder abstrakt wie eine Online-Plattform. Wichtig ist die Unterscheidung zwischen Bedürfnis und Nachfrage. Ein Bedürfnis oder Konsumwunsch heisst nur, dass jemand etwas haben will. Eine Nachfrage liegt erst vor, wenn die Person das Gut haben will und es sich auch leisten kann, also Kaufkraft und Kaufwille zusammenkommen. Deshalb gilt der Merksatz, dass auf dem Markt nur die zahlungskräftige Nachfrage zählt, nicht das blosse Bedürfnis. Wer ein Gut nicht bezahlen kann, tritt am Markt nicht als Nachfrager auf.`, mustInclude:[`Markt`,`Bedürfnis`,`Kaufkraft`,`zahlungskräftige Nachfrage`] }
+},
+{
+  id:`wirt-lz4-b`, lz:`LZ4`,
+  title:`Marktformen nach Gegenstand`,
+  theory:`Zwischen Unternehmen und Haushalten unterscheidet man drei Märkte, je nachdem, was auf ihnen gehandelt wird.\nAuf dem Gütermarkt werden Waren und Dienstleistungen gehandelt. Anbieter sind die Unternehmen, Nachfrager die Haushalte (z.B. Supermarkt, Amazon).\nAuf dem Arbeitsmarkt wird die Arbeitskraft gehandelt. Hier kehren sich die Rollen um: Anbieter sind die Haushalte bzw. Arbeitnehmer, Nachfrager die Unternehmen bzw. Arbeitgeber (z.B. Stellenmarkt).\nAuf dem Kapitalmarkt wird Kapital gehandelt. Anbieter sind die Haushalte mit ihren Ersparnissen, Nachfrager die Unternehmen, die Investitionen finanzieren wollen (z.B. Börse, Bank).\n~~~\nMarkt        | Anbieter            | Nachfrager\nGuetermarkt  | Unternehmen         | Haushalte\nArbeitsmarkt | Haushalte (AN)      | Unternehmen (AG)\nKapitalmarkt | Haushalte (Spar.)   | Unternehmen (Invest.)\n~~~\nWichtig ist, dass Haushalte je nach Markt einmal als Nachfrager (Gütermarkt) und einmal als Anbieter (Arbeits- und Kapitalmarkt) auftreten.`,
+  example:`Eine Person kauft im Supermarkt ein (Gütermarkt, Nachfrager), arbeitet bei einer Firma (Arbeitsmarkt, Anbieter) und legt Erspartes bei der Bank an (Kapitalmarkt, Anbieter).`,
+  begriffe:[`Gütermarkt`,`Arbeitsmarkt`,`Kapitalmarkt`,`Anbieter`,`Nachfrager`,`Haushalte`,`Unternehmen`],
+  quick:{ q:`Wer ist auf dem Arbeitsmarkt Anbieter und wer Nachfrager?`, mustInclude:[`Haushalte`,`Unternehmen`,`Arbeitsmarkt`] },
+  explain:{ prompt:`Nenne die drei Märkte zwischen Unternehmen und Haushalten und gib jeweils Anbieter und Nachfrager an.`, model:`Zwischen Unternehmen und Haushalten unterscheidet man drei Märkte. Auf dem Gütermarkt werden Waren und Dienstleistungen gehandelt; Anbieter sind die Unternehmen, Nachfrager die Haushalte. Auf dem Arbeitsmarkt wird die Arbeitskraft gehandelt; hier sind die Haushalte als Arbeitnehmer die Anbieter und die Unternehmen als Arbeitgeber die Nachfrager. Auf dem Kapitalmarkt wird Kapital gehandelt; Anbieter sind die Haushalte mit ihren Ersparnissen, Nachfrager die Unternehmen, die Investitionen finanzieren. So treten die Haushalte auf dem Gütermarkt als Nachfrager, auf dem Arbeits- und Kapitalmarkt aber als Anbieter auf.`, mustInclude:[`Gütermarkt`,`Arbeitsmarkt`,`Kapitalmarkt`,`Haushalte`] }
+},
+{
+  id:`wirt-lz4-c`, lz:`LZ4`,
+  title:`Marktformen nach Teilnehmern & vollständige Konkurrenz`,
+  theory:`Märkte lassen sich auch nach der Zahl der Anbieter und Nachfrager einteilen. Bei vielen Anbietern spricht man vom Polypol (vollständige Konkurrenz), bei wenigen vom Oligopol, bei einem einzigen vom Monopol.\nDie vollständige Konkurrenz (Polypol) ist ein Modell mit vier Bedingungen:\n1. Viele Anbieter und Nachfrager, sodass kein Einzelner den Preis beeinflussen kann.\n2. Homogene Güter, also einheitliche Qualität ohne Unterschiede.\n3. Vollständige Information, das heisst alle kennen Preise und Qualitäten.\n4. Freier Marktein- und -austritt ohne Eintrittsbarrieren.\nIn der Realität ist dieses Modell selten ganz erfüllt. Der Weltmarkt für Weizen kommt ihm aber nahe. Ein Monopol liegt vor, wenn es nur einen Anbieter gibt (z.B. das Stromleitungsnetz). Ein Oligopol bedeutet wenige Anbieter (z.B. Migros, Coop, Aldi im Detailhandel). Beim monopolistischen Wettbewerb gibt es viele Anbieter mit differenzierten Gütern (z.B. Sportschuhe von Nike, Adidas, Puma).`,
+  example:`Weizen-Weltmarkt: viele Anbieter, sehr ähnliches Gut, viel Markttransparenz – kommt der vollständigen Konkurrenz nahe. Sportschuhe dagegen sind monopolistischer Wettbewerb, weil die Marken sich unterscheiden.`,
+  begriffe:[`Polypol`,`Oligopol`,`Monopol`,`vollständige Konkurrenz`,`homogene Güter`,`vollständige Information`,`monopolistischer Wettbewerb`],
+  quick:{ q:`Nenne die vier Bedingungen der vollständigen Konkurrenz.`, mustInclude:[`viele Anbieter`,`homogene Güter`,`vollständige Information`,`Marktein`] },
+  explain:{ prompt:`Erkläre die Marktformen nach Teilnehmerzahl und nenne die vier Bedingungen der vollständigen Konkurrenz.`, model:`Nach der Zahl der Teilnehmer unterscheidet man Marktformen: viele Anbieter ergeben ein Polypol (vollständige Konkurrenz), wenige ein Oligopol und ein einziger ein Monopol. Die vollständige Konkurrenz hat vier Bedingungen: erstens viele Anbieter und Nachfrager, sodass kein Einzelner den Preis beeinflussen kann; zweitens homogene Güter mit einheitlicher Qualität; drittens vollständige Information, sodass alle Preise und Qualitäten kennen; viertens freier Marktein- und -austritt ohne Eintrittsbarrieren. Der Weltmarkt für Weizen kommt diesem Modell nahe. Ein Monopol ist etwa das Stromleitungsnetz, ein Oligopol der Detailhandel mit Migros, Coop und Aldi, und beim monopolistischen Wettbewerb gibt es viele Anbieter mit differenzierten Gütern wie bei Sportschuhen.`, mustInclude:[`Polypol`,`Oligopol`,`Monopol`,`homogene Güter`] }
+},
+{
+  id:`wirt-lz5-a`, lz:`LZ5`,
+  title:`Die Nachfragekurve`,
+  svgKey:`demand`,
+  theory:`Das Gesetz der Nachfrage beschreibt das Verhalten der Konsumenten: Steigt der Preis eines Gutes, so sinkt die nachgefragte Menge; sinkt der Preis, so steigt die nachgefragte Menge. Dieser Zusammenhang gilt jeweils unter der Annahme ceteris paribus, also wenn alle anderen Einflussfaktoren unverändert bleiben.\nGrafisch wird dieser Zusammenhang durch eine fallende Kurve dargestellt. Auf der Y-Achse wird der Preis abgetragen, auf der X-Achse die Menge. Die Kurve verläuft negativ geneigt von links oben nach rechts unten. Bei einem sehr hohen Preis sinkt die nachgefragte Menge auf null. Umgekehrt gibt es selbst bei einem Preis von null eine Sättigungsmenge: Mehr als diese Menge wird auch gratis nicht nachgefragt.\nMathematisch lässt sich die Nachfrage als lineare Funktion P = a mal Q plus b darstellen, wobei die Steigung a kleiner als null ist (negative Steigung). Dass der Preis auf der Y-Achse steht, ist eine historische Konvention, die auf den Ökonomen Alfred Marshall (1890) zurückgeht.`,
+  example:`Bei einem Konzertticket für 500 Franken kaufen nur wenige; sinkt der Preis auf 50 Franken, steigt die nachgefragte Menge stark an.`,
+  begriffe:[`Gesetz der Nachfrage`,`ceteris paribus`,`Sättigungsmenge`,`negative Steigung`],
+  quick:{ q:`Wie verläuft die Nachfragekurve und warum?`, mustInclude:[`fallend`,`Preis`,`Menge`] },
+  explain:{ prompt:`Erkläre das Gesetz der Nachfrage und den Verlauf der Nachfragekurve.`, model:`Das Gesetz der Nachfrage besagt, dass bei steigendem Preis die nachgefragte Menge sinkt und bei sinkendem Preis steigt. Dies gilt unter der Annahme ceteris paribus, also bei unveränderten übrigen Faktoren. Grafisch ergibt sich daraus eine fallende Kurve, die negativ geneigt von links oben nach rechts unten verläuft. Auf der Y-Achse steht der Preis, auf der X-Achse die Menge. Bei einem sehr hohen Preis sinkt die nachgefragte Menge auf null. Selbst bei einem Preis von null gibt es eine Sättigungsmenge, die nicht überschritten wird. Mathematisch entspricht dies einer linearen Funktion mit negativer Steigung.`, mustInclude:[`Gesetz der Nachfrage`,`ceteris paribus`,`fallend`,`Sättigungsmenge`] }
+},
+{
+  id:`wirt-lz5-b`, lz:`LZ5`,
+  title:`Bewegung auf der Kurve vs. Verschiebung`,
+  svgKey:`demandShift`,
+  theory:`Eine zentrale Unterscheidung in der Mikroökonomie betrifft die Frage, ob sich die nachgefragte Menge entlang der Kurve oder die ganze Kurve verschiebt. Ändert sich nur der Preis des Gutes selbst, so bewegt man sich auf der gleichen Nachfragekurve (Bewegung auf der Kurve). Ändert sich hingegen ein anderer Faktor, so verschiebt sich die gesamte Kurve (Verschiebung).\nGrafisch zeigt eine Rechtsverschiebung eine höhere Nachfrage: Bei jedem Preis wird nun eine grössere Menge nachgefragt. Auslöser dafür sind ein höheres Einkommen, höhere Preise von Substitutionsgütern, tiefere Preise von Komplementärgütern, eine höhere Nutzeneinschätzung, eine grössere Bevölkerung oder erwartete Preissteigerungen.\nSubstitutionsgüter sind ersetzbare Güter wie Butter und Margarine: Steigt der Preis von Gut A, steigt die Nachfrage nach Gut B. Komplementärgüter sind ergänzende Güter wie Drucker und Toner: Steigt der Preis von Gut A, sinkt die Nachfrage nach Gut B. Eine Linksverschiebung bedeutet entsprechend eine geringere Nachfrage.`,
+  example:`Steigt der Butterpreis, kaufen viele mehr Margarine (Substitut) — die Nachfragekurve nach Margarine verschiebt sich nach rechts.`,
+  begriffe:[`Bewegung auf der Kurve`,`Verschiebung`,`Substitutionsgüter`,`Komplementärgüter`],
+  quick:{ q:`Wann bewegt man sich auf der Kurve, wann verschiebt sie sich?`, mustInclude:[`Preis`,`Bewegung`,`Verschiebung`] },
+  explain:{ prompt:`Erkläre den Unterschied zwischen einer Bewegung auf der Nachfragekurve und einer Verschiebung der Kurve.`, model:`Ändert sich nur der Preis des Gutes selbst, bewegt man sich auf der gleichen Nachfragekurve; dies nennt man Bewegung auf der Kurve. Ändert sich dagegen ein anderer Faktor, verschiebt sich die gesamte Kurve. Eine Rechtsverschiebung bedeutet mehr Nachfrage und wird etwa durch höheres Einkommen, höhere Preise von Substitutionsgütern oder tiefere Preise von Komplementärgütern ausgelöst. Substitutionsgüter sind ersetzbare Güter wie Butter und Margarine: Steigt der Preis von A, steigt die Nachfrage nach B. Komplementärgüter sind ergänzende Güter wie Drucker und Toner: Steigt der Preis von A, sinkt die Nachfrage nach B.`, mustInclude:[`Bewegung auf der Kurve`,`Verschiebung`,`Substitutionsgüter`,`Komplementärgüter`] }
+},
+{
+  id:`wirt-lz6-a`, lz:`LZ6`,
+  title:`Die Angebotskurve`,
+  svgKey:`supply`,
+  theory:`Das Gesetz des Angebots beschreibt das Verhalten der Anbieter: Steigt der Preis eines Gutes, so steigt die angebotene Menge; sinkt der Preis, so sinkt die angebotene Menge. Auch hier gilt die Annahme ceteris paribus, also unveränderte übrige Einflussfaktoren.\nGrafisch wird dies durch eine steigende Kurve dargestellt, die positiv geneigt von links unten nach rechts oben verläuft. Auf der Y-Achse steht wiederum der Preis, auf der X-Achse die Menge. Die Logik dahinter: Ein höherer Preis bedeutet einen höheren Ertrag pro verkaufter Einheit. Deshalb lohnt es sich für die Produzenten, mehr zu produzieren und anzubieten. Auch Anbieter mit höheren Produktionskosten können bei einem höheren Preis kostendeckend produzieren.\nMathematisch lässt sich das Angebot als lineare Funktion P = a mal Q plus b darstellen, wobei die Steigung a grösser als null ist (positive Steigung). Angebots- und Nachfragekurve verlaufen also spiegelbildlich: die eine fällt, die andere steigt.`,
+  example:`Steigt der Marktpreis für Weizen, bauen Landwirte mehr Weizen an und bieten eine grössere Menge an.`,
+  begriffe:[`Gesetz des Angebots`,`positive Steigung`,`Ertrag pro Einheit`,`ceteris paribus`],
+  quick:{ q:`Wie verläuft die Angebotskurve und warum?`, mustInclude:[`steigend`,`Preis`,`Menge`] },
+  explain:{ prompt:`Erkläre das Gesetz des Angebots und den Verlauf der Angebotskurve.`, model:`Das Gesetz des Angebots besagt, dass bei steigendem Preis die angebotene Menge steigt und bei sinkendem Preis sinkt. Dies gilt unter der Annahme ceteris paribus. Grafisch ergibt sich eine steigende Kurve, die positiv geneigt von links unten nach rechts oben verläuft. Auf der Y-Achse steht der Preis, auf der X-Achse die Menge. Die Logik dahinter ist, dass ein höherer Preis einen höheren Ertrag pro Einheit bedeutet, weshalb es sich lohnt, mehr zu produzieren. Mathematisch entspricht dies einer linearen Funktion mit positiver Steigung.`, mustInclude:[`Gesetz des Angebots`,`steigend`,`Ertrag pro Einheit`,`positive Steigung`] }
+},
+{
+  id:`wirt-lz6-b`, lz:`LZ6`,
+  title:`Verschiebungen der Angebotskurve`,
+  svgKey:`supplyShift`,
+  theory:`Wie bei der Nachfrage muss auch beim Angebot zwischen einer Bewegung auf der Kurve und einer Verschiebung der Kurve unterschieden werden. Ändert sich nur der Preis des Gutes selbst, bewegt man sich auf der Kurve. Ändern sich andere Faktoren, verschiebt sich die ganze Kurve.\nGrafisch bedeutet eine Rechtsverschiebung mehr Angebot: Bei jedem Preis wird eine grössere Menge angeboten. Auslöser sind tiefere Produktionskosten (etwa tiefere Löhne oder Zinsen), technologischer Fortschritt, staatliche Subventionen oder Steuersenkungen, positive externe Effekte wie eine gute Ernte sowie neue Anbieter, die in den Markt eintreten.\nEine Linksverschiebung bedeutet umgekehrt weniger Angebot: Bei jedem Preis wird eine kleinere Menge angeboten. Auslöser sind höhere Produktionskosten (etwa höhere Löhne oder teurere Rohstoffe), Steuererhöhungen, negative externe Effekte wie ein Streik oder eine Dürre sowie Anbieter, die den Markt verlassen.`,
+  example:`Eine neue Maschine senkt die Produktionskosten einer Fabrik — das Angebot steigt, die Kurve verschiebt sich nach rechts.`,
+  begriffe:[`Rechtsverschiebung`,`Linksverschiebung`,`Produktionskosten`,`technologischer Fortschritt`],
+  quick:{ q:`Was verschiebt die Angebotskurve nach rechts?`, mustInclude:[`Produktionskosten`,`Angebot`,`rechts`] },
+  explain:{ prompt:`Nenne und erkläre Faktoren, die zu einer Rechts- bzw. Linksverschiebung der Angebotskurve führen.`, model:`Eine Rechtsverschiebung der Angebotskurve bedeutet mehr Angebot, da bei jedem Preis eine grössere Menge angeboten wird. Auslöser sind tiefere Produktionskosten wie tiefere Löhne oder Zinsen, technologischer Fortschritt, staatliche Subventionen oder Steuersenkungen, positive externe Effekte wie eine gute Ernte sowie neue Anbieter. Eine Linksverschiebung bedeutet weniger Angebot. Auslöser sind höhere Produktionskosten wie höhere Löhne oder teurere Rohstoffe, Steuererhöhungen, negative externe Effekte wie ein Streik oder eine Dürre sowie Anbieter, die den Markt verlassen.`, mustInclude:[`Rechtsverschiebung`,`Linksverschiebung`,`Produktionskosten`,`technologischer Fortschritt`] }
+},
+{
+  id:`wirt-lz7-a`, lz:`LZ7`,
+  title:`Das Marktgleichgewicht`,
+  svgKey:`equilibrium`,
+  theory:`Das Marktgleichgewicht ist der Punkt, in dem sich Angebot und Nachfrage treffen. Grafisch ist es der Schnittpunkt von Angebots- und Nachfragekurve. Das Gleichgewicht wird durch den Gleichgewichtspreis P Stern und die Gleichgewichtsmenge M Stern beschrieben.\nLiegt der Preis über P Stern, also zu hoch, ist das Angebot grösser als die Nachfrage. Es entsteht ein Angebotsüberschuss: Die Anbieter bleiben auf ihrer Ware sitzen und senken die Preise. Liegt der Preis unter P Stern, also zu tief, ist die Nachfrage grösser als das Angebot. Es entsteht ein Nachfrageüberschuss: Die Nachfrager bieten mehr, um das knappe Gut zu erhalten, und der Preis steigt. In beiden Fällen bewegt sich der Markt von selbst zurück zum Gleichgewicht.\nIm Gleichgewicht stimmen alle Kaufwünsche mit allen Verkaufswünschen überein. Es gibt weder Überschuss noch Knappheit, und es werden keine Ressourcen verschwendet. Der Markt ist in diesem Punkt effizient.`,
+  example:`Bei einem Preis über P Stern türmen sich unverkaufte Waren — die Händler senken den Preis, bis der Angebotsüberschuss verschwindet.`,
+  begriffe:[`Marktgleichgewicht`,`Angebotsüberschuss`,`Nachfrageüberschuss`,`Gleichgewichtspreis`],
+  quick:{ q:`Was passiert bei einem Preis über dem Gleichgewichtspreis?`, mustInclude:[`Angebotsüberschuss`,`Preis`,`sinkt`] },
+  explain:{ prompt:`Erkläre das Marktgleichgewicht und was bei einem zu hohen oder zu tiefen Preis geschieht.`, model:`Das Marktgleichgewicht ist der Schnittpunkt von Angebots- und Nachfragekurve und wird durch den Gleichgewichtspreis P Stern und die Gleichgewichtsmenge M Stern beschrieben. Liegt der Preis über P Stern, ist das Angebot grösser als die Nachfrage, und es entsteht ein Angebotsüberschuss; die Anbieter senken daraufhin die Preise. Liegt der Preis unter P Stern, ist die Nachfrage grösser als das Angebot, und es entsteht ein Nachfrageüberschuss; die Nachfrager bieten mehr, und der Preis steigt. Im Gleichgewicht stimmen alle Kaufwünsche mit allen Verkaufswünschen überein, und der Markt ist effizient.`, mustInclude:[`Marktgleichgewicht`,`Angebotsüberschuss`,`Nachfrageüberschuss`,`effizient`] }
+},
+{
+  id:`wirt-lz7-b`, lz:`LZ7`,
+  title:`Marktveränderungen analysieren`,
+  svgKey:`equilibriumShift`,
+  theory:`Um zu analysieren, wie sich ein Markt verändert, hilft eine 3-Schritt-Methode. Schritt 1: Man fragt, ob sich die Angebotskurve, die Nachfragekurve oder beide verschieben. Schritt 2: Man bestimmt die Richtung der Verschiebung, also nach rechts oder nach links. Schritt 3: Man bestimmt das neue Gleichgewicht, also den neuen Gleichgewichtspreis P Stern und die neue Gleichgewichtsmenge M Stern.\nAls Beispiel dient der Markt für E-Bikes. Schritt 1: Die Wertschätzung der Konsumenten für E-Bikes steigt, also ist die Nachfrage betroffen. Schritt 2: Eine höhere Wertschätzung bedeutet mehr Nachfrage, die Nachfragekurve verschiebt sich nach rechts. Schritt 3: Grafisch liegt das neue Gleichgewicht höher und weiter rechts. Sowohl P Stern als auch M Stern steigen.\nDiese Methode lässt sich auf jede Marktveränderung anwenden und macht auch komplexe Fälle übersichtlich.`,
+  example:`Steigt die Wertschätzung für E-Bikes, verschiebt sich die Nachfrage nach rechts — P Stern und M Stern steigen beide.`,
+  begriffe:[`3-Schritt-Methode`,`Verschiebung`,`neues Gleichgewicht`,`Nachfrage`],
+  quick:{ q:`Wie analysiert man eine Marktveränderung in drei Schritten?`, mustInclude:[`Kurve`,`Richtung`,`Gleichgewicht`] },
+  explain:{ prompt:`Erkläre die 3-Schritt-Methode zur Analyse von Marktveränderungen am Beispiel der E-Bikes.`, model:`Die 3-Schritt-Methode hilft, Marktveränderungen zu analysieren. In Schritt 1 fragt man, ob sich die Angebots-, die Nachfragekurve oder beide verschieben. In Schritt 2 bestimmt man die Richtung der Verschiebung, also nach rechts oder links. In Schritt 3 bestimmt man das neue Gleichgewicht mit P Stern und M Stern. Beim Beispiel der E-Bikes steigt die Wertschätzung der Konsumenten, also ist die Nachfrage betroffen. Eine höhere Wertschätzung bedeutet mehr Nachfrage, die Nachfragekurve verschiebt sich nach rechts. Das neue Gleichgewicht liegt höher und weiter rechts, sodass P Stern und M Stern beide steigen.`, mustInclude:[`3-Schritt-Methode`,`Nachfrage`,`rechts`,`neues Gleichgewicht`] }
+},
+{
+  id:`wirt-lz7-c`, lz:`LZ7`,
+  title:`Konsumenten- & Produzentenrente`,
+  svgKey:`surplus`,
+  theory:`Die Konsumentenrente und die Produzentenrente messen den Nutzen, den Käufer und Verkäufer aus einem Markt ziehen. Die Konsumentenrente (KR) ist die Differenz zwischen der maximalen Zahlungsbereitschaft der Konsumenten und dem tatsächlich bezahlten Marktpreis. Grafisch ist sie das Dreieck über dem Marktpreis und unter der Nachfragekurve. Wer bereit gewesen wäre, mehr zu zahlen, aber nur den Marktpreis bezahlt, macht einen Gewinn an Nutzen.\nDie Produzentenrente (PR) ist die Differenz zwischen dem Marktpreis und dem Preis, zu dem der Produzent mindestens anbieten würde. Grafisch ist sie das Dreieck unter dem Marktpreis und über der Angebotskurve.\nDie Gesamtwohlfahrt ist die Summe aus Konsumenten- und Produzentenrente (KR plus PR). Beim Gleichgewichtspreis ist die Gesamtwohlfahrt maximal. Jede Abweichung vom Gleichgewicht, etwa durch staatliche Eingriffe, führt zu einem Wohlfahrtsverlust, weil mögliche vorteilhafte Tauschgeschäfte nicht zustande kommen.`,
+  example:`Wer für ein Ticket bis 80 Franken zahlen würde, es aber für 50 Franken bekommt, erzielt 30 Franken Konsumentenrente.`,
+  begriffe:[`Konsumentenrente`,`Produzentenrente`,`Gesamtwohlfahrt`,`Wohlfahrtsverlust`],
+  quick:{ q:`Was ist die Konsumentenrente in der Grafik?`, mustInclude:[`Zahlungsbereitschaft`,`Marktpreis`,`Nachfragekurve`] },
+  explain:{ prompt:`Erkläre Konsumentenrente, Produzentenrente und Gesamtwohlfahrt.`, model:`Die Konsumentenrente ist die Differenz zwischen der maximalen Zahlungsbereitschaft der Konsumenten und dem tatsächlich bezahlten Marktpreis; grafisch ist sie das Dreieck über dem Marktpreis und unter der Nachfragekurve. Die Produzentenrente ist die Differenz zwischen dem Marktpreis und dem Preis, zu dem der Produzent mindestens anbieten würde; grafisch ist sie das Dreieck unter dem Marktpreis und über der Angebotskurve. Die Gesamtwohlfahrt ist die Summe aus Konsumenten- und Produzentenrente. Beim Gleichgewichtspreis ist die Gesamtwohlfahrt maximal, und jede Abweichung führt zu einem Wohlfahrtsverlust.`, mustInclude:[`Konsumentenrente`,`Produzentenrente`,`Gesamtwohlfahrt`,`Wohlfahrtsverlust`] }
+},
+{
+  id:`wirt-lz8-a`, lz:`LZ8`,
+  title:`Indirekte Steuer`,
+  svgKey:`tax`,
+  theory:`Eine indirekte Steuer wird nicht direkt beim Einkommen erhoben, sondern auf den Verkauf eines Gutes aufgeschlagen. Sie wirkt auf der Angebotsseite: Für die Produzenten bedeutet die Steuer höhere Kosten pro verkaufter Einheit. Deshalb verschiebt sich die Angebotskurve nach LINKS, genauer gesagt um den Steuerbetrag nach oben.\nDie Grafik zeigt diese Linksverschiebung: Das neue Gleichgewicht liegt bei einem höheren Preis und einer kleineren Menge M Stern. Wichtig ist die Aufspaltung des Preises. Die Käufer zahlen einen höheren Preis P_K, die Verkäufer erhalten nach Abzug der Steuer einen tieferen Preis P_V. Die Differenz zwischen P_K und P_V ist genau die Steuer, die der Staat einnimmt (Steueraufkommen).\nAuch die Wohlfahrt verändert sich: Sowohl die Konsumentenrente als auch die Produzentenrente sinken. Ein Teil dieser Rente fliesst als Steuer an den Staat, ein anderer Teil geht jedoch ganz verloren. Dieser Verlust heisst Wohlfahrtsverlust und entsteht, weil Handel, der ohne Steuer stattgefunden hätte, nun unterbleibt.`,
+  example:`Mineralölsteuer auf Benzin und Tabaksteuer auf Zigaretten: Der Verkaufspreis steigt, der Staat nimmt die Differenz ein.`,
+  begriffe:[`Indirekte Steuer`,`Angebotsverschiebung`,`Käuferpreis P_K`,`Verkäuferpreis P_V`,`Steueraufkommen`,`Wohlfahrtsverlust`],
+  quick:{ q:`In welche Richtung verschiebt sich die Angebotskurve bei einer indirekten Steuer und was passiert mit der Gleichgewichtsmenge?`, mustInclude:[`links`,`Menge`,`sinkt`] },
+  explain:{ prompt:`Erkläre, wie eine indirekte Steuer den Markt verändert und wer welchen Preis trägt.`, model:`Eine indirekte Steuer erhöht die Produktionskosten und verschiebt die Angebotskurve nach links. Dadurch steigt der Gleichgewichtspreis und die Menge M Stern sinkt. Die Käufer zahlen einen höheren Preis P_K, die Verkäufer erhalten nach Abzug der Steuer einen tieferen Preis P_V. Die Differenz zwischen P_K und P_V ist die Steuer, die der Staat einnimmt. Konsumentenrente und Produzentenrente sinken, und es entsteht ein Wohlfahrtsverlust. Beispiele sind die Mineralölsteuer auf Benzin und die Tabaksteuer.`, mustInclude:[`links`,`P_K`,`P_V`,`Wohlfahrtsverlust`] }
+},
+{
+  id:`wirt-lz8-b`, lz:`LZ8`,
+  title:`Subvention`,
+  svgKey:`subsidy`,
+  theory:`Eine Subvention ist eine staatliche Unterstützung, die hier auf der Angebotsseite ansetzt. Sie senkt die Produktionskosten der Anbieter, denn ein Teil der Kosten wird vom Staat übernommen. Deshalb verschiebt sich die Angebotskurve nach RECHTS. Eine Subvention ist also gewissermassen das Gegenteil einer indirekten Steuer.\nDie Grafik zeigt die Rechtsverschiebung der Angebotskurve: Das neue Gleichgewicht liegt bei einem tieferen Preis und einer grösseren Menge M Stern. Auch hier spaltet sich der Preis auf. Die Konsumenten zahlen einen tieferen Preis P_K, während die Produzenten inklusive Subvention einen höheren Preis P_V erhalten. Die Differenz zwischen P_V und P_K trägt der Staat als Subventionsausgabe.\nSubventionen werden eingesetzt, um bestimmte Branchen oder Güter zu fördern, deren Produktion politisch erwünscht ist. Sie belasten allerdings den Staatshaushalt und können dazu führen, dass mehr produziert wird, als ohne Eingriff markträumend wäre.`,
+  example:`Direktzahlungen an die Schweizer Landwirtschaft und die Förderung erneuerbarer Energien wie Photovoltaik senken die Kosten der Produzenten.`,
+  begriffe:[`Subvention`,`Angebotsverschiebung`,`Käuferpreis P_K`,`Verkäuferpreis P_V`,`Subventionsausgaben`,`Staatshaushalt`],
+  quick:{ q:`In welche Richtung verschiebt eine Subvention die Angebotskurve und wie verändert sich die Gleichgewichtsmenge?`, mustInclude:[`rechts`,`Menge`,`steigt`] },
+  explain:{ prompt:`Erkläre, wie eine Subvention auf der Angebotsseite den Markt verändert und wer welchen Preis erhält.`, model:`Eine Subvention senkt die Produktionskosten und verschiebt die Angebotskurve nach rechts. Dadurch sinkt der Gleichgewichtspreis und die Menge M Stern steigt. Die Konsumenten zahlen einen tieferen Preis P_K, während die Produzenten inklusive Subvention einen höheren Preis P_V erhalten. Die Differenz trägt der Staat als Subventionsausgabe. Beispiele sind die Direktzahlungen an die Schweizer Landwirtschaft und die Förderung erneuerbarer Energien wie der Photovoltaik.`, mustInclude:[`rechts`,`P_K`,`P_V`,`Staat`] }
+},
+{
+  id:`wirt-lz8-c`, lz:`LZ8`,
+  title:`Höchstpreis`,
+  svgKey:`maxPrice`,
+  theory:`Ein Höchstpreis ist eine staatlich festgelegte Preisobergrenze: Ein Gut darf nicht teurer verkauft werden. Damit ein Höchstpreis überhaupt wirkt, muss er UNTER dem Gleichgewichtspreis liegen. Liegt er darüber, hat er keine Wirkung, weil sich der Markt ohnehin beim tieferen Gleichgewichtspreis einpendelt.\nDie Grafik zeigt die Folge: Beim tiefen Höchstpreis ist die nachgefragte Menge grösser als die angebotene Menge. Es entsteht ein Nachfrageüberschuss. Der günstige Preis lockt viele Käufer an, gleichzeitig lohnt sich die Produktion für die Anbieter weniger, sodass das Angebot zurückgeht.\nIn der Realität führt dies zu Engpässen: Es bilden sich Wartelisten, ein Schwarzmarkt kann entstehen, auf dem höhere Preise verlangt werden, und die Qualität der Güter sinkt, weil die Anbieter unter Preisdruck sparen. Der gut gemeinte Eingriff schafft so neue Probleme.`,
+  example:`Der Mietpreisdeckel in Berlin von 2020 bis 2021 und die Regulierung von Medikamentenpreisen sind Beispiele für Höchstpreise.`,
+  begriffe:[`Höchstpreis`,`Preisobergrenze`,`Nachfrageüberschuss`,`Schwarzmarkt`,`Wartelisten`],
+  quick:{ q:`Wo muss ein Höchstpreis liegen, damit er wirkt, und welcher Überschuss entsteht?`, mustInclude:[`unter`,`Gleichgewichtspreis`,`Nachfrageüberschuss`] },
+  explain:{ prompt:`Erkläre, wie ein Höchstpreis wirkt und welche Folgen er in der Realität hat.`, model:`Ein Höchstpreis ist eine Preisobergrenze und wirkt nur, wenn er unter dem Gleichgewichtspreis festgesetzt wird. Dann ist die nachgefragte Menge grösser als die angebotene, es entsteht ein Nachfrageüberschuss. Der tiefe Preis erhöht die Nachfrage und senkt zugleich das Angebot. In der Realität führt das zu Engpässen, Wartelisten, einem Schwarzmarkt und sinkender Qualität. Beispiele sind der Mietpreisdeckel in Berlin und die Medikamentenpreisregulierung.`, mustInclude:[`unter`,`Gleichgewichtspreis`,`Nachfrageüberschuss`,`Schwarzmarkt`] }
+},
+{
+  id:`wirt-lz8-d`, lz:`LZ8`,
+  title:`Mindestpreis`,
+  svgKey:`minPrice`,
+  theory:`Ein Mindestpreis ist eine staatlich festgelegte Preisuntergrenze: Ein Gut darf nicht billiger verkauft werden. Damit ein Mindestpreis überhaupt wirkt, muss er ÜBER dem Gleichgewichtspreis liegen. Liegt er darunter, hat er keine Wirkung, weil sich der Markt ohnehin beim höheren Gleichgewichtspreis einpendelt.\nDie Grafik zeigt die Folge: Beim hohen Mindestpreis ist die angebotene Menge grösser als die nachgefragte Menge. Es entsteht ein Angebotsüberschuss. Der attraktive Preis lockt viele Anbieter an, gleichzeitig schreckt der hohe Preis Käufer ab, sodass die Nachfrage zurückgeht.\nDie Folge ist eine Überschussproduktion. Damit der Mindestpreis gehalten werden kann, muss der Staat häufig eingreifen, indem er die überschüssige Menge aufkauft oder die Produktion zusätzlich subventioniert. So entstehen Kosten für die Allgemeinheit, während ein Mindestpreis gleichzeitig Einkommen sichern soll.`,
+  example:`Die Milchpreisgarantie in der Schweiz und der Mindestlohn sind Beispiele für Mindestpreise.`,
+  begriffe:[`Mindestpreis`,`Preisuntergrenze`,`Angebotsüberschuss`,`Überschussproduktion`,`Mindestlohn`],
+  quick:{ q:`Wo muss ein Mindestpreis liegen, damit er wirkt, und welcher Überschuss entsteht?`, mustInclude:[`über`,`Gleichgewichtspreis`,`Angebotsüberschuss`] },
+  explain:{ prompt:`Erkläre, wie ein Mindestpreis wirkt und welche Folgen er hat.`, model:`Ein Mindestpreis ist eine Preisuntergrenze und wirkt nur, wenn er über dem Gleichgewichtspreis festgesetzt wird. Dann ist die angebotene Menge grösser als die nachgefragte, es entsteht ein Angebotsüberschuss. Der hohe Preis macht das Angebot attraktiv und senkt zugleich die Nachfrage. So kommt es zu einer Überschussproduktion, die der Staat aufkaufen oder subventionieren muss. Beispiele sind die Milchpreisgarantie in der Schweiz und der Mindestlohn.`, mustInclude:[`über`,`Gleichgewichtspreis`,`Angebotsüberschuss`,`Überschussproduktion`] }
+},
+{
+  id:`wirt-lz9-a`, lz:`LZ9`,
+  title:`Preiselastizität der Nachfrage`,
+  svgKey:`elasticity`,
+  theory:`Die Preiselastizität der Nachfrage misst, wie stark die nachgefragte Menge auf eine Preisänderung reagiert. Sie berechnet sich als prozentuale Veränderung der Nachfrage geteilt durch die prozentuale Veränderung des Preises.\nWegen des Gesetzes der Nachfrage bewegen sich Preis und Menge gegenläufig, deshalb ist das Vorzeichen immer negativ. Man arbeitet daher mit dem Betrag |E|. Beispiel: Steigt der Preis um 10 Prozent und sinkt die Nachfrage um 15 Prozent, so ist E = -15/10 = -1,5.\nFür die Interpretation gilt: Bei |E| = 0 ist die Nachfrage vollkommen unelastisch (senkrechte Kurve). Bei 0 < |E| < 1 ist sie unelastisch, die Kurve verläuft steil, etwa bei Milch mit -0,3 oder Benzin mit -0,4. Bei |E| = 1 ist sie einheitselastisch. Bei |E| > 1 ist sie elastisch, die Kurve verläuft flach, etwa bei Tafelbutter mit -1,5. Bei |E| = unendlich ist sie vollkommen elastisch (waagrechte Kurve).\nDie Grafik zeigt eine steile, unelastische und eine flache, elastische Kurve im Vergleich.`,
+  example:`Benzin reagiert mit -0,4 unelastisch: Steigt der Preis, sinkt die nachgefragte Menge nur wenig. Tafelbutter ist mit -1,5 elastisch.`,
+  begriffe:[`Preiselastizität`,`Betrag |E|`,`unelastisch`,`elastisch`,`einheitselastisch`,`Gesetz der Nachfrage`],
+  quick:{ q:`Wie berechnet sich die Preiselastizität der Nachfrage und warum arbeitet man mit dem Betrag?`, mustInclude:[`prozentuale`,`Menge`,`Preis`,`negativ`] },
+  explain:{ prompt:`Erkläre, was die Preiselastizität der Nachfrage misst und wie man elastisch von unelastisch unterscheidet.`, model:`Die Preiselastizität der Nachfrage misst, wie stark die nachgefragte Menge auf eine Preisänderung reagiert. Sie ist die prozentuale Veränderung der Nachfrage geteilt durch die prozentuale Veränderung des Preises. Wegen des Gesetzes der Nachfrage ist das Vorzeichen immer negativ, deshalb arbeitet man mit dem Betrag |E|. Ist |E| kleiner als 1, ist die Nachfrage unelastisch und die Kurve steil, etwa bei Benzin mit -0,4. Ist |E| grösser als 1, ist sie elastisch und die Kurve flach, etwa bei Tafelbutter mit -1,5. Bei |E| = 1 ist die Nachfrage einheitselastisch.`, mustInclude:[`prozentuale`,`negativ`,`unelastisch`,`elastisch`] }
+},
+{
+  id:`wirt-lz9-b`, lz:`LZ9`,
+  title:`Einflussfaktoren & andere Elastizitäten`,
+  theory:`Ob die Nachfrage elastisch oder unelastisch ist, hängt von mehreren Faktoren ab. Die Nachfrage ist eher elastisch (|E| > 1), wenn günstige Substitute verfügbar sind, wenn es sich um ein Luxusgut handelt, das nicht notwendig ist, oder wenn das Gut sehr spezifisch ist, etwa eine bestimmte Marke, die leicht ersetzt werden kann. Eher unelastisch (|E| < 1) ist die Nachfrage, wenn keine Substitute existieren, wenn das Gut lebensnotwendig ist (Wasser, Medikamente), wenn es nur einen kleinen Anteil am Budget ausmacht oder wenn es suchtauslösend ist (Zigaretten). Die Schlüsselregel lautet: Je mehr Alternativen, desto elastischer.\nNeben der Preiselastizität gibt es weitere Elastizitäten. Die Einkommenselastizität ist positiv bei normalen Gütern (mehr Einkommen führt zu mehr Nachfrage) und negativ bei inferioren Gütern (mehr Einkommen führt zu weniger Nachfrage). Die Kreuzpreiselastizität ist positiv bei Substituten und negativ bei Komplementärgütern. Die Preiselastizität des Angebots ist hoch, wenn Produzenten schnell mehr produzieren können, und niedrig etwa in der Landwirtschaft.`,
+  example:`Zigaretten sind suchtauslösend und daher unelastisch. Brot (normales Gut) hat positive, Margarine als inferiores Gut negative Einkommenselastizität.`,
+  begriffe:[`Substitute`,`Luxusgut`,`Einkommenselastizität`,`inferiores Gut`,`Kreuzpreiselastizität`,`Komplementärgut`,`Angebotselastizität`],
+  quick:{ q:`Nenne zwei Faktoren, die die Nachfrage elastisch machen, und die Schlüsselregel.`, mustInclude:[`Substitute`,`Luxusgut`,`Alternativen`] },
+  explain:{ prompt:`Erkläre die Einflussfaktoren der Preiselastizität und beschreibe die Einkommens- und Kreuzpreiselastizität.`, model:`Die Nachfrage ist elastisch, wenn günstige Substitute verfügbar sind, das Gut ein Luxusgut oder sehr spezifisch ist. Sie ist unelastisch, wenn keine Substitute existieren, das Gut lebensnotwendig oder suchtauslösend ist oder nur einen kleinen Budgetanteil ausmacht. Die Schlüsselregel lautet: Je mehr Alternativen, desto elastischer. Die Einkommenselastizität ist positiv bei normalen und negativ bei inferioren Gütern. Die Kreuzpreiselastizität ist positiv bei Substituten und negativ bei Komplementärgütern. Die Preiselastizität des Angebots ist hoch, wenn Produzenten schnell reagieren können, und niedrig in der Landwirtschaft.`, mustInclude:[`Substitute`,`Einkommenselastizität`,`inferiores`,`Kreuzpreiselastizität`] }
+}
   ]
 };
 
@@ -1743,7 +1998,9 @@ const CONCEPT_TYPES = {
   'geo-lz1-a':'verständnis', 'geo-lz1-b':'verständnis', 'geo-lz2-a':'verständnis', 'geo-lz2-b':'verständnis', 'geo-lz3-a':'verständnis', 'geo-lz3-b':'theorie',
   'geo-lz4-a':'verständnis', 'geo-lz4-b':'verständnis', 'geo-lz5-a':'verständnis', 'geo-lz5-b':'verständnis', 'geo-lz6-a':'verständnis', 'geo-lz6-b':'verständnis',
   'geo-lz7-a':'verständnis', 'geo-lz7-b':'theorie', 'geo-lz8-a':'verständnis', 'geo-lz8-b':'theorie', 'geo-lz9-a':'theorie', 'geo-lz9-b':'theorie',
-  'geo-lz10-a':'verständnis', 'geo-lz10-b':'verständnis', 'geo-lz11-a':'verständnis', 'geo-lz11-b':'verständnis', 'geo-lz12-a':'verständnis', 'geo-lz12-b':'verständnis'
+  'geo-lz10-a':'verständnis', 'geo-lz10-b':'verständnis', 'geo-lz11-a':'verständnis', 'geo-lz11-b':'verständnis', 'geo-lz12-a':'verständnis', 'geo-lz12-b':'verständnis',
+  // Wirtschaft
+  'wirt-lz1-a':'verständnis', 'wirt-lz1-b':'verständnis', 'wirt-lz1-c':'theorie', 'wirt-lz2-a':'verständnis', 'wirt-lz2-b':'verständnis', 'wirt-lz2-c':'theorie', 'wirt-lz3-a':'verständnis', 'wirt-lz3-b':'theorie', 'wirt-lz3-c':'verständnis', 'wirt-lz4-a':'verständnis', 'wirt-lz4-b':'verständnis', 'wirt-lz4-c':'verständnis', 'wirt-lz5-a':'verständnis', 'wirt-lz5-b':'verständnis', 'wirt-lz6-a':'verständnis', 'wirt-lz6-b':'verständnis', 'wirt-lz7-a':'verständnis', 'wirt-lz7-b':'verständnis', 'wirt-lz7-c':'verständnis', 'wirt-lz8-a':'verständnis', 'wirt-lz8-b':'verständnis', 'wirt-lz8-c':'verständnis', 'wirt-lz8-d':'verständnis', 'wirt-lz9-a':'verständnis', 'wirt-lz9-b':'verständnis'
 };
 const TYPE_INFO = {
   'theorie':     {label:'Theorie',    icon:'📖', desc:'Lernbar im Bus',       cssClass:'type-theorie'},
@@ -3564,6 +3821,606 @@ const MC_BY_ID = {
    "correct": 0,
    "explain": "Da rund 71 Prozent als Verluste verloren gehen, spart ein höherer Wirkungsgrad Primärenergie bei gleichem Nutzen."
   }
+ ],
+ "wirt-lz1-a": [
+  {
+   "q": "Worin besteht das zentrale Problem jeder Volkswirtschaft gemäss der Theorie?",
+   "options": [
+    "In der ungerechten Verteilung von Geld",
+    "In der Knappheit als Missverhältnis von unbegrenzten Bedürfnissen und begrenzten Ressourcen",
+    "In der zu hohen Produktion von Gütern",
+    "In den unbegrenzten Ressourcen bei begrenzten Bedürfnissen"
+   ],
+   "correct": 1,
+   "explain": "Das zentrale Problem ist die Knappheit, die aus unbegrenzten Bedürfnissen und begrenzten Ressourcen entsteht."
+  },
+  {
+   "q": "Welche Aussage über die Knappheit ist gemäss der Theorie FALSCH?",
+   "options": [
+    "Knappheit zwingt jede Gesellschaft zu Auswahl und Priorisierung",
+    "Knappheit ist ein vorübergehender Engpass, der sich auflösen lässt",
+    "Ohne Knappheit gäbe es kein ökonomisches Problem",
+    "Knappheit ist die dauerhafte Grundbedingung des Wirtschaftens"
+   ],
+   "correct": 1,
+   "explain": "Knappheit ist laut Theorie kein vorübergehender Engpass, sondern die dauerhafte Grundbedingung des Wirtschaftens."
+  }
+ ],
+ "wirt-lz2-b": [
+  {
+   "q": "Welche drei Grundfunktionen kommen dem Staat in der sozialen Marktwirtschaft zu?",
+   "options": [
+    "Allokation, Umverteilung und Stabilisation",
+    "Produktion, Konsum und Sparen",
+    "Allokation, Besteuerung und Privatisierung",
+    "Umverteilung, Inflation und Wachstum"
+   ],
+   "correct": 0,
+   "explain": "Die drei Grundfunktionen des Staates sind Allokation, Umverteilung und Stabilisation."
+  },
+  {
+   "q": "Eine Zinssenkung zur Abmilderung von Konjunkturschwankungen ist ein Beispiel für welche Staatsfunktion?",
+   "options": [
+    "Allokation",
+    "Umverteilung",
+    "Stabilisation",
+    "Rechtsetzung"
+   ],
+   "correct": 2,
+   "explain": "Die Stabilisation soll Konjunkturschwankungen abmildern, etwa durch Zinssenkungen oder Konjunkturprogramme."
+  }
+ ],
+ "wirt-lz3-c": [
+  {
+   "q": "Was besagt der Grundsatz Kausalität ist nicht gleich Korrelation?",
+   "options": [
+    "Dass zwei gemeinsam steigende Grössen nicht zwingend in einem Ursache-Wirkung-Verhältnis stehen",
+    "Dass Daten in der VWL immer veraltet sind",
+    "Dass es kein Patentrezept in der VWL gibt",
+    "Dass jede Theorie nur einen Ausschnitt der Realität beschreibt"
+   ],
+   "correct": 0,
+   "explain": "Korrelation bedeutet gemeinsames Auftreten, aber nicht zwingend einen ursächlichen Zusammenhang."
+  },
+  {
+   "q": "Eiskrem-Verkäufe und Ertränkungen steigen gemeinsam an. Welche Schlussfolgerung ist gemäss der Theorie korrekt?",
+   "options": [
+    "Mehr Eiskrem verursacht mehr Ertränkungen",
+    "Beide hängen von einer dritten Grösse, der Hitze, ab und sind nicht kausal verknüpft",
+    "Die Daten sind veraltet und deshalb unbrauchbar",
+    "Es handelt sich um ein Problem fehlender Kontrollgruppen"
+   ],
+   "correct": 1,
+   "explain": "Beide Grössen hängen von der Hitze als dritter Grösse ab, es besteht kein Kausalzusammenhang."
+  }
+ ],
+ "wirt-lz5-a": [
+  {
+   "q": "Wie verändert sich gemäss dem Gesetz der Nachfrage die nachgefragte Menge, wenn der Preis steigt?",
+   "options": [
+    "Sie steigt ebenfalls",
+    "Sie bleibt konstant",
+    "Sie sinkt",
+    "Sie steigt zunächst und sinkt dann"
+   ],
+   "correct": 2,
+   "explain": "Gemäss dem Gesetz der Nachfrage sinkt die nachgefragte Menge, wenn der Preis steigt."
+  },
+  {
+   "q": "Welche Aussage zur Nachfragekurve ist gemäss der Theorie FALSCH?",
+   "options": [
+    "Die Steigung a der linearen Funktion ist kleiner als null",
+    "Selbst bei einem Preis von null gibt es eine begrenzte Sättigungsmenge",
+    "Die Kurve verläuft positiv geneigt von links unten nach rechts oben",
+    "Dass der Preis auf der Y-Achse steht, geht auf Alfred Marshall zurück"
+   ],
+   "correct": 2,
+   "explain": "Die Nachfragekurve verläuft negativ geneigt von links oben nach rechts unten, nicht positiv."
+  }
+ ],
+ "wirt-lz7-a": [
+  {
+   "q": "Was beschreibt das Marktgleichgewicht?",
+   "options": [
+    "Den Punkt mit dem höchstmöglichen Preis",
+    "Den Schnittpunkt von Angebots- und Nachfragekurve",
+    "Den Punkt mit dem grössten Angebotsüberschuss",
+    "Den tiefsten Preis, zu dem produziert wird"
+   ],
+   "correct": 1,
+   "explain": "Das Marktgleichgewicht ist der Schnittpunkt von Angebots- und Nachfragekurve."
+  },
+  {
+   "q": "Der Preis liegt unter P Stern. Was passiert gemäss der Theorie?",
+   "options": [
+    "Es entsteht ein Angebotsüberschuss und die Preise sinken",
+    "Es entsteht ein Nachfrageüberschuss und der Preis steigt",
+    "Der Markt bleibt dauerhaft im Ungleichgewicht",
+    "Angebot und Nachfrage stimmen genau überein"
+   ],
+   "correct": 1,
+   "explain": "Bei einem Preis unter P Stern ist die Nachfrage grösser als das Angebot, es entsteht ein Nachfrageüberschuss und der Preis steigt."
+  }
+ ],
+ "wirt-lz8-b": [
+  {
+   "q": "In welche Richtung verschiebt eine Subvention die Angebotskurve?",
+   "options": [
+    "Nach links",
+    "Nach rechts",
+    "Nach oben ohne Mengenänderung",
+    "Sie verschiebt sich gar nicht"
+   ],
+   "correct": 1,
+   "explain": "Eine Subvention senkt die Produktionskosten und verschiebt die Angebotskurve nach rechts."
+  },
+  {
+   "q": "Welche Aussage über die Wirkung einer Subvention ist gemäss der Theorie korrekt?",
+   "options": [
+    "Konsumenten zahlen P_K, das höher ist als der Preis ohne Subvention",
+    "Die Konsumenten zahlen den tieferen Preis P_K, die Produzenten erhalten inklusive Subvention den höheren Preis P_V",
+    "Der Staat erzielt durch die Subvention zusätzliche Einnahmen",
+    "Eine Subvention wirkt wie eine indirekte Steuer"
+   ],
+   "correct": 1,
+   "explain": "Die Konsumenten zahlen den tieferen Preis P_K, während die Produzenten inklusive Subvention den höheren Preis P_V erhalten."
+  }
+ ],
+ "wirt-lz9-b": [
+  {
+   "q": "Wann ist die Nachfrage nach einem Gut gemäss der Theorie eher unelastisch?",
+   "options": [
+    "Wenn viele günstige Substitute verfügbar sind",
+    "Wenn es sich um ein nicht notwendiges Luxusgut handelt",
+    "Wenn das Gut lebensnotwendig ist und keine Substitute existieren",
+    "Wenn das Gut eine leicht ersetzbare Marke ist"
+   ],
+   "correct": 2,
+   "explain": "Die Nachfrage ist eher unelastisch, wenn das Gut lebensnotwendig ist und keine Substitute existieren."
+  },
+  {
+   "q": "Bei einem inferioren Gut steigt das Einkommen. Welche Aussage trifft gemäss der Theorie zu?",
+   "options": [
+    "Die Einkommenselastizität ist negativ und die Nachfrage sinkt",
+    "Die Einkommenselastizität ist positiv und die Nachfrage steigt",
+    "Die Kreuzpreiselastizität ist negativ",
+    "Die Nachfrage bleibt unverändert"
+   ],
+   "correct": 0,
+   "explain": "Bei inferioren Gütern ist die Einkommenselastizität negativ, mehr Einkommen führt zu weniger Nachfrage."
+  }
+ ],
+ "wirt-lz1-b": [
+  {
+   "q": "Wie lauten die drei Grundfragen jeder Volkswirtschaft in der richtigen Reihenfolge?",
+   "options": [
+    "Wer – Was – Warum",
+    "Was – Wie – Für wen",
+    "Wie – Wann – Wo",
+    "Was – Wann – Für wen"
+   ],
+   "correct": 1,
+   "explain": "Der Merktipp lautet: Was – Wie – Für wen, weshalb man auch von den drei W-Fragen spricht."
+  },
+  {
+   "q": "Ein Land entscheidet, dass die produzierten Güter nach Bedarf statt nach Leistung verteilt werden. Welche der drei Grundfragen wird damit beantwortet?",
+   "options": [
+    "Die Frage, WAS produziert werden soll",
+    "Die Frage, WIE produziert werden soll",
+    "Die Frage, FÜR WEN produziert werden soll",
+    "Keine, da Verteilung keine Grundfrage ist"
+   ],
+   "correct": 2,
+   "explain": "Die dritte Frage FÜR WEN klärt die Verteilung, also ob nach Bedarf oder nach Leistung verteilt wird."
+  }
+ ],
+ "wirt-lz2-c": [
+  {
+   "q": "Seit wann erhalten Schweizer Bauern staatliche Gelder nicht mehr für die produzierte Menge, sondern für Gemeinwohlleistungen?",
+   "options": [
+    "Seit 1993",
+    "Seit 1973",
+    "Seit 2003",
+    "Seit 1983"
+   ],
+   "correct": 0,
+   "explain": "Seit 1993 hat der Bund die Förderung der Landwirtschaft auf Gemeinwohlleistungen umgestellt."
+  },
+  {
+   "q": "Welche Aussage zu den Direktzahlungen ist FALSCH?",
+   "options": [
+    "Sie erfüllen die Staatsfunktionen Allokation und Umverteilung",
+    "Die rechtliche Grundlage ist Artikel 104 der Bundesverfassung",
+    "Sie betragen rund 2,8 Milliarden CHF pro Jahr",
+    "Sie werden nach der produzierten Menge ausbezahlt"
+   ],
+   "correct": 3,
+   "explain": "Gerade die Auszahlung nach produzierter Menge wurde 1993 abgeschafft; gezahlt wird für Gemeinwohlleistungen."
+  }
+ ],
+ "wirt-lz4-a": [
+  {
+   "q": "Was ist gemäss der Theorie ein Markt?",
+   "options": [
+    "Nur ein physischer Ort wie ein Wochenmarkt",
+    "Jedes Zusammentreffen von Angebot und Nachfrage",
+    "Ausschliesslich die Börse",
+    "Die Summe aller Bedürfnisse einer Bevölkerung"
+   ],
+   "correct": 1,
+   "explain": "Ein Markt ist jedes Zusammentreffen von Angebot und Nachfrage, ob physisch oder abstrakt."
+  },
+  {
+   "q": "Eine Person möchte sich dringend ein Auto kaufen, hat dafür aber kein Geld. Wie ist sie aus Marktsicht zu beurteilen?",
+   "options": [
+    "Sie ist eine Nachfragerin, weil sie Kaufwille zeigt",
+    "Sie ist eine zahlungskräftige Nachfragerin",
+    "Sie tritt am Markt nicht als Nachfragerin auf, da die Kaufkraft fehlt",
+    "Sie ist ein Anbieter, da sie ein Gut sucht"
+   ],
+   "correct": 2,
+   "explain": "Nachfrage setzt Kaufkraft und Kaufwille voraus; ohne Geld bleibt es ein blosses Bedürfnis ohne Marktrelevanz."
+  }
+ ],
+ "wirt-lz5-b": [
+  {
+   "q": "Was geschieht, wenn sich nur der Preis des Gutes selbst ändert?",
+   "options": [
+    "Die gesamte Nachfragekurve verschiebt sich",
+    "Man bewegt sich auf der gleichen Nachfragekurve",
+    "Die Kurve verschwindet",
+    "Es entsteht eine neue Angebotskurve"
+   ],
+   "correct": 1,
+   "explain": "Ändert sich nur der Preis des Gutes selbst, bewegt man sich auf der gleichen Kurve (Bewegung auf der Kurve)."
+  },
+  {
+   "q": "Der Preis von Toner sinkt deutlich. Wie wirkt sich das auf die Nachfrage nach dem Komplementärgut Drucker aus?",
+   "options": [
+    "Die Nachfrage nach Druckern sinkt",
+    "Die Druckerkurve bewegt sich nur entlang ihrer selbst",
+    "Die Nachfrage nach Druckern steigt, die Kurve verschiebt sich nach rechts",
+    "Die Nachfrage nach Druckern bleibt unverändert"
+   ],
+   "correct": 2,
+   "explain": "Tiefere Preise von Komplementärgütern lösen eine Rechtsverschiebung aus, also eine höhere Nachfrage nach dem ergänzenden Gut."
+  }
+ ],
+ "wirt-lz7-b": [
+  {
+   "q": "Was wird im ersten Schritt der 3-Schritt-Methode zur Marktanalyse gefragt?",
+   "options": [
+    "Ob sich Angebots-, Nachfragekurve oder beide verschieben",
+    "Wie hoch der neue Gleichgewichtspreis ist",
+    "In welche Richtung sich die Kurve verschiebt",
+    "Wie gross die Gleichgewichtsmenge ist"
+   ],
+   "correct": 0,
+   "explain": "Schritt 1 fragt, ob sich die Angebotskurve, die Nachfragekurve oder beide verschieben."
+  },
+  {
+   "q": "Beim E-Bike-Beispiel steigt die Wertschätzung der Konsumenten. Welches Ergebnis liefert die 3-Schritt-Methode für das neue Gleichgewicht?",
+   "options": [
+    "P Stern und M Stern sinken beide",
+    "P Stern und M Stern steigen beide",
+    "P Stern steigt, M Stern sinkt",
+    "Beide bleiben unverändert"
+   ],
+   "correct": 1,
+   "explain": "Die höhere Wertschätzung verschiebt die Nachfrage nach rechts, sodass sowohl P Stern als auch M Stern steigen."
+  }
+ ],
+ "wirt-lz8-c": [
+  {
+   "q": "Welche Marktfolge entsteht bei einem wirksamen Höchstpreis?",
+   "options": [
+    "Ein Angebotsüberschuss",
+    "Ein Nachfrageüberschuss",
+    "Ein Gleichgewicht ohne Engpässe",
+    "Ein vollständiger Marktausfall"
+   ],
+   "correct": 1,
+   "explain": "Beim tiefen Höchstpreis übersteigt die nachgefragte die angebotene Menge, es entsteht ein Nachfrageüberschuss."
+  },
+  {
+   "q": "Der Staat setzt für ein Gut einen Höchstpreis fest, der ÜBER dem Gleichgewichtspreis liegt. Was folgt daraus?",
+   "options": [
+    "Es entsteht sofort ein grosser Nachfrageüberschuss",
+    "Der Höchstpreis hat keine Wirkung, da der Markt sich beim tieferen Gleichgewichtspreis einpendelt",
+    "Es bildet sich zwingend ein Schwarzmarkt",
+    "Die Qualität der Güter sinkt stark"
+   ],
+   "correct": 1,
+   "explain": "Ein Höchstpreis wirkt nur, wenn er unter dem Gleichgewichtspreis liegt; liegt er darüber, bleibt er wirkungslos."
+  }
+ ],
+ "wirt-lz1-c": [
+  {
+   "q": "Was kennzeichnet gemäss der Theorie die Epoche der Jäger und Sammler?",
+   "options": [
+    "Subsistenz ohne Institutionen",
+    "Sesshafte Landwirtschaft",
+    "Münzsysteme und Seidenstrasse",
+    "Dampfmaschine und Fabriken"
+   ],
+   "correct": 0,
+   "explain": "Die Jäger und Sammler lebten in reiner Subsistenz ohne Institutionen."
+  },
+  {
+   "q": "Welche Zuordnung von Epoche und Merkmal ist gemäss der Theorie FALSCH?",
+   "options": [
+    "Feudalismus — Dreifelderwirtschaft, Zünfte",
+    "Antike Hochkulturen — Dampfmaschine, Proletariat",
+    "Industrie/Kapitalismus — Fabriken, Proletariat",
+    "Info/Globalisierung — UNO, WTO, IWF"
+   ],
+   "correct": 1,
+   "explain": "Dampfmaschine und Proletariat gehören zur Industrie, nicht zu den antiken Hochkulturen."
+  }
+ ],
+ "wirt-lz3-a": [
+  {
+   "q": "Was untersucht die Volkswirtschaftslehre laut Definition?",
+   "options": [
+    "Wie unbegrenzte Ressourcen verschwendet werden",
+    "Wie knappe Ressourcen zur bestmöglichen Bedürfnisbefriedigung genutzt werden",
+    "Wie einzelne Unternehmen ihren Gewinn buchen",
+    "Wie der Staat seine Gesetze erlässt"
+   ],
+   "correct": 1,
+   "explain": "Die VWL untersucht, wie knappe Ressourcen zur bestmöglichen Befriedigung der Bedürfnisse genutzt werden."
+  },
+  {
+   "q": "Ein Forscher stellt fest, dass Frauen weniger verdienen als Männer, ohne nach Ursachen zu fragen. Welcher Forschungsart entspricht das?",
+   "options": [
+    "Erklärende Forschung",
+    "Beschreibende Forschung",
+    "Economy statt economics",
+    "Normative Wirtschaftspolitik"
+   ],
+   "correct": 1,
+   "explain": "Die beschreibende Forschung fragt nur, was passiert, nicht warum."
+  }
+ ],
+ "wirt-lz4-b": [
+  {
+   "q": "Wer ist auf dem Gütermarkt der Anbieter?",
+   "options": [
+    "Die Haushalte",
+    "Die Unternehmen",
+    "Die Arbeitnehmer",
+    "Der Staat"
+   ],
+   "correct": 1,
+   "explain": "Auf dem Gütermarkt bieten die Unternehmen Waren und Dienstleistungen an."
+  },
+  {
+   "q": "Auf welchem Markt treten die Haushalte als Anbieter und die Unternehmen als Nachfrager auf?",
+   "options": [
+    "Nur auf dem Gütermarkt",
+    "Auf Arbeits- und Kapitalmarkt",
+    "Nur auf dem Kapitalmarkt für Konsumgüter",
+    "Auf keinem der drei Märkte"
+   ],
+   "correct": 1,
+   "explain": "Auf Arbeits- und Kapitalmarkt sind die Haushalte Anbieter und die Unternehmen Nachfrager."
+  }
+ ],
+ "wirt-lz6-a": [
+  {
+   "q": "Was sagt das Gesetz des Angebots aus?",
+   "options": [
+    "Steigt der Preis, steigt die angebotene Menge",
+    "Steigt der Preis, sinkt die angebotene Menge",
+    "Der Preis hat keinen Einfluss auf die Menge",
+    "Sinkt der Preis, steigt die angebotene Menge"
+   ],
+   "correct": 0,
+   "explain": "Bei steigendem Preis steigt die angebotene Menge."
+  },
+  {
+   "q": "Warum lohnt es sich bei einem höheren Preis, mehr anzubieten?",
+   "options": [
+    "Weil die Produktionskosten dadurch sinken",
+    "Weil die Nachfragekurve dadurch steigt",
+    "Weil der höhere Ertrag pro Einheit auch teurere Produzenten kostendeckend produzieren lässt",
+    "Weil die Steigung a dann kleiner als null wird"
+   ],
+   "correct": 2,
+   "explain": "Ein höherer Preis deckt auch höhere Produktionskosten und erhöht den Ertrag pro Einheit."
+  }
+ ],
+ "wirt-lz7-c": [
+  {
+   "q": "Wie ist die Konsumentenrente definiert?",
+   "options": [
+    "Differenz zwischen maximaler Zahlungsbereitschaft und bezahltem Marktpreis",
+    "Differenz zwischen Marktpreis und Mindestangebotspreis",
+    "Summe aus Angebot und Nachfrage",
+    "Differenz zwischen Steuern und Subventionen"
+   ],
+   "correct": 0,
+   "explain": "Die Konsumentenrente ist die Differenz zwischen maximaler Zahlungsbereitschaft und Marktpreis."
+  },
+  {
+   "q": "Welche Aussage zur Gesamtwohlfahrt ist gemäss der Theorie korrekt?",
+   "options": [
+    "Sie ist beim Mindestpreis am grössten",
+    "Sie ist beim Gleichgewichtspreis maximal",
+    "Sie entspricht der Konsumentenrente minus Produzentenrente",
+    "Staatliche Eingriffe erhöhen sie stets"
+   ],
+   "correct": 1,
+   "explain": "Beim Gleichgewichtspreis ist die Gesamtwohlfahrt maximal."
+  }
+ ],
+ "wirt-lz8-d": [
+  {
+   "q": "Wo muss ein Mindestpreis liegen, damit er wirkt?",
+   "options": [
+    "Genau auf dem Gleichgewichtspreis",
+    "Unter dem Gleichgewichtspreis",
+    "Über dem Gleichgewichtspreis",
+    "Bei null"
+   ],
+   "correct": 2,
+   "explain": "Nur über dem Gleichgewichtspreis entfaltet ein Mindestpreis seine Wirkung."
+  },
+  {
+   "q": "Ein Staat setzt einen Mindestpreis unter dem Gleichgewichtspreis fest. Welche Folge ist gemäss der Theorie korrekt?",
+   "options": [
+    "Es entsteht ein grosser Angebotsüberschuss",
+    "Der Mindestpreis bleibt wirkungslos, der Markt pendelt sich beim Gleichgewichtspreis ein",
+    "Der Staat muss die Überschussmenge aufkaufen",
+    "Die Nachfrage geht stark zurück"
+   ],
+   "correct": 1,
+   "explain": "Liegt der Mindestpreis unter dem Gleichgewicht, hat er keine Wirkung und der Markt pendelt sich beim Gleichgewichtspreis ein."
+  }
+ ],
+ "wirt-lz2-a": [
+  {
+   "q": "Wer entscheidet in der freien Marktwirtschaft, was produziert wird?",
+   "options": [
+    "Der Staat",
+    "Private Unternehmen",
+    "Staatsbetriebe gemeinsam mit dem Staat",
+    "Eine zentrale Planungsbehörde"
+   ],
+   "correct": 1,
+   "explain": "In der freien Marktwirtschaft entscheiden private Unternehmen, was produziert wird."
+  },
+  {
+   "q": "Ein Land hat festgesetzte Preise, Vollbeschäftigung als Vorteil, aber leidet unter Mangelwirtschaft. Welches System liegt vor?",
+   "options": [
+    "Planwirtschaft",
+    "Freie Marktwirtschaft",
+    "Soziale Marktwirtschaft",
+    "Mischsystem mit überwiegend Privateigentum"
+   ],
+   "correct": 0,
+   "explain": "Festgesetzte Preise, Vollbeschäftigung und Mangelwirtschaft sind Merkmale der Planwirtschaft."
+  }
+ ],
+ "wirt-lz3-b": [
+  {
+   "q": "Wer prägte das Bild der unsichtbaren Hand?",
+   "options": [
+    "John Maynard Keynes",
+    "David Ricardo",
+    "Adam Smith",
+    "Karl Marx"
+   ],
+   "correct": 2,
+   "explain": "Adam Smith prägte das Bild der unsichtbaren Hand des sich selbst regulierenden Marktes."
+  },
+  {
+   "q": "Welche Zuordnung von Phase und Kernaussage ist FALSCH?",
+   "options": [
+    "Keynesianismus – in Krisen sind staatliche Eingriffe nötig",
+    "Neoklassik – Begründung der Makroökonomie",
+    "Klassik – die unsichtbare Hand reguliert den Markt",
+    "Aktuell – unter anderem Verhaltensökonomie und Nachhaltigkeit"
+   ],
+   "correct": 1,
+   "explain": "Nicht die Neoklassik, sondern Keynes gilt als Begründer der Makroökonomie."
+  }
+ ],
+ "wirt-lz4-c": [
+  {
+   "q": "Wie nennt man eine Marktform mit nur einem einzigen Anbieter?",
+   "options": [
+    "Polypol",
+    "Oligopol",
+    "Monopol",
+    "Monopolistischer Wettbewerb"
+   ],
+   "correct": 2,
+   "explain": "Bei einem einzigen Anbieter spricht man vom Monopol."
+  },
+  {
+   "q": "Migros, Coop und Aldi prägen den Schweizer Detailhandel. Welche Marktform liegt hier vor?",
+   "options": [
+    "Oligopol",
+    "Monopol",
+    "Vollständige Konkurrenz",
+    "Polypol"
+   ],
+   "correct": 0,
+   "explain": "Wenige Anbieter wie Migros, Coop und Aldi bilden ein Oligopol."
+  }
+ ],
+ "wirt-lz6-b": [
+  {
+   "q": "Was bedeutet eine Rechtsverschiebung der Angebotskurve?",
+   "options": [
+    "Bei jedem Preis wird eine kleinere Menge angeboten",
+    "Bei jedem Preis wird eine grössere Menge angeboten",
+    "Nur der Preis des Gutes selbst ändert sich",
+    "Die Nachfrage steigt bei jedem Preis"
+   ],
+   "correct": 1,
+   "explain": "Eine Rechtsverschiebung bedeutet mehr Angebot: bei jedem Preis wird eine grössere Menge angeboten."
+  },
+  {
+   "q": "Welcher Vorgang führt NICHT zu einer Linksverschiebung der Angebotskurve?",
+   "options": [
+    "Eine Dürre als negativer externer Effekt",
+    "Eine Steuererhöhung",
+    "Technologischer Fortschritt",
+    "Teurere Rohstoffe"
+   ],
+   "correct": 2,
+   "explain": "Technologischer Fortschritt senkt die Kosten und verschiebt das Angebot nach rechts, nicht nach links."
+  }
+ ],
+ "wirt-lz8-a": [
+  {
+   "q": "In welche Richtung verschiebt eine indirekte Steuer die Angebotskurve?",
+   "options": [
+    "Nach links, um den Steuerbetrag nach oben",
+    "Nach rechts, um den Steuerbetrag nach unten",
+    "Sie verschiebt die Nachfragekurve nach links",
+    "Sie bewegt sich nur auf der bestehenden Kurve"
+   ],
+   "correct": 0,
+   "explain": "Die indirekte Steuer verschiebt die Angebotskurve nach links, um den Steuerbetrag nach oben."
+  },
+  {
+   "q": "Welche Aussage zur Wirkung einer indirekten Steuer ist FALSCH?",
+   "options": [
+    "Die Differenz zwischen P_K und P_V ist das Steueraufkommen des Staates",
+    "Es entsteht ein Wohlfahrtsverlust, weil Handel unterbleibt",
+    "Der ganze Verlust an Rente fliesst vollständig als Steuer an den Staat",
+    "Sowohl Konsumenten- als auch Produzentenrente sinken"
+   ],
+   "correct": 2,
+   "explain": "Ein Teil der Rente fliesst als Steuer an den Staat, ein anderer Teil geht als Wohlfahrtsverlust ganz verloren."
+  }
+ ],
+ "wirt-lz9-a": [
+  {
+   "q": "Warum ist die Preiselastizität der Nachfrage rechnerisch immer negativ?",
+   "options": [
+    "Weil die Nachfrage immer grösser als das Angebot ist",
+    "Weil Preis und Menge sich gegenläufig bewegen",
+    "Weil der Preis stets sinkt",
+    "Weil man mit dem Betrag |E| rechnet"
+   ],
+   "correct": 1,
+   "explain": "Wegen des Gesetzes der Nachfrage bewegen sich Preis und Menge gegenläufig, daher ist das Vorzeichen negativ."
+  },
+  {
+   "q": "Steigt der Preis um 10 Prozent und sinkt die Nachfrage um 15 Prozent, wie ist das Gut einzustufen?",
+   "options": [
+    "Einheitselastisch mit |E| = 1",
+    "Unelastisch mit |E| < 1",
+    "Elastisch mit |E| = 1,5",
+    "Vollkommen unelastisch mit |E| = 0"
+   ],
+   "correct": 2,
+   "explain": "E = -15/10 = -1,5, also |E| > 1 und damit elastisch."
+  }
  ]
 };
 
@@ -3862,6 +4719,7 @@ function renderStudy(){
       <div class="concept-title">${escapeHtml(c.title)}</div>
       ${typeChipHtml(c, true)}
       <div class="theory-text">${formatTheory(c.theory)}</div>
+      ${c.svgKey ? econGraphicHtml(c.svgKey) : ''}
       ${c.example ? `<div class="example-box"><span class="label">Beispiel</span>${formatTheory(c.example)}</div>` : ''}
       ${(c.begriffe && c.begriffe.length) ? `<div class="begriffe-box"><span class="label">Begriffe — musst du kennen</span><div class="begriffe-list">${c.begriffe.map(b=>`<span class="begriff-chip">${escapeHtml(b)}</span>`).join('')}</div></div>` : ''}
       <button class="btn btn-primary mt-4" id="toMcBtn">Verstanden — zu den Fragen →</button>
@@ -3981,6 +4839,41 @@ function submitMC(c){
   document.getElementById('mcNextBtn').onclick = ()=>advanceStudy();
 }
 
+/* ================================================================
+   WIRTSCHAFT — SVG-GRAFIKEN (Angebot/Nachfrage, Gleichgewicht …)
+   Datenkoordinaten 0..100; Preis = Y (oben hoch), Menge = X.
+================================================================ */
+const _MX = m => (40 + (m/100)*248);
+const _MY = p => (175 - (p/100)*161);
+const _SL = (m1,p1,m2,p2,c,dash,w)=>`<line x1="${_MX(m1).toFixed(1)}" y1="${_MY(p1).toFixed(1)}" x2="${_MX(m2).toFixed(1)}" y2="${_MY(p2).toFixed(1)}" stroke="${c||'#1c1b18'}" stroke-width="${w||2}" ${dash?`stroke-dasharray="${dash}" `:''}stroke-linecap="round"/>`;
+const _ST = (m,p,t,a,c)=>`<text x="${_MX(m).toFixed(1)}" y="${_MY(p).toFixed(1)}" font-size="10" font-weight="600" fill="${c||'#1c1b18'}" text-anchor="${a||'start'}">${t}</text>`;
+const _PG = (p,t)=>`<text x="37" y="${(_MY(p)+3).toFixed(1)}" font-size="9" fill="#5c594f" text-anchor="end">${t}</text>`;
+const _MG = (m,t)=>`<text x="${_MX(m).toFixed(1)}" y="190" font-size="9" fill="#5c594f" text-anchor="middle">${t}</text>`;
+const _GD = (m,p)=>`<line x1="40" y1="${_MY(p).toFixed(1)}" x2="${_MX(m).toFixed(1)}" y2="${_MY(p).toFixed(1)}" stroke="#c6c1b1" stroke-width="1" stroke-dasharray="3 3"/><line x1="${_MX(m).toFixed(1)}" y1="175" x2="${_MX(m).toFixed(1)}" y2="${_MY(p).toFixed(1)}" stroke="#c6c1b1" stroke-width="1" stroke-dasharray="3 3"/>`;
+const _DOT = (m,p,c)=>`<circle cx="${_MX(m).toFixed(1)}" cy="${_MY(p).toFixed(1)}" r="3" fill="${c||'#1c1b18'}"/>`;
+const _AREA = (pts,fill)=>`<polygon points="${pts.map(o=>_MX(o[0]).toFixed(1)+','+_MY(o[1]).toFixed(1)).join(' ')}" fill="${fill}"/>`;
+const _BR = (m,p1,p2)=>`<line x1="${_MX(m).toFixed(1)}" y1="${_MY(p1).toFixed(1)}" x2="${_MX(m).toFixed(1)}" y2="${_MY(p2).toFixed(1)}" stroke="#1c1b18" stroke-width="3"/>`;
+const _AX = `<line x1="40" y1="175" x2="291" y2="175" stroke="#c6c1b1" stroke-width="1.2"/><line x1="40" y1="175" x2="40" y2="11" stroke="#c6c1b1" stroke-width="1.2"/><polygon points="291,175 284,171.5 284,178.5" fill="#c6c1b1"/><polygon points="40,11 36.5,18 43.5,18" fill="#c6c1b1"/><text x="289" y="171" text-anchor="end" font-size="9" fill="#9a958a">Menge</text><text x="45" y="17" font-size="9" fill="#9a958a">Preis</text>`;
+const _W = inner => `<svg viewBox="0 0 300 198" xmlns="http://www.w3.org/2000/svg">${_AX}${inner}</svg>`;
+
+const ECON_SVG = {
+  demand: _W(_SL(6,94,94,6) + _ST(88,16,'Nachfrage','end')),
+  supply: _W(_SL(6,6,94,94) + _ST(88,90,'Angebot','end')),
+  equilibrium: _W(_SL(6,94,94,6) + _SL(6,6,94,94,'#8a8578') + _GD(50,50) + _DOT(50,50) + _ST(90,14,'D','end') + _ST(90,94,'S','end','#8a8578') + _PG(50,'P*') + _MG(50,'M*')),
+  demandShift: _W(_SL(6,90,78,14) + _SL(26,94,96,22,'#8a8578','5 4') + _ST(64,14,'D','start') + _ST(92,26,"D'",'start','#8a8578') + `<text x="200" y="40" font-size="8.5" fill="#9a958a" text-anchor="middle">Rechts = mehr Nachfrage</text>`),
+  supplyShift: _W(_SL(6,10,78,86) + _SL(26,6,96,74,'#8a8578','5 4') + _ST(74,90,'S','start') + _ST(96,76,"S'",'end','#8a8578') + `<text x="205" y="150" font-size="8.5" fill="#9a958a" text-anchor="middle">Rechts = mehr Angebot</text>`),
+  equilibriumShift: _W(_SL(6,6,94,94,'#8a8578') + _SL(6,84,72,18) + _SL(28,94,96,30,'#1c1b18','5 4') + _DOT(45,45) + _DOT(62,62) + _ST(68,16,'D','start') + _ST(92,32,"D'",'start') + _ST(90,94,'S','end','#8a8578') + `<text x="150" y="166" font-size="8.5" fill="#9a958a" text-anchor="middle">P* und M* steigen</text>`),
+  surplus: _W(_AREA([[0,100],[0,50],[50,50]],'rgba(28,27,24,0.09)') + _AREA([[0,0],[0,50],[50,50]],'rgba(28,27,24,0.22)') + _SL(0,100,94,6) + _SL(0,0,94,94,'#8a8578') + _SL(0,50,50,50,'#c6c1b1','3 3',1) + _DOT(50,50) + _ST(15,70,'KR') + _ST(13,28,'PR','start','#ffffff') + _ST(90,14,'D','end') + _ST(90,94,'S','end','#8a8578') + _PG(50,'P*')),
+  tax: _W(_SL(8,8,92,92,'#8a8578') + _SL(8,28,78,98,'#8a8578','5 4') + _SL(8,92,92,8) + _GD(40,60) + _BR(40,40,60) + _DOT(40,60) + _DOT(40,40) + _DOT(50,50,'#c6c1b1') + _ST(90,92,'S','end','#8a8578') + _ST(56,98,'S+Steuer','start','#8a8578') + _ST(90,12,'D','end') + _PG(60,'P_K') + _PG(40,'P_V') + _MG(40,'M2') + _MG(50,'M1')),
+  subsidy: _W(_SL(8,8,92,92,'#8a8578') + _SL(28,8,92,72,'#8a8578','5 4') + _SL(8,92,92,8) + _GD(60,40) + _BR(60,40,60) + _DOT(60,40) + _DOT(60,60) + _DOT(50,50,'#c6c1b1') + _ST(86,92,'S','end','#8a8578') + _ST(92,72,'S−Subv.','end','#8a8578') + _ST(90,12,'D','end') + _PG(40,'P_K') + _PG(60,'P_V') + _MG(60,'M2') + _MG(50,'M1')),
+  maxPrice: _W(_SL(8,8,92,92,'#8a8578') + _SL(8,92,92,8) + _SL(0,30,92,30,'#1c1b18','6 4') + _DOT(50,50,'#c6c1b1') + _PG(50,'P*') + _PG(30,'Pmax') + _ST(90,12,'D','end') + _ST(90,94,'S','end','#8a8578') + _BR(30,30,30) + `<line x1="${_MX(30).toFixed(1)}" y1="${_MY(30).toFixed(1)}" x2="${_MX(70).toFixed(1)}" y2="${_MY(30).toFixed(1)}" stroke="#1c1b18" stroke-width="3"/>` + _MG(30,'Qs') + _MG(70,'Qd') + `<text x="${_MX(50).toFixed(1)}" y="${(_MY(30)+16).toFixed(1)}" font-size="8" fill="#9a958a" text-anchor="middle">Nachfrageüberschuss</text>`),
+  minPrice: _W(_SL(8,8,92,92,'#8a8578') + _SL(8,92,92,8) + _SL(0,70,92,70,'#1c1b18','6 4') + _DOT(50,50,'#c6c1b1') + _PG(50,'P*') + _PG(70,'Pmin') + _ST(90,12,'D','end') + _ST(90,94,'S','end','#8a8578') + `<line x1="${_MX(30).toFixed(1)}" y1="${_MY(70).toFixed(1)}" x2="${_MX(70).toFixed(1)}" y2="${_MY(70).toFixed(1)}" stroke="#1c1b18" stroke-width="3"/>` + _MG(30,'Qd') + _MG(70,'Qs') + `<text x="${_MX(50).toFixed(1)}" y="${(_MY(70)-8).toFixed(1)}" font-size="8" fill="#9a958a" text-anchor="middle">Angebotsüberschuss</text>`),
+  elasticity: _W(_SL(42,92,58,12) + _SL(8,56,92,44,'#8a8578') + _ST(60,14,'unelastisch','start') + _ST(90,42,'elastisch','end','#8a8578')),
+  spectrum: `<svg viewBox="0 0 300 72" xmlns="http://www.w3.org/2000/svg"><line x1="24" y1="38" x2="276" y2="38" stroke="#1c1b18" stroke-width="2"/><polygon points="24,38 32,34 32,42" fill="#1c1b18"/><polygon points="276,38 268,34 268,42" fill="#1c1b18"/><circle cx="150" cy="38" r="4" fill="#1c1b18"/><circle cx="24" cy="38" r="3" fill="#1c1b18"/><circle cx="276" cy="38" r="3" fill="#1c1b18"/><text x="24" y="58" font-size="9" font-weight="600" fill="#1c1b18" text-anchor="middle">Freie MW</text><text x="150" y="22" font-size="9" font-weight="600" fill="#1c1b18" text-anchor="middle">Soziale MW</text><text x="276" y="58" font-size="9" font-weight="600" fill="#1c1b18" text-anchor="middle">Planwirtschaft</text></svg>`,
+  stateFunctions: `<svg viewBox="0 0 300 150" xmlns="http://www.w3.org/2000/svg"><rect x="100" y="8" width="100" height="22" rx="4" fill="#1c1b18"/><text x="150" y="23" font-size="11" font-weight="700" fill="#fbfaf6" text-anchor="middle">STAAT (CH)</text><line x1="150" y1="30" x2="150" y2="42" stroke="#c6c1b1"/><line x1="52" y1="42" x2="248" y2="42" stroke="#c6c1b1"/><line x1="52" y1="42" x2="52" y2="50" stroke="#c6c1b1"/><line x1="150" y1="42" x2="150" y2="50" stroke="#c6c1b1"/><line x1="248" y1="42" x2="248" y2="50" stroke="#c6c1b1"/><rect x="8" y="50" width="88" height="86" rx="6" fill="none" stroke="#c6c1b1"/><rect x="106" y="50" width="88" height="86" rx="6" fill="none" stroke="#c6c1b1"/><rect x="204" y="50" width="88" height="86" rx="6" fill="none" stroke="#c6c1b1"/><text x="52" y="68" font-size="10" font-weight="700" fill="#1c1b18" text-anchor="middle">Allokation</text><text x="150" y="68" font-size="10" font-weight="700" fill="#1c1b18" text-anchor="middle">Umverteilung</text><text x="248" y="68" font-size="10" font-weight="700" fill="#1c1b18" text-anchor="middle">Stabilisation</text><text x="52" y="86" font-size="8" fill="#5c594f" text-anchor="middle">Ressourcen</text><text x="52" y="97" font-size="8" fill="#5c594f" text-anchor="middle">effizient</text><text x="52" y="108" font-size="8" fill="#5c594f" text-anchor="middle">lenken</text><text x="52" y="124" font-size="7.5" fill="#9a958a" text-anchor="middle">Strassen, Bildung</text><text x="150" y="86" font-size="8" fill="#5c594f" text-anchor="middle">Einkommen</text><text x="150" y="97" font-size="8" fill="#5c594f" text-anchor="middle">ausgleichen</text><text x="150" y="124" font-size="7.5" fill="#9a958a" text-anchor="middle">Steuern, Renten</text><text x="248" y="86" font-size="8" fill="#5c594f" text-anchor="middle">Konjunktur</text><text x="248" y="97" font-size="8" fill="#5c594f" text-anchor="middle">glätten</text><text x="248" y="124" font-size="7.5" fill="#9a958a" text-anchor="middle">Zinsen, Programme</text></svg>`
+};
+function econGraphicHtml(key){ const s = ECON_SVG[key]; return s ? `<figure class="econ-fig">${s}</figure>` : ''; }
+
 function formatTheory(text){
   if (!text) return '';
   // Split on ~~~fences~~~ to allow ASCII art / tables in monospace blocks.
@@ -4014,6 +4907,8 @@ function buildSystemPrompt(c, stageKey){
     context = `Du bist Geschichtslehrer am Gymnasium (KEN W2A, Schweiz). Du prüfst VERSTÄNDNIS, nicht Jahreszahl-Auswendiglernen. Bewertet wird: Kausalketten (warum führte X zu Y), Akteurslogik (was wollten die Beteiligten aus IHRER Sicht), Strukturvergleiche (z.B. Helvetik vs. Bundesverfassung, England vs. Schweiz). Eine Antwort ist RICHTIG, wenn die historische Zusammenhangs-Logik erkennbar ist — auch wenn einzelne Begriffe nicht wörtlich auftauchen. Sei großzügig bei Formulierungen, streng nur bei sachlichen Verdrehungen (z.B. Akteure/Phasen falsch zugeordnet, Ursache/Wirkung verdreht). Tippfehler in Eigennamen sind ok.`;
   } else if (state.topic === 'geografie'){
     context = `Du bist Geografielehrer am Gymnasium (KEN W2A, Schweiz) im Fach Geografie (Energie & Klimawandel). Du prüfst VERSTÄNDNIS und Zusammenhänge: Treibhauseffekt, Rückkopplungen, Treibhausgase, Kohlenstoffkreislauf, Folgen, Kippelemente, Klimapolitik (Kyoto, Paris, Schweizer Gesetze), Massnahmen und Energie. Eine Antwort ist RICHTIG, wenn die fachliche Kernidee und die Zusammenhänge erkennbar sind — auch wenn nicht jeder Begriff wörtlich vorkommt. Zahlen und Jahreszahlen müssen nur ungefähr (richtige Größenordnung) stimmen. Sei großzügig bei Formulierungen, streng nur bei echten Sachfehlern (z.B. positive und negative Rückkopplung verwechselt, Kyoto und Paris vertauscht, Ursache und Wirkung verdreht).`;
+  } else if (state.topic === 'wirtschaft'){
+    context = `Du bist Wirtschaftslehrer am Gymnasium (KEN W2A, Schweiz) im Fach Volkswirtschaftslehre. Du prüfst VERSTÄNDNIS und ökonomisches Denken: Knappheit, Wirtschaftssysteme, Rolle des Staates, Angebot und Nachfrage, Marktgleichgewicht, Konsumenten-/Produzentenrente, staatliche Eingriffe (Steuer, Subvention, Höchst-/Mindestpreis) und Preiselastizität. Eine Antwort ist RICHTIG, wenn die ökonomische Kernlogik und die Wirkungskette stimmen (z.B. richtige Verschiebungsrichtung der Kurve und korrekte Folge für Preis P* und Menge M*) — auch ohne jeden Fachbegriff wörtlich. Bei Rechenaufgaben zählt richtiges Ergebnis mit nachvollziehbarem Weg. Sei großzügig bei Formulierungen, streng bei echten Denkfehlern (z.B. Bewegung auf der Kurve mit Verschiebung der Kurve verwechselt, Substitut mit Komplementärgut vertauscht, Höchst-/Mindestpreis falsch eingeordnet).`;
   } else {
     context = `Du bist Lehrer am Gymnasium (KEN W2A, Schweiz) im Fach ${topicName}. Du bewertest fair, mit Augenmaß — Kernidee zählt, nicht jeder einzelne Pflichtpunkt wörtlich.`;
   }
@@ -4248,7 +5143,7 @@ async function requestAIHelp(c, stageKey){
   const resultEl = document.getElementById('qResult');
   helpBtn.disabled = true;
   resultEl.innerHTML = `<div class="loading"><span class="dot"></span> KI denkt nach…</div>`;
-  const teacherRole = state.topic === 'chemie' ? 'Chemielehrer' : (state.topic === 'geschichte' ? 'Geschichtslehrer' : (state.topic === 'geografie' ? 'Geografielehrer' : 'Lehrer'));
+  const teacherRole = state.topic === 'chemie' ? 'Chemielehrer' : (state.topic === 'geschichte' ? 'Geschichtslehrer' : (state.topic === 'geografie' ? 'Geografielehrer' : (state.topic === 'wirtschaft' ? 'Wirtschaftslehrer' : 'Lehrer')));
   const sys = `Du bist ein hilfsbereiter ${teacherRole} am Schweizer Gymnasium. Der Schüler steckt fest bei folgendem Konzept:
 KONZEPT: ${c.title}
 FRAGE: ${stageKey === 'quick' ? c.quick.q : c.explain.prompt}
@@ -4518,6 +5413,7 @@ function ccConceptHtml(c){
      <div class="cc-c-head"><span>${ccEsc(c.title)}</span><span class="cc-pill">${ccEsc(c.lz)}</span><span class="cc-pill">${ccEsc(getConceptType(c))}</span><span class="cc-id">${ccEsc(c.id)}</span></div>
      <div class="cc-c-body">
        <div class="cc-sec"><div class="cc-label">Theorie</div><div class="cc-theory">${ccEsc(c.theory)}</div></div>
+       ${c.svgKey?`<div class="cc-sec"><div class="cc-label">Grafik</div>${econGraphicHtml(c.svgKey)}</div>`:''}
        ${c.example?`<div class="cc-sec"><div class="cc-label">Beispiel</div><div class="cc-theory">${ccEsc(c.example)}</div></div>`:''}
        <div class="cc-sec"><div class="cc-label">Schreibfrage 1 (KI-Korrektur)</div><div class="cc-q">${ccEsc(c.quick&&c.quick.q)}</div>${must(c.quick&&c.quick.mustInclude)}</div>
        <div class="cc-sec"><div class="cc-label">Schreibfrage 2 (KI-Korrektur)</div><div class="cc-q">${ccEsc(c.explain&&c.explain.prompt)}</div>${must(c.explain&&c.explain.mustInclude)}<div class="cc-label" style="margin-top:6px">Musterlösung</div><div class="cc-theory">${ccEsc(c.explain&&c.explain.model)}</div></div>
