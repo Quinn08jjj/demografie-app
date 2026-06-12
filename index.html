@@ -1733,306 +1733,1806 @@ function typeChipHtml(c, withDesc){
    (kein KI-Aufruf; nur der Schreiben-Modus nutzt die KI)
 ================================================================ */
 const MC_BY_ID = {
-'chem-lz1-a': [
-  {q:`Was gibt die molare Masse M eines Elements an und wo findet man sie?`, options:[`Die Anzahl Teilchen pro Gramm, ablesbar an der Avogadro-Zahl`, `Den Wert in g/mol, der im PSE steht und zahlenmäßig der relativen Atommasse entspricht`, `Das Volumen von einem Mol Gas in Litern`, `Die Masse eines einzelnen Atoms in Kilogramm`], correct:1, explain:`Laut Theorie steht M (in g/mol) im PSE und entspricht zahlenmäßig der relativen Atommasse.`},
-  {q:`Eine Probe hat die Masse m und die molare Masse M ist bekannt. Wie berechnet man die Stoffmenge n?`, options:[`n = M / m`, `n = m · M`, `n = m / M`, `n = m · Nₐ`], correct:2, explain:`Der angegebene Zusammenhang lautet n = m / M.`}
-],
-'chem-lz3-b': [
-  {q:`In welche Richtungen im PSE steigt der Metallcharakter?`, options:[`Nach rechts und nach oben`, `Nach links und nach unten`, `Nach rechts und nach unten`, `Nur nach oben, unabhängig von links/rechts`], correct:1, explain:`Laut Theorie steigt der Metallcharakter nach links und nach unten, mit Maximum unten links.`},
-  {q:`Welche Aussage über Nichtmetalle trifft laut Theorie zu?`, options:[`Sie haben eine hohe EN und bilden Anionen`, `Sie haben eine niedrige EN und bilden Kationen`, `Sie sind glänzend und gute Stromleiter`, `Sie geben Elektronen besonders leicht ab`], correct:0, explain:`Nichtmetalle haben laut Theorie eine hohe EN, nehmen Elektronen auf und bilden Anionen.`}
-],
-'chem-lz5-b': [
-  {q:`Was beschreibt die Gitterenergie eines Ionengitters?`, options:[`Die Energie, die nötig ist, um ein Salz in Wasser zu lösen`, `Die Energie, die frei wird, wenn aus gasförmigen Ionen ein Mol Ionengitter entsteht`, `Die Energie, die ein Gitter beim Schmelzen aufnimmt`, `Die Energie, die bei der Bildung eines einzelnen Moleküls frei wird`], correct:1, explain:`Die Gitterenergie ist laut Theorie die beim Entstehen eines Mols Ionengitter aus gasförmigen Ionen frei werdende Energie.`},
-  {q:`Warum ist die Gitterenergie von MgO deutlich negativer als die von NaCl?`, options:[`Weil MgO Moleküle statt Ionen bildet`, `Weil Natrium schwerer ist als Magnesium`, `Weil MgO höhere Ladungen (2+, 2−) als NaCl (1+, 1−) hat`, `Weil NaCl einen größeren Ionenabstand mit höheren Ladungen besitzt`], correct:2, explain:`Je höher die Ladungen und je kleiner die Ionen, desto negativer die Gitterenergie, und MgO trägt die höheren Ladungen 2+/2−.`}
-],
-'chem-lz7-a': [
-  {q:`Warum leiten Salze den elektrischen Strom nur in Lösung oder Schmelze, nicht aber im festen Zustand?`, options:[`Weil im festen Zustand die Ionen unbeweglich sind, in Lösung oder Schmelze aber frei beweglich`, `Weil feste Salze keine Ionen enthalten`, `Weil sich die Ladungen im Feststoff gegenseitig aufheben`, `Weil Wasser selbst den Strom leitet, das Salz aber nicht`], correct:0, explain:`Im Feststoff sind die Ionen unbeweglich, beim Lösen oder Schmelzen werden sie frei beweglich und damit leitfähig.`},
-  {q:`Wodurch erklärt sich, dass Salze zwar hart, aber spröde sind?`, options:[`Die Ionen sind nur locker gebunden und fallen leicht auseinander`, `Salze bestehen aus weichen Molekülschichten`, `Bei einem Schlag verschieben sich Ebenen, gleiche Ladungen treffen aufeinander und stoßen sich ab`, `Die Gitterenergie ist zu niedrig, um Härte zu erzeugen`], correct:2, explain:`Laut Theorie verschieben sich bei einem Schlag die Ebenen, sodass gleiche Ladungen aufeinandertreffen, sich abstoßen und das Salz bricht.`}
-],
-'chem-lz10-c': [
-  {q:`Was gilt beim Verdünnen einer Lösung laut Theorie?`, options:[`Sowohl Massenanteil als auch Stoffmasse bleiben konstant`, `Der Massenanteil ändert sich, aber die Stoffmasse bleibt konstant`, `Die Stoffmasse ändert sich, aber der Massenanteil bleibt konstant`, `Beide Größen verdoppeln sich`], correct:1, explain:`Beim Verdünnen bleibt die Stoffmasse konstant, während sich der Massenanteil ändert.`},
-  {q:`Welcher Dichtewert ρ gilt näherungsweise für verdünnte Wasser-Lösungen?`, options:[`etwa 0,5 g/mL`, `etwa 2,0 g/mL`, `etwa 1,0 g/mL`, `genau 100 g/mL`], correct:2, explain:`Laut Theorie ist ρ bei verdünnten Wasser-Lösungen näherungsweise 1,0 g/mL.`}
-],
-'hist-lz2-b': [
-  {q:`Welches Wahlrecht legte die Verfassung von 1791 fest?`, options:[`Allgemeines Wahlrecht für alle erwachsenen Männer und Frauen`, `Ein klassengebundenes Wahlrecht, bei dem nur Aktivbürger wählen durften`, `Ein Wahlrecht ausschließlich für den Adel`, `Gar kein Wahlrecht, da der König allein entschied`], correct:1, explain:`Das Wahlrecht war klassengebunden, nur steuerzahlende Aktivbürger waren wahlberechtigt.`},
-  {q:`Welche Aussage über die Stellung des Königs in der Verfassung von 1791 trifft zu?`, options:[`Er blieb absoluter Monarch ohne Einschränkungen`, `Er wurde vollständig abgeschafft und durch eine Republik ersetzt`, `Er behielt die Exekutive und ein suspensives Veto, war aber eingehegt`, `Er war nur noch ein gewähltes Mitglied der Nationalversammlung`], correct:2, explain:`Der König behielt laut Theorie die Exekutive und ein suspensives Veto, war aber als eingehegter Monarch gebunden.`}
-],
-'hist-lz5-b': [
-  {q:`Wer regierte vor 1798 in den städtischen Orten wie Bern oder Zürich?`, options:[`Eine kleine, fast geschlossene Schicht von Patrizier-Familien`, `Die gesamte männliche Bevölkerung über die Landsgemeinde`, `Vom König eingesetzte Statthalter`, `Gewählte Vertreter der Landbevölkerung`], correct:0, explain:`In den Städten verteilten rund 50 bis 100 Patrizier-Familien pro Stadt die Ratssitze unter sich.`},
-  {q:`Wie organisierten die ländlichen Orte wie Uri oder Schwyz ihre politische Mitbestimmung?`, options:[`Durch ein klassengebundenes Wahlrecht nach Vermögen`, `Durch Landsgemeinde-Demokratie, bei der alle wehrfähigen Männer direkt abstimmten`, `Durch erbliche Patrizier-Räte wie in den Städten`, `Durch von Bern ernannte Vögte`], correct:1, explain:`Die ländlichen Orte hatten Landsgemeinde-Demokratie, bei der alle wehrfähigen Männer direkt abstimmten.`}
-],
-'hist-lz8-b': [
-  {q:`Welche grundlegende Veränderung brachte die Bundesverfassung von 1848?`, options:[`Sie verwandelte den Bundesstaat zurück in einen losen Staatenbund`, `Sie verwandelte die Schweiz vom losen Staatenbund in einen modernen Bundesstaat`, `Sie führte die absolute Monarchie ein`, `Sie schaffte die Kantone vollständig ab`], correct:1, explain:`Die Verfassung von 1848 verwandelte die Schweiz vom losen Staatenbund in einen modernen Bundesstaat.`},
-  {q:`Wie sind National- und Ständerat laut Verfassung von 1848 zusammengesetzt?`, options:[`Beide werden vollständig von den Kantonsregierungen bestimmt`, `Der Nationalrat hat 2 Sitze pro Kanton, der Ständerat wird nach Bevölkerung gewählt`, `Der Nationalrat wird vom Volk nach Bevölkerung gewählt, der Ständerat hat 2 Sitze pro Kanton`, `Beide Kammern werden vom Bundesrat ernannt`], correct:2, explain:`Der Nationalrat wird per Volkswahl nach Bevölkerung besetzt, der Ständerat zählt 2 Sitze pro Kanton.`}
-],
-'hist-lz11-b': [
-  {q:`Was regelte das erste eidgenössische Fabrikgesetz von 1877?`, options:[`Es erlaubte Kinderarbeit ab 6 Jahren wieder ausdrücklich`, `Es verbot Kinderarbeit unter 14 Jahren und begrenzte die Arbeitszeit auf 11 Stunden pro Tag`, `Es führte den Achtstundentag für alle ein`, `Es verbot ausschließlich die Frauenarbeit in Fabriken`], correct:1, explain:`Das Fabrikgesetz von 1877 verbot Kinder unter 14, begrenzte die Arbeitszeit auf 11h/Tag und verbot Sonntagsarbeit.`},
-  {q:`Warum wurden Frauen und Kinder in den Fabriken bevorzugt eingestellt?`, options:[`Weil sie körperlich stärker waren als die Männer`, `Weil sie billiger und weniger gewerkschaftsfähig waren`, `Weil das Gesetz Männerarbeit verbot`, `Weil sie eine bessere Schulbildung hatten`], correct:1, explain:`Laut Theorie wurden Frauen und Kinder bevorzugt eingestellt, weil sie billiger und weniger gewerkschaftsfähig waren.`}
-],
-'geo-lz2-b': [
-  {q:`Wie wirkt die Eis-Albedo-Rückkopplung bei einer Erwärmung?`, options:[`Schmelzendes Eis senkt die Albedo, die dunklere Oberfläche absorbiert mehr Wärme und verstärkt die Erwärmung`, `Schmelzendes Eis erhöht die Albedo und kühlt die Oberfläche ab`, `Mehr Eis bildet sich, wodurch weniger Wärme aufgenommen wird`, `Die Albedo bleibt konstant, sodass keine Verstärkung auftritt`], correct:0, explain:`Schmelzendes Eis senkt die Albedo, die dunklere Wasser- oder Bodenfläche absorbiert mehr Wärme und treibt die Erwärmung weiter an.`},
-  {q:`Warum wirkt die Wasserdampf-Rückkopplung selbstverstärkend?`, options:[`Weil Wasserdampf die Sonnenstrahlung wie helles Eis zurückwirft`, `Weil wärmere Luft weniger Feuchtigkeit aufnimmt und so abkühlt`, `Weil mehr Wasserdampf als Treibhausgas den Treibhauseffekt verstärkt und so weitere Erwärmung bewirkt`, `Weil Wasserdampf die Albedo der Oberfläche erhöht`], correct:2, explain:`Wärmere Luft nimmt mehr Wasserdampf auf, der als Treibhausgas den Treibhauseffekt und damit die Erwärmung weiter verstärkt.`}
-],
-'geo-lz5-b': [
-  {q:`Welcher Prozess entzieht der Atmosphäre laut Theorie CO₂?`, options:[`Der Vulkanismus durch Ausgasung`, `Die Atmung von Lebewesen`, `Die Zersetzung von Biomasse`, `Die Verwitterung von Gestein`], correct:3, explain:`Die Verwitterung von Gestein bindet CO₂ und entzieht es so der Atmosphäre.`},
-  {q:`Um wie viel nimmt der Kohlenstoff in der Atmosphäre durch die menschliche Störung jährlich zu?`, options:[`um 5,1 GtC`, `um 2,9 GtC`, `um 51 GtC`, `um 0,5 GtC`], correct:0, explain:`Laut Theorie nimmt der atmosphärische Kohlenstoff jährlich um 5,1 GtC zu.`}
-],
-'geo-lz8-b': [
-  {q:`Was ist laut Theorie die zentrale Schwäche des Pariser Abkommens von 2015?`, options:[`Die Ziele werden von oben verordnet und sind zu streng`, `Es gibt keine Sanktionsmechanismen, die Ziele sind freiwillig`, `Die NDCs werden nur alle 50 Jahre überprüft`, `Es schließt die meisten Staaten von der Teilnahme aus`], correct:1, explain:`Laut Theorie fehlen Sanktionsmechanismen, die Ziele sind freiwillig.`},
-  {q:`Welches Ergebnis wird der COP27 in Sharm-El-Sheikh 2022 zugeordnet?`, options:[`Fossil Fuel Phase-Out`, `Indien Netto-Null bis 2070`, `Loss and Damage Fund`, `neues Klimafinanzierungsziel`], correct:2, explain:`In der Tabelle ist der COP27 in Sharm-El-Sheikh 2022 der Loss and Damage Fund zugeordnet.`}
-],
-'geo-lz11-b': [
-  {q:`Welche Energieträger zählt die Theorie zu den nicht erneuerbaren?`, options:[`Wasserkraft, Wind und Solarenergie`, `Geothermie und Biomasse`, `Kohle, Erdöl, Erdgas und Kernenergie`, `Sonnen- und Windenergie`], correct:2, explain:`Nicht erneuerbar sind laut Theorie Kohle, Erdöl, Erdgas und die Kernenergie.`},
-  {q:`Was umfasst der Begriff der grauen Energie?`, options:[`Nur die Energie, die ein Gerät im laufenden Betrieb verbraucht`, `Die gesamte Energie für Herstellung, Transport und Entsorgung eines Produkts`, `Ausschließlich die Energie aus nicht erneuerbaren Quellen`, `Die Energie, die beim Recycling zurückgewonnen wird`], correct:1, explain:`Graue Energie umfasst die gesamte Energie für Herstellung, Transport und Entsorgung eines Produkts.`}
-],
-'chem-lz1-b': [
-  {q:`Welche Umstellung der Grundformel n = m/M ist korrekt, um die Masse zu berechnen?`, options:[`m = n / M`, `m = n · M`, `m = M / n`, `m = M − n`], correct:1, explain:`Die Theorie gibt für die Masse die Umstellung m = n · M an.`},
-  {q:`Wie wird das Kristallwasser bei der Berechnung der molaren Masse von CuSO₄·5H₂O behandelt?`, options:[`Es wird abgezogen, weil es kein Salz ist`, `Es zählt zur molaren Masse mit`, `Es wird halbiert berücksichtigt`, `Es spielt keine Rolle für M`], correct:1, explain:`Laut Theorie zählt das Kristallwasser zur molaren Masse mit, M(CuSO₄·5H₂O) ergibt 249.6 g/mol.`}
-],
-'chem-lz4-a': [
-  {q:`Welcher Bindungstyp liegt vor, wenn ein Metall und ein Nichtmetall mit einer EN-Differenz über 1.7 verbunden sind?`, options:[`Metallbindung`, `Ionenbindung`, `unpolare Atombindung`, `polare Atombindung`], correct:1, explain:`Metall plus Nichtmetall mit ΔEN über 1.7 ergibt laut Theorie eine Ionenbindung mit vollständiger Elektronenübertragung.`},
-  {q:`Wodurch entsteht laut Theorie die elektrische Leitfähigkeit der Metallbindung?`, options:[`Durch vollständige Elektronenübertragung auf Anionen`, `Durch frei bewegliche Valenzelektronen zwischen positiven Atomrümpfen`, `Durch Partialladungen δ⁺ und δ⁻`, `Durch symmetrisches Teilen von Elektronenpaaren`], correct:1, explain:`Das Elektronengas aus frei beweglichen Valenzelektronen erklärt laut Theorie die Leitfähigkeit der Metalle.`}
-],
-'chem-lz5-c': [
-  {q:`Welche Ladung trägt ein einatomiges Ion aus der Hauptgruppe VI nach der Edelgasregel?`, options:[`1+`, `2−`, `3−`, `2+`], correct:1, explain:`Laut Theorie bilden Elemente der Gruppe VI wie Oxid und Sulfid Ionen mit der Ladung 2−.`},
-  {q:`Wie heißt das Anion, das vom Element Chlor abgeleitet wird?`, options:[`Chlorat`, `Chlorid`, `Chlor-Ion`, `Chlorit`], correct:1, explain:`Anionen erhalten laut Theorie die Endung -id, also heißt das Chlor-Anion Chlorid.`}
-],
-'chem-lz8-a': [
-  {q:`Welche Aussage über die beiden Teilschritte des Lösungsvorgangs ist laut Theorie richtig?`, options:[`Das Zerlegen des Ionengitters ist exotherm`, `Die Hydratation ist endotherm`, `Das Zerlegen des Gitters ist endotherm, die Hydratation exotherm`, `Beide Teilschritte sind endotherm`], correct:2, explain:`Laut Theorie ist das Zerlegen des Ionengitters endotherm und die Hydratation exotherm.`},
-  {q:`Wie ordnen sich die Wassermoleküle bei der Hydratation um ein positives Ion an?`, options:[`Die O-Seite des Wassers mit δ⁻ zeigt zum Ion`, `Die H-Seite des Wassers mit δ⁺ zeigt zum Ion`, `Die Wassermoleküle bleiben ungeordnet`, `Beide Seiten des Wassers zeigen gleich stark zum Ion`], correct:0, explain:`Laut Theorie zeigt bei positiven Ionen die O-Seite des Wassers mit Partialladung δ⁻ zum Ion.`}
-],
-'chem-lz10-d': [
-  {q:`Warum soll das wasserfreie Salz nach dem Glühen im Exsikkator abkühlen, bevor man es wiegt?`, options:[`Damit es schneller erkaltet als an der Luft`, `Damit es kein Wasser aus der Luft wieder aufnimmt und das Ergebnis verfälscht`, `Damit sich das Salz wieder mit Kristallwasser füllt`, `Damit der Tiegel nicht zerspringt`], correct:1, explain:`Laut Theorie wird im Exsikkator abgekühlt, damit das wasserfreie Salz die Messung nicht durch erneute Wasseraufnahme verfälscht.`},
-  {q:`Wie bestimmt man die Masse des ausgetriebenen Kristallwassers experimentell?`, options:[`Man wiegt nur den leeren Tiegel`, `Man bildet den Massenverlust zwischen Probe vor und nach dem Erhitzen`, `Man addiert die Massen vor und nach dem Erhitzen`, `Man misst das Volumen des entstandenen Dampfes`], correct:1, explain:`Laut Theorie entspricht der Massenverlust zwischen m₁ und m₂ dem ausgetriebenen Wasser.`}
-],
-'hist-lz3-a': [
-  {q:`Welches Ereignis vom 10. August 1792 führte zum Sturz der Monarchie in Frankreich?`, options:[`Die Hinrichtung Ludwigs XVI.`, `Der Tuilerien-Sturm`, `Die Septembermorde`, `Der Aufstand in der Vendée`], correct:1, explain:`Laut Theorie wurde durch den Tuilerien-Sturm am 10. August 1792 die Monarchie gestürzt und der König gefangen genommen.`},
-  {q:`Was geschah laut Zeittafel mit der Verfassung von 1793?`, options:[`Sie wurde dauerhaft in Kraft gesetzt`, `Sie wurde verabschiedet, dann sofort bis Kriegsende suspendiert`, `Sie wurde vom König unterzeichnet`, `Sie wurde nie verabschiedet`], correct:1, explain:`Laut Theorie wurde die Verfassung 1793 verabschiedet, danach jedoch sofort bis Kriegsende suspendiert.`}
-],
-'hist-lz6-a': [
-  {q:`Welches Grundprinzip kennzeichnet die Helvetische Verfassung von 1798 bezüglich der Souveränität?`, options:[`Die Souveränität liegt bei den einzelnen Kantonen`, `Es ist ein Einheitsstaat, die Souveränität liegt beim Bund`, `Die Souveränität liegt beim König`, `Jede Gemeinde ist souverän`], correct:1, explain:`Laut Theorie war die Helvetik ein Einheitsstaat, dessen Souveränität beim Bund und nicht bei den Kantonen lag.`},
-  {q:`Welche Aussage zum Wahlrecht der Helvetischen Verfassung 1798 trifft zu?`, options:[`Allgemeines Männerwahlrecht, Frauen ausgeschlossen`, `Allgemeines Wahlrecht für Männer und Frauen`, `Nur Adlige durften wählen`, `Es gab gar kein Wahlrecht`], correct:0, explain:`Laut Theorie galt ein allgemeines Männerwahlrecht in Stufenwahl, während Frauen ausgeschlossen waren.`}
-],
-'hist-lz9-a': [
-  {q:`Welche Rolle spielt die Agrarrevolution laut Theorie für die Industrialisierung Englands?`, options:[`Sie war eine Folge der Industrialisierung`, `Sie war eine Voraussetzung und setzte Arbeitskräfte frei`, `Sie verhinderte die Abwanderung in die Städte`, `Sie spielte keine Rolle`], correct:1, explain:`Laut Theorie war die Agrarrevolution eine Voraussetzung, die durch Enclosures landlose Arbeitskräfte für die Städte freisetzte.`},
-  {q:`Was sagt die Theorie über das Zusammenwirken der fünf Faktoren der Industrialisierung?`, options:[`Ein einzelner Faktor wie Kohle reicht bereits aus`, `Alle fünf Faktoren müssen zusammen wirken`, `Nur Kapital und Kolonien sind entscheidend`, `Die Faktoren wirken nacheinander, nie gleichzeitig`], correct:1, explain:`Laut Theorie müssen alle fünf Faktoren zusammen wirken, kein einzelner reicht aus.`}
-],
-'hist-lz12-a': [
-  {q:`Welche Lösung der Sozialen Frage vertrat der Liberalismus laut Theorie?`, options:[`Revolution und Abschaffung des Privateigentums`, `Selbsthilfe durch Bildung, Sparkassen und Vereine`, `Staatliche Sozialversicherungen von oben`, `Karitative Werke der Kirchen`], correct:1, explain:`Laut Theorie setzte der Liberalismus auf Selbsthilfe durch Bildung, Sparkassen und Selbsthilfevereine ohne Staatseingriff.`},
-  {q:`Was kennzeichnete Bismarcks staatlich-soziale Antwort nach dem Prinzip Zuckerbrot und Peitsche?`, options:[`Nur Sozialgesetze ohne jede Repression`, `Sozialgesetze und gleichzeitig das Anti-Sozialistengesetz`, `Ausschließlich die Förderung von Genossenschaften`, `Die Forderung nach einer klassenlosen Gesellschaft`], correct:1, explain:`Laut Theorie verband Bismarck Sozialgesetze von 1883 bis 1889 mit dem gleichzeitigen Anti-Sozialistengesetz von 1878 bis 1890.`}
-],
-'geo-lz3-a': [
-  {q:`Warum ist CO₂ trotz geringerer Wirksamkeit pro Molekül der wichtigste Treiber des anthropogenen Treibhauseffekts?`, options:[`Weil es pro Molekül am stärksten wirkt`, `Weil es in riesigen Mengen aus fossilen Brennstoffen freigesetzt wird`, `Weil es das einzige anthropogene Treibhausgas ist`, `Weil es 310-mal wirksamer als andere Gase ist`], correct:1, explain:`Laut Theorie ergibt erst Wirksamkeit mal Menge den Beitrag, weshalb das massenhaft freigesetzte CO₂ den größten Anteil hat.`},
-  {q:`Welches Gas ist laut Tabelle pro Molekül rund 310-mal so wirksam wie CO₂?`, options:[`Methan CH₄`, `Distickstoffmonoxid N₂O`, `F-Gase`, `Ozon O₃`], correct:1, explain:`Laut Tabelle hat N₂O eine Wirksamkeit von 310-mal gegenüber CO₂.`}
-],
-'geo-lz6-a': [
-  {q:`Wie hat sich die Geschwindigkeit des Meeresspiegelanstiegs laut Theorie entwickelt?`, options:[`Von 3,7 mm pro Jahr auf 1,3 mm pro Jahr verlangsamt`, `Von rund 1,3 mm pro Jahr seit 1900 auf aktuell 3,7 mm pro Jahr beschleunigt`, `Sie ist konstant bei 1,3 mm pro Jahr geblieben`, `Sie ist auf null gesunken`], correct:1, explain:`Laut Theorie stieg der Meeresspiegel seit 1900 um rund 1,3 mm pro Jahr und hat sich auf aktuell 3,7 mm pro Jahr beschleunigt.`},
-  {q:`Was versteht die Theorie unter Compound Risks?`, options:[`Ein einzelnes, isoliertes Extremereignis`, `Das gleichzeitige oder aufeinanderfolgende Zusammentreffen mehrerer Klimafolgen`, `Den langsamen Verlust der Biodiversität`, `Eine reine Verlangsamung des Meeresspiegelanstiegs`], correct:1, explain:`Laut Theorie sind Compound Risks das gleichzeitige oder nacheinander erfolgende Zusammentreffen mehrerer Klimafolgen, deren Schäden sich gegenseitig verstärken.`}
-],
-'geo-lz9-a': [
-  {q:`Was war der politisch entscheidende Schritt der Energiestrategie 2050?`, options:[`Der Ausbau der Wasserkraft`, `Der Verzicht auf neue AKW`, `Die Senkung der CO₂-Norm für Fahrzeuge`, `Die Steigerung der Gebäudesanierungsmittel`], correct:1, explain:`Laut Theorie war das Verbot neuer AKW der politisch entscheidende Schritt der Energiestrategie 2050.`},
-  {q:`Welche Vorgabe macht das Energiegesetz laut Tabelle für den Energieverbrauch pro Person bis 2035?`, options:[`minus 13 Prozent`, `minus 43 Prozent`, `minus 95 Prozent`, `minus 58,2 Prozent`], correct:1, explain:`Laut Tabelle soll der Energieverbrauch pro Person bis 2035 um 43 Prozent sinken.`}
-],
-'geo-lz12-a': [
-  {q:`Welche zwei fossilen Energieträger machen laut Theorie zusammen über 60 Prozent des Endenergieverbrauchs aus?`, options:[`Elektrizität und Gas`, `Erdölbrennstoffe und Treibstoffe`, `Gas und Übrige`, `Treibstoffe und Elektrizität`], correct:1, explain:`Laut Theorie machen Erdölbrennstoffe mit 34,9 Prozent und Treibstoffe mit 26,7 Prozent zusammen über 60 Prozent aus.`},
-  {q:`Warum gilt Elektrizität laut Theorie als der Bereich mit dem höchsten Anteil CO₂-armer Quellen?`, options:[`Weil sie den größten Anteil am Gesamtverbrauch hat`, `Weil bei ihr Wasserkraft und Kernkraft dominieren`, `Weil sie nur aus Erdöl gewonnen wird`, `Weil sie vor allem fürs Heizen genutzt wird`], correct:1, explain:`Laut Theorie dominieren bei der Elektrizität Wasserkraft und Kernkraft, weshalb sie den höchsten Anteil bereits CO₂-armer Quellen hat.`}
-],
-'chem-lz1-c': [
-  {q:`Was beschreibt die Stoffmengenkonzentration c gemäss der Theorie?`, options:[`Die Masse des Lösungsmittels pro Liter`, `Wie viele Mol pro Liter Lösung gelöst sind`, `Das Volumen des Lösungsmittels allein`, `Die Anzahl Atome pro Mol`], correct:1, explain:`Laut Definition gibt c an, wie viele Mol pro Liter Lösung gelöst sind.`},
-  {q:`Eine Stammlösung wird verdünnt. Welche Beziehung gilt laut Theorie?`, options:[`c eins mal V eins gleich c zwei mal V zwei`, `c eins plus V eins gleich c zwei plus V zwei`, `c eins durch V eins gleich c zwei durch V zwei`, `c eins mal c zwei gleich V eins mal V zwei`], correct:0, explain:`Beim Verdünnen bleibt die Stoffmenge gleich, daher gilt c eins mal V eins gleich c zwei mal V zwei.`}
-],
-'chem-lz4-b': [
-  {q:`Was besagt die Oktettregel?`, options:[`Atome streben immer genau 4 Valenzelektronen an`, `Atome geben grundsätzlich alle Elektronen ab`, `Atome streben die Elektronenkonfiguration des nächsten Edelgases an`, `Atome bilden nie kovalente Bindungen`], correct:2, explain:`Die Oktettregel besagt, dass Atome die Edelgaskonfiguration des nächsten Edelgases anstreben.`},
-  {q:`Auf welchem der drei Wege erreicht ein Nichtmetall wie Chlor die Edelgaskonfiguration typischerweise?`, options:[`Durch Abgabe von drei Elektronen`, `Durch Aufnahme eines Elektrons zu Cl minus`, `Durch Abgabe eines Protons`, `Durch Verlust seiner äussersten Schale`], correct:1, explain:`Nichtmetalle wie Chlor nehmen Elektronen auf, Chlor wird zu Cl minus wie Argon.`}
-],
-'chem-lz6-a': [
-  {q:`Welche Ladung trägt das Sulfat-Ion SO₄?`, options:[`einfach negativ`, `zweifach negativ`, `dreifach negativ`, `einfach positiv`], correct:1, explain:`Sulfat SO₄ ist laut Liste ein zweifach negativ geladenes Anion.`},
-  {q:`Was unterscheidet laut Merkregel Sulfat von Sulfit?`, options:[`Sulfit hat ein Sauerstoffatom weniger und die Endung -it`, `Sulfit ist ein Kation`, `Sulfat trägt eine geringere Ladung`, `Sulfit enthält Stickstoff statt Schwefel`], correct:0, explain:`Die Merkregel besagt, dass weniger Sauerstoff die Endung -it ergibt, also Sulfit SO₃ gegenüber Sulfat SO₄.`}
-],
-'chem-lz8-b': [
-  {q:`Wann ist der Lösungsvorgang laut Theorie exotherm, sodass sich die Lösung erwärmt?`, options:[`Wenn der Betrag der Hydratationsenergie kleiner als der der Gitterenergie ist`, `Wenn der Betrag der Hydratationsenergie grösser als der der Gitterenergie ist`, `Wenn beide Beträge exakt gleich sind`, `Wenn keine Hydratation stattfindet`], correct:1, explain:`Ist der Betrag der Hydratationsenergie grösser als der der Gitterenergie, wird ΔH der Lösung negativ und der Vorgang exotherm.`},
-  {q:`Wie lautet die energetische Bilanz beim Lösen gemäss Theorie?`, options:[`ΔH Lösung gleich ΔH Gitter mal ΔH Hydratation`, `ΔH Lösung gleich ΔH Gitter plus ΔH Hydratation`, `ΔH Lösung gleich ΔH Gitter geteilt durch ΔH Hydratation`, `ΔH Lösung gleich nur ΔH Gitter`], correct:1, explain:`Die Theorie gibt die Bilanz als ΔH Lösung gleich ΔH Gitter plus ΔH Hydratation an.`}
-],
-'chem-lz10-e': [
-  {q:`Welches Reagenz weist Chlorid-Ionen durch einen weissen Niederschlag nach?`, options:[`Bariumchlorid`, `verdünnte Salzsäure`, `Silbernitrat`, `Kalkwasser`], correct:2, explain:`Silbernitrat bildet mit Chlorid einen weissen Niederschlag von AgCl.`},
-  {q:`Wie weist man Carbonat-Ionen laut Theorie nach?`, options:[`Zugabe von verdünnter Salzsäure führt zu Gasentwicklung von CO₂`, `Zugabe von Silbernitrat ergibt einen gelben Niederschlag`, `Zugabe von Bariumchlorid ergibt BaSO₄`, `Es entsteht ein blauer Niederschlag`], correct:0, explain:`Bei Carbonat entsteht mit verdünnter HCl sprudelndes CO₂, das Kalkwasser trübt.`}
-],
-'hist-lz3-b': [
-  {q:`Mit welchem Ereignis endete die Schreckensherrschaft?`, options:[`Mit der Hinrichtung Marie-Antoinettes im Oktober 1793`, `Mit dem Sturz und der Hinrichtung Robespierres im Juli 1794`, `Mit Napoleons Staatsstreich 1799`, `Mit der Gründung des Direktoriums 1795`], correct:1, explain:`Die Schreckensherrschaft endete mit dem Sturz Robespierres am 9. Thermidor, er wurde am 28. Juli 1794 guillotiniert.`},
-  {q:`Welche wirtschaftliche Massnahme gehörte zum Terror gegen den inneren Feind und die Versorgung?`, options:[`Die Einführung einer Einkommenssteuer`, `Das Höchstpreisgesetz für Lebensmittel`, `Die Abschaffung aller Zölle`, `Die Privatisierung der Getreidemärkte`], correct:1, explain:`Das Höchstpreisgesetz, das Maximum, legte die Lebensmittelpreise per Dekret fest.`}
-],
-'hist-lz6-b': [
-  {q:`Welche der fünf Ursachen beschreibt den Gegensatz zwischen dem französischen Modell und der bisherigen Ordnung der Schweiz?`, options:[`Der Zentralismus stiess auf die föderale Tradition kantonaler Selbstverwaltung`, `Die Industrialisierung verdrängte die Landwirtschaft`, `Die Einführung des Frauenstimmrechts spaltete die Kantone`, `Die Kontinentalsperre wurde aufgehoben`], correct:0, explain:`Eine Ursache war der Zusammenstoss des Zentralismus mit der jahrhundertealten föderalen kantonalen Selbstverwaltung.`},
-  {q:`Womit endete die Helvetik im Februar 1803?`, options:[`Mit dem Stecklikrieg`, `Mit der Mediationsakte nach Napoleons Eingriff`, `Mit dem Abzug der französischen Truppen`, `Mit der Niederlage Redings in der Innerschweiz`], correct:1, explain:`Die Helvetik endete im Februar 1803 mit der Mediationsakte, nachdem Napoleon eingegriffen hatte.`}
-],
-'hist-lz9-b': [
-  {q:`In welchem Sektor begann laut Theorie die Industrielle Revolution?`, options:[`Im Bergbau`, `Im Eisenbahnbau`, `Im Textil-Sektor bei der Baumwoll-Verarbeitung`, `In der Metallverarbeitung`], correct:2, explain:`Die Industrielle Revolution begann im Textil-Sektor, speziell bei der Baumwoll-Verarbeitung.`},
-  {q:`Warum eignete sich der Textilsektor besonders als Leitsektor?`, options:[`Weil nur wenige Menschen Kleidung benötigten`, `Weil Baumwolle ausschliesslich in England wuchs`, `Weil Spinnen und Weben repetitive, mechanisierbare Bewegungen sind`, `Weil keine Rohstoffe nötig waren`], correct:2, explain:`Spinnen und Weben sind repetitive Bewegungen und daher gut mechanisierbar, zudem war der Markt riesig.`}
-],
-'hist-lz12-b': [
-  {q:`Welche Forderungen des Landesstreiks von 1918 wurden in den Folgejahrzehnten umgesetzt?`, options:[`Nur die Abrüstung`, `Fast alle Forderungen, etwa 48-Stunden-Woche, AHV und Frauenstimmrecht`, `Keine einzige Forderung`, `Ausschliesslich die Proportionalwahl`], correct:1, explain:`Obwohl der Streik kurzfristig scheiterte, wurden in den Folgejahrzehnten fast alle Forderungen umgesetzt.`},
-  {q:`Was vereinbarten Gewerkschaften und Arbeitgeber im Friedensabkommen der MEM von 1937?`, options:[`Sofortige Lohnerhöhungen für alle Branchen`, `Keine Streiks und Aussperrungen, dafür Verhandlungen und Gesamtarbeitsverträge`, `Die Abschaffung der Gewerkschaften`, `Die Einführung der 48-Stunden-Woche`], correct:1, explain:`Das Friedensabkommen MEM legte fest, auf Streiks und Aussperrungen zu verzichten und stattdessen zu verhandeln sowie GAV abzuschliessen.`}
-],
-'geo-lz3-b': [
-  {q:`Welche Sonderrolle hat Wasserdampf unter den Treibhausgasen?`, options:[`Er ist das wichtigste Treibhausgas des natürlichen Treibhauseffekts und macht davon rund zwei Drittel aus`, `Er ist das einzige menschengemachte Treibhausgas`, `Er hat keinerlei Treibhauswirkung`, `Er macht nur einen winzigen Bruchteil des natürlichen Effekts aus`], correct:0, explain:`Wasserdampf ist das wichtigste Treibhausgas des natürlichen Treibhauseffekts und stellt davon rund zwei Drittel.`},
-  {q:`Warum wird Wasserdampf nicht zum anthropogenen Anteil gezählt?`, options:[`Weil er gar nicht in der Atmosphäre vorkommt`, `Weil der Mensch ihn nicht direkt durch Emissionen steuern kann, sondern nur indirekt über die Temperatur`, `Weil er die Erwärmung abschwächt`, `Weil er schwerer als CO₂ ist`], correct:1, explain:`Es gibt keinen direkten menschlichen Einfluss auf die Wasserdampfmenge, er wirkt nur indirekt als Verstärker über die Temperatur.`}
-],
-'geo-lz6-b': [
-  {q:`Um wie viel Grad ist die Schweizer Mitteltemperatur seit vorindustrieller Zeit bereits gestiegen?`, options:[`um 1,0 Grad`, `um 2,0 Grad`, `um 3,8 Grad`, `um 5,5 Grad`], correct:1, explain:`Laut Theorie ist die Schweizer Mitteltemperatur bereits um 2,0 Grad gestiegen.`},
-  {q:`Welche Folge des Klimawandels für die Schweiz nennt die Theorie im Zusammenhang mit heftigeren Niederschlägen?`, options:[`Sinkende Nullgradgrenze`, `Steigendes Überschwemmungsrisiko und Gefahr von Hangrutschungen`, `Mehr Schneefall im Winter`, `Zunahme der Gletscher`], correct:1, explain:`Durch heftigere Niederschläge steigen laut Theorie das Überschwemmungsrisiko und die Gefahr von Hangrutschungen.`}
-],
-'geo-lz9-b': [
-  {q:`Wie fiel die Abstimmung zum Klimaschutzgesetz vom 18. Juni 2023 aus?`, options:[`Nein mit 51,6 Prozent`, `Ja mit 59,1 Prozent`, `Nein mit 70,7 Prozent`, `Ja mit 48,4 Prozent`], correct:1, explain:`Das Klimaschutzgesetz wurde am 18. Juni 2023 mit 59,1 Prozent Ja angenommen.`},
-  {q:`Welches Ziel legt das Klimaschutzgesetz laut Theorie fest?`, options:[`Die Schweiz soll bis 2035 aus der Kernkraft aussteigen`, `Die Schweiz soll bis 2050 klimaneutral werden`, `Die Schweiz soll eine CO₂-Abgabe auf Flüge einführen`, `Die Schweiz soll bis 2030 alle Heizungen verbieten`], correct:1, explain:`Das Klimaschutzgesetz legt fest, dass die Schweiz bis 2050 klimaneutral werden soll.`}
-],
-'geo-lz12-b': [
-  {q:`Welche Rolle übernehmen Kernkraftwerke in der Schweizer Stromproduktion laut Theorie?`, options:[`Sie liefern flexible Spitzenenergie`, `Sie liefern konstante Bandenergie und decken die Grundlast`, `Sie werden nur nachts hochgefahren`, `Sie decken ausschliesslich morgendliche Bedarfsspitzen`], correct:1, explain:`Kernkraftwerke laufen konstant, liefern Bandenergie und decken damit die Grundlast.`},
-  {q:`Was ist ein zentraler Punkt der Energiestrategie 2050?`, options:[`Der Bau mehrerer neuer Kernkraftwerke`, `Der Atomausstieg, bei dem keine neuen AKW gebaut werden`, `Die sofortige Abschaltung aller bestehenden AKW`, `Der Verzicht auf erneuerbare Energien`], correct:1, explain:`Zentral ist der Atomausstieg, es werden keine neuen AKW gebaut und bestehende laufen bis zum Ende ihrer Lebensdauer.`}
-],
-'chem-lz2-a': [
-  {q:`Was bestimmt laut Theorie das chemische Verhalten eines Atoms?`, options:[`Die Anzahl der Neutronen im Kern`, `Die Valenzelektronen in der äußersten Schale`, `Die Gesamtzahl aller Protonen`, `Die inneren Elektronen des Atomrumpfs`], correct:1, explain:`Die Valenzelektronen der äußersten Schale bestimmen das chemische Verhalten.`},
-  {q:`Welche Ladung trägt der Atomrumpf eines Chlor-Atoms aus Gruppe VII?`, options:[`Cl⁷⁺`, `Cl⁻`, `Cl¹⁺`, `Cl⁸⁺`], correct:0, explain:`Der Atomrumpf trägt eine positive Ladung gleich der Hauptgruppen-Nummer, bei Cl also 7⁺.`}
-],
-'chem-lz4-c': [
-  {q:`Wie viele Valenzelektronen müssen für die Lewis-Formel von NH₃ insgesamt verteilt werden?`, options:[`5 Elektronen`, `6 Elektronen`, `8 Elektronen`, `10 Elektronen`], correct:2, explain:`N steuert 5 und drei H je 1 bei, zusammen also 8 Valenzelektronen.`},
-  {q:`Welches Atom wird beim Zeichnen des Skeletts meist als zentrales Atom in die Mitte gesetzt?`, options:[`Das Atom mit der höchsten Elektronegativität`, `Das Atom mit den meisten freien Paaren`, `Das Wasserstoffatom`, `Das Atom mit der niedrigsten Elektronegativität`], correct:3, explain:`Laut Vorgehen ist das zentrale Atom dasjenige mit der niedrigsten Elektronegativität.`}
-],
-'chem-lz6-b': [
-  {q:`Welche Salzformel ergibt sich nach der Über-Kreuz-Methode für Al³⁺ und O²⁻?`, options:[`AlO`, `Al₃O₂`, `Al₂O₃`, `Al₂O₂`], correct:2, explain:`Die Ladungszahlen werden über Kreuz getauscht, was Al₂O₃ ergibt.`},
-  {q:`Warum erhält NH₄ in der Formel von Ammoniumsulfat eine Klammer, SO₄ jedoch nicht?`, options:[`Weil zwei NH₄ vorkommen, SO₄ aber nur den Index 1 hat`, `Weil NH₄ ein Kation und SO₄ ein Anion ist`, `Weil NH₄ mehr Atome enthält als SO₄`, `Weil SO₄ keine Ladung trägt`], correct:0, explain:`Mehratomige Ionen bekommen nur bei einer Indexzahl größer als 1 eine Klammer, daher (NH₄)₂, aber SO₄ mit Index 1.`}
-],
-'chem-lz9-a': [
-  {q:`Was geschieht bei der Elektrolyse an der Kathode (Minuspol)?`, options:[`Oxidation durch Elektronenabgabe`, `Reduktion durch Elektronenaufnahme`, `Anziehung der Anionen`, `Verbrennung des Kohlenstoffs`], correct:1, explain:`An der Kathode werden Kationen angezogen und durch Elektronenaufnahme reduziert.`},
-  {q:`Warum wird beim Hall-Héroult-Verfahren Kryolith eingesetzt?`, options:[`Es liefert die nötigen Aluminium-Ionen`, `Es erhöht die elektrische Spannung`, `Es senkt den Schmelzpunkt von Al₂O₃ auf etwa 950°C`, `Es verhindert das Verbrennen der Anoden`], correct:2, explain:`Al₂O₃ wird in geschmolzenem Kryolith gelöst, wodurch der Schmelzpunkt auf rund 950°C sinkt.`}
-],
-'hist-lz1-a': [
-  {q:`Wann bricht laut Davies J-Kurve eine Revolution aus?`, options:[`Im tiefsten und dauerhaften Elend`, `Wenn nach einem Aufschwung ein plötzlicher Bruch folgt`, `Wenn Erwartungen und Lebenslage gleichmäßig steigen`, `Wenn die Erwartungen dauerhaft niedrig bleiben`], correct:1, explain:`Revolutionen brechen aus, wenn auf einen Aufstieg ein plötzlicher Bruch der Lebenslage folgt.`},
-  {q:`Was treibt nach Davies die Revolution letztlich an?`, options:[`Das materielle Elend allein`, `Die enttäuschte Erwartung und die wahrgenommene Lücke`, `Der Sieg im US-Unabhängigkeitskrieg`, `Die gelungene Adelsreform`], correct:1, explain:`Nicht das Elend allein, sondern die enttäuschte Erwartung treibt die Revolution.`}
-],
-'hist-lz4-a': [
-  {q:`Wodurch wurde die alte föderale Eidgenossenschaft 1798 ersetzt?`, options:[`Durch einen zentralistischen Einheitsstaat nach französischem Vorbild`, `Durch einen losen Staatenbund mit starker Tagsatzung`, `Durch 13 souveräne Orte mit Untertanengebieten`, `Durch eine Monarchie unter Napoleon`], correct:0, explain:`Die föderale Schweiz wurde durch einen zentralistischen Einheitsstaat nach französischem Vorbild ersetzt.`},
-  {q:`Welche Aussage zur Helvetischen Republik trifft laut Theorie zu?`, options:[`Die Kantone blieben souveräne Orte`, `Die Untertanenverhältnisse wurden abgeschafft und alle Bürger formal gleichgestellt`, `Die Tagsatzung wurde zur starken Zentrale ausgebaut`, `Die Patrizier behielten ihre Herrschaft`], correct:1, explain:`Die Helvetische Republik schaffte die Untertanenverhältnisse ab und stellte alle Bürger formal gleich.`}
-],
-'hist-lz7-a': [
-  {q:`Was kennzeichnet die Restauration (1815–1830) laut Theorie?`, options:[`Liberale Verfassungen in zwölf Kantonen`, `Einen zentralistischen Einheitsstaat`, `22 souveräne Kantone mit zurückkehrenden Patriziern`, `Die Wiederherstellung der Untertanenverhältnisse`], correct:2, explain:`Die Restauration brachte 22 souveräne Kantone, in denen die Patrizier zurückkehrten.`},
-  {q:`Welche Kern-Spannung erzeugte nach 1830 den Druck Richtung Bundesstaat?`, options:[`Demokratie auf Kantonsebene, aber schwacher Staatenbund auf Bundesebene`, `Starke Zentralgewalt gegen schwache Kantone`, `Fehlende Neutralität in der Aussenpolitik`, `Wiedereingeführte Untertanenverhältnisse`], correct:0, explain:`Kantonal funktionierte die Demokratie, doch der Bundesvertrag 1815 hielt einen schwachen Staatenbund aufrecht, was den Druck Richtung Bundesstaat erzeugte.`}
-],
-'hist-lz10-a': [
-  {q:`Welche Energiequelle ersetzte in der Schweizer Industrialisierung die fehlende Kohle?`, options:[`Erdöl aus dem Mittelland`, `Wasserkraft aus Gefälle und Flüssen`, `Importierte Steinkohle aus dem Meer`, `Windkraft in den Alpen`], correct:1, explain:`Statt Kohle nutzte die Schweiz die Wasserkraft von Gefälle und Flüssen.`},
-  {q:`Welchen Beitrag leistete der Bundesstaat 1848 zur Industrialisierung?`, options:[`Er führte die Kantonszölle neu ein`, `Er hob die Kantonszölle auf und schuf so einen Binnenmarkt`, `Er verbot die Heimindustrie`, `Er senkte die Bedeutung der Eisenbahn`], correct:1, explain:`Die Aufhebung der Kantonszölle schuf den ersten echten Binnenmarkt.`}
-],
-'geo-lz1-a': [
-  {q:`Wie kalt wäre es auf der Erde im Durchschnitt ohne den natürlichen Treibhauseffekt?`, options:[`Rund 10°C kälter`, `Rund 30°C kälter`, `Rund 30°C wärmer`, `Genau gleich warm`], correct:1, explain:`Ohne den natürlichen Treibhauseffekt wäre es im Durchschnitt rund 30°C kälter.`},
-  {q:`Worin besteht die entscheidende Asymmetrie beim natürlichen Treibhauseffekt?`, options:[`Kurzwellige Einstrahlung ist durchlässig, langwellige Ausstrahlung wird zurückgehalten`, `Langwellige Einstrahlung wird durchgelassen, kurzwellige zurückgehalten`, `Beide Strahlungsarten werden gleichermaßen zurückgehalten`, `Beide Strahlungsarten durchdringen die Atmosphäre ungehindert`], correct:0, explain:`Kurzwellige Sonnenstrahlung ist durchlässig, während langwellige Wärmestrahlung von den Treibhausgasen zurückgehalten wird.`}
-],
-'geo-lz4-a': [
-  {q:`Über welchen Zeitraum verändert die Erdumlaufbahn laut Theorie ihre Form?`, options:[`Etwa 23.000 Jahre`, `Etwa 40.000 Jahre`, `Rund 96.000 Jahre`, `7 bis 17 Jahre`], correct:2, explain:`Die Erdumlaufbahn verändert ihre Form in einem Zyklus von rund 96.000 Jahren.`},
-  {q:`Wie wirkt die Asche von Vulkanausbrüchen auf das Klima?`, options:[`Sie erwärmt das Klima langfristig`, `Sie reflektiert Sonnenlicht und wirkt kurzfristig kühlend`, `Sie absorbiert langwellige Strahlung und erwärmt die Erde`, `Sie hat keinen Einfluss auf das Klima`], correct:1, explain:`Vulkanasche reflektiert Sonnenlicht und wirkt dadurch kurzfristig kühlend.`}
-],
-'geo-lz7-a': [
-  {q:`Was kennzeichnet ein Kippelement im Klimasystem?`, options:[`Es reagiert allmählich und vollständig umkehrbar`, `Es reagiert ab einer Kipp-Temperatur abrupt und irreversibel`, `Es reagiert nur, wenn die Temperatur dauerhaft sinkt`, `Es bleibt von der Erwärmung unbeeinflusst`], correct:1, explain:`Ein Kippelement springt bei Überschreiten der Kipp-Temperatur abrupt in einen neuen, irreversiblen Zustand.`},
-  {q:`Warum verstärkt schmelzendes Meereis die Erwärmung zusätzlich?`, options:[`Weil Eis mehr Sonnenenergie aufnimmt als Wasser`, `Weil das darunterliegende dunkle Wasser mehr Sonnenenergie aufnimmt`, `Weil Eis langwellige Strahlung abgibt`, `Weil weniger Wasserdampf entsteht`], correct:1, explain:`Unter dem hellen Eis liegt dunkles Wasser, das mehr Sonnenenergie aufnimmt und so eine verstärkende Rückkopplung auslöst.`}
-],
-'geo-lz10-a': [
-  {q:`Woran setzt die Minderung (Mitigation) im Umgang mit dem Klimawandel an?`, options:[`An der Ursache, indem sie den Ausstoß von Treibhausgasen reduziert`, `An den Folgen, indem sie die Gesellschaft anpasst`, `An der Bewässerung von Feldern`, `Am Bau von Hochwasserschutz`], correct:0, explain:`Die Minderung setzt an der Ursache an und reduziert den Ausstoß von Treibhausgasen.`},
-  {q:`Warum reicht Minderung allein laut Theorie nicht aus?`, options:[`Weil erneuerbare Energien zu teuer sind`, `Weil bereits ausgestoßenes CO₂ jahrzehntelang in der Atmosphäre bleibt`, `Weil die Anpassung die Emissionen erhöht`, `Weil Treibhausgase sofort wieder abgebaut werden`], correct:1, explain:`Das bereits ausgestoßene CO₂ bleibt jahrzehntelang in der Atmosphäre, weshalb zusätzlich Anpassung nötig ist.`}
-],
-'chem-lz2-b': [
-  {q:`Wie viele Kugelwolken können die Valenzelektronen laut Modell maximal um den Atomrumpf bilden, und wie viele Elektronen passen pro Wolke?`, options:[`Maximal 8 Wolken mit je 1 Elektron`, `Maximal 4 Wolken mit je 1 oder 2 Elektronen`, `Maximal 2 Wolken mit je 4 Elektronen`, `Maximal 4 Wolken mit je 3 Elektronen`], correct:1, explain:`Die Valenzelektronen halten sich in maximal 4 Kugelwolken auf, wobei jede Wolke 1 oder 2 Elektronen aufnehmen kann.`},
-  {q:`Warum kann ein Stickstoffatom mit 5 Valenzelektronen genau 3 Bindungen eingehen?`, options:[`Weil alle 5 Elektronen ungepaart sind`, `Weil es 1 einzelnes Elektron und 4 freie Paare besitzt`, `Weil es 3 einzelne Elektronen und 1 freies Paar besitzt`, `Weil es 5 einzelne Elektronen besitzt`], correct:2, explain:`N hat 3 einzeln besetzte Wolken (bindungsfähig) und ein freies Paar, also sind 3 Bindungen möglich.`}
-],
-'chem-lz4-d': [
-  {q:`Wie wird die Ladung beim Zählen der Valenzelektronen eines Anions berücksichtigt?`, options:[`Pro negative Ladung wird 1 Elektron dazugerechnet`, `Pro negative Ladung wird 1 Elektron abgezogen`, `Die Ladung wird ignoriert`, `Pro negative Ladung werden 2 Elektronen dazugerechnet`], correct:0, explain:`Bei einem Anion wird pro negativer Ladung ein Elektron dazugerechnet.`},
-  {q:`Wie viele Valenzelektronen werden für das Sulfat-Ion SO₄²⁻ insgesamt gezählt?`, options:[`24 Elektronen`, `30 Elektronen`, `36 Elektronen`, `32 Elektronen`], correct:3, explain:`S(6) plus 4 mal O(6) plus 2 für die Ladung ergibt 32 Valenzelektronen.`}
-],
-'chem-lz6-c': [
-  {q:`Welche Formel ergibt sich beim Ladungsausgleich über Kreuz für Bariumphosphat aus Ba²⁺ und PO₄³⁻?`, options:[`BaPO₄`, `Ba₃(PO₄)₂`, `Ba₂(PO₄)₃`, `Ba(PO₄)₂`], correct:1, explain:`Über Kreuz ergeben Ba²⁺ und PO₄³⁻ die Formel Ba₃(PO₄)₂.`},
-  {q:`Warum schreibt man bei Eisen(III)-sulfid Fe₂S₃ ohne Klammern um das S?`, options:[`Weil Eisen kein Übergangsmetall ist`, `Weil Sulfid ein einatomiges Anion ist`, `Weil der Index kleiner als 2 ist`, `Weil die Ladungen gleich sind`], correct:1, explain:`Bei einatomigen Anionen wird keine Klammer gesetzt, daher AlCl₃ und Fe₂S₃ statt mit Klammer.`}
-],
-'chem-lz10-a': [
-  {q:`Welches Volumenmessgerät besitzt laut Genauigkeitshierarchie die höchste Präzision?`, options:[`Messzylinder`, `Becherglas`, `Vollpipette`, `Messpipette`], correct:2, explain:`Die Vollpipette liefert ein festes Volumen mit der höchsten Präzision von rund 0.03 mL.`},
-  {q:`An welcher Stelle wird der Meniskus beim Ablesen einer Flüssigkeit korrekt bestimmt?`, options:[`Am unteren Rand des Meniskus auf Augenhöhe`, `Am oberen Rand des Meniskus von oben`, `In der Mitte des Meniskus schräg von unten`, `Am oberen Rand auf Augenhöhe`], correct:0, explain:`Man liest den unteren Rand des Meniskus auf Augenhöhe ab.`}
-],
-'hist-lz1-b': [
-  {q:`Was geschah am 17. Juni 1789 in Versailles?`, options:[`Das Pariser Volk stürmte die Bastille`, `Der 3. Stand erklärte sich zur Nationalversammlung`, `Der Adel verzichtete auf seine Privilegien`, `Die Erklärung der Menschenrechte wurde verkündet`], correct:1, explain:`Am 17. Juni 1789 erklärte sich der 3. Stand zur Nationalversammlung.`},
-  {q:`Warum gilt der Sturm auf die Bastille eher als Symbol denn als militärisches Ziel?`, options:[`Weil die Bastille bereits zerstört war`, `Weil dort die Generalstände tagten`, `Weil sie 1789 nur 7 Gefangene hatte und für königliche Willkür stand`, `Weil sie ausserhalb von Paris lag`], correct:2, explain:`Die Bastille hatte nur 7 Gefangene und war ein Symbol königlicher Willkür, kein militärisches Ziel.`}
-],
-'hist-lz4-b': [
-  {q:`Wie viele souveräne Kantone schuf die Mediationsakte von 1803?`, options:[`18 Kantone`, `22 Kantone`, `19 Kantone`, `6 Kantone`], correct:2, explain:`Die Mediation 1803 schuf 19 souveräne Kantone mit Bund und Tagsatzung.`},
-  {q:`Welche Neuerung kennzeichnet die Mediationsakte hinsichtlich der früheren Untertanengebiete?`, options:[`Sie wurden aufgelöst und Frankreich zugeschlagen`, `6 neue Kantone wurden als gleichberechtigte Glieder aufgenommen`, `Sie blieben weiterhin Untertanengebiete`, `Sie wurden zu einem zentralistischen Einheitsstaat`], correct:1, explain:`Sechs frühere Untertanengebiete wie Aargau und Waadt wurden als gleichberechtigte Kantone aufgenommen.`}
-],
-'hist-lz7-b': [
-  {q:`Welches Ereignis löste 1830 die Regenerations-Welle in der Schweiz aus?`, options:[`Die Pariser Julirevolution`, `Der Wiener Kongress`, `Der Basler Stadt-Land-Krieg`, `Die Mediationsakte`], correct:0, explain:`Die Pariser Julirevolution von 1830 löste die schweizerische Regenerations-Welle aus.`},
-  {q:`Welche Forderung gehörte zum Modell der Ustertag-Versammlung von 1830?`, options:[`Rückkehr der Patrizier an die Macht`, `Abschaffung der kantonalen Verfassungen`, `Volkssouveränität als Verfassungsprinzip`, `Beibehaltung der Pressezensur`], correct:2, explain:`Der Ustertag forderte unter anderem Volkssouveränität als Verfassungsprinzip.`}
-],
-'hist-lz10-b': [
-  {q:`Welche Energiequelle prägte die Industrialisierung der Schweiz im Gegensatz zu England?`, options:[`Steinkohle und Dampf`, `Wasserkraft`, `Erdöl`, `Atomkraft`], correct:1, explain:`Die Schweiz nutzte dezentrale Wasserkraft, während England auf konzentrierte Steinkohle und Dampf setzte.`},
-  {q:`Wie zeigt sich das Profil des 19. Jahrhunderts in der heutigen Schweizer Wirtschaft?`, options:[`Sie wird von Megastädten und Massenware dominiert`, `Sie ist immer noch KMU-geprägt mit Hidden Champions in Nischen`, `Sie besteht fast nur aus Grosskonzernen`, `Sie exportiert vor allem billige Rohstoffe`], correct:1, explain:`Die Schweizer Wirtschaft ist weiterhin KMU-geprägt mit wertdichten Nischenprodukten wie im 19. Jahrhundert.`}
-],
-'geo-lz1-b': [
-  {q:`In welchem Verhältnis steht der anthropogene zum natürlichen Treibhauseffekt?`, options:[`Er ersetzt den natürlichen Effekt vollständig`, `Er kommt obendrauf und verstärkt den natürlichen Effekt`, `Er schwächt den natürlichen Effekt ab`, `Er hat mit dem natürlichen Effekt nichts zu tun`], correct:1, explain:`Der anthropogene Effekt tritt nicht an die Stelle des natürlichen, sondern kommt obendrauf und verstärkt ihn.`},
-  {q:`Was ist laut Theorie das eigentlich Problematische am Treibhauseffekt?`, options:[`Der Treibhauseffekt an sich, da er schädlich ist`, `Der natürliche Effekt, weil er die Erde unbewohnbar macht`, `Die zusätzliche menschengemachte Verstärkung`, `Dass langwellige Strahlung ins Weltall entweicht`], correct:2, explain:`Problematisch ist allein die zusätzliche menschengemachte Verstärkung, die das Temperaturgleichgewicht stört.`}
-],
-'geo-lz4-b': [
-  {q:`Welche Ursache gilt laut Theorie als die wichtigste anthropogene Ursache des Klimawandels?`, options:[`Die Verbrennung fossiler Brennstoffe`, `Die Viehzucht`, `Die Trockenlegung von Mooren`, `Der Reisanbau`], correct:0, explain:`Die wichtigste Ursache ist die Verbrennung fossiler Brennstoffe wie Kohle, Erdöl und Erdgas.`},
-  {q:`Warum trägt die Trockenlegung von Mooren zum Klimawandel bei?`, options:[`Weil Moore Sauerstoff verbrauchen`, `Weil entwässerte Moore ihren gespeicherten Kohlenstoff freisetzen`, `Weil Moore Wasserkraft blockieren`, `Weil Moore Methan binden`], correct:1, explain:`Moore speichern sehr viel Kohlenstoff, der bei Entwässerung freigesetzt wird.`}
-],
-'geo-lz7-b': [
-  {q:`Welches Kippelement kippt laut Übersicht bereits ab rund 1,5 Grad Celsius?`, options:[`Amazonas-Regenwald`, `Atlantische Umwälzung AMOC`, `Grönländisches Eisschild`, `Westantarktisches Eisschild`], correct:2, explain:`Das Grönländische Eisschild gehört zu den vier Elementen, die schon ab 1,5 Grad kippen.`},
-  {q:`Was bezeichnet die Abkürzung AMOC in der Übersicht der Kippelemente?`, options:[`Das arktische Meereis`, `Die atlantische Umwälzzirkulation`, `Den borealen Permafrost`, `Die antarktische Korallenzone`], correct:1, explain:`AMOC steht für die atlantische Umwälzzirkulation, eine grosse Meeresströmung, die das Klima Europas mitprägt.`}
-],
-'geo-lz10-b': [
-  {q:`Welche der drei Strategien beschreibt einen genügsamen Lebensstil mit Verzicht?`, options:[`Effizienz`, `Konsistenz`, `Suffizienz`, `Kreislaufwirtschaft`], correct:2, explain:`Suffizienz bedeutet einen genügsamen Lebensstil mit Verzicht, etwa Carsharing oder weniger fliegen.`},
-  {q:`Welche individuelle Massnahme hat laut Tabelle mit Abstand die grösste jährliche CO₂-Einsparung?`, options:[`Recycling und LED`, `Weniger Kinder`, `Autoloses Leben`, `Pflanzliche Ernährung`], correct:1, explain:`Mit 58,6 Tonnen hat weniger Kinder die mit Abstand grösste Einsparung.`}
-],
-'chem-lz3-a': [
-  {q:`Zwei Atome bilden eine Bindung. Ihre EN-Differenz ΔEN beträgt 2.1. Welcher Bindungstyp liegt laut Theorie vor?`, options:[`Unpolare Atombindung`,`Polare Atombindung`,`Ionenbindung`,`Metallbindung`], correct:2, explain:`Laut Theorie führt ein ΔEN über 1.7 zu einer Ionenbindung.`},
-  {q:`Welche Aussage über die EN-Trends im Periodensystem ist laut Theorie korrekt?`, options:[`Die EN nimmt nach links und nach unten zu`,`Die EN nimmt nach rechts und nach oben zu`,`Die EN ist in einer Gruppe überall gleich`,`Die EN ist unten links am höchsten`], correct:1, explain:`Die EN steigt innerhalb einer Periode nach rechts und innerhalb einer Gruppe nach oben, mit dem Maximum oben rechts.`}
-],
-'chem-lz5-a': [
-  {q:`Warum gibt ein Metall bei der Reaktion mit einem Nichtmetall Elektronen ab?`, options:[`Weil es eine hohe Elektronegativität hat`,`Weil es eine niedrige Elektronegativität hat`,`Weil es zum Anion werden will`,`Weil es bereits Edelgaskonfiguration besitzt`], correct:1, explain:`Das Metall hat eine niedrige EN und gibt deshalb seine Valenzelektronen ab, wodurch ein Kation entsteht.`},
-  {q:`Bei der Bildung von MgO werden pro Atom wie viele Elektronen übertragen?`, options:[`1 Elektron`,`2 Elektronen`,`3 Elektronen`,`Keine Elektronen, es entsteht eine Atombindung`], correct:1, explain:`Laut Theorie werden bei Mg und O je 2 Elektronen übertragen, sodass Mg²⁺ und O²⁻ entstehen.`}
-],
-'chem-lz6-d': [
-  {q:`Was darf man laut Theorie beim Ausgleichen einer Reaktionsgleichung auf keinen Fall tun?`, options:[`Koeffizienten vor die Formeln setzen`,`Mit kleinsten ganzen Zahlen arbeiten`,`Die Formeln der Stoffe verändern`,`Aggregatzustände dazuschreiben`], correct:2, explain:`Die Formeln dürfen nicht geändert werden, ausgeglichen wird nur über Koeffizienten vor den Formeln.`},
-  {q:`In welcher Reihenfolge sollte man die Atomsorten laut Tipp ausgleichen?`, options:[`Wasserstoff, Sauerstoff, Nichtmetalle, Metalle`,`Metalle, dann übrige Nichtmetalle, dann Sauerstoff, dann Wasserstoff`,`Sauerstoff zuerst, dann Metalle`,`Es spielt keine Rolle, in welcher Reihenfolge man vorgeht`], correct:1, explain:`Der Tipp empfiehlt zuerst Metalle, dann Nichtmetalle außer O und H, dann Sauerstoff und zuletzt Wasserstoff.`}
-],
-'chem-lz10-b': [
-  {q:`An welcher Stelle der rauschenden Flamme erhitzt man laut Theorie die Probe?`, options:[`Im inneren dunklen Kern`,`Im mittleren blauen Mantel`,`Am äußeren blauen Saum bzw. an der Spitze`,`Direkt am Luftloch`], correct:2, explain:`Der äußere blaue Saum bzw. die Spitze ist die oxidierende, heißeste Zone mit etwa 1500°C, dort erhitzt man die Probe.`},
-  {q:`Welche Eigenschaft hat die leuchtende Flamme bei geschlossenem Luftloch?`, options:[`Sie ist blau und sehr heiß`,`Sie verbrennt vollständig`,`Sie ist gelb-orange und relativ kühl mit Rußbildung`,`Sie erreicht bis 1500°C`], correct:2, explain:`Bei geschlossenem Luftloch ist die Flamme gelb-orange, relativ kühl und bildet wegen unvollständiger Verbrennung Ruß.`}
-],
-'hist-lz2-a': [
-  {q:`Welches Lager wollte den König laut Tabelle behalten?`, options:[`Die Feuillants`,`Die Girondisten`,`Die Jakobiner`,`Die Montagnards`], correct:0, explain:`Die Feuillants strebten eine konstitutionelle Monarchie an und wollten den König behalten.`},
-  {q:`Welches Lager forderte als einziges das allgemeine Wahlrecht für Männer und Preiskontrollen?`, options:[`Die Feuillants`,`Die Girondisten`,`Die Jakobiner`,`Der liberale Adel`], correct:2, explain:`Laut Tabelle setzten nur die Jakobiner auf allgemeines Männerwahlrecht und Preiskontrollen.`}
-],
-'hist-lz5-a': [
-  {q:`Wie funktionierte die Beschlussfassung an der Tagsatzung laut Theorie?`, options:[`Mehrheitsentscheid nach Bevölkerungszahl`,`Jeder Ort eine Stimme, Einstimmigkeit nötig`,`Bern hatte als grösster Stand zwei Stimmen`,`Nur die katholischen Stände durften abstimmen`], correct:1, explain:`An der Tagsatzung hatte jeder Ort eine Stimme und es brauchte Einstimmigkeit, keine Mehrheitsentscheide.`},
-  {q:`Welchen Status hatten die Gemeinen Herrschaften wie Aargau oder Thurgau?`, options:[`Vollberechtigte Kantone mit eigener Tagsatzungsstimme`,`Zugewandte Orte mit eigenem Bündnisvertrag`,`Untertanengebiete ohne politische Rechte, verwaltet durch Landvögte`,`Unabhängige Republiken außerhalb der Eidgenossenschaft`], correct:2, explain:`Die Gemeinen Herrschaften waren Untertanengebiete ohne politische Rechte und wurden durch wechselnde Landvögte verwaltet.`}
-],
-'hist-lz8-a': [
-  {q:`Wie erklärt die Theorie die Polarisierung im Sonderbundskrieg am besten?`, options:[`Allein durch den konfessionellen Gegensatz katholisch gegen reformiert`,`Allein durch den politischen Streit um die Bundesreform`,`Durch die Überlagerung der konfessionellen und der politischen Achse`,`Durch einen reinen Machtkampf zwischen zwei Generälen`], correct:2, explain:`Laut Theorie stimmen beide Lesarten teilweise und erst ihre Überlagerung erzeugte die Polarisierung.`},
-  {q:`Was war laut Theorie eine Schlüssel-Leistung von General Dufour nach dem Sieg?`, options:[`Harte Bestrafung der unterlegenen Kantone`,`Versöhnungspolitik, die eine Integration in den Bundesstaat ermöglichte`,`Auflösung der Tagsatzung`,`Einführung des allgemeinen Wahlrechts`], correct:1, explain:`Dufour verfolgte eine Versöhnungspolitik, sodass die unterlegenen Kantone nicht bestraft wurden und 1848 integriert werden konnten.`}
-],
-'hist-lz11-a': [
-  {q:`Was unterscheidet den Pauperismus laut Theorie von traditioneller Armut?`, options:[`Er betrifft nur einzelne Bettler durch persönliches Pech`,`Er ist eine strukturelle Massenarmut mitten im wachsenden Reichtum`,`Er tritt nur in Zeiten wirtschaftlichen Niedergangs auf`,`Er wird vollständig durch Familie und Pfarrei aufgefangen`], correct:1, explain:`Der Pauperismus ist neu, weil er ganze Bevölkerungsschichten strukturell betrifft, und zwar mitten im Wirtschaftswachstum.`},
-  {q:`Welches Merkmal kennzeichnet die neu entstehende Arbeiterklasse laut Theorie?`, options:[`Sie besitzt eigene Produktionsmittel`,`Sie lebt überwiegend von der Landwirtschaft`,`Sie verdient ausschliesslich durch Lohnarbeit ohne Eigentum an Produktionsmitteln`, `Sie ist finanziell unabhängig vom Fabrikanten`], correct:2, explain:`Die Arbeiterklasse lebt ausschliesslich von Lohnarbeit, besitzt keine Produktionsmittel und ist vom Fabrikanten abhängig.`}
-],
-'geo-lz2-a': [
-  {q:`Was bedeutet eine negative Rückkopplung laut Theorie?`, options:[`Sie wirkt dämpfend und stabilisierend, das System kehrt zum stabilen Zustand zurück`,`Sie verstärkt eine Störung selbst`,`Sie ist immer schädlich für das System`,`Sie entfernt das System dauerhaft vom Ausgangszustand`], correct:0, explain:`Eine negative Rückkopplung wirkt gegenwirkend und stabilisierend, sodass die Auslenkung ausgeglichen wird.`},
-  {q:`Warum sind beim Klimawandel besonders die positiven Rückkopplungen kritisch?`, options:[`Weil sie das Klima stabilisieren`,`Weil sie nützlich für die Umwelt sind`,`Weil sie selbstverstärkend eine angestossene Erwärmung weiter antreiben`,`Weil sie Eis- und Warmzeiten ausgleichen`], correct:2, explain:`Positive Rückkopplungen sind selbstverstärkend und können eine einmal angestossene Erwärmung immer weiter antreiben.`}
-],
-'geo-lz5-a': [
-  {q:`Welcher ist laut Theorie der mit Abstand grösste Kohlenstoffspeicher?`, options:[`Die Atmosphäre mit 591 GtC`,`Die Tiefsee mit 37.100 GtC`,`Die Lithosphäre mit 75.000.000 GtC`,`Die fossilen Energieträger mit 928 GtC`], correct:2, explain:`Die Lithosphäre ist mit 75.000.000 GtC der mit Abstand grösste Speicher.`},
-  {q:`Wie viel Kohlenstoff enthält die Atmosphäre laut den angegebenen Zahlen?`, options:[`450 GtC`,`591 GtC`,`928 GtC`,`1.200 GtC`], correct:1, explain:`Laut Tabelle enthält die Atmosphäre 591 GtC.`}
-],
-'geo-lz8-a': [
-  {q:`Welches Abkommen legte laut Theorie erstmals verbindliche Reduktionsziele fest, allerdings nur für die Industrieländer?`, options:[`Die Klimarahmenkonvention von Rio 1992`,`Das Kyoto-Protokoll 1997`,`Das Pariser Abkommen 2015`,`Der COP21-Beschluss`], correct:1, explain:`Das Kyoto-Protokoll von 1997 legte erstmals verbindliche Reduktionsziele fest, jedoch nur für die Annex-1-Industrieländer.`},
-  {q:`Was ist laut Theorie das zentrale Temperaturziel des Pariser Abkommens?`, options:[`Die Erwärmung deutlich unter 2 Grad, möglichst auf 1,5 Grad zu halten`,`Die Erwärmung auf genau 3 Grad zu begrenzen`,`Die Emissionen nur der Industrieländer zu senken`,`Den Meeresspiegel um 2 Grad zu senken`], correct:0, explain:`Das Pariser Abkommen will die Erderwärmung deutlich unter 2 Grad und möglichst auf 1,5 Grad halten.`}
-],
-'geo-lz11-a': [
-  {q:`Wie viel Prozent der globalen Primärenergie bleiben laut Theorie als Nutzenergie übrig?`, options:[`5 Prozent`,`29 Prozent`,`50 Prozent`,`95 Prozent`], correct:1, explain:`Laut Theorie bleiben global von 100 Prozent Primärenergie nur 29 Prozent als Nutzenergie übrig.`},
-  {q:`In welcher Reihenfolge durchläuft Energie laut Theorie die Umwandlungskette zum Verbraucher?`, options:[`Nutzenergie, Endenergie, Sekundärenergie, Primärenergie`,`Sekundärenergie, Primärenergie, Endenergie, Nutzenergie`,`Primärenergie, Sekundärenergie, Endenergie, Nutzenergie`,`Endenergie, Nutzenergie, Primärenergie, Sekundärenergie`], correct:2, explain:`Die Kette führt von Primärenergie über Sekundärenergie und Endenergie zur Nutzenergie.`}
-]
+ "chem-lz1-a": [
+  {
+   "q": "Was gibt die molare Masse M eines Elements an und wo findet man sie?",
+   "options": [
+    "Die Anzahl Teilchen pro Gramm, ablesbar an der Avogadro-Zahl",
+    "Den Wert in g/mol, der im PSE steht und zahlenmäßig der relativen Atommasse entspricht",
+    "Das Volumen von einem Mol Gas in Litern",
+    "Die Masse eines einzelnen Atoms in Kilogramm"
+   ],
+   "correct": 1,
+   "explain": "Laut Theorie steht M (in g/mol) im PSE und entspricht zahlenmäßig der relativen Atommasse."
+  },
+  {
+   "q": "Eine Probe Schwefel (M ungefähr 32 g/mol) und eine gleich schwere Probe Kohlenstoff (M ungefähr 12 g/mol) liegen vor. Welche Aussage über die Stoffmengen n ist laut der Formel n = m / M korrekt?",
+   "options": [
+    "Beide enthalten gleich viele Teilchen, weil die Masse gleich ist",
+    "Die Kohlenstoffprobe enthält mehr Teilchen, weil ihre molare Masse kleiner ist",
+    "Die Schwefelprobe enthält mehr Teilchen, weil Schwefel schwerere Atome hat",
+    "Die Stoffmenge lässt sich aus gleicher Masse nicht vergleichen"
+   ],
+   "correct": 1,
+   "explain": "Bei gleicher Masse ergibt die kleinere molare Masse nach n = m / M die grössere Stoffmenge, also mehr Teilchen."
+  }
+ ],
+ "chem-lz3-b": [
+  {
+   "q": "In welche Richtungen im PSE steigt der Metallcharakter?",
+   "options": [
+    "Nach rechts und nach oben",
+    "Nach links und nach unten",
+    "Nach rechts und nach unten",
+    "Nur nach oben, unabhängig von links/rechts"
+   ],
+   "correct": 1,
+   "explain": "Laut Theorie steigt der Metallcharakter nach links und nach unten, mit Maximum unten links."
+  },
+  {
+   "q": "Ein Atom hat eine niedrige Elektronegativität und bildet leicht ein Kation. Welche Position im PSE und welcher Reaktionspartner passen am besten dazu?",
+   "options": [
+    "Oben rechts, reagiert bevorzugt mit anderen Nichtmetallen",
+    "Unten links, gibt Elektronen an ein Element oben rechts ab",
+    "Auf der Diagonalen als Halbmetall, bildet keine Ionen",
+    "Oben rechts, nimmt Elektronen von einem Metall auf"
+   ],
+   "correct": 1,
+   "explain": "Niedrige EN und Kationenbildung kennzeichnen ein Metall unten links, das Elektronen an ein Nichtmetall oben rechts abgibt."
+  }
+ ],
+ "chem-lz5-b": [
+  {
+   "q": "Was beschreibt die Gitterenergie eines Ionengitters?",
+   "options": [
+    "Die Energie, die nötig ist, um ein Salz in Wasser zu lösen",
+    "Die Energie, die frei wird, wenn aus gasförmigen Ionen ein Mol Ionengitter entsteht",
+    "Die Energie, die ein Gitter beim Schmelzen aufnimmt",
+    "Die Energie, die bei der Bildung eines einzelnen Moleküls frei wird"
+   ],
+   "correct": 1,
+   "explain": "Die Gitterenergie ist laut Theorie die beim Entstehen eines Mols Ionengitter aus gasförmigen Ionen frei werdende Energie."
+  },
+  {
+   "q": "MgO und NaCl werden verglichen. Warum ist die Gitterenergie von MgO mit ungefähr minus 3791 kJ/mol deutlich negativer als die von NaCl mit ungefähr minus 787 kJ/mol?",
+   "options": [
+    "Weil MgO grössere Ionen mit grösserem Abstand besitzt",
+    "Weil bei MgO höhere Ladungen (2+, 2−) nach dem Coulomb-Gesetz stärker anziehen",
+    "Weil die Bildung des MgO-Gitters Energie aufnimmt statt freizusetzen",
+    "Weil NaCl eine höhere Koordinationszahl als MgO hat"
+   ],
+   "correct": 1,
+   "explain": "Nach dem Coulomb-Gesetz erhöhen die grösseren Ladungen die Anziehung, weshalb die Gitterenergie von MgO viel negativer ausfällt."
+  }
+ ],
+ "chem-lz7-a": [
+  {
+   "q": "Warum leiten Salze den elektrischen Strom nur in Lösung oder Schmelze, nicht aber im festen Zustand?",
+   "options": [
+    "Weil im festen Zustand die Ionen unbeweglich sind, in Lösung oder Schmelze aber frei beweglich",
+    "Weil feste Salze keine Ionen enthalten",
+    "Weil sich die Ladungen im Feststoff gegenseitig aufheben",
+    "Weil Wasser selbst den Strom leitet, das Salz aber nicht"
+   ],
+   "correct": 0,
+   "explain": "Im Feststoff sind die Ionen unbeweglich, beim Lösen oder Schmelzen werden sie frei beweglich und damit leitfähig."
+  },
+  {
+   "q": "Ein fester Salzkristall erhält einen Hammerschlag und zerbricht, statt sich zu verformen. Welche Erklärung folgt aus dem Gitteraufbau?",
+   "options": [
+    "Die Ebenen verschieben sich, gleiche Ladungen stossen sich ab und das Gitter bricht",
+    "Die Ionen werden beim Schlag beweglich und leiten plötzlich Strom",
+    "Die Gitterenergie wird frei und der Kristall schmilzt an der Bruchstelle",
+    "Wassermoleküle dringen ein und hydratisieren die Ionen"
+   ],
+   "correct": 0,
+   "explain": "Beim Schlag verschieben sich die Ebenen so, dass gleiche Ladungen aufeinandertreffen, sich abstossen und das Salz spröde bricht."
+  }
+ ],
+ "chem-lz10-c": [
+  {
+   "q": "Was gilt beim Verdünnen einer Lösung laut Theorie?",
+   "options": [
+    "Sowohl Massenanteil als auch Stoffmasse bleiben konstant",
+    "Der Massenanteil ändert sich, aber die Stoffmasse bleibt konstant",
+    "Die Stoffmasse ändert sich, aber der Massenanteil bleibt konstant",
+    "Beide Größen verdoppeln sich"
+   ],
+   "correct": 1,
+   "explain": "Beim Verdünnen bleibt die Stoffmasse konstant, während sich der Massenanteil ändert."
+  },
+  {
+   "q": "Eine Lösung mit 20 g gelöstem Stoff wird mit Wasser auf das doppelte Lösungsgewicht verdünnt. Was geschieht laut Theorie mit Stoffmasse und Massenanteil?",
+   "options": [
+    "Stoffmasse halbiert sich, Massenanteil bleibt gleich",
+    "Beide bleiben unverändert, weil nur Wasser zugegeben wurde",
+    "Stoffmasse bleibt 20 g, der Massenanteil sinkt",
+    "Stoffmasse steigt, weil sich das Lösungsgewicht erhöht"
+   ],
+   "correct": 2,
+   "explain": "Beim Verdünnen bleibt die Stoffmasse konstant, während der Massenanteil wegen der grösseren Lösungsmasse sinkt."
+  }
+ ],
+ "hist-lz2-b": [
+  {
+   "q": "Welches Wahlrecht legte die Verfassung von 1791 fest?",
+   "options": [
+    "Allgemeines Wahlrecht für alle erwachsenen Männer und Frauen",
+    "Ein klassengebundenes Wahlrecht, bei dem nur Aktivbürger wählen durften",
+    "Ein Wahlrecht ausschließlich für den Adel",
+    "Gar kein Wahlrecht, da der König allein entschied"
+   ],
+   "correct": 1,
+   "explain": "Das Wahlrecht war klassengebunden, nur steuerzahlende Aktivbürger waren wahlberechtigt."
+  },
+  {
+   "q": "Ein Mann von 30 Jahren, der weniger als drei Tagelöhne an Steuern zahlt, will 1791 wählen. Wie beurteilt die Verfassung von 1791 seinen Fall?",
+   "options": [
+    "Er darf wählen, weil er über 25 Jahre alt ist",
+    "Er gilt als Passivbürger und ist von der Wahl ausgeschlossen",
+    "Er darf wählen, sobald er der Zivilkonstitution des Klerus zustimmt",
+    "Er ist Aktivbürger, weil nur Frauen ausgeschlossen waren"
+   ],
+   "correct": 1,
+   "explain": "Trotz Alter über 25 fehlt ihm das nötige Steueraufkommen, weshalb er Passivbürger ohne Wahlrecht ist."
+  }
+ ],
+ "hist-lz5-b": [
+  {
+   "q": "Wer regierte vor 1798 in den städtischen Orten wie Bern oder Zürich?",
+   "options": [
+    "Eine kleine, fast geschlossene Schicht von Patrizier-Familien",
+    "Die gesamte männliche Bevölkerung über die Landsgemeinde",
+    "Vom König eingesetzte Statthalter",
+    "Gewählte Vertreter der Landbevölkerung"
+   ],
+   "correct": 0,
+   "explain": "In den Städten verteilten rund 50 bis 100 Patrizier-Familien pro Stadt die Ratssitze unter sich."
+  },
+  {
+   "q": "Wer in den städtischen Orten regierte und wer in den ländlichen Orten mitbestimmte, soll verglichen werden. Welche Aussage trifft laut Theorie zu?",
+   "options": [
+    "In beiden bestimmten alle wehrfähigen Männer direkt per Landsgemeinde",
+    "In den Städten herrschten Patrizierfamilien, in den Landorten stimmten wehrfähige Männer, doch auch dort dominierten einflussreiche Familien",
+    "In den Städten gab es Landsgemeinden, in den Landorten regierten Patrizier",
+    "In beiden hatten die Untertanen volle politische Rechte"
+   ],
+   "correct": 1,
+   "explain": "In den Städten verteilten Patrizierfamilien die Ratssitze, während in den Landorten die Landsgemeinde galt, dort aber einflussreiche Familien die Wahl dominierten."
+  }
+ ],
+ "hist-lz8-b": [
+  {
+   "q": "Welche grundlegende Veränderung brachte die Bundesverfassung von 1848?",
+   "options": [
+    "Sie verwandelte den Bundesstaat zurück in einen losen Staatenbund",
+    "Sie verwandelte die Schweiz vom losen Staatenbund in einen modernen Bundesstaat",
+    "Sie führte die absolute Monarchie ein",
+    "Sie schaffte die Kantone vollständig ab"
+   ],
+   "correct": 1,
+   "explain": "Die Verfassung von 1848 verwandelte die Schweiz vom losen Staatenbund in einen modernen Bundesstaat."
+  },
+  {
+   "q": "Vor 1848 gab es 17 Zollgrenzen und 17 Währungen, danach einen Binnenmarkt und ab 1850 den Franken. Welche grundlegende Veränderung steckt hinter dieser Entwicklung?",
+   "options": [
+    "Der lose Staatenbund wurde zu einem Bundesstaat mit zentralen Bundeskompetenzen",
+    "Die Kantone verloren jede Hoheit, auch über Schule und Religion",
+    "Aus dem Bundesstaat wurde ein loser Staatenbund mit Einstimmigkeit",
+    "Die Schweiz übernahm die Münzen der Nachbarländer"
+   ],
+   "correct": 0,
+   "explain": "Zoll- und Währungseinheit waren Folge des Übergangs vom Staatenbund zum Bundesstaat mit zentralen Bundeskompetenzen."
+  }
+ ],
+ "hist-lz11-b": [
+  {
+   "q": "Was regelte das erste eidgenössische Fabrikgesetz von 1877?",
+   "options": [
+    "Es erlaubte Kinderarbeit ab 6 Jahren wieder ausdrücklich",
+    "Es verbot Kinderarbeit unter 14 Jahren und begrenzte die Arbeitszeit auf 11 Stunden pro Tag",
+    "Es führte den Achtstundentag für alle ein",
+    "Es verbot ausschließlich die Frauenarbeit in Fabriken"
+   ],
+   "correct": 1,
+   "explain": "Das Fabrikgesetz von 1877 verbot Kinder unter 14, begrenzte die Arbeitszeit auf 11h/Tag und verbot Sonntagsarbeit."
+  },
+  {
+   "q": "Warum wurden in den frühen Fabriken laut Theorie bevorzugt Frauen und Kinder eingestellt?",
+   "options": [
+    "Weil sie kräftiger als Männer waren und mehr Maschinen bedienen konnten",
+    "Weil sie billiger und weniger gewerkschaftsfähig waren",
+    "Weil das Fabrikgesetz von 1877 ihre Einstellung vorschrieb",
+    "Weil Männer im Industriegebiet bessere Löhne verlangen durften"
+   ],
+   "correct": 1,
+   "explain": "Frauen und Kinder erhielten geringere Löhne und liessen sich schlechter gewerkschaftlich organisieren, weshalb sie bevorzugt eingestellt wurden."
+  }
+ ],
+ "geo-lz2-b": [
+  {
+   "q": "Wie wirkt die Eis-Albedo-Rückkopplung bei einer Erwärmung?",
+   "options": [
+    "Schmelzendes Eis senkt die Albedo, die dunklere Oberfläche absorbiert mehr Wärme und verstärkt die Erwärmung",
+    "Schmelzendes Eis erhöht die Albedo und kühlt die Oberfläche ab",
+    "Mehr Eis bildet sich, wodurch weniger Wärme aufgenommen wird",
+    "Die Albedo bleibt konstant, sodass keine Verstärkung auftritt"
+   ],
+   "correct": 0,
+   "explain": "Schmelzendes Eis senkt die Albedo, die dunklere Wasser- oder Bodenfläche absorbiert mehr Wärme und treibt die Erwärmung weiter an."
+  },
+  {
+   "q": "Warum gelten Eis-Albedo- und Wasserdampf-Rückkopplung beide als positive Rückkopplungen?",
+   "options": [
+    "Weil beide eine Erwärmung abschwächen und ins Gleichgewicht zurückführen",
+    "Weil ihr Ergebnis die ursprüngliche Ursache verstärkt und so die Erwärmung antreibt",
+    "Weil beide die Albedo der Oberfläche erhöhen",
+    "Weil beide unabhängig von der Temperatur ablaufen"
+   ],
+   "correct": 1,
+   "explain": "In beiden Fällen verstärkt das Ergebnis die ursprüngliche Erwärmung, was sie zu selbstverstärkenden, positiven Rückkopplungen macht."
+  }
+ ],
+ "geo-lz5-b": [
+  {
+   "q": "Welcher Prozess entzieht der Atmosphäre laut Theorie CO₂?",
+   "options": [
+    "Der Vulkanismus durch Ausgasung",
+    "Die Atmung von Lebewesen",
+    "Die Zersetzung von Biomasse",
+    "Die Verwitterung von Gestein"
+   ],
+   "correct": 3,
+   "explain": "Die Verwitterung von Gestein bindet CO₂ und entzieht es so der Atmosphäre."
+  },
+  {
+   "q": "Im ungestörten Kohlenstoffkreislauf halten sich Aufnahme und Abgabe die Waage. Welche Aussage erklärt am besten, warum der Kohlenstoff in der Atmosphäre dennoch jährlich um 5,1 GtC zunimmt?",
+   "options": [
+    "Weil der Vulkanismus seine CO₂-Ausgasung stark erhöht hat",
+    "Weil die Verbrennung fossiler Brennstoffe lange gespeicherten Kohlenstoff freisetzt, mehr als die Speicher aufnehmen können",
+    "Weil die Fotosynthese der Pflanzen vollständig zum Erliegen kam",
+    "Weil die Verwitterung von Gestein zusätzlich CO₂ freisetzt"
+   ],
+   "correct": 1,
+   "explain": "Die Verbrennung fossiler Brennstoffe gibt lange gespeicherten Kohlenstoff frei, sodass mehr CO₂ entsteht, als die natürlichen Speicher aufnehmen können."
+  }
+ ],
+ "geo-lz8-b": [
+  {
+   "q": "Was ist laut Theorie die zentrale Schwäche des Pariser Abkommens von 2015?",
+   "options": [
+    "Die Ziele werden von oben verordnet und sind zu streng",
+    "Es gibt keine Sanktionsmechanismen, die Ziele sind freiwillig",
+    "Die NDCs werden nur alle 50 Jahre überprüft",
+    "Es schließt die meisten Staaten von der Teilnahme aus"
+   ],
+   "correct": 1,
+   "explain": "Laut Theorie fehlen Sanktionsmechanismen, die Ziele sind freiwillig."
+  },
+  {
+   "q": "Ein Staat meldet sein Reduktionsziel selbst, verfehlt es aber später ohne Folgen. Welche Eigenschaft des Pariser Abkommens zeigt sich darin?",
+   "options": [
+    "Die von oben verordneten Ziele wurden überschritten",
+    "Die NDCs sind freiwillig und es fehlen Sanktionsmechanismen",
+    "Die Ziele werden nur alle zehn Jahre überprüft",
+    "Netto-Null ist bereits vor 2050 verbindlich erreicht"
+   ],
+   "correct": 1,
+   "explain": "Die selbst gemeldeten NDCs sind freiwillig, und das Fehlen von Sanktionsmechanismen ist die zentrale Schwäche des Abkommens."
+  }
+ ],
+ "geo-lz11-b": [
+  {
+   "q": "Welche Energieträger zählt die Theorie zu den nicht erneuerbaren?",
+   "options": [
+    "Wasserkraft, Wind und Solarenergie",
+    "Geothermie und Biomasse",
+    "Kohle, Erdöl, Erdgas und Kernenergie",
+    "Sonnen- und Windenergie"
+   ],
+   "correct": 2,
+   "explain": "Nicht erneuerbar sind laut Theorie Kohle, Erdöl, Erdgas und die Kernenergie."
+  },
+  {
+   "q": "Ein Gerät verbraucht im Betrieb sehr wenig Strom, seine Herstellung war jedoch extrem energieintensiv. Wie beurteilt die Theorie über die graue Energie seine Bilanz?",
+   "options": [
+    "Die Bilanz ist gut, weil nur der Betriebsverbrauch zählt",
+    "Die Bilanz kann schlecht sein, weil die graue Energie Herstellung, Transport und Entsorgung einschliesst",
+    "Die graue Energie misst nur den Stromverbrauch im Betrieb",
+    "Die Bilanz hängt allein davon ab, ob erneuerbare Energieträger genutzt werden"
+   ],
+   "correct": 1,
+   "explain": "Graue Energie umfasst Herstellung, Transport und Entsorgung, weshalb ein im Betrieb sparsames, aber energieintensiv produziertes Gerät eine schlechte Bilanz haben kann."
+  }
+ ],
+ "chem-lz1-b": [
+  {
+   "q": "Welche Umstellung der Grundformel n = m/M ist korrekt, um die Masse zu berechnen?",
+   "options": [
+    "m = n / M",
+    "m = n · M",
+    "m = M / n",
+    "m = M − n"
+   ],
+   "correct": 1,
+   "explain": "Die Theorie gibt für die Masse die Umstellung m = n · M an."
+  },
+  {
+   "q": "Du löst 49,05 g reine Schwefelsäure (H₂SO₄) vollständig auf. Wie viele Mol entsprechen dieser Masse, wenn M(H₂SO₄) = 98,1 g/mol beträgt?",
+   "options": [
+    "0,5 mol",
+    "1,0 mol",
+    "2,0 mol",
+    "98,1 mol"
+   ],
+   "correct": 0,
+   "explain": "Mit n = m/M ergibt 49,05 g / 98,1 g/mol genau 0,5 mol."
+  }
+ ],
+ "chem-lz4-a": [
+  {
+   "q": "Welcher Bindungstyp liegt vor, wenn ein Metall und ein Nichtmetall mit einer EN-Differenz über 1.7 verbunden sind?",
+   "options": [
+    "Metallbindung",
+    "Ionenbindung",
+    "unpolare Atombindung",
+    "polare Atombindung"
+   ],
+   "correct": 1,
+   "explain": "Metall plus Nichtmetall mit ΔEN über 1.7 ergibt laut Theorie eine Ionenbindung mit vollständiger Elektronenübertragung."
+  },
+  {
+   "q": "Zwei Nichtmetalle bilden eine Verbindung mit einer EN-Differenz von 1,0. Welche Aussage trifft auf diese Bindung zu?",
+   "options": [
+    "Es ist eine Ionenbindung, da Elektronen vollständig übertragen werden",
+    "Es ist eine polare Atombindung mit Partialladungen δ⁺ und δ⁻",
+    "Es ist eine unpolare Atombindung mit völlig symmetrischem Teilen",
+    "Es ist eine Metallbindung mit frei beweglichem Elektronengas"
+   ],
+   "correct": 1,
+   "explain": "Zwei Nichtmetalle mit EN-Differenz zwischen 0,5 und 1,7 bilden eine polare Atombindung mit Partialladungen."
+  }
+ ],
+ "chem-lz5-c": [
+  {
+   "q": "Welche Ladung trägt ein einatomiges Ion aus der Hauptgruppe VI nach der Edelgasregel?",
+   "options": [
+    "1+",
+    "2−",
+    "3−",
+    "2+"
+   ],
+   "correct": 1,
+   "explain": "Laut Theorie bilden Elemente der Gruppe VI wie Oxid und Sulfid Ionen mit der Ladung 2−."
+  },
+  {
+   "q": "Eine Verbindung enthält ein Anion der Gruppe VI und Kationen der Gruppe I. Wie viele einfach positive Kationen sind nötig, um die Ladung eines solchen Anions auszugleichen?",
+   "options": [
+    "Ein Kation, da beide Ladung 1 tragen",
+    "Zwei Kationen, weil das Anion zweifach negativ ist",
+    "Drei Kationen, weil das Anion dreifach negativ ist",
+    "Vier Kationen, weil Gruppe VI die Ladung 4− trägt"
+   ],
+   "correct": 1,
+   "explain": "Gruppe-VI-Ionen sind 2− geladen, also gleichen zwei einfach positive Gruppe-I-Kationen sie aus."
+  }
+ ],
+ "chem-lz8-a": [
+  {
+   "q": "Welche Aussage über die beiden Teilschritte des Lösungsvorgangs ist laut Theorie richtig?",
+   "options": [
+    "Das Zerlegen des Ionengitters ist exotherm",
+    "Die Hydratation ist endotherm",
+    "Das Zerlegen des Gitters ist endotherm, die Hydratation exotherm",
+    "Beide Teilschritte sind endotherm"
+   ],
+   "correct": 2,
+   "explain": "Laut Theorie ist das Zerlegen des Ionengitters endotherm und die Hydratation exotherm."
+  },
+  {
+   "q": "Beim Auflösen eines Salzes ist die Gitterenergie ΔH_Gitter betragsmäßig größer als die freiwerdende Hydratationsenergie ΔH_Hyd. Welche Schlussfolgerung über den Gesamtprozess ΔH_Lösung ist korrekt?",
+   "options": [
+    "ΔH_Lösung ist negativ, weil die Hydratation immer überwiegt",
+    "ΔH_Lösung ist positiv, der Lösungsvorgang ist insgesamt endotherm",
+    "ΔH_Lösung ist null, weil sich beide Schritte stets ausgleichen",
+    "ΔH_Lösung hängt nur von der Hydratation ab, das Gitter zählt nicht"
+   ],
+   "correct": 1,
+   "explain": "Da ΔH_Lösung = ΔH_Gitter + ΔH_Hyd und der positive Gitteranteil überwiegt, ist der Vorgang endotherm."
+  }
+ ],
+ "chem-lz10-d": [
+  {
+   "q": "Warum soll das wasserfreie Salz nach dem Glühen im Exsikkator abkühlen, bevor man es wiegt?",
+   "options": [
+    "Damit es schneller erkaltet als an der Luft",
+    "Damit es kein Wasser aus der Luft wieder aufnimmt und das Ergebnis verfälscht",
+    "Damit sich das Salz wieder mit Kristallwasser füllt",
+    "Damit der Tiegel nicht zerspringt"
+   ],
+   "correct": 1,
+   "explain": "Laut Theorie wird im Exsikkator abgekühlt, damit das wasserfreie Salz die Messung nicht durch erneute Wasseraufnahme verfälscht."
+  },
+  {
+   "q": "Ein Schüler erhitzt ein Hydrat unzureichend und lässt es vor dem Wiegen offen an der Luft abkühlen. Welcher Fehler verfälscht die berechnete Wasseranzahl x am ehesten zu klein?",
+   "options": [
+    "Das offene Abkühlen lässt das Salz Luftfeuchtigkeit aufnehmen, m₂ wird zu groß",
+    "Das zu starke Erhitzen zersetzt das Salz und erhöht den Massenverlust",
+    "Der Exsikkator trocknet die Probe zusätzlich aus",
+    "Das Wiegen von m₁ vor dem Erhitzen ist überflüssig"
+   ],
+   "correct": 0,
+   "explain": "Nimmt die wasserfreie Probe an der Luft Feuchtigkeit auf, wird m₂ größer, der scheinbare Wasserverlust kleiner und damit x zu klein."
+  }
+ ],
+ "hist-lz3-a": [
+  {
+   "q": "Welches Ereignis vom 10. August 1792 führte zum Sturz der Monarchie in Frankreich?",
+   "options": [
+    "Die Hinrichtung Ludwigs XVI.",
+    "Der Tuilerien-Sturm",
+    "Die Septembermorde",
+    "Der Aufstand in der Vendée"
+   ],
+   "correct": 1,
+   "explain": "Laut Theorie wurde durch den Tuilerien-Sturm am 10. August 1792 die Monarchie gestürzt und der König gefangen genommen."
+  },
+  {
+   "q": "Ein Schüler behauptet, die Republik sei in Frankreich noch vor dem Tuilerien-Sturm ausgerufen worden. Welcher Hinweis aus der Theorie widerlegt dies?",
+   "options": [
+    "Der Krieg gegen Österreich wurde erst nach der Hinrichtung erklärt",
+    "Der Tuilerien-Sturm am 10. August 1792 stürzte erst die Monarchie, die Republik folgte am 21. September",
+    "Die Septembermorde fanden vor dem Tuilerien-Sturm statt",
+    "Ludwig XVI. wurde bereits im August 1792 hingerichtet"
+   ],
+   "correct": 1,
+   "explain": "Der Tuilerien-Sturm (10. Aug.) stürzte die Monarchie, die Republik wurde erst am 21. September 1792 ausgerufen."
+  }
+ ],
+ "hist-lz6-a": [
+  {
+   "q": "Welches Grundprinzip kennzeichnet die Helvetische Verfassung von 1798 bezüglich der Souveränität?",
+   "options": [
+    "Die Souveränität liegt bei den einzelnen Kantonen",
+    "Es ist ein Einheitsstaat, die Souveränität liegt beim Bund",
+    "Die Souveränität liegt beim König",
+    "Jede Gemeinde ist souverän"
+   ],
+   "correct": 1,
+   "explain": "Laut Theorie war die Helvetik ein Einheitsstaat, dessen Souveränität beim Bund und nicht bei den Kantonen lag."
+  },
+  {
+   "q": "Welche Aussage über die Helvetische Verfassung von 1798 ist FALSCH?",
+   "options": [
+    "Sie führte einen Einheitsstaat ein, dessen Souveränität beim Bund lag",
+    "Die 18 Kantone blieben souveräne Staaten mit eigener Gewalt",
+    "Sie garantierte Menschenrechte nach französischem Vorbild",
+    "Frauen blieben vom allgemeinen Männerwahlrecht ausgeschlossen"
+   ],
+   "correct": 1,
+   "explain": "Die Kantone waren laut Theorie nur Verwaltungsbezirke, die Souveränität lag beim Bund, nicht bei den Kantonen."
+  }
+ ],
+ "hist-lz9-a": [
+  {
+   "q": "Welche Rolle spielt die Agrarrevolution laut Theorie für die Industrialisierung Englands?",
+   "options": [
+    "Sie war eine Folge der Industrialisierung",
+    "Sie war eine Voraussetzung und setzte Arbeitskräfte frei",
+    "Sie verhinderte die Abwanderung in die Städte",
+    "Sie spielte keine Rolle"
+   ],
+   "correct": 1,
+   "explain": "Laut Theorie war die Agrarrevolution eine Voraussetzung, die durch Enclosures landlose Arbeitskräfte für die Städte freisetzte."
+  },
+  {
+   "q": "Warum reicht laut Theorie der oberflächennahe Kohlevorkommen allein nicht aus, um zu erklären, dass die Industrialisierung gerade in England begann?",
+   "options": [
+    "Weil Kohle in England gar nicht abgebaut wurde",
+    "Weil erst alle fünf Faktoren zusammen wirken mussten, ein einzelner genügt nicht",
+    "Weil Frankreich noch mehr Kohle besaß als England",
+    "Weil die Agrarrevolution eine Folge und keine Voraussetzung der Industrie war"
+   ],
+   "correct": 1,
+   "explain": "Die Theorie betont, dass alle fünf Faktoren zusammenwirken mussten und kein einzelner für sich ausreicht."
+  }
+ ],
+ "hist-lz12-a": [
+  {
+   "q": "Welche Lösung der Sozialen Frage vertrat der Liberalismus laut Theorie?",
+   "options": [
+    "Revolution und Abschaffung des Privateigentums",
+    "Selbsthilfe durch Bildung, Sparkassen und Vereine",
+    "Staatliche Sozialversicherungen von oben",
+    "Karitative Werke der Kirchen"
+   ],
+   "correct": 1,
+   "explain": "Laut Theorie setzte der Liberalismus auf Selbsthilfe durch Bildung, Sparkassen und Selbsthilfevereine ohne Staatseingriff."
+  },
+  {
+   "q": "Ein Politiker fordert staatliche Sozialversicherungen, lehnt aber eine Revolution strikt ab und will so die Arbeiter beruhigen. Welcher Antwort auf die Soziale Frage entspricht das am ehesten?",
+   "options": [
+    "Liberalismus, weil er Selbsthilfe durch Sparkassen betont",
+    "Sozialismus, weil er das Privateigentum abschaffen will",
+    "Staatlich-soziale Antwort, weil sie Reform von oben gegen Revolution setzt",
+    "Christlich-soziale Antwort, weil sie auf karitative Werke der Kirchen baut"
+   ],
+   "correct": 2,
+   "explain": "Die staatlich-soziale Antwort (Bismarck) setzt auf staatliche Sozialgesetze als Reform gegen Revolution."
+  }
+ ],
+ "geo-lz3-a": [
+  {
+   "q": "Warum ist CO₂ trotz geringerer Wirksamkeit pro Molekül der wichtigste Treiber des anthropogenen Treibhauseffekts?",
+   "options": [
+    "Weil es pro Molekül am stärksten wirkt",
+    "Weil es in riesigen Mengen aus fossilen Brennstoffen freigesetzt wird",
+    "Weil es das einzige anthropogene Treibhausgas ist",
+    "Weil es 310-mal wirksamer als andere Gase ist"
+   ],
+   "correct": 1,
+   "explain": "Laut Theorie ergibt erst Wirksamkeit mal Menge den Beitrag, weshalb das massenhaft freigesetzte CO₂ den größten Anteil hat."
+  },
+  {
+   "q": "F-Gase sind pro Molekül bis zu 22000-mal wirksamer als CO₂, gelten aber nicht als Hauptproblem. Welche Schlussfolgerung zieht die Theorie daraus?",
+   "options": [
+    "Erst Wirksamkeit mal freigesetzte Menge ergibt den tatsächlichen Beitrag eines Gases",
+    "Die Wirksamkeit pro Molekül allein entscheidet über den Hauptbeitrag",
+    "F-Gase haben keinen Treibhauseffekt, weil sie natürlich vorkommen",
+    "CO₂ ist pro Molekül das wirksamste aller Treibhausgase"
+   ],
+   "correct": 0,
+   "explain": "Laut Theorie ergibt erst Wirksamkeit mal Menge den realen Beitrag, weshalb das schwächere, aber massenhafte CO₂ überwiegt."
+  }
+ ],
+ "geo-lz6-a": [
+  {
+   "q": "Wie hat sich die Geschwindigkeit des Meeresspiegelanstiegs laut Theorie entwickelt?",
+   "options": [
+    "Von 3,7 mm pro Jahr auf 1,3 mm pro Jahr verlangsamt",
+    "Von rund 1,3 mm pro Jahr seit 1900 auf aktuell 3,7 mm pro Jahr beschleunigt",
+    "Sie ist konstant bei 1,3 mm pro Jahr geblieben",
+    "Sie ist auf null gesunken"
+   ],
+   "correct": 1,
+   "explain": "Laut Theorie stieg der Meeresspiegel seit 1900 um rund 1,3 mm pro Jahr und hat sich auf aktuell 3,7 mm pro Jahr beschleunigt."
+  },
+  {
+   "q": "Eine Region erlebt zuerst eine lange Dürre und kurz darauf eine schwere Überschwemmung, wodurch die Schäden besonders groß werden. Welcher Begriff aus der Theorie beschreibt dies am besten?",
+   "options": [
+    "Meeresspiegelanstieg, weil mehrere Folgen aufeinandertreffen",
+    "Compound Risk, weil sich mehrere Klimafolgen gegenseitig verschärfen",
+    "Biodiversitätsverlust, weil sich Arten nicht anpassen können",
+    "Beschleunigter Anstieg, weil die Geschwindigkeit zunimmt"
+   ],
+   "correct": 1,
+   "explain": "Compound Risks bezeichnen das Zusammentreffen mehrerer Klimafolgen, die sich gegenseitig verschärfen."
+  }
+ ],
+ "geo-lz9-a": [
+  {
+   "q": "Was war der politisch entscheidende Schritt der Energiestrategie 2050?",
+   "options": [
+    "Der Ausbau der Wasserkraft",
+    "Der Verzicht auf neue AKW",
+    "Die Senkung der CO₂-Norm für Fahrzeuge",
+    "Die Steigerung der Gebäudesanierungsmittel"
+   ],
+   "correct": 1,
+   "explain": "Laut Theorie war das Verbot neuer AKW der politisch entscheidende Schritt der Energiestrategie 2050."
+  },
+  {
+   "q": "Das Energiegesetz wurde 2017 mit 58,2 Prozent Ja angenommen. Welche Aussage über seine Vorgaben ist laut Theorie korrekt?",
+   "options": [
+    "Der Stromverbrauch pro Person soll stärker sinken als der Gesamtenergieverbrauch",
+    "Der Energieverbrauch pro Person soll bis 2035 um 43 Prozent sinken, stärker als der Stromverbrauch",
+    "Neue AKW sind unter Auflagen weiterhin erlaubt",
+    "Die CO₂-Norm für Fahrzeuge liegt bei maximal 450 g/km"
+   ],
+   "correct": 1,
+   "explain": "Der Energieverbrauch soll um 43 Prozent sinken, der Stromverbrauch nur um 13 Prozent, also weniger stark."
+  }
+ ],
+ "geo-lz12-a": [
+  {
+   "q": "Welche zwei fossilen Energieträger machen laut Theorie zusammen über 60 Prozent des Endenergieverbrauchs aus?",
+   "options": [
+    "Elektrizität und Gas",
+    "Erdölbrennstoffe und Treibstoffe",
+    "Gas und Übrige",
+    "Treibstoffe und Elektrizität"
+   ],
+   "correct": 1,
+   "explain": "Laut Theorie machen Erdölbrennstoffe mit 34,9 Prozent und Treibstoffe mit 26,7 Prozent zusammen über 60 Prozent aus."
+  },
+  {
+   "q": "Die Theorie nennt Wärme und Mobilität als die großen Baustellen der Energiewende. Welche Kombination von Energieträgern begründet diese Aussage am besten?",
+   "options": [
+    "Elektrizität und Gas, weil sie zusammen über 60 Prozent ausmachen",
+    "Erdölbrennstoffe und Treibstoffe, weil sie zusammen über 60 Prozent ausmachen und beide fossil sind",
+    "Treibstoffe und Übrige, weil sie beide erneuerbar sind",
+    "Elektrizität und Erdölbrennstoffe, weil beide CO₂-arm sind"
+   ],
+   "correct": 1,
+   "explain": "Erdölbrennstoffe (Heizen) und Treibstoffe (Verkehr) ergeben zusammen über 60 Prozent und sind beide fossil."
+  }
+ ],
+ "chem-lz1-c": [
+  {
+   "q": "Was beschreibt die Stoffmengenkonzentration c gemäss der Theorie?",
+   "options": [
+    "Die Masse des Lösungsmittels pro Liter",
+    "Wie viele Mol pro Liter Lösung gelöst sind",
+    "Das Volumen des Lösungsmittels allein",
+    "Die Anzahl Atome pro Mol"
+   ],
+   "correct": 1,
+   "explain": "Laut Definition gibt c an, wie viele Mol pro Liter Lösung gelöst sind."
+  },
+  {
+   "q": "Man löst 0,5 mol Salz in Wasser und füllt auf 2 L Lösung auf. Anschliessend entnimmt man 0,5 L davon und verdünnt diese auf 1 L. Welche Konzentration hat die verdünnte Lösung?",
+   "options": [
+    "0,5 mol/L",
+    "0,25 mol/L",
+    "0,125 mol/L",
+    "1,0 mol/L"
+   ],
+   "correct": 2,
+   "explain": "Stammlösung c = 0,5/2 = 0,25 mol/L; Verdünnen 0,5 L auf 1 L halbiert auf 0,125 mol/L (c₁·V₁ = c₂·V₂)."
+  }
+ ],
+ "chem-lz4-b": [
+  {
+   "q": "Was besagt die Oktettregel?",
+   "options": [
+    "Atome streben immer genau 4 Valenzelektronen an",
+    "Atome geben grundsätzlich alle Elektronen ab",
+    "Atome streben die Elektronenkonfiguration des nächsten Edelgases an",
+    "Atome bilden nie kovalente Bindungen"
+   ],
+   "correct": 2,
+   "explain": "Die Oktettregel besagt, dass Atome die Edelgaskonfiguration des nächsten Edelgases anstreben."
+  },
+  {
+   "q": "Warum erreicht das Stickstoffatom in NH₃ und das Sauerstoffatom in O²⁻ beide ein Oktett, obwohl auf ganz unterschiedliche Weise?",
+   "options": [
+    "Beide geben Elektronen ab und werden zu Kationen",
+    "N teilt Elektronen kovalent, O nimmt Elektronen vollständig auf — beide zählen so 8 Valenzelektronen",
+    "Beide nehmen je 2 Elektronen auf wie Helium",
+    "N erweitert sein Oktett, O behält nur 6 Elektronen"
+   ],
+   "correct": 1,
+   "explain": "In NH₃ erreicht N sein Oktett durch geteilte Elektronen, O²⁻ durch vollständige Aufnahme von 2 Elektronen — beide Wege führen zur Edelgaskonfiguration."
+  }
+ ],
+ "chem-lz6-a": [
+  {
+   "q": "Welche Ladung trägt das Sulfat-Ion SO₄?",
+   "options": [
+    "einfach negativ",
+    "zweifach negativ",
+    "dreifach negativ",
+    "einfach positiv"
+   ],
+   "correct": 1,
+   "explain": "Sulfat SO₄ ist laut Liste ein zweifach negativ geladenes Anion."
+  },
+  {
+   "q": "Welche Aussage über die mehratomigen Ionen ist gemäss der Merkregel FALSCH?",
+   "options": [
+    "Nitrat NO₃⁻ hat mehr Sauerstoff als Nitrit NO₂⁻",
+    "Sulfat SO₄²⁻ endet auf -at, Sulfit SO₃²⁻ auf -it",
+    "Phosphit PO₃³⁻ hat mehr Sauerstoff als Phosphat PO₄³⁻",
+    "Die -at-Endung steht für die sauerstoffreichere Variante"
+   ],
+   "correct": 2,
+   "explain": "Phosphat PO₄³⁻ hat mehr Sauerstoff als Phosphit PO₃³⁻, denn die -at-Endung bezeichnet die sauerstoffreichere Form."
+  }
+ ],
+ "chem-lz8-b": [
+  {
+   "q": "Wann ist der Lösungsvorgang laut Theorie exotherm, sodass sich die Lösung erwärmt?",
+   "options": [
+    "Wenn der Betrag der Hydratationsenergie kleiner als der der Gitterenergie ist",
+    "Wenn der Betrag der Hydratationsenergie grösser als der der Gitterenergie ist",
+    "Wenn beide Beträge exakt gleich sind",
+    "Wenn keine Hydratation stattfindet"
+   ],
+   "correct": 1,
+   "explain": "Ist der Betrag der Hydratationsenergie grösser als der der Gitterenergie, wird ΔH der Lösung negativ und der Vorgang exotherm."
+  },
+  {
+   "q": "Beim Auflösen eines Salzes kühlt sich die Lösung deutlich ab. Was lässt sich daraus über die Energiebeträge schliessen?",
+   "options": [
+    "Der Betrag der Hydratationsenergie ist grösser als die Gitterenergie",
+    "Der Betrag der Hydratationsenergie ist kleiner als die Gitterenergie",
+    "Hydratations- und Gitterenergie sind gleich gross",
+    "Es wird keine Gitterenergie benötigt"
+   ],
+   "correct": 1,
+   "explain": "Abkühlung bedeutet endotherm (ΔH_Lösung > 0), also reicht der Betrag der Hydratationsenergie nicht aus, um die Gitterenergie zu decken."
+  }
+ ],
+ "chem-lz10-e": [
+  {
+   "q": "Welches Reagenz weist Chlorid-Ionen durch einen weissen Niederschlag nach?",
+   "options": [
+    "Bariumchlorid",
+    "verdünnte Salzsäure",
+    "Silbernitrat",
+    "Kalkwasser"
+   ],
+   "correct": 2,
+   "explain": "Silbernitrat bildet mit Chlorid einen weissen Niederschlag von AgCl."
+  },
+  {
+   "q": "Eine unbekannte Lösung gibt mit BaCl₂ einen weissen, säureunlöslichen Niederschlag, aber mit verdünnter HCl keine Gasentwicklung. Welches Ion ist demnach enthalten?",
+   "options": [
+    "Carbonat CO₃²⁻",
+    "Chlorid Cl⁻",
+    "Sulfat SO₄²⁻",
+    "Hydroxid OH⁻"
+   ],
+   "correct": 2,
+   "explain": "Der weisse, säureunlösliche Niederschlag mit BaCl₂ ist BaSO₄ und weist Sulfat nach; fehlende Gasentwicklung schliesst Carbonat aus."
+  }
+ ],
+ "hist-lz3-b": [
+  {
+   "q": "Mit welchem Ereignis endete die Schreckensherrschaft?",
+   "options": [
+    "Mit der Hinrichtung Marie-Antoinettes im Oktober 1793",
+    "Mit dem Sturz und der Hinrichtung Robespierres im Juli 1794",
+    "Mit Napoleons Staatsstreich 1799",
+    "Mit der Gründung des Direktoriums 1795"
+   ],
+   "correct": 1,
+   "explain": "Die Schreckensherrschaft endete mit dem Sturz Robespierres am 9. Thermidor, er wurde am 28. Juli 1794 guillotiniert."
+  },
+  {
+   "q": "Sowohl der radikale Hébert (März 1794) als auch der gemässigte Danton (April 1794) wurden hingerichtet. Was zeigt diese Abfolge über die Logik des Terrors am besten?",
+   "options": [
+    "Der Terror richtete sich ausschliesslich gegen Royalisten und äussere Feinde",
+    "Der Terror traf Gegner an beiden politischen Flügeln und richtete sich auch gegen einstige Revolutionäre",
+    "Der Terror endete bereits im April 1794 mit Dantons Tod",
+    "Der Terror verschonte gemässigte Republikaner grundsätzlich"
+   ],
+   "correct": 1,
+   "explain": "Die Hinrichtung des zu radikalen Hébert wie des zu gemässigten Danton zeigt, dass der Terror Gegner an beiden Flügeln und selbst frühere Revolutionäre traf."
+  }
+ ],
+ "hist-lz6-b": [
+  {
+   "q": "Welche der fünf Ursachen beschreibt den Gegensatz zwischen dem französischen Modell und der bisherigen Ordnung der Schweiz?",
+   "options": [
+    "Der Zentralismus stiess auf die föderale Tradition kantonaler Selbstverwaltung",
+    "Die Industrialisierung verdrängte die Landwirtschaft",
+    "Die Einführung des Frauenstimmrechts spaltete die Kantone",
+    "Die Kontinentalsperre wurde aufgehoben"
+   ],
+   "correct": 0,
+   "explain": "Eine Ursache war der Zusammenstoss des Zentralismus mit der jahrhundertealten föderalen kantonalen Selbstverwaltung."
+  },
+  {
+   "q": "Warum betont die Theorie, die Helvetik sei nicht an einem äusseren Schlag, sondern an eigenen Mängeln gescheitert, obwohl Napoleon 1802 eingriff?",
+   "options": [
+    "Weil Napoleons Eingriff die Helvetik rettete statt beendete",
+    "Weil der Stecklikrieg ein innerer Bürgerkrieg war und die strukturellen Ursachen schon vorher wirkten",
+    "Weil es keinerlei äusseren Einfluss auf die Helvetik gab",
+    "Weil die Mediationsakte die Zentralisierung noch verstärkte"
+   ],
+   "correct": 1,
+   "explain": "Der innere Stecklikrieg und die fünf strukturellen Ursachen wirkten bereits vor Napoleons Eingriff, der nur das schon scheiternde System endgültig beendete."
+  }
+ ],
+ "hist-lz9-b": [
+  {
+   "q": "In welchem Sektor begann laut Theorie die Industrielle Revolution?",
+   "options": [
+    "Im Bergbau",
+    "Im Eisenbahnbau",
+    "Im Textil-Sektor bei der Baumwoll-Verarbeitung",
+    "In der Metallverarbeitung"
+   ],
+   "correct": 2,
+   "explain": "Die Industrielle Revolution begann im Textil-Sektor, speziell bei der Baumwoll-Verarbeitung."
+  },
+  {
+   "q": "Warum wurde gerade die Baumwoll-Verarbeitung und nicht etwa die Möbelherstellung zum Leitsektor der Industrialisierung?",
+   "options": [
+    "Weil Spinnen und Weben repetitive, mechanisierbare Bewegungen sind und der Markt für Kleidung riesig war",
+    "Weil Baumwolle ausschliesslich in England angebaut werden konnte",
+    "Weil die Möbelherstellung gesetzlich verboten war",
+    "Weil Textilien anders als Möbel keine Rohstoffe benötigten"
+   ],
+   "correct": 0,
+   "explain": "Die repetitiven, gut mechanisierbaren Bewegungen beim Spinnen und Weben und der riesige Kleidungsmarkt machten den Textilsektor zum Leitsektor."
+  }
+ ],
+ "hist-lz12-b": [
+  {
+   "q": "Welche Forderungen des Landesstreiks von 1918 wurden in den Folgejahrzehnten umgesetzt?",
+   "options": [
+    "Nur die Abrüstung",
+    "Fast alle Forderungen, etwa 48-Stunden-Woche, AHV und Frauenstimmrecht",
+    "Keine einzige Forderung",
+    "Ausschliesslich die Proportionalwahl"
+   ],
+   "correct": 1,
+   "explain": "Obwohl der Streik kurzfristig scheiterte, wurden in den Folgejahrzehnten fast alle Forderungen umgesetzt."
+  },
+  {
+   "q": "Ein Schüler sagt: Der Landesstreik von 1918 war ein voller Misserfolg, weil er abgebrochen wurde. Wie beurteilt die Theorie das?",
+   "options": [
+    "Zutreffend, weil keine einzige Forderung je umgesetzt wurde",
+    "Unzutreffend, weil in den Folgejahrzehnten fast alle Forderungen wie 48-Stunden-Woche, AHV und Frauenstimmrecht umgesetzt wurden",
+    "Zutreffend, weil das Friedensabkommen den Streik rückgängig machte",
+    "Unzutreffend, weil der Streik sofort alle Forderungen durchsetzte"
+   ],
+   "correct": 1,
+   "explain": "Kurzfristig scheiterte der Streik, doch langfristig wurden fast alle Forderungen wie 48-Stunden-Woche, AHV und Frauenstimmrecht umgesetzt."
+  }
+ ],
+ "geo-lz3-b": [
+  {
+   "q": "Welche Sonderrolle hat Wasserdampf unter den Treibhausgasen?",
+   "options": [
+    "Er ist das wichtigste Treibhausgas des natürlichen Treibhauseffekts und macht davon rund zwei Drittel aus",
+    "Er ist das einzige menschengemachte Treibhausgas",
+    "Er hat keinerlei Treibhauswirkung",
+    "Er macht nur einen winzigen Bruchteil des natürlichen Effekts aus"
+   ],
+   "correct": 0,
+   "explain": "Wasserdampf ist das wichtigste Treibhausgas des natürlichen Treibhauseffekts und stellt davon rund zwei Drittel."
+  },
+  {
+   "q": "Warum wird Wasserdampf trotz seiner enormen Bedeutung NICHT zum anthropogenen Treibhauseffekt gezählt?",
+   "options": [
+    "Weil sein Treibhauseffekt insgesamt zu schwach ist",
+    "Weil der Mensch ihn nicht direkt durch Emissionen steuert, sondern nur indirekt über die Temperatur beeinflusst",
+    "Weil er den natürlichen Treibhauseffekt sogar abschwächt",
+    "Weil er als Verstärker die Erwärmung verringert statt erhöht"
+   ],
+   "correct": 1,
+   "explain": "Der Mensch emittiert Wasserdampf nicht direkt; er steigt nur indirekt durch wärmebedingte Rückkopplung, weshalb er nicht zum anthropogenen Anteil zählt."
+  }
+ ],
+ "geo-lz6-b": [
+  {
+   "q": "Um wie viel Grad ist die Schweizer Mitteltemperatur seit vorindustrieller Zeit bereits gestiegen?",
+   "options": [
+    "um 1,0 Grad",
+    "um 2,0 Grad",
+    "um 3,8 Grad",
+    "um 5,5 Grad"
+   ],
+   "correct": 1,
+   "explain": "Laut Theorie ist die Schweizer Mitteltemperatur bereits um 2,0 Grad gestiegen."
+  },
+  {
+   "q": "Warum steigt in der Schweiz das Überschwemmungsrisiko, obwohl die Sommer laut Klima CH2025 trockener werden?",
+   "options": [
+    "Weil mehr Schnee fällt und die Nullgradgrenze sinkt",
+    "Weil heftigere Starkniederschläge auf trockene, ausgehärtete Böden treffen, die das Wasser schlecht aufnehmen, sodass es rasch abfliesst",
+    "Weil die Gletscher wachsen und Flüsse stauen",
+    "Weil die Mitteltemperatur sinkt und Wasser sich sammelt"
+   ],
+   "correct": 1,
+   "explain": "Trockene, ausgehärtete Böden nehmen die heftigeren Starkniederschläge schlecht auf, das Wasser fliesst rasch ab und erhöht das Überschwemmungsrisiko."
+  }
+ ],
+ "geo-lz9-b": [
+  {
+   "q": "Wie fiel die Abstimmung zum Klimaschutzgesetz vom 18. Juni 2023 aus?",
+   "options": [
+    "Nein mit 51,6 Prozent",
+    "Ja mit 59,1 Prozent",
+    "Nein mit 70,7 Prozent",
+    "Ja mit 48,4 Prozent"
+   ],
+   "correct": 1,
+   "explain": "Das Klimaschutzgesetz wurde am 18. Juni 2023 mit 59,1 Prozent Ja angenommen."
+  },
+  {
+   "q": "Was lässt sich aus dem Vergleich der drei Abstimmungen am ehesten über die Schweizer Klimapolitik schliessen?",
+   "options": [
+    "Das Volk lehnte jede Klimavorlage konsequent ab",
+    "Das Volk stimmte je nach Vorlage gegensätzlich ab — eine knappe Ablehnung, eine klare Annahme und eine deutliche Ablehnung",
+    "Alle drei Vorlagen wurden mit über 50% Ja angenommen",
+    "Die Zustimmung nahm von Vorlage zu Vorlage stetig zu"
+   ],
+   "correct": 1,
+   "explain": "CO₂-Gesetz knapp Nein, Klimaschutzgesetz klar Ja, Klimafonds-Initiative deutlich Nein — die Ergebnisse fielen gegensätzlich aus."
+  }
+ ],
+ "geo-lz12-b": [
+  {
+   "q": "Welche Rolle übernehmen Kernkraftwerke in der Schweizer Stromproduktion laut Theorie?",
+   "options": [
+    "Sie liefern flexible Spitzenenergie",
+    "Sie liefern konstante Bandenergie und decken die Grundlast",
+    "Sie werden nur nachts hochgefahren",
+    "Sie decken ausschliesslich morgendliche Bedarfsspitzen"
+   ],
+   "correct": 1,
+   "explain": "Kernkraftwerke laufen konstant, liefern Bandenergie und decken damit die Grundlast."
+  },
+  {
+   "q": "Warum entsteht laut Theorie durch den Atomausstieg der Energiestrategie 2050 eine besondere Herausforderung für die Stromversorgung?",
+   "options": [
+    "Weil Speicherkraftwerke keine Spitzenenergie mehr liefern können",
+    "Weil die konstante Bandenergie der AKW wegfällt und die schwankende Sonnen- und Windproduktion ausgeglichen werden muss",
+    "Weil Laufwasserkraftwerke nur nachts Strom liefern",
+    "Weil neue AKW gebaut werden müssen, um die Grundlast zu decken"
+   ],
+   "correct": 1,
+   "explain": "Fällt die konstante Bandenergie der AKW weg, muss die schwankende erneuerbare Produktion durch flexible und speicherfähige Lösungen ausgeglichen werden."
+  }
+ ],
+ "chem-lz2-a": [
+  {
+   "q": "Was bestimmt laut Theorie das chemische Verhalten eines Atoms?",
+   "options": [
+    "Die Anzahl der Neutronen im Kern",
+    "Die Valenzelektronen in der äußersten Schale",
+    "Die Gesamtzahl aller Protonen",
+    "Die inneren Elektronen des Atomrumpfs"
+   ],
+   "correct": 1,
+   "explain": "Die Valenzelektronen der äußersten Schale bestimmen das chemische Verhalten."
+  },
+  {
+   "q": "Schwefel steht in Hauptgruppe VI. Welche Aussage über sein Atom ist nach der Theorie korrekt?",
+   "options": [
+    "Der Atomrumpf trägt die Ladung 6+, weil 6 Valenzelektronen abgezogen werden",
+    "Der Atomrumpf trägt die Ladung 2+, da nur die innersten Elektronen zählen",
+    "Es hat 6 Valenzelektronen, also trägt sein Atomrumpf die Ladung 6+",
+    "Es hat 8 Valenzelektronen wie ein Edelgas"
+   ],
+   "correct": 2,
+   "explain": "Die Hauptgruppen-Nummer (VI) gibt sowohl die 6 Valenzelektronen als auch die positive Atomrumpf-Ladung (6+) an."
+  }
+ ],
+ "chem-lz4-c": [
+  {
+   "q": "Wie viele Valenzelektronen müssen für die Lewis-Formel von NH₃ insgesamt verteilt werden?",
+   "options": [
+    "5 Elektronen",
+    "6 Elektronen",
+    "8 Elektronen",
+    "10 Elektronen"
+   ],
+   "correct": 2,
+   "explain": "N steuert 5 und drei H je 1 bei, zusammen also 8 Valenzelektronen."
+  },
+  {
+   "q": "Ein Schüler zeichnet NH₃ mit drei N–H-Bindungen, aber OHNE freies Elektronenpaar am Stickstoff. Warum ist das nach der Theorie falsch?",
+   "options": [
+    "Dann hätte der Stickstoff nur 6 Elektronen und sein Oktett wäre nicht erfüllt",
+    "Dann hätten die Wasserstoffatome je 4 Elektronen statt 2",
+    "Dann wären statt 8 nur 6 Valenzelektronen insgesamt vorhanden",
+    "Dann müsste das zentrale Atom Wasserstoff sein, nicht Stickstoff"
+   ],
+   "correct": 0,
+   "explain": "Ohne das freie Paar hätte N nur 6 Elektronen aus den Bindungen, das Oktett (8 e⁻) wäre verletzt."
+  }
+ ],
+ "chem-lz6-b": [
+  {
+   "q": "Welche Salzformel ergibt sich nach der Über-Kreuz-Methode für Al³⁺ und O²⁻?",
+   "options": [
+    "AlO",
+    "Al₃O₂",
+    "Al₂O₃",
+    "Al₂O₂"
+   ],
+   "correct": 2,
+   "explain": "Die Ladungszahlen werden über Kreuz getauscht, was Al₂O₃ ergibt."
+  },
+  {
+   "q": "Warum erhält man bei Mg²⁺ und O²⁻ die Formel MgO, bei Al³⁺ und O²⁻ aber Al₂O₃?",
+   "options": [
+    "Weil Sauerstoff je nach Partner unterschiedlich viele Ladungen trägt",
+    "Weil bei Mg²⁺/O²⁻ das Verhältnis Mg₂O₂ auf MgO gekürzt werden kann, bei Al₂O₃ aber nicht",
+    "Weil Aluminium grundsätzlich keine Klammern und kein Kürzen erlaubt",
+    "Weil bei Aluminium die Ladungen nicht über Kreuz getauscht werden"
+   ],
+   "correct": 1,
+   "explain": "Mg₂O₂ lässt sich auf das kleinste Verhältnis MgO kürzen, während Al₂O₃ bereits das kleinste ganzzahlige Verhältnis ist."
+  }
+ ],
+ "chem-lz9-a": [
+  {
+   "q": "Was geschieht bei der Elektrolyse an der Kathode (Minuspol)?",
+   "options": [
+    "Oxidation durch Elektronenabgabe",
+    "Reduktion durch Elektronenaufnahme",
+    "Anziehung der Anionen",
+    "Verbrennung des Kohlenstoffs"
+   ],
+   "correct": 1,
+   "explain": "An der Kathode werden Kationen angezogen und durch Elektronenaufnahme reduziert."
+  },
+  {
+   "q": "Warum wird beim Hall-Héroult-Verfahren Kryolith zugesetzt, und welche Folge hat dies?",
+   "options": [
+    "Es liefert die Elektronen für die Reduktion von Al³⁺ an der Anode",
+    "Es senkt den Schmelzpunkt von Al₂O₃ von über 2000°C auf rund 950°C, sodass die Ionen beweglich werden",
+    "Es verhindert, dass die Kohlenstoff-Anoden zu CO₂ verbrennen",
+    "Es ersetzt die Gleichspannungsquelle, da es selbst Strom leitet"
+   ],
+   "correct": 1,
+   "explain": "Kryolith löst Al₂O₃ und senkt den Schmelzpunkt auf etwa 950°C, sodass die Ionen für die Elektrolyse frei beweglich werden."
+  }
+ ],
+ "hist-lz1-a": [
+  {
+   "q": "Wann bricht laut Davies J-Kurve eine Revolution aus?",
+   "options": [
+    "Im tiefsten und dauerhaften Elend",
+    "Wenn nach einem Aufschwung ein plötzlicher Bruch folgt",
+    "Wenn Erwartungen und Lebenslage gleichmäßig steigen",
+    "Wenn die Erwartungen dauerhaft niedrig bleiben"
+   ],
+   "correct": 1,
+   "explain": "Revolutionen brechen aus, wenn auf einen Aufstieg ein plötzlicher Bruch der Lebenslage folgt."
+  },
+  {
+   "q": "Ein Land lebt seit Jahrzehnten in gleichbleibend tiefer Armut, ohne dass sich Lage oder Erwartungen je verbessert hätten. Was sagt Davies J-Kurve über die Revolutionsgefahr?",
+   "options": [
+    "Hoch, denn das tiefste Elend ist laut Davies der eigentliche Auslöser",
+    "Hoch, weil konstante Armut die Erwartungen automatisch stark steigen lässt",
+    "Eher gering, weil der für die Revolution nötige Bruch nach einem Aufschwung fehlt",
+    "Gering, weil Revolutionen nur durch halbe Reformen aus Schwäche entstehen"
+   ],
+   "correct": 2,
+   "explain": "Davies zufolge braucht es einen Aufschwung mit folgendem Bruch und enttäuschten Erwartungen, der bei konstanter Armut fehlt."
+  }
+ ],
+ "hist-lz4-a": [
+  {
+   "q": "Wodurch wurde die alte föderale Eidgenossenschaft 1798 ersetzt?",
+   "options": [
+    "Durch einen zentralistischen Einheitsstaat nach französischem Vorbild",
+    "Durch einen losen Staatenbund mit starker Tagsatzung",
+    "Durch 13 souveräne Orte mit Untertanengebieten",
+    "Durch eine Monarchie unter Napoleon"
+   ],
+   "correct": 0,
+   "explain": "Die föderale Schweiz wurde durch einen zentralistischen Einheitsstaat nach französischem Vorbild ersetzt."
+  },
+  {
+   "q": "Warum gelten die 18 Kantone der Helvetischen Republik trotz gleicher Zahl als grundlegend anders als die früheren souveränen Orte?",
+   "options": [
+    "Weil sie nur noch Verwaltungsbezirke ohne eigene Souveränität waren, gesteuert vom zentralen Direktorium",
+    "Weil sie weiterhin über die schwache Tagsatzung selbstständig regierten",
+    "Weil in ihnen die Patrizier ihre Herrschaft über die Untertanen behielten",
+    "Weil sie als zugewandte Orte nur lose mit Frankreich verbunden waren"
+   ],
+   "correct": 0,
+   "explain": "Die Kantone der Helvetischen Republik waren zentral gesteuerte Verwaltungsbezirke ohne Souveränität, anders als die früher souveränen Orte."
+  }
+ ],
+ "hist-lz7-a": [
+  {
+   "q": "Was kennzeichnet die Restauration (1815–1830) laut Theorie?",
+   "options": [
+    "Liberale Verfassungen in zwölf Kantonen",
+    "Einen zentralistischen Einheitsstaat",
+    "22 souveräne Kantone mit zurückkehrenden Patriziern",
+    "Die Wiederherstellung der Untertanenverhältnisse"
+   ],
+   "correct": 2,
+   "explain": "Die Restauration brachte 22 souveräne Kantone, in denen die Patrizier zurückkehrten."
+  },
+  {
+   "q": "Welche Aussage über das Verhältnis von Restauration und Regeneration ist FALSCH?",
+   "options": [
+    "Die Restauration brachte mit Wallis, Neuenburg und Genf drei neue Kantone",
+    "Die Regeneration erkämpfte in 12 Kantonen liberale Verfassungen",
+    "Die Restauration stellte die Untertanenverhältnisse der alten 6 Mediations-Kantone wieder her",
+    "Beide Phasen ließen die Bundes-Ebene schwach, was den Druck Richtung 1848 erzeugte"
+   ],
+   "correct": 2,
+   "explain": "Die Untertanenverhältnisse wurden gerade NICHT wiederhergestellt, die 6 Mediations-Kantone blieben bestehen."
+  }
+ ],
+ "hist-lz10-a": [
+  {
+   "q": "Welche Energiequelle ersetzte in der Schweizer Industrialisierung die fehlende Kohle?",
+   "options": [
+    "Erdöl aus dem Mittelland",
+    "Wasserkraft aus Gefälle und Flüssen",
+    "Importierte Steinkohle aus dem Meer",
+    "Windkraft in den Alpen"
+   ],
+   "correct": 1,
+   "explain": "Statt Kohle nutzte die Schweiz die Wasserkraft von Gefälle und Flüssen."
+  },
+  {
+   "q": "Warum siedelten sich Schweizer Spinnereien an Flüssen wie Limmat oder Töss an statt an zentralen Märkten?",
+   "options": [
+    "Weil dort Kohlefelder die Maschinen direkt mit Brennstoff versorgten",
+    "Weil die Wasserkraft des Flussgefälles die fehlende Kohle als Antrieb ersetzte",
+    "Weil die Flüsse den fehlenden Meereszugang für den Export ausglichen",
+    "Weil dort der Binnenmarkt schon vor 1848 am größten war"
+   ],
+   "correct": 1,
+   "explain": "Da Kohle fehlte, lieferte die Wasserkraft der Flüsse den Antrieb, weshalb die Standorte den Flüssen folgten."
+  }
+ ],
+ "geo-lz1-a": [
+  {
+   "q": "Wie kalt wäre es auf der Erde im Durchschnitt ohne den natürlichen Treibhauseffekt?",
+   "options": [
+    "Rund 10°C kälter",
+    "Rund 30°C kälter",
+    "Rund 30°C wärmer",
+    "Genau gleich warm"
+   ],
+   "correct": 1,
+   "explain": "Ohne den natürlichen Treibhauseffekt wäre es im Durchschnitt rund 30°C kälter."
+  },
+  {
+   "q": "Warum erwärmt der Treibhauseffekt die untere Atmosphäre, statt die Erde umgekehrt abzukühlen?",
+   "options": [
+    "Weil die Treibhausgase die kurzwellige Sonnenstrahlung abschirmen und so Hitze stauen",
+    "Weil die Atmosphäre kurzwellige Einstrahlung durchlässt, aber die langwellige Ausstrahlung zurückhält",
+    "Weil die Treibhausgase Wärme nur nach oben ins All zurückwerfen",
+    "Weil sowohl kurz- als auch langwellige Strahlung gleichermaßen zurückgehalten werden"
+   ],
+   "correct": 1,
+   "explain": "Entscheidend ist die Asymmetrie: kurzwellige Einstrahlung ist durchlässig, langwellige Ausstrahlung wird absorbiert und teilweise zurückgegeben."
+  }
+ ],
+ "geo-lz4-a": [
+  {
+   "q": "Über welchen Zeitraum verändert die Erdumlaufbahn laut Theorie ihre Form?",
+   "options": [
+    "Etwa 23.000 Jahre",
+    "Etwa 40.000 Jahre",
+    "Rund 96.000 Jahre",
+    "7 bis 17 Jahre"
+   ],
+   "correct": 2,
+   "explain": "Die Erdumlaufbahn verändert ihre Form in einem Zyklus von rund 96.000 Jahren."
+  },
+  {
+   "q": "Ein Vulkanausbruch und die astronomischen Zyklen wirken laut Theorie unterschiedlich auf das Klima. Welche Gegenüberstellung stimmt?",
+   "options": [
+    "Beide wirken langfristig erwärmend über veränderte Sonneneinstrahlung",
+    "Vulkanasche kühlt kurzfristig durch reflektiertes Sonnenlicht, die astronomischen Zyklen steuern langfristig die Einstrahlung",
+    "Vulkanasche erwärmt langfristig, die astronomischen Zyklen kühlen kurzfristig",
+    "Beide gelten als Auslöser der Eiszeiten über reflektierte Strahlung"
+   ],
+   "correct": 1,
+   "explain": "Vulkanasche reflektiert Sonnenlicht und kühlt kurzfristig, während die astronomischen Zyklen langfristig die Einstrahlung steuern und Eiszeiten auslösen."
+  }
+ ],
+ "geo-lz7-a": [
+  {
+   "q": "Was kennzeichnet ein Kippelement im Klimasystem?",
+   "options": [
+    "Es reagiert allmählich und vollständig umkehrbar",
+    "Es reagiert ab einer Kipp-Temperatur abrupt und irreversibel",
+    "Es reagiert nur, wenn die Temperatur dauerhaft sinkt",
+    "Es bleibt von der Erwärmung unbeeinflusst"
+   ],
+   "correct": 1,
+   "explain": "Ein Kippelement springt bei Überschreiten der Kipp-Temperatur abrupt in einen neuen, irreversiblen Zustand."
+  },
+  {
+   "q": "Warum wird das Schmelzen des Meereises in der Theorie als Beispiel für eine sich selbst verstärkende Rückkopplung genannt?",
+   "options": [
+    "Weil das geschmolzene Eis die Kipp-Temperatur wieder absenkt und den Prozess stoppt",
+    "Weil dunkles Wasser unter dem hellen Eis mehr Sonnenenergie aufnimmt und so die Erwärmung weiter antreibt",
+    "Weil das Schmelzen allmählich und linear verläuft",
+    "Weil das Eis nach dem Abkühlen sofort wieder reversibel zufriert"
+   ],
+   "correct": 1,
+   "explain": "Das dunkle Wasser unter dem geschmolzenen hellen Eis nimmt mehr Sonnenenergie auf, was Erwärmung und Schmelzen weiter verstärkt."
+  }
+ ],
+ "geo-lz10-a": [
+  {
+   "q": "Woran setzt die Minderung (Mitigation) im Umgang mit dem Klimawandel an?",
+   "options": [
+    "An der Ursache, indem sie den Ausstoß von Treibhausgasen reduziert",
+    "An den Folgen, indem sie die Gesellschaft anpasst",
+    "An der Bewässerung von Feldern",
+    "Am Bau von Hochwasserschutz"
+   ],
+   "correct": 0,
+   "explain": "Die Minderung setzt an der Ursache an und reduziert den Ausstoß von Treibhausgasen."
+  },
+  {
+   "q": "Warum reicht es laut Theorie nicht, sich allein auf die Minderung zu verlassen?",
+   "options": [
+    "Weil das bereits ausgestoßene CO₂ noch jahrzehntelang in der Atmosphäre bleibt",
+    "Weil Minderung nur den Hochwasserschutz, nicht aber die Emissionen verbessert",
+    "Weil erneuerbare Energien selbst große Mengen Treibhausgase ausstoßen",
+    "Weil Anpassung die Ursachen des Klimawandels schneller beseitigt"
+   ],
+   "correct": 0,
+   "explain": "Selbst bei sofortigem Emissionsstopp bliebe das ausgestoßene CO₂ jahrzehntelang wirksam, weshalb auch Anpassung nötig ist."
+  }
+ ],
+ "chem-lz2-b": [
+  {
+   "q": "Wie viele Kugelwolken können die Valenzelektronen laut Modell maximal um den Atomrumpf bilden, und wie viele Elektronen passen pro Wolke?",
+   "options": [
+    "Maximal 8 Wolken mit je 1 Elektron",
+    "Maximal 4 Wolken mit je 1 oder 2 Elektronen",
+    "Maximal 2 Wolken mit je 4 Elektronen",
+    "Maximal 4 Wolken mit je 3 Elektronen"
+   ],
+   "correct": 1,
+   "explain": "Die Valenzelektronen halten sich in maximal 4 Kugelwolken auf, wobei jede Wolke 1 oder 2 Elektronen aufnehmen kann."
+  },
+  {
+   "q": "Ein Atom hat in seinen vier Kugelwolken folgende Besetzung: zwei einfach besetzte Wolken und zwei volle Wolken. Wie viele Valenzelektronen und wie viele Bindungen sind hier zu erwarten?",
+   "options": [
+    "5 Valenzelektronen, 3 Bindungen",
+    "6 Valenzelektronen, 2 Bindungen",
+    "7 Valenzelektronen, 1 Bindung",
+    "4 Valenzelektronen, 4 Bindungen"
+   ],
+   "correct": 1,
+   "explain": "Zwei volle Wolken (4 Elektronen) plus zwei einfach besetzte (2 Elektronen) ergeben 6 Valenzelektronen, und nur die einfach besetzten Wolken sind bindungsfähig, also 2 Bindungen."
+  }
+ ],
+ "chem-lz4-d": [
+  {
+   "q": "Wie wird die Ladung beim Zählen der Valenzelektronen eines Anions berücksichtigt?",
+   "options": [
+    "Pro negative Ladung wird 1 Elektron dazugerechnet",
+    "Pro negative Ladung wird 1 Elektron abgezogen",
+    "Die Ladung wird ignoriert",
+    "Pro negative Ladung werden 2 Elektronen dazugerechnet"
+   ],
+   "correct": 0,
+   "explain": "Bei einem Anion wird pro negativer Ladung ein Elektron dazugerechnet."
+  },
+  {
+   "q": "Beim Aufstellen der Lewis-Formel des Kations NH₄⁺ rechnet jemand die Valenzelektronen als N(5) plus 4 mal H(1) plus 1 für die Ladung. Was ist an diesem Vorgehen falsch?",
+   "options": [
+    "Bei einem Kation muss die Ladung addiert werden, nicht subtrahiert",
+    "Bei einem Kation muss pro positiver Ladung ein Elektron abgezogen statt addiert werden",
+    "Bei einem Kation darf die Ladung gar nicht berücksichtigt werden",
+    "Bei einem Kation muss man die Ladung doppelt abziehen"
+   ],
+   "correct": 1,
+   "explain": "Bei Kationen werden Elektronen abgezogen (pro positiver Ladung eines), nicht hinzugerechnet."
+  }
+ ],
+ "chem-lz6-c": [
+  {
+   "q": "Welche Formel ergibt sich beim Ladungsausgleich über Kreuz für Bariumphosphat aus Ba²⁺ und PO₄³⁻?",
+   "options": [
+    "BaPO₄",
+    "Ba₃(PO₄)₂",
+    "Ba₂(PO₄)₃",
+    "Ba(PO₄)₂"
+   ],
+   "correct": 1,
+   "explain": "Über Kreuz ergeben Ba²⁺ und PO₄³⁻ die Formel Ba₃(PO₄)₂."
+  },
+  {
+   "q": "Welche der folgenden Salzformeln ist FALSCH geschrieben?",
+   "options": [
+    "Eisen(III)-sulfid als Fe₂S₃",
+    "Kupfer(II)-nitrat als Cu(NO₃)₂",
+    "Aluminiumchlorid als Al(Cl)₃",
+    "Ammoniumdichromat als (NH₄)₂Cr₂O₇"
+   ],
+   "correct": 2,
+   "explain": "Bei einatomigen Anionen wie Chlorid wird keine Klammer gesetzt, also AlCl₃ statt Al(Cl)₃."
+  }
+ ],
+ "chem-lz10-a": [
+  {
+   "q": "Welches Volumenmessgerät besitzt laut Genauigkeitshierarchie die höchste Präzision?",
+   "options": [
+    "Messzylinder",
+    "Becherglas",
+    "Vollpipette",
+    "Messpipette"
+   ],
+   "correct": 2,
+   "explain": "Die Vollpipette liefert ein festes Volumen mit der höchsten Präzision von rund 0.03 mL."
+  },
+  {
+   "q": "Eine Schülerin will eine Lösung mit exakt bekannter Konzentration herstellen und anschliessend für eine Titration genau definierte Teilvolumen zugeben. Welche Geräte-Kombination ist laut Hierarchie korrekt?",
+   "options": [
+    "Messzylinder zum Herstellen, Messpipette zum Zugeben",
+    "Becherglas zum Herstellen, Bürette zum Zugeben",
+    "Messkolben zum Herstellen, Bürette zum Zugeben",
+    "Messkolben zum Herstellen, Messzylinder zum Zugeben"
+   ],
+   "correct": 2,
+   "explain": "Exakte Konzentrationen stellt man im Messkolben her, und variable präzise Volumen für Titrationen gibt man mit der Bürette zu."
+  }
+ ],
+ "hist-lz1-b": [
+  {
+   "q": "Was geschah am 17. Juni 1789 in Versailles?",
+   "options": [
+    "Das Pariser Volk stürmte die Bastille",
+    "Der 3. Stand erklärte sich zur Nationalversammlung",
+    "Der Adel verzichtete auf seine Privilegien",
+    "Die Erklärung der Menschenrechte wurde verkündet"
+   ],
+   "correct": 1,
+   "explain": "Am 17. Juni 1789 erklärte sich der 3. Stand zur Nationalversammlung."
+  },
+  {
+   "q": "Warum gilt der Sturm auf die Bastille am 14. Juli 1789 trotz nur sieben Gefangener als bedeutendes Ereignis?",
+   "options": [
+    "Weil dort die grösste königliche Armee stationiert war",
+    "Weil sie als Symbol königlicher Willkür galt und der König dadurch die Hauptstadt verlor",
+    "Weil dort die Erklärung der Menschenrechte unterzeichnet wurde",
+    "Weil die Nationalversammlung dort den Ballhausschwur leistete"
+   ],
+   "correct": 1,
+   "explain": "Die Bastille war kein militärisches Ziel, sondern Symbol königlicher Willkür, und mit ihrem Fall verlor der König die Kontrolle über Paris."
+  }
+ ],
+ "hist-lz4-b": [
+  {
+   "q": "Wie viele souveräne Kantone schuf die Mediationsakte von 1803?",
+   "options": [
+    "18 Kantone",
+    "22 Kantone",
+    "19 Kantone",
+    "6 Kantone"
+   ],
+   "correct": 2,
+   "explain": "Die Mediation 1803 schuf 19 souveräne Kantone mit Bund und Tagsatzung."
+  },
+  {
+   "q": "Worin unterscheidet sich die Stellung der sechs neuen Kantone von 1803 grundlegend von ihrer Lage zuvor?",
+   "options": [
+    "Sie wurden von souveränen Kantonen zu Untertanengebieten herabgestuft",
+    "Sie wurden von früheren Untertanengebieten zu gleichberechtigten, vollwertigen Kantonen",
+    "Sie behielten ihren Status als zugewandte Orte ohne Stimmrecht",
+    "Sie wurden zu einem zentralistischen Einheitsstaat zusammengefasst"
+   ],
+   "correct": 1,
+   "explain": "Die früheren Untertanengebiete wie Aargau und Waadt wurden durch die Mediation zu gleichberechtigten Kantonen aufgewertet."
+  }
+ ],
+ "hist-lz7-b": [
+  {
+   "q": "Welches Ereignis löste 1830 die Regenerations-Welle in der Schweiz aus?",
+   "options": [
+    "Die Pariser Julirevolution",
+    "Der Wiener Kongress",
+    "Der Basler Stadt-Land-Krieg",
+    "Die Mediationsakte"
+   ],
+   "correct": 0,
+   "explain": "Die Pariser Julirevolution von 1830 löste die schweizerische Regenerations-Welle aus."
+  },
+  {
+   "q": "Welche Aussage über die Lager nach der Regeneration trifft laut Theorie zu?",
+   "options": [
+    "Das Siebnerkonkordat war der konservative, der Sarnerbund der liberale Block",
+    "Der Sarnerbund war konservativ-katholisch und umfasste vor allem Innerschweizer Kantone",
+    "Beide Bündnisse waren liberal und kämpften gemeinsam gegen die Patrizier",
+    "Der Ustertag begründete den konservativen Sarnerbund"
+   ],
+   "correct": 1,
+   "explain": "Der Sarnerbund von 1832 war das konservativ-katholische Verteidigungsbündnis mit Kantonen wie Uri, Schwyz und Wallis."
+  }
+ ],
+ "hist-lz10-b": [
+  {
+   "q": "Welche Energiequelle prägte die Industrialisierung der Schweiz im Gegensatz zu England?",
+   "options": [
+    "Steinkohle und Dampf",
+    "Wasserkraft",
+    "Erdöl",
+    "Atomkraft"
+   ],
+   "correct": 1,
+   "explain": "Die Schweiz nutzte dezentrale Wasserkraft, während England auf konzentrierte Steinkohle und Dampf setzte."
+  },
+  {
+   "q": "Warum ist die Aussage Die Schweiz hat England einfach nachgemacht laut Theorie unzutreffend?",
+   "options": [
+    "Weil die Schweiz wie England auf Steinkohle und Massentextilien aus Grossfabriken setzte",
+    "Weil die Schweiz auf Wasserkraft, Nischenprodukte und KMU setzte statt auf Kohle und Massenproduktion",
+    "Weil die Schweiz früher industrialisierte als England und keine Vorbilder hatte",
+    "Weil England im Gegensatz zur Schweiz einen Enabler-Staat aufbaute"
+   ],
+   "correct": 1,
+   "explain": "Die Schweiz ging einen eigenen Pfad mit Wasserkraft, Nischen-Spezialgütern und KMU statt englischer Kohle-Massenproduktion in Grossfabriken."
+  }
+ ],
+ "geo-lz1-b": [
+  {
+   "q": "In welchem Verhältnis steht der anthropogene zum natürlichen Treibhauseffekt?",
+   "options": [
+    "Er ersetzt den natürlichen Effekt vollständig",
+    "Er kommt obendrauf und verstärkt den natürlichen Effekt",
+    "Er schwächt den natürlichen Effekt ab",
+    "Er hat mit dem natürlichen Effekt nichts zu tun"
+   ],
+   "correct": 1,
+   "explain": "Der anthropogene Effekt tritt nicht an die Stelle des natürlichen, sondern kommt obendrauf und verstärkt ihn."
+  },
+  {
+   "q": "Ein Mitschüler behauptet, man müsse den Treibhauseffekt abschaffen, um den Klimawandel zu stoppen. Welche Beurteilung trifft laut Theorie zu?",
+   "options": [
+    "Richtig, denn jeder Treibhauseffekt erwärmt die Erde gefährlich",
+    "Falsch, denn problematisch ist nur die zusätzliche menschengemachte Verstärkung, nicht der Treibhauseffekt selbst",
+    "Richtig, denn ohne Treibhauseffekt bliebe die Durchschnittstemperatur stabil",
+    "Falsch, denn der anthropogene Effekt ersetzt den natürlichen vollständig"
+   ],
+   "correct": 1,
+   "explain": "Der natürliche Treibhauseffekt macht die Erde bewohnbar; schädlich ist allein die zusätzliche menschengemachte Verstärkung."
+  }
+ ],
+ "geo-lz4-b": [
+  {
+   "q": "Welche Ursache gilt laut Theorie als die wichtigste anthropogene Ursache des Klimawandels?",
+   "options": [
+    "Die Verbrennung fossiler Brennstoffe",
+    "Die Viehzucht",
+    "Die Trockenlegung von Mooren",
+    "Der Reisanbau"
+   ],
+   "correct": 0,
+   "explain": "Die wichtigste Ursache ist die Verbrennung fossiler Brennstoffe wie Kohle, Erdöl und Erdgas."
+  },
+  {
+   "q": "Sowohl die Verbrennung fossiler Brennstoffe als auch die Trockenlegung von Mooren erhöhen den CO₂-Gehalt der Luft. Was ist der gemeinsame zugrunde liegende Mechanismus?",
+   "options": [
+    "Beide binden zusätzliches CO₂ aus der Atmosphäre",
+    "Beide setzen über lange Zeit gespeicherten Kohlenstoff wieder frei",
+    "Beide kühlen die Atmosphäre durch Verdunstung ab",
+    "Beide ersetzen den natürlichen Treibhauseffekt durch einen künstlichen"
+   ],
+   "correct": 1,
+   "explain": "Sowohl fossile Brennstoffe als auch Moore enthalten lange gespeicherten Kohlenstoff, der bei Verbrennung beziehungsweise Entwässerung wieder freigesetzt wird."
+  }
+ ],
+ "geo-lz7-b": [
+  {
+   "q": "Welches Kippelement kippt laut Übersicht bereits ab rund 1,5 Grad Celsius?",
+   "options": [
+    "Amazonas-Regenwald",
+    "Atlantische Umwälzung AMOC",
+    "Grönländisches Eisschild",
+    "Westantarktisches Eisschild"
+   ],
+   "correct": 2,
+   "explain": "Das Grönländische Eisschild gehört zu den vier Elementen, die schon ab 1,5 Grad kippen."
+  },
+  {
+   "q": "Welche Aussage über die Kippelemente lässt sich aus der Übersicht korrekt ableiten?",
+   "options": [
+    "Der Amazonas-Regenwald kippt früher als das grönländische Eisschild",
+    "Die AMOC und der Amazonas-Regenwald gehören zur Gruppe mit höherer Kippschwelle als die Korallenriffe",
+    "Alle sieben Kippelemente kippen bereits bei 1,5 Grad Celsius",
+    "Tropische Korallenriffe kippen erst zwischen 2,0 und 3,7 Grad"
+   ],
+   "correct": 1,
+   "explain": "Tropische Korallenriffe kippen bei 1,5 Grad, während AMOC und Amazonas erst ab 2,0 Grad zur Gruppe mit höherer Schwelle gehören."
+  }
+ ],
+ "geo-lz10-b": [
+  {
+   "q": "Welche der drei Strategien beschreibt einen genügsamen Lebensstil mit Verzicht?",
+   "options": [
+    "Effizienz",
+    "Konsistenz",
+    "Suffizienz",
+    "Kreislaufwirtschaft"
+   ],
+   "correct": 2,
+   "explain": "Suffizienz bedeutet einen genügsamen Lebensstil mit Verzicht, etwa Carsharing oder weniger fliegen."
+  },
+  {
+   "q": "Aus den Daten zur Wirksamkeit folgt, dass autoloses Leben rund dreimal so viel CO₂ einspart wie pflanzliche Ernährung. Welche Schlussfolgerung passt zusätzlich zur Theorie?",
+   "options": [
+    "Recycling und LED gehören zu den wirksamsten individuellen Massnahmen",
+    "Massnahmen mit grossem Hebel werden öffentlich oft weniger diskutiert als kleine wie Recycling",
+    "Ein Flug weniger spart mehr ein als autoloses Leben",
+    "Alle individuellen Massnahmen sparen etwa gleich viel CO₂ ein"
+   ],
+   "correct": 1,
+   "explain": "Laut Theorie werden gerade die hebelstarken Massnahmen öffentlich oft wenig diskutiert, während kleine wie Recycling stark betont werden."
+  }
+ ],
+ "chem-lz3-a": [
+  {
+   "q": "Zwei Atome bilden eine Bindung. Ihre EN-Differenz ΔEN beträgt 2.1. Welcher Bindungstyp liegt laut Theorie vor?",
+   "options": [
+    "Unpolare Atombindung",
+    "Polare Atombindung",
+    "Ionenbindung",
+    "Metallbindung"
+   ],
+   "correct": 2,
+   "explain": "Laut Theorie führt ein ΔEN über 1.7 zu einer Ionenbindung."
+  },
+  {
+   "q": "Ein Chemiker vergleicht zwei Bindungen: Bindung X hat ΔEN von 0.4, Bindung Y von 1.2. Welche Aussage trifft laut Theorie zu?",
+   "options": [
+    "X ist polar, Y unpolar",
+    "X ist unpolar, Y polar",
+    "Beide sind Ionenbindungen",
+    "X ist eine Ionenbindung, Y polar"
+   ],
+   "correct": 1,
+   "explain": "Unter 0.5 liegt eine unpolare, zwischen 0.5 und 1.7 eine polare Atombindung vor."
+  }
+ ],
+ "chem-lz5-a": [
+  {
+   "q": "Warum gibt ein Metall bei der Reaktion mit einem Nichtmetall Elektronen ab?",
+   "options": [
+    "Weil es eine hohe Elektronegativität hat",
+    "Weil es eine niedrige Elektronegativität hat",
+    "Weil es zum Anion werden will",
+    "Weil es bereits Edelgaskonfiguration besitzt"
+   ],
+   "correct": 1,
+   "explain": "Das Metall hat eine niedrige EN und gibt deshalb seine Valenzelektronen ab, wodurch ein Kation entsteht."
+  },
+  {
+   "q": "Bei der Reaktion von Aluminium mit Sauerstoff entsteht Al₂O₃. Warum stehen genau 2 Al- und 3 O-Atome im Verhältnis?",
+   "options": [
+    "Weil Aluminium dreifach, Sauerstoff zweifach geladen ist und die Gesamtladung null ergeben muss",
+    "Weil Aluminium und Sauerstoff je 6 Elektronen übertragen",
+    "Weil Sauerstoff dreifach und Aluminium zweifach geladen ist",
+    "Weil immer das kleinere Atom mehr Elektronen abgibt"
+   ],
+   "correct": 0,
+   "explain": "Al³⁺ und O²⁻ ergeben erst im Verhältnis 2 zu 3 eine Gesamtladung von null."
+  }
+ ],
+ "chem-lz6-d": [
+  {
+   "q": "Was darf man laut Theorie beim Ausgleichen einer Reaktionsgleichung auf keinen Fall tun?",
+   "options": [
+    "Koeffizienten vor die Formeln setzen",
+    "Mit kleinsten ganzen Zahlen arbeiten",
+    "Die Formeln der Stoffe verändern",
+    "Aggregatzustände dazuschreiben"
+   ],
+   "correct": 2,
+   "explain": "Die Formeln dürfen nicht geändert werden, ausgeglichen wird nur über Koeffizienten vor den Formeln."
+  },
+  {
+   "q": "Ein Schüler gleicht CH₄ + O₂ → CO₂ + H₂O aus, indem er CO₂ zu C₂O₄ ändert. Welche Aussage ist richtig?",
+   "options": [
+    "Korrekt, denn so stimmt die Sauerstoffbilanz",
+    "Falsch, denn Koeffizienten dürfen nicht verändert werden",
+    "Falsch, denn man hat eine Formel statt eines Koeffizienten verändert",
+    "Korrekt, denn C₂O₄ ist nur eine andere Schreibweise"
+   ],
+   "correct": 2,
+   "explain": "Ausgeglichen wird nur über Koeffizienten vor der Formel, nie durch Ändern der Formel selbst."
+  }
+ ],
+ "chem-lz10-b": [
+  {
+   "q": "An welcher Stelle der rauschenden Flamme erhitzt man laut Theorie die Probe?",
+   "options": [
+    "Im inneren dunklen Kern",
+    "Im mittleren blauen Mantel",
+    "Am äußeren blauen Saum bzw. an der Spitze",
+    "Direkt am Luftloch"
+   ],
+   "correct": 2,
+   "explain": "Der äußere blaue Saum bzw. die Spitze ist die oxidierende, heißeste Zone mit etwa 1500°C, dort erhitzt man die Probe."
+  },
+  {
+   "q": "Eine Probe wird im inneren dunklen Kern der rauschenden Flamme gehalten und erhitzt sich kaum. Was ist laut Theorie die Erklärung?",
+   "options": [
+    "Der Kern enthält unverbranntes Gas-Luft-Gemisch und ist mit etwa 300 Grad die kühlste Zone",
+    "Der Kern ist die oxidierende Zone und daher am heißesten",
+    "Im Kern fehlt der Brennstoff, daher keine Wärme",
+    "Der Kern ist die reduzierende Zone mit etwa 500 Grad"
+   ],
+   "correct": 0,
+   "explain": "Der innere Kern besteht aus noch unverbranntem Gemisch und ist mit etwa 300 Grad die kälteste Stelle."
+  }
+ ],
+ "hist-lz2-a": [
+  {
+   "q": "Welches Lager wollte den König laut Tabelle behalten?",
+   "options": [
+    "Die Feuillants",
+    "Die Girondisten",
+    "Die Jakobiner",
+    "Die Montagnards"
+   ],
+   "correct": 0,
+   "explain": "Die Feuillants strebten eine konstitutionelle Monarchie an und wollten den König behalten."
+  },
+  {
+   "q": "Ein Politiker will eine zentrale Republik, allgemeines Männerwahlrecht und Preiskontrollen. Zu welchem Lager passt er, und was forderte dieses Lager für den König?",
+   "options": [
+    "Girondisten — König verbannen",
+    "Feuillants — König behalten",
+    "Jakobiner — König hinrichten",
+    "Girondisten — König hinrichten"
+   ],
+   "correct": 2,
+   "explain": "Zentrale Republik, allgemeines Wahlrecht und Preiskontrollen kennzeichnen die Jakobiner, die den König hinrichten wollten."
+  }
+ ],
+ "hist-lz5-a": [
+  {
+   "q": "Wie funktionierte die Beschlussfassung an der Tagsatzung laut Theorie?",
+   "options": [
+    "Mehrheitsentscheid nach Bevölkerungszahl",
+    "Jeder Ort eine Stimme, Einstimmigkeit nötig",
+    "Bern hatte als grösster Stand zwei Stimmen",
+    "Nur die katholischen Stände durften abstimmen"
+   ],
+   "correct": 1,
+   "explain": "An der Tagsatzung hatte jeder Ort eine Stimme und es brauchte Einstimmigkeit, keine Mehrheitsentscheide."
+  },
+  {
+   "q": "Warum konnte ein einzelner Ort an der Tagsatzung einen Beschluss der übrigen zwölf verhindern?",
+   "options": [
+    "Weil Beschlüsse Einstimmigkeit erforderten und es keine Mehrheitsentscheide gab",
+    "Weil größere Orte wie Bern mehrere Stimmen besaßen",
+    "Weil die Gemeinen Herrschaften ein Vetorecht hatten",
+    "Weil nur reformierte Orte stimmberechtigt waren"
+   ],
+   "correct": 0,
+   "explain": "An der Tagsatzung hatte jeder Ort eine Stimme und es war Einstimmigkeit nötig, daher konnte ein Ort blockieren."
+  }
+ ],
+ "hist-lz8-a": [
+  {
+   "q": "Wie erklärt die Theorie die Polarisierung im Sonderbundskrieg am besten?",
+   "options": [
+    "Allein durch den konfessionellen Gegensatz katholisch gegen reformiert",
+    "Allein durch den politischen Streit um die Bundesreform",
+    "Durch die Überlagerung der konfessionellen und der politischen Achse",
+    "Durch einen reinen Machtkampf zwischen zwei Generälen"
+   ],
+   "correct": 2,
+   "explain": "Laut Theorie stimmen beide Lesarten teilweise und erst ihre Überlagerung erzeugte die Polarisierung."
+  },
+  {
+   "q": "Ein Historiker behauptet, der Sonderbundskrieg sei rein konfessionell gewesen. Wie beurteilt die Theorie diese Aussage?",
+   "options": [
+    "Zutreffend, denn es ging nur um katholisch gegen reformiert",
+    "Unvollständig, denn erst die Überlagerung von konfessioneller und politischer Achse erzeugte die Polarisierung",
+    "Falsch, denn es ging ausschließlich um die Bundesreform",
+    "Zutreffend, denn die Klosteraufhebung war der einzige Auslöser"
+   ],
+   "correct": 1,
+   "explain": "Laut Theorie wirkten konfessionelle und politische Achse zusammen, deshalb greift eine rein konfessionelle Deutung zu kurz."
+  }
+ ],
+ "hist-lz11-a": [
+  {
+   "q": "Was unterscheidet den Pauperismus laut Theorie von traditioneller Armut?",
+   "options": [
+    "Er betrifft nur einzelne Bettler durch persönliches Pech",
+    "Er ist eine strukturelle Massenarmut mitten im wachsenden Reichtum",
+    "Er tritt nur in Zeiten wirtschaftlichen Niedergangs auf",
+    "Er wird vollständig durch Familie und Pfarrei aufgefangen"
+   ],
+   "correct": 1,
+   "explain": "Der Pauperismus ist neu, weil er ganze Bevölkerungsschichten strukturell betrifft, und zwar mitten im Wirtschaftswachstum."
+  },
+  {
+   "q": "Welche Aussage über den Pauperismus ist laut Theorie FALSCH?",
+   "options": [
+    "Er betraf ganze Bevölkerungsschichten, nicht nur einzelne Bettler",
+    "Er trat trotz wachsender Wirtschaft auf",
+    "Er war eine strukturelle Folge des Wirtschaftssystems",
+    "Traditionelle Strukturen wie Familie und Zunft fingen die Not zuverlässig auf"
+   ],
+   "correct": 3,
+   "explain": "Gerade die traditionellen Hilfsstrukturen waren durch Wanderung und Industrialisierung zersetzt, fingen die Not also nicht auf."
+  }
+ ],
+ "geo-lz2-a": [
+  {
+   "q": "Was bedeutet eine negative Rückkopplung laut Theorie?",
+   "options": [
+    "Sie wirkt dämpfend und stabilisierend, das System kehrt zum stabilen Zustand zurück",
+    "Sie verstärkt eine Störung selbst",
+    "Sie ist immer schädlich für das System",
+    "Sie entfernt das System dauerhaft vom Ausgangszustand"
+   ],
+   "correct": 0,
+   "explain": "Eine negative Rückkopplung wirkt gegenwirkend und stabilisierend, sodass die Auslenkung ausgeglichen wird."
+  },
+  {
+   "q": "Beim Auftauen von Permafrost wird CO₂ frei, was die Erwärmung weiter antreibt. Um welchen Rückkopplungstyp handelt es sich und warum?",
+   "options": [
+    "Negative Rückkopplung, weil sie schädlich für das Klima ist",
+    "Positive Rückkopplung, weil die Störung sich selbst verstärkt",
+    "Negative Rückkopplung, weil das System zum Ausgangszustand zurückkehrt",
+    "Positive Rückkopplung, weil sie nützliche Effekte hat"
+   ],
+   "correct": 1,
+   "explain": "Die Erwärmung verstärkt sich hier selbst, das ist eine positive, also selbstverstärkende Rückkopplung, unabhängig von gut oder schlecht."
+  }
+ ],
+ "geo-lz5-a": [
+  {
+   "q": "Welcher ist laut Theorie der mit Abstand grösste Kohlenstoffspeicher?",
+   "options": [
+    "Die Atmosphäre mit 591 GtC",
+    "Die Tiefsee mit 37.100 GtC",
+    "Die Lithosphäre mit 75.000.000 GtC",
+    "Die fossilen Energieträger mit 928 GtC"
+   ],
+   "correct": 2,
+   "explain": "Die Lithosphäre ist mit 75.000.000 GtC der mit Abstand grösste Speicher."
+  },
+  {
+   "q": "Welche Aussage über die Größenverhältnisse der Kohlenstoffspeicher ist laut Theorie korrekt?",
+   "options": [
+    "Die Atmosphäre speichert mehr Kohlenstoff als die Tiefsee",
+    "Die Lithosphäre speichert mehr als alle übrigen Speicher zusammen um ein Vielfaches",
+    "Die fossilen Energieträger sind der zweitgrößte Speicher nach der Lithosphäre",
+    "Vegetation und Permafrost speichern etwa gleich viel"
+   ],
+   "correct": 1,
+   "explain": "Mit 75 Millionen GtC übertrifft die Lithosphäre alle anderen Speicher um ein Vielfaches, während Tiefsee, Boden und übrige weit kleiner sind."
+  }
+ ],
+ "geo-lz8-a": [
+  {
+   "q": "Welches Abkommen legte laut Theorie erstmals verbindliche Reduktionsziele fest, allerdings nur für die Industrieländer?",
+   "options": [
+    "Die Klimarahmenkonvention von Rio 1992",
+    "Das Kyoto-Protokoll 1997",
+    "Das Pariser Abkommen 2015",
+    "Der COP21-Beschluss"
+   ],
+   "correct": 1,
+   "explain": "Das Kyoto-Protokoll von 1997 legte erstmals verbindliche Reduktionsziele fest, jedoch nur für die Annex-1-Industrieländer."
+  },
+  {
+   "q": "Ein Industrieland finanziert eine Solaranlage in einem Entwicklungsland und erhält Emissionsgutschriften. Zu welchem Abkommen und Mechanismus gehört das?",
+   "options": [
+    "Pariser Abkommen, weil alle Staaten in die Pflicht genommen werden",
+    "Rio-Konvention, weil sie das Fundament bildet",
+    "Kyoto-Protokoll, Clean Development Mechanism",
+    "Kyoto-Protokoll, International Emissions Trading"
+   ],
+   "correct": 2,
+   "explain": "Beim Clean Development Mechanism des Kyoto-Protokolls finanziert ein Industrieland ein Projekt im Entwicklungsland und erhält dafür Gutschriften."
+  }
+ ],
+ "geo-lz11-a": [
+  {
+   "q": "Wie viel Prozent der globalen Primärenergie bleiben laut Theorie als Nutzenergie übrig?",
+   "options": [
+    "5 Prozent",
+    "29 Prozent",
+    "50 Prozent",
+    "95 Prozent"
+   ],
+   "correct": 1,
+   "explain": "Laut Theorie bleiben global von 100 Prozent Primärenergie nur 29 Prozent als Nutzenergie übrig."
+  },
+  {
+   "q": "Wenn global nur 29 Prozent der Primärenergie als Nutzenergie ankommen, was folgt daraus laut Theorie am ehesten?",
+   "options": [
+    "Den größten Hebel bietet die Senkung von Umwandlungsverlusten, also ein höherer Wirkungsgrad",
+    "Man muss vor allem mehr Primärenergie fördern",
+    "Nutzenergie und Endenergie sind praktisch identisch",
+    "Die Verluste entstehen vor allem als Strahlung, nicht als Abwärme"
+   ],
+   "correct": 0,
+   "explain": "Da rund 71 Prozent als Verluste verloren gehen, spart ein höherer Wirkungsgrad Primärenergie bei gleichem Nutzen."
+  }
+ ]
 };
 
 /* ================================================================
