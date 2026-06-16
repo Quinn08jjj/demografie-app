@@ -186,6 +186,58 @@
   .cc-opt.ok:before{content:"\2713";position:absolute;left:0;color:var(--fg)}
   .cc-mini{font-size:11.5px;color:var(--fg-muted);margin-top:3px}
 
+  /* Creator-Dashboard (neu) */
+  .cc-tabs{display:flex;gap:2px;border-bottom:1px solid var(--line);margin:18px 0 4px}
+  .cc-tab{padding:10px 16px;font-size:13.5px;font-weight:600;color:var(--fg-muted);border:none;border-bottom:2px solid transparent;background:none;cursor:pointer;margin-bottom:-1px}
+  .cc-tab.active{color:var(--fg);border-bottom-color:var(--fg)}
+  .cc-tab:hover{color:var(--fg)}
+  .cc-panel{padding-top:8px}
+  .cc-kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));gap:10px;margin:14px 0}
+  .cc-kpi{padding:16px 14px;border:1px solid var(--line);border-radius:10px;background:var(--card-bg)}
+  .cc-kpi b{font-family:var(--serif);font-size:28px;font-weight:600;display:block;line-height:1}
+  .cc-kpi span{font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--fg-muted)}
+  .cc-card{border:1px solid var(--line);border-radius:10px;padding:16px 18px;background:var(--card-bg);margin-bottom:14px}
+  .cc-card h3{font-family:var(--serif);font-size:16px;font-weight:600;margin-bottom:14px}
+  .cc-flex2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media(max-width:560px){.cc-flex2{grid-template-columns:1fr}}
+  .cc-section-title{font-family:var(--serif);font-size:18px;font-weight:600;margin:24px 0 10px}
+  /* Balken */
+  .cc-bar-row{display:flex;align-items:center;gap:10px;margin:8px 0;font-size:13px}
+  .cc-bar-name{width:108px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--fg-soft)}
+  .cc-bar-track{flex:1;height:16px;background:var(--bg-softer);border-radius:4px;overflow:hidden}
+  .cc-bar-fill{height:100%;background:var(--fg);border-radius:4px;transition:width .5s ease}
+  .cc-bar-val{width:50px;text-align:right;font-weight:600}
+  .cc-bar-empty{color:var(--fg-muted);font-size:13px;padding:6px 0}
+  /* Donut */
+  .cc-donut-wrap{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+  .cc-donut{width:140px;height:140px;flex-shrink:0}
+  .cc-legend{font-size:13px;line-height:1.5;display:flex;flex-direction:column;gap:7px}
+  .cc-leg{display:flex;align-items:center;gap:8px;color:var(--fg-soft)}
+  .cc-leg b{color:var(--fg);margin-left:2px}
+  .cc-leg-dot{width:11px;height:11px;border-radius:3px;display:inline-block;flex-shrink:0}
+  /* Fach-Karten */
+  .cc-subj-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(232px,1fr));gap:12px}
+  .cc-subj{border:1px solid var(--line);border-radius:10px;padding:16px;background:var(--card-bg)}
+  .cc-subj-head{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+  .cc-subj-name{font-family:var(--serif);font-size:17px;font-weight:600}
+  .cc-subj-pts{font-family:var(--serif);font-size:23px;font-weight:600;line-height:1}
+  .cc-subj-meta{font-size:12px;color:var(--fg-muted);margin-top:8px;line-height:1.7}
+  .cc-subj-badge{display:inline-block;font-size:10px;padding:1px 7px;border:1px solid var(--line-strong);border-radius:3px;color:var(--fg-soft);margin-top:6px}
+  .cc-subj-track{height:6px;background:var(--bg-softer);border-radius:3px;overflow:hidden;margin-top:10px}
+  .cc-subj-fill{height:100%;background:var(--fg);border-radius:3px}
+  /* Nutzerverwaltung */
+  .cc-user{display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid var(--line);flex-wrap:wrap}
+  .cc-user-rank{width:24px;text-align:center;font-weight:700;color:var(--fg-muted);font-size:13px;flex-shrink:0}
+  .cc-user-main{flex:1;min-width:150px}
+  .cc-user-name{font-weight:600;font-size:15px}
+  .cc-user-sub{font-size:11.5px;color:var(--fg-muted);margin-top:4px;display:flex;gap:6px;flex-wrap:wrap}
+  .cc-tag{padding:1px 7px;border:1px solid var(--line);border-radius:3px;white-space:nowrap}
+  .cc-user-pts{font-family:var(--serif);font-size:20px;font-weight:600;min-width:50px;text-align:right}
+  .cc-acts{display:flex;gap:6px;flex-wrap:wrap}
+  .cc-btn{padding:6px 11px;font-size:12px;font-weight:600;border:1px solid var(--line-strong);border-radius:5px;background:transparent;color:var(--fg-soft);cursor:pointer;white-space:nowrap}
+  .cc-btn:hover{border-color:var(--fg);color:var(--fg)}
+  .cc-btn.danger:hover{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+
   /* Wirtschaft-Grafiken */
   .econ-fig{margin:14px 0;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--card-bg)}
   .econ-fig svg{display:block;width:100%;height:auto;max-width:380px;margin:0 auto}
@@ -414,11 +466,19 @@
   <!-- CREATOR-KONSOLE (über #creator erreichbar, für Schüler verborgen) -->
   <section class="view" id="view-creator">
     <span class="back-link" id="creatorBack">← zurück</span>
-    <div class="sect-head"><h1>Creator-Konsole</h1><p class="muted">Alle Inhalte auf einen Blick</p></div>
-    <div class="cc-stats" id="ccStats"></div>
-    <div id="ccLb"></div>
-    <input class="cc-filter" id="ccFilter" placeholder="Filtern: Titel, ID, Fragetext …" autocomplete="off">
-    <div id="ccList"></div>
+    <div class="sect-head"><h1>Dashboard</h1><p class="muted">Inhalte · Nutzer · Aktivität</p></div>
+    <div class="cc-tabs" id="ccTabs">
+      <button class="cc-tab active" data-tab="overview">Übersicht</button>
+      <button class="cc-tab" data-tab="users">Nutzer</button>
+      <button class="cc-tab" data-tab="content">Inhalte</button>
+    </div>
+    <div class="cc-panel" id="ccPanel-overview"><div class="loading"><span class="dot"></span> lädt…</div></div>
+    <div class="cc-panel hidden" id="ccPanel-users"><div class="loading"><span class="dot"></span> lädt…</div></div>
+    <div class="cc-panel hidden" id="ccPanel-content">
+      <div class="cc-stats" id="ccStats"></div>
+      <input class="cc-filter" id="ccFilter" placeholder="Filtern: Titel, ID, Fragetext …" autocomplete="off">
+      <div id="ccList"></div>
+    </div>
   </section>
 </div>
 
@@ -497,7 +557,8 @@ const LZ_INFO = {
     {id:'LZ6', name:'Angebot'},
     {id:'LZ7', name:'Marktgleichgewicht & Wohlfahrt'},
     {id:'LZ8', name:'Staatliche Markteingriffe'},
-    {id:'LZ9', name:'Preiselastizität'}
+    {id:'LZ9', name:'Preiselastizität'},
+    {id:'LZ10', name:'Rechnen & Prüfung'}
   ]
 };
 
@@ -1963,6 +2024,90 @@ const CONCEPTS_BY_TOPIC = {
   begriffe:[`Substitute`,`Luxusgut`,`Einkommenselastizität`,`inferiores Gut`,`Kreuzpreiselastizität`,`Komplementärgut`,`Angebotselastizität`],
   quick:{ q:`Nenne zwei Faktoren, die die Nachfrage elastisch machen, und die Schlüsselregel.`, mustInclude:[`Substitute`,`Luxusgut`,`Alternativen`] },
   explain:{ prompt:`Erkläre die Einflussfaktoren der Preiselastizität und beschreibe die Einkommens- und Kreuzpreiselastizität.`, model:`Die Nachfrage ist elastisch, wenn günstige Substitute verfügbar sind, das Gut ein Luxusgut oder sehr spezifisch ist. Sie ist unelastisch, wenn keine Substitute existieren, das Gut lebensnotwendig oder suchtauslösend ist oder nur einen kleinen Budgetanteil ausmacht. Die Schlüsselregel lautet: Je mehr Alternativen, desto elastischer. Die Einkommenselastizität ist positiv bei normalen und negativ bei inferioren Gütern. Die Kreuzpreiselastizität ist positiv bei Substituten und negativ bei Komplementärgütern. Die Preiselastizität des Angebots ist hoch, wenn Produzenten schnell reagieren können, und niedrig in der Landwirtschaft.`, mustInclude:[`Substitute`,`Einkommenselastizität`,`inferiores`,`Kreuzpreiselastizität`] }
+},
+{
+  id:`wirt-lz2-d`, lz:`LZ2`,
+  title:`Ziele der Wirtschaftspolitik (Magisches Viereck)`,
+  svgKey:`magicSquare`,
+  theory:`Die Schweizer Wirtschaftspolitik verfolgt das sogenannte Magische Viereck mit vier zentralen Zielen. Die Grafik zeigt diese vier Eckpunkte, die zusammen ein Viereck bilden.\n\nErstens Preisstabilität: Die Schweizerische Nationalbank SNB steuert die Inflation, vor allem über den Leitzins.\nZweitens Vollbeschäftigung: getragen von der Arbeitslosenversicherung ALV und einer aktiven Arbeitsmarktpolitik.\nDrittens Wirtschaftswachstum: gefördert durch Innovation und tiefe Unternehmenssteuern.\nViertens aussenwirtschaftliches Gleichgewicht: gestützt auf Freihandelsabkommen wie die Bilateralen CH-EU und die EFTA.\n\nMan nennt es magisch, weil sich die Ziele teils widersprechen und nicht alle gleichzeitig voll erreichbar sind. So kann etwa ein starkes Wachstum die Preisstabilität gefährden.\n\nWichtige Massnahmen und Träger sind die Geldpolitik (SNB), die Fiskalpolitik (Bundesrat und Parlament), die Regulierung (z.B. FINMA) sowie Bildungsinvestitionen.`,
+  example:`Erhöht die SNB den Leitzins zur Wahrung der Preisstabilität, kann dies das Wirtschaftswachstum bremsen, weil Kredite teurer werden — das zeigt den Zielkonflikt im Magischen Viereck.`,
+  begriffe:[`Magisches Viereck`,`Preisstabilität`,`Vollbeschäftigung`,`Wirtschaftswachstum`,`aussenwirtschaftliches Gleichgewicht`,`SNB`,`Leitzins`,`Zielkonflikt`],
+  quick:{ q:`Warum heisst das Viereck magisch?`, mustInclude:[`Ziele`,`widersprechen`,`gleichzeitig`] },
+  explain:{ prompt:`Nenne die vier Ziele des Magischen Vierecks und erkläre je einen Träger oder eine Massnahme dahinter.`, model:`Das Magische Viereck umfasst vier Ziele. Die Preisstabilität wird von der SNB über den Leitzins gesteuert. Die Vollbeschäftigung stützt sich auf die Arbeitslosenversicherung ALV und eine aktive Arbeitsmarktpolitik. Das Wirtschaftswachstum wird durch Innovation und tiefe Unternehmenssteuern gefördert. Das aussenwirtschaftliche Gleichgewicht beruht auf Freihandelsabkommen wie den Bilateralen CH-EU und der EFTA. Magisch heisst es, weil sich diese Ziele teils widersprechen und nicht alle gleichzeitig voll erreichbar sind.`, mustInclude:[`Preisstabilität`,`Vollbeschäftigung`,`Wirtschaftswachstum`,`SNB`] }
+},
+{
+  id:`wirt-lz2-e`, lz:`LZ2`,
+  title:`Rolle der Landwirtschaft in der Schweiz`,
+  theory:`Die Landwirtschaft hat in der Schweiz eine Bedeutung, die weit über ihr wirtschaftliches Gewicht hinausgeht. Man kann vier Dimensionen unterscheiden.\n\nWirtschaftlich: Die Landwirtschaft macht nur rund 0,6% des BIP aus, beschäftigt aber etwa 150'000 Personen direkt. Ihr Anteil an der Gesamtwirtschaft ist also klein.\n\nPolitisch: Trotz des geringen wirtschaftlichen Gewichts hat sie eine sehr starke Stellung. Die Bauern sind überproportional im Parlament vertreten, und es gibt häufige Volksabstimmungen über die Agrarpolitik.\n\nVersorgungssicherheit: Sie hat eine strategische Bedeutung. Die Schweiz importiert rund 50% der Lebensmittel, der Eigenversorgungsgrad liegt entsprechend bei etwa 50%.\n\nLandschaftspflege: Die Kulturlandschaft und damit auch der Tourismus hängen von der Landwirtschaft ab. Gepflegte Wiesen und Alpen sind ein wichtiges touristisches Kapital.\n\nDiese Mehrfachfunktion erklärt, warum die Landwirtschaft politisch stark subventioniert und geschützt wird.`,
+  example:`Obwohl die Landwirtschaft nur 0,6% des BIP erwirtschaftet, scheitern Sparvorlagen zur Agrarpolitik oft an der Urne, weil Versorgungssicherheit und Landschaftspflege breit gewünscht werden.`,
+  begriffe:[`BIP-Anteil`,`Eigenversorgungsgrad`,`Versorgungssicherheit`,`Landschaftspflege`,`Agrarpolitik`,`Subventionen`,`Kulturlandschaft`],
+  quick:{ q:`Wie passen geringes BIP-Gewicht und starke politische Stellung zusammen?`, mustInclude:[`BIP`,`politisch`,`Versorgungssicherheit`] },
+  explain:{ prompt:`Erkläre, warum die Landwirtschaft in der Schweiz trotz kleinem wirtschaftlichem Gewicht eine wichtige Rolle spielt.`, model:`Wirtschaftlich ist die Landwirtschaft mit rund 0,6% des BIP und etwa 150'000 direkt Beschäftigten klein. Politisch hat sie dennoch eine starke Stellung, weil die Bauern überproportional im Parlament vertreten sind und häufig über die Agrarpolitik abgestimmt wird. Für die Versorgungssicherheit ist sie strategisch wichtig, denn die Schweiz importiert rund 50% der Lebensmittel und hat einen Eigenversorgungsgrad von etwa 50%. Zudem pflegt sie die Kulturlandschaft, von der auch der Tourismus abhängt. Diese Mehrfachfunktion erklärt ihre Bedeutung.`, mustInclude:[`BIP`,`Versorgungssicherheit`,`Eigenversorgungsgrad`,`Landschaftspflege`] }
+},
+{
+  id:`wirt-lz3-d`, lz:`LZ3`,
+  title:`Mikro- und Makroökonomie`,
+  theory:`Die Volkswirtschaftslehre VWL untersucht, wie Individuen, Unternehmen und Staaten mit knappen Ressourcen umgehen. Sie teilt sich in zwei grosse Teilgebiete, die sich durch die Betrachtungsebene unterscheiden.\n\nDie Mikroökonomie untersucht das Verhalten einzelner Akteure wie Konsumenten und Firmen. Im Zentrum stehen einzelne Märkte und die Preisbildung, also die Frage, wie Angebot und Nachfrage auf einem bestimmten Markt den Preis bestimmen.\n\nDie Makroökonomie untersucht dagegen gesamtwirtschaftliche Grössen. Dazu gehören das Bruttoinlandprodukt BIP, die Inflation und die Arbeitslosigkeit. Sie betrachtet also die Wirtschaft als Ganzes und nicht einzelne Akteure.\n\nMan kann sich den Unterschied mit einer Kamera vorstellen: Die Mikroökonomie zoomt auf einen einzelnen Haushalt oder Markt, die Makroökonomie zeigt die ganze Volkswirtschaft im Überblick. Beide Perspektiven ergänzen sich.`,
+  example:`Mikro fragt, warum der Preis für Kaffee in einem Café steigt; Makro fragt, warum die Teuerung in der gesamten Schweiz im letzten Jahr zugenommen hat.`,
+  begriffe:[`VWL`,`Mikroökonomie`,`Makroökonomie`,`Preisbildung`,`BIP`,`Inflation`,`Arbeitslosigkeit`,`knappe Ressourcen`],
+  quick:{ q:`Worin unterscheiden sich Mikro- und Makroökonomie?`, mustInclude:[`einzelne`,`gesamtwirtschaftliche`,`BIP`] },
+  explain:{ prompt:`Grenze Mikro- und Makroökonomie voneinander ab und nenne je typische Untersuchungsgegenstände.`, model:`Die VWL untersucht den Umgang mit knappen Ressourcen und teilt sich in zwei Teilgebiete. Die Mikroökonomie betrachtet das Verhalten einzelner Akteure wie Konsumenten und Firmen sowie einzelne Märkte und die Preisbildung. Die Makroökonomie untersucht gesamtwirtschaftliche Grössen wie das Bruttoinlandprodukt BIP, die Inflation und die Arbeitslosigkeit. Der Unterschied liegt also in der Betrachtungsebene: einzelne Akteure und Märkte gegenüber der Wirtschaft als Ganzes.`, mustInclude:[`Mikroökonomie`,`Makroökonomie`,`Preisbildung`,`BIP`] }
+},
+{
+  id:`wirt-lz3-e`, lz:`LZ3`,
+  title:`Ökonomische Schulen & Pluralismus`,
+  theory:`Neben Klassik, Neoklassik und Keynesianismus gibt es weitere ökonomische Schulen, die historisch oder inhaltlich ergänzen.\n\nDer Merkantilismus (17. Jahrhundert, Colbert) sah den Reichtum eines Staates in einem Exportüberschuss. Der Monetarismus (Milton Friedman) betrachtet dagegen die Geldmenge als wichtigste Steuerungsgrösse der Wirtschaft.\n\nWeil wirtschaftliche Fragen oft Wertentscheidungen enthalten, existiert ein ideologischer Pluralismus mit unterschiedlichen Grundannahmen:\n~~~\nLiberale     Marktvertrauen, minimaler Staat\nKeynesian.   staatliche Eingriffe, Stabilisierung\nMarxistisch  Kapitalismuskritik, Klassenwidersprueche\nInstitut.    Bedeutung von Normen, Regeln, Geschichte\n~~~\nDieser Pluralismus ist wichtig, damit keine einseitige Ideologie die Wirtschaftspolitik dominiert und keine blinden Flecken entstehen. Verschiedene Schulen liefern unterschiedliche Diagnosen und Lösungen für dieselben Probleme.`,
+  example:`In einer Wirtschaftskrise empfehlen Liberale Zurückhaltung des Staates, Keynesianer dagegen staatliche Konjunkturprogramme — der Pluralismus macht beide Sichtweisen sichtbar.`,
+  begriffe:[`Merkantilismus`,`Colbert`,`Exportüberschuss`,`Monetarismus`,`Friedman`,`Geldmenge`,`Pluralismus`,`Schulen`],
+  quick:{ q:`Warum ist ideologischer Pluralismus in der Ökonomie wichtig?`, mustInclude:[`einseitig`,`Ideologie`,`blinde Flecken`] },
+  explain:{ prompt:`Erkläre Merkantilismus und Monetarismus und begründe, warum ökonomischer Pluralismus wichtig ist.`, model:`Der Merkantilismus aus dem 17. Jahrhundert, verbunden mit Colbert, sah den Reichtum eines Staates in einem Exportüberschuss. Der Monetarismus von Milton Friedman betrachtet die Geldmenge als wichtigste Steuerungsgrösse. Weil wirtschaftliche Fragen oft Wertentscheidungen enthalten, gibt es einen ideologischen Pluralismus mit verschiedenen Schulen wie Liberale, Keynesianer, Marxisten und Institutionalisten. Dieser Pluralismus ist wichtig, damit keine einseitige Ideologie die Wirtschaftspolitik dominiert und keine blinden Flecken entstehen.`, mustInclude:[`Merkantilismus`,`Monetarismus`,`Geldmenge`,`Pluralismus`] }
+},
+{
+  id:`wirt-lz4-d`, lz:`LZ4`,
+  title:`Grenzen des Marktmodells & Marktversagen`,
+  theory:`Das einfache Marktmodell beruht auf Annahmen, die in der Realität oft nicht gelten. Daraus ergeben sich seine Grenzen.\n\nDrei zentrale Annahmen und die Realität:\n~~~\nAnnahme                  Realitaet\nvollstaendige Info       unvollst./asymmetrisch\nhomogene Gueter          heterogen, Qualitaet\nvollst. Wettbewerb       Monopole, Oligopole\n~~~\nZudem berücksichtigt das Modell externe Effekte nicht, etwa Umweltkosten oder Lärm, deren Kosten nicht im Preis enthalten sind. Bei öffentlichen Gütern, die nicht ausschliessbar und nicht rivalisierend sind, versagt der Markt ebenfalls, weil niemand für sie zahlen will.\n\nIn solchen Fällen spricht man von Marktversagen, das staatliche Eingriffe rechtfertigen kann.\n\nErgänzend gilt: Neben dem Gütermarkt, dem Arbeitsmarkt und dem Kapitalmarkt gibt es weitere Märkte wie den Devisenmarkt und den Immobilienmarkt.`,
+  example:`Eine Fabrik, die kostenlos Abwasser in einen Fluss leitet, verursacht externe Effekte, die der Marktpreis ihrer Produkte nicht abbildet — ein typischer Fall von Marktversagen.`,
+  begriffe:[`Marktmodell`,`Marktversagen`,`asymmetrische Information`,`externe Effekte`,`öffentliche Güter`,`Monopol`,`Devisenmarkt`,`Immobilienmarkt`],
+  quick:{ q:`Was ist ein externer Effekt und warum führt er zu Marktversagen?`, mustInclude:[`Kosten`,`Preis`,`externe`] },
+  explain:{ prompt:`Nenne die unrealistischen Annahmen des Marktmodells und erkläre zwei Ursachen von Marktversagen.`, model:`Das Marktmodell beruht auf Annahmen, die real oft nicht gelten: vollständige Information, obwohl Akteure unvollständige oder asymmetrische Informationen haben, Homogenität der Güter, obwohl Güter heterogen sind, sowie vollständiger Wettbewerb, obwohl es Monopole und Oligopole gibt. Zwei Ursachen von Marktversagen sind externe Effekte wie Umweltkosten oder Lärm, die das Modell nicht berücksichtigt, und öffentliche Güter, die nicht ausschliessbar und nicht rivalisierend sind und bei denen der Markt versagt.`, mustInclude:[`Annahmen`,`externe Effekte`,`öffentliche Güter`,`Marktversagen`] }
+},
+{
+  id:`wirt-lz8-e`, lz:`LZ8`,
+  title:`Wohlfahrtsverlust bei Eingriffen`,
+  svgKey:`tax`,
+  theory:`Jeder Staatseingriff, der die gehandelte Menge vom Marktgleichgewicht wegbewegt, erzeugt einen Wohlfahrtsverlust (Deadweight Loss). Es geht also Wohlfahrt verloren, weil Handel, der ohne Eingriff stattgefunden hätte, nicht mehr zustande kommt.\n\nBei einer Steuer sinken sowohl die Konsumenten- als auch die Produzentenrente. Ein Teil davon wird zu Steuereinnahmen für den Staat. Diese Einnahmen sind ein blosser Transfer und somit nicht verloren. Der Wohlfahrtsverlust bleibt aber bestehen, weil ein Teil des ursprünglichen Handels unterbleibt.\n\nBei einem Höchstpreis kann die Konsumentenrente steigen, weil der Preis tiefer liegt; die Produzentenrente sinkt. Netto entsteht trotzdem ein Wohlfahrtsverlust.\n\nBei einem Mindestpreis ist es umgekehrt: Die Produzentenrente kann steigen, die Konsumentenrente sinkt; netto entsteht ebenfalls ein Wohlfahrtsverlust.`,
+  example:`Die Steuergrafik zeigt, wie Käuferpreis und Verkäuferpreis durch die Steuer auseinanderlaufen. Zwischen den beiden Preisen und rechts der gehandelten Menge entsteht der Wohlfahrtsverlust — der Handel, der nicht mehr stattfindet.`,
+  begriffe:[`Wohlfahrtsverlust`,`Deadweight Loss`,`Konsumentenrente`,`Produzentenrente`,`Steuereinnahmen`,`Transfer`,`Höchstpreis`,`Mindestpreis`],
+  quick:{ q:`Warum bleibt bei einer Steuer trotz Steuereinnahmen ein Wohlfahrtsverlust?`, mustInclude:[`Transfer`,`Handel`,`unterbleibt`] },
+  explain:{ prompt:`Erkläre, was bei einer Steuer mit Konsumentenrente, Produzentenrente und Steuereinnahmen passiert und warum dennoch ein Wohlfahrtsverlust entsteht.`, model:`Durch die Steuer laufen Käuferpreis und Verkäuferpreis auseinander, und die gehandelte Menge sinkt unter das Gleichgewicht. Die Konsumentenrente und die Produzentenrente nehmen beide ab. Ein Teil dieser verlorenen Rente wird zu Steuereinnahmen des Staates. Diese Steuereinnahmen sind ein blosser Transfer und damit nicht verloren. Trotzdem bleibt ein Wohlfahrtsverlust (Deadweight Loss), weil Handel, der ohne Steuer stattgefunden hätte, nun unterbleibt. Dieser nicht mehr realisierte Handel kommt weder Konsumenten noch Produzenten noch dem Staat zugute.`, mustInclude:[`Konsumentenrente`,`Produzentenrente`,`Transfer`,`Wohlfahrtsverlust`] }
+},
+{
+  id:`wirt-lz8-f`, lz:`LZ8`,
+  title:`Marktversagen & warum der Staat eingreift`,
+  theory:`Staatliche Eingriffe in den Markt sind dann gerechtfertigt, wenn der Markt versagt, also nicht zu einem effizienten Ergebnis führt. Dafür gibt es mehrere typische Gründe.\n\nErstens externe Effekte: Wenn ein Marktteilnehmer Kosten auf Dritte abwälzt, etwa durch Umweltschäden, kann der Staat eingreifen, zum Beispiel mit einer CO₂-Steuer.\n\nZweitens öffentliche Güter wie die Landesverteidigung. Solche Güter stellt der Markt nicht von selbst bereit, weil niemand davon ausgeschlossen werden kann.\n\nDrittens Informationsasymmetrie, wenn eine Seite besser informiert ist als die andere; ein Beispiel ist die Regulierung des Finanzmarkts.\n\nViertens natürliche Monopole wie Bahn oder Strom. Hier verhindert Regulierung, dass der Monopolist die Kunden ausbeutet.\n\nFünftens greift der Staat aus Umverteilungsgründen ein (zum Beispiel Mindestlohn oder Direktzahlungen) und sechstens zur Stabilisierung der Konjunktur (Konjunkturpolitik im Sinne des Keynesianismus).`,
+  example:`Eine CO₂-Steuer ist ein Eingriff gegen einen negativen externen Effekt: Die Umweltschäden, die beim Konsum entstehen, werden über die Steuer wieder in den Preis eingerechnet.`,
+  begriffe:[`Marktversagen`,`externe Effekte`,`öffentliche Güter`,`Informationsasymmetrie`,`natürliches Monopol`,`Umverteilung`,`Konjunkturpolitik`,`Keynesianismus`],
+  quick:{ q:`Nenne drei Gründe, warum der Staat in den Markt eingreift.`, mustInclude:[`externe Effekte`,`öffentliche Güter`,`Monopol`] },
+  explain:{ prompt:`Erkläre anhand von je einem Beispiel die Gründe externe Effekte, öffentliche Güter und natürliches Monopol für einen Staatseingriff.`, model:`Bei externen Effekten wälzt ein Marktteilnehmer Kosten auf Dritte ab; gegen Umweltschäden kann der Staat etwa eine CO₂-Steuer erheben. Öffentliche Güter wie die Landesverteidigung werden vom Markt nicht bereitgestellt, weil niemand vom Konsum ausgeschlossen werden kann, weshalb der Staat sie selbst finanziert. Bei einem natürlichen Monopol wie Bahn oder Strom verhindert staatliche Regulierung, dass der Monopolist seine Marktmacht zur Ausbeutung der Kunden nutzt. In allen drei Fällen liegt ein Marktversagen vor, das der Eingriff korrigieren soll.`, mustInclude:[`externe Effekte`,`öffentliche Güter`,`natürliches Monopol`,`Marktversagen`] }
+},
+{
+  id:`wirt-lz10-a`, lz:`LZ10`,
+  title:`Preiselastizität berechnen`,
+  theory:`Die Preiselastizität der Nachfrage misst, wie stark die nachgefragte Menge auf eine Preisänderung reagiert. Formel: Elastizität = prozentuale Mengenänderung geteilt durch prozentuale Preisänderung, also (delta Q / Q) geteilt durch (delta P / P).\n\nBeispiel 1: Der Preis steigt von 10 auf 12 CHF, das sind +20 Prozent. Die Menge sinkt von 100 auf 85 Einheiten, das sind minus 15 Prozent. Elastizität = minus 15 Prozent geteilt durch plus 20 Prozent = minus 0,75. Der Betrag ist kleiner als 1, die Nachfrage ist also unelastisch.\n\nDas Vorzeichen ist fast immer negativ, weil Preis und Menge gegenläufig sind.\n\nBedeutung für Unternehmen: Bei elastischer Nachfrage senkt eine Preiserhöhung den Umsatz; bei unelastischer Nachfrage erhöht sie ihn. Für den Staat eignen sich unelastische Güter wie Tabak oder Alkohol gut für Steuern.`,
+  example:`Beispiel 2, umgekehrt gerechnet: Bei Ryanair steigt der Preis von 40 auf 60, das sind +50 Prozent. Die Elastizität beträgt minus 1,4. Dann ist die Mengenänderung = minus 1,4 mal 50 Prozent = minus 70 Prozent. Die Nachfrage geht also um 70 Prozent zurück.`,
+  begriffe:[`Preiselastizität`,`prozentuale Mengenänderung`,`prozentuale Preisänderung`,`unelastisch`,`elastisch`,`Umsatz`],
+  quick:{ q:`Wie lautet die Formel der Preiselastizität und was bedeutet ein Betrag kleiner als 1?`, mustInclude:[`Mengenänderung`,`Preisänderung`,`unelastisch`] },
+  explain:{ prompt:`Der Preis steigt von 10 auf 12 CHF, die Menge sinkt von 100 auf 85. Berechne die Elastizität Schritt für Schritt und beurteile, ob die Nachfrage elastisch ist.`, model:`Zuerst die prozentuale Preisänderung: von 10 auf 12 CHF sind plus 20 Prozent. Dann die prozentuale Mengenänderung: von 100 auf 85 Einheiten sind minus 15 Prozent. Die Elastizität ist die Mengenänderung geteilt durch die Preisänderung, also minus 15 Prozent geteilt durch plus 20 Prozent = minus 0,75. Das Vorzeichen ist negativ, weil Preis und Menge gegenläufig sind. Der Betrag von 0,75 ist kleiner als 1, also ist die Nachfrage unelastisch. Eine Preiserhöhung würde hier folglich den Umsatz erhöhen.`, mustInclude:[`20 Prozent`,`15 Prozent`,`0,75`,`unelastisch`] }
+},
+{
+  id:`wirt-lz10-b`, lz:`LZ10`,
+  title:`Marktgleichgewicht berechnen`,
+  svgKey:`equilibrium`,
+  theory:`Das Marktgleichgewicht berechnet man, indem man die nachgefragte und die angebotene Menge gleichsetzt (Q_D = Q_S) beziehungsweise Nachfrage- und Angebotspreis gleichsetzt und anschliessend nach Preis und Menge auflöst.\n\nBeispiel Skischuhmarkt: Die Nachfrage ist M_D = 150 minus P, das Angebot ist P_S = (1/8) mal M_S + 87.\n\nLösungsweg: Man setzt die beiden Funktionen gleich und löst auf. Als Ergebnis erhält man einen Gleichgewichtspreis P* von rund 50,57 CHF und eine Gleichgewichtsmenge M* von rund 99 Paar.\n\nAllgemein gilt: Liegt der Marktpreis über dem Gleichgewichtspreis P*, entsteht ein Angebotsüberschuss, weil mehr angeboten als nachgefragt wird. Liegt der Preis darunter, entsteht ein Nachfrageüberschuss. Nur im Schnittpunkt von Angebot und Nachfrage stimmen angebotene und nachgefragte Menge überein.`,
+  example:`Die Grafik zeigt die fallende Nachfragekurve und die steigende Angebotskurve. Ihr Schnittpunkt ist das Marktgleichgewicht mit Preis P* und Menge M*.`,
+  begriffe:[`Marktgleichgewicht`,`Gleichgewichtspreis`,`Gleichgewichtsmenge`,`Angebotsüberschuss`,`Nachfrageüberschuss`,`Angebot`,`Nachfrage`],
+  quick:{ q:`Was entsteht, wenn der Marktpreis über dem Gleichgewichtspreis liegt, und wie findet man das Gleichgewicht?`, mustInclude:[`Angebotsüberschuss`,`gleichsetzen`,`Schnittpunkt`] },
+  explain:{ prompt:`Beschreibe, wie man das Marktgleichgewicht im Skischuhbeispiel bestimmt und was bei einem Preis über P* passiert.`, model:`Man bestimmt das Gleichgewicht, indem man Nachfrage und Angebot gleichsetzt, im Skischuhbeispiel die Nachfrage M_D = 150 minus P und das Angebot P_S = (1/8) mal M_S + 87. Setzt man die Funktionen gleich und löst nach Preis und Menge auf, ergibt sich ein Gleichgewichtspreis P* von rund 50,57 CHF und eine Gleichgewichtsmenge M* von rund 99 Paar. Im Schnittpunkt von Angebot und Nachfrage stimmen angebotene und nachgefragte Menge überein. Liegt der Preis über P*, wird mehr angeboten als nachgefragt, es entsteht ein Angebotsüberschuss.`, mustInclude:[`gleichsetzen`,`50,57`,`99`,`Angebotsüberschuss`] }
 }
   ]
 };
@@ -2000,7 +2145,9 @@ const CONCEPT_TYPES = {
   'geo-lz7-a':'verständnis', 'geo-lz7-b':'theorie', 'geo-lz8-a':'verständnis', 'geo-lz8-b':'theorie', 'geo-lz9-a':'theorie', 'geo-lz9-b':'theorie',
   'geo-lz10-a':'verständnis', 'geo-lz10-b':'verständnis', 'geo-lz11-a':'verständnis', 'geo-lz11-b':'verständnis', 'geo-lz12-a':'verständnis', 'geo-lz12-b':'verständnis',
   // Wirtschaft
-  'wirt-lz1-a':'verständnis', 'wirt-lz1-b':'verständnis', 'wirt-lz1-c':'theorie', 'wirt-lz2-a':'verständnis', 'wirt-lz2-b':'verständnis', 'wirt-lz2-c':'theorie', 'wirt-lz3-a':'verständnis', 'wirt-lz3-b':'theorie', 'wirt-lz3-c':'verständnis', 'wirt-lz4-a':'verständnis', 'wirt-lz4-b':'verständnis', 'wirt-lz4-c':'verständnis', 'wirt-lz5-a':'verständnis', 'wirt-lz5-b':'verständnis', 'wirt-lz6-a':'verständnis', 'wirt-lz6-b':'verständnis', 'wirt-lz7-a':'verständnis', 'wirt-lz7-b':'verständnis', 'wirt-lz7-c':'verständnis', 'wirt-lz8-a':'verständnis', 'wirt-lz8-b':'verständnis', 'wirt-lz8-c':'verständnis', 'wirt-lz8-d':'verständnis', 'wirt-lz9-a':'verständnis', 'wirt-lz9-b':'verständnis'
+  'wirt-lz1-a':'verständnis', 'wirt-lz1-b':'verständnis', 'wirt-lz1-c':'theorie', 'wirt-lz2-a':'verständnis', 'wirt-lz2-b':'verständnis', 'wirt-lz2-c':'theorie', 'wirt-lz3-a':'verständnis', 'wirt-lz3-b':'theorie', 'wirt-lz3-c':'verständnis', 'wirt-lz4-a':'verständnis', 'wirt-lz4-b':'verständnis', 'wirt-lz4-c':'verständnis', 'wirt-lz5-a':'verständnis', 'wirt-lz5-b':'verständnis', 'wirt-lz6-a':'verständnis', 'wirt-lz6-b':'verständnis', 'wirt-lz7-a':'verständnis', 'wirt-lz7-b':'verständnis', 'wirt-lz7-c':'verständnis', 'wirt-lz8-a':'verständnis', 'wirt-lz8-b':'verständnis', 'wirt-lz8-c':'verständnis', 'wirt-lz8-d':'verständnis', 'wirt-lz9-a':'verständnis', 'wirt-lz9-b':'verständnis',
+  // Wirtschaft Ergänzung
+  'wirt-lz2-d':'verständnis', 'wirt-lz2-e':'theorie', 'wirt-lz3-d':'verständnis', 'wirt-lz3-e':'theorie', 'wirt-lz4-d':'verständnis', 'wirt-lz8-e':'verständnis', 'wirt-lz8-f':'verständnis', 'wirt-lz10-a':'rechnung', 'wirt-lz10-b':'rechnung'
 };
 const TYPE_INFO = {
   'theorie':     {label:'Theorie',    icon:'📖', desc:'Lernbar im Bus',       cssClass:'type-theorie'},
@@ -4421,6 +4568,222 @@ const MC_BY_ID = {
    "correct": 2,
    "explain": "E = -15/10 = -1,5, also |E| > 1 und damit elastisch."
   }
+ ],
+ "wirt-lz2-d": [
+  {
+   "q": "Wie viele zentrale Ziele umfasst das Magische Viereck der Schweizer Wirtschaftspolitik?",
+   "options": [
+    "Zwei",
+    "Drei",
+    "Vier",
+    "Fünf"
+   ],
+   "correct": 2,
+   "explain": "Das Magische Viereck umfasst vier zentrale Ziele."
+  },
+  {
+   "q": "Eine Politikerin fordert ein möglichst starkes Wirtschaftswachstum. Welche Spannung mit dem Magischen Viereck beschreibt die Theorie hierzu?",
+   "options": [
+    "Starkes Wachstum kann die Preisstabilität gefährden",
+    "Starkes Wachstum führt automatisch zur Vollbeschäftigung",
+    "Starkes Wachstum verbessert immer das aussenwirtschaftliche Gleichgewicht",
+    "Starkes Wachstum senkt zwingend die Inflation"
+   ],
+   "correct": 0,
+   "explain": "Laut Theorie kann ein starkes Wachstum die Preisstabilität gefährden, weshalb man es magisch nennt."
+  }
+ ],
+ "wirt-lz2-e": [
+  {
+   "q": "Wie hoch ist der Eigenversorgungsgrad der Schweiz bei Lebensmitteln laut Theorie?",
+   "options": [
+    "Etwa 50%",
+    "Etwa 0,6%",
+    "Etwa 80%",
+    "Etwa 25%"
+   ],
+   "correct": 0,
+   "explain": "Die Schweiz importiert rund 50% der Lebensmittel, der Eigenversorgungsgrad liegt bei etwa 50%."
+  },
+  {
+   "q": "Welche Aussage zur Rolle der Landwirtschaft ist FALSCH?",
+   "options": [
+    "Sie macht nur rund 0,6% des BIP aus",
+    "Die Bauern sind überproportional im Parlament vertreten",
+    "Ihr grosses politisches Gewicht entspricht ihrem grossen wirtschaftlichen Gewicht",
+    "Gepflegte Wiesen und Alpen sind ein wichtiges touristisches Kapital"
+   ],
+   "correct": 2,
+   "explain": "Trotz geringem wirtschaftlichem Gewicht hat die Landwirtschaft eine sehr starke politische Stellung, beides entspricht sich also gerade nicht."
+  }
+ ],
+ "wirt-lz3-d": [
+  {
+   "q": "Womit beschäftigt sich die Makroökonomie?",
+   "options": [
+    "Mit gesamtwirtschaftlichen Grössen wie BIP, Inflation und Arbeitslosigkeit",
+    "Mit dem Verhalten einzelner Konsumenten und Firmen",
+    "Mit der Preisbildung auf einem einzelnen Markt",
+    "Nur mit dem Verhalten eines einzelnen Haushalts"
+   ],
+   "correct": 0,
+   "explain": "Die Makroökonomie untersucht gesamtwirtschaftliche Grössen wie BIP, Inflation und Arbeitslosigkeit."
+  },
+  {
+   "q": "Ein Forscher analysiert, wie Angebot und Nachfrage den Preis von Äpfeln auf einem bestimmten Markt bestimmen. Welchem Teilgebiet entspricht das?",
+   "options": [
+    "Der Makroökonomie, weil es um Preise geht",
+    "Der Mikroökonomie, weil ein einzelner Markt und die Preisbildung betrachtet werden",
+    "Keinem der beiden Teilgebiete",
+    "Der Makroökonomie, weil das BIP betroffen ist"
+   ],
+   "correct": 1,
+   "explain": "Die Mikroökonomie betrachtet einzelne Märkte und die Preisbildung durch Angebot und Nachfrage."
+  }
+ ],
+ "wirt-lz3-e": [
+  {
+   "q": "Wer gilt laut Theorie als Vertreter des Monetarismus?",
+   "options": [
+    "Milton Friedman",
+    "Colbert",
+    "Karl Marx",
+    "John Maynard Keynes"
+   ],
+   "correct": 0,
+   "explain": "Der Monetarismus wird in der Theorie Milton Friedman zugeordnet."
+  },
+  {
+   "q": "Eine Schule sieht den Reichtum eines Staates vor allem in einem Exportüberschuss. Um welche Schule handelt es sich?",
+   "options": [
+    "Monetarismus",
+    "Institutionalismus",
+    "Merkantilismus",
+    "Marxismus"
+   ],
+   "correct": 2,
+   "explain": "Der Merkantilismus sah den Reichtum eines Staates in einem Exportüberschuss."
+  }
+ ],
+ "wirt-lz4-d": [
+  {
+   "q": "Wann spricht man laut Theorie von Marktversagen?",
+   "options": [
+    "Wenn der Markt zentrale Aufgaben nicht erfüllt, etwa bei externen Effekten oder öffentlichen Gütern",
+    "Wenn der Wettbewerb vollständig funktioniert",
+    "Wenn alle Güter homogen sind",
+    "Wenn die Information vollständig ist"
+   ],
+   "correct": 0,
+   "explain": "Marktversagen liegt vor, wenn der Markt etwa bei externen Effekten oder öffentlichen Gütern versagt."
+  },
+  {
+   "q": "Eine Gemeinde plant einen öffentlichen Park, der nicht ausschliessbar und nicht rivalisierend ist. Warum versagt hier laut Theorie der Markt?",
+   "options": [
+    "Weil die Güter homogen sind",
+    "Weil niemand für ein nicht ausschliessbares Gut zahlen will",
+    "Weil vollständiger Wettbewerb herrscht",
+    "Weil die Information vollständig ist"
+   ],
+   "correct": 1,
+   "explain": "Bei öffentlichen Gütern versagt der Markt, weil niemand für sie zahlen will."
+  }
+ ],
+ "wirt-lz8-e": [
+  {
+   "q": "Was bezeichnet der Wohlfahrtsverlust (Deadweight Loss) bei einem Staatseingriff?",
+   "options": [
+    "Den Teil der Wohlfahrt, der verloren geht, weil Handel unterbleibt, der ohne Eingriff stattgefunden hätte",
+    "Die gesamten Steuereinnahmen des Staates",
+    "Die Summe aus Konsumenten- und Produzentenrente im Gleichgewicht",
+    "Den Gewinn, den der Staat durch die Regulierung erzielt"
+   ],
+   "correct": 0,
+   "explain": "Der Wohlfahrtsverlust entsteht, weil ein Teil des ursprünglichen Handels nicht mehr zustande kommt."
+  },
+  {
+   "q": "Welche Aussage zu Staatseingriffen ist FALSCH?",
+   "options": [
+    "Bei einer Steuer sind die Steuereinnahmen des Staates ein blosser Transfer und somit nicht verloren",
+    "Bei einem Höchstpreis kann die Konsumentenrente steigen, weil der Preis tiefer liegt",
+    "Bei einem Mindestpreis kann die Produzentenrente steigen, während die Konsumentenrente sinkt",
+    "Bei einem Höchstpreis entsteht netto kein Wohlfahrtsverlust, weil die Konsumentenrente steigt"
+   ],
+   "correct": 3,
+   "explain": "Auch bei einem Höchstpreis entsteht netto ein Wohlfahrtsverlust, trotz steigender Konsumentenrente."
+  }
+ ],
+ "wirt-lz8-f": [
+  {
+   "q": "Welches der folgenden Beispiele ist ein typisches öffentliches Gut, das der Markt nicht von selbst bereitstellt?",
+   "options": [
+    "Die Landesverteidigung",
+    "Tabak und Alkohol",
+    "Skischuhe",
+    "Eine CO₂-Steuer"
+   ],
+   "correct": 0,
+   "explain": "Öffentliche Güter wie die Landesverteidigung stellt der Markt nicht bereit, weil niemand davon ausgeschlossen werden kann."
+  },
+  {
+   "q": "Ein Stromnetzbetreiber ist der einzige Anbieter und könnte überhöhte Preise verlangen. Welcher Grund für einen Staatseingriff liegt hier vor?",
+   "options": [
+    "Informationsasymmetrie",
+    "Externe Effekte",
+    "Natürliches Monopol",
+    "Stabilisierung der Konjunktur"
+   ],
+   "correct": 2,
+   "explain": "Bei natürlichen Monopolen wie Strom verhindert Regulierung, dass der Monopolist die Kunden ausbeutet."
+  }
+ ],
+ "wirt-lz10-a": [
+  {
+   "q": "Wie ist die Preiselastizität der Nachfrage definiert?",
+   "options": [
+    "Prozentuale Mengenänderung geteilt durch prozentuale Preisänderung",
+    "Prozentuale Preisänderung geteilt durch prozentuale Mengenänderung",
+    "Absolute Mengenänderung mal absolute Preisänderung",
+    "Gleichgewichtsmenge geteilt durch Gleichgewichtspreis"
+   ],
+   "correct": 0,
+   "explain": "Die Preiselastizität ist die prozentuale Mengenänderung geteilt durch die prozentuale Preisänderung."
+  },
+  {
+   "q": "Der Preis steigt von 10 auf 12 CHF (+20 Prozent), die Menge sinkt von 100 auf 85 Einheiten (minus 15 Prozent). Wie gross ist die Elastizität und wie ist die Nachfrage einzustufen?",
+   "options": [
+    "minus 0,75, elastisch",
+    "minus 0,75, unelastisch",
+    "minus 1,33, unelastisch",
+    "minus 1,33, elastisch"
+   ],
+   "correct": 1,
+   "explain": "Minus 15 geteilt durch plus 20 ergibt minus 0,75; der Betrag ist kleiner als 1, also unelastisch."
+  }
+ ],
+ "wirt-lz10-b": [
+  {
+   "q": "Wie berechnet man das Marktgleichgewicht?",
+   "options": [
+    "Man setzt die nachgefragte und die angebotene Menge gleich und löst nach Preis und Menge auf",
+    "Man addiert Nachfrage- und Angebotsfunktion",
+    "Man teilt die Nachfrage durch das Angebot",
+    "Man zieht das Angebot von der Nachfrage ab"
+   ],
+   "correct": 0,
+   "explain": "Im Gleichgewicht setzt man Q_D = Q_S und löst nach Preis und Menge auf."
+  },
+  {
+   "q": "Im Skischuhmarkt liegt der Gleichgewichtspreis bei rund 50,57 CHF. Was passiert, wenn der Marktpreis über diesem Wert liegt?",
+   "options": [
+    "Es entsteht ein Nachfrageüberschuss, weil mehr nachgefragt als angeboten wird",
+    "Angebot und Nachfrage stimmen genau überein",
+    "Es entsteht ein Angebotsüberschuss, weil mehr angeboten als nachgefragt wird",
+    "Der Gleichgewichtspreis steigt automatisch weiter an"
+   ],
+   "correct": 2,
+   "explain": "Liegt der Marktpreis über P*, wird mehr angeboten als nachgefragt, es entsteht ein Angebotsüberschuss."
+  }
  ]
 };
 
@@ -4537,6 +4900,8 @@ function doLogin(){
   state.user = val;
   localStorage.setItem(k('user'), val);
   trackLogin(val);
+  setKickBaseline(val);
+  startKickWatch();
   goTopicSelect();
 }
 function trackLogin(name){
@@ -4548,6 +4913,7 @@ function trackLogin(name){
   } catch(e){ /* silent */ }
 }
 function logout(){
+  if (window.__kickTimer){ clearInterval(window.__kickTimer); window.__kickTimer = null; }
   state.user = null; state.topic = null;
   localStorage.removeItem(k('user'));
   localStorage.removeItem(k('topic'));
@@ -4870,7 +5236,8 @@ const ECON_SVG = {
   minPrice: _W(_SL(8,8,92,92,'#8a8578') + _SL(8,92,92,8) + _SL(0,70,92,70,'#1c1b18','6 4') + _DOT(50,50,'#c6c1b1') + _PG(50,'P*') + _PG(70,'Pmin') + _ST(90,12,'D','end') + _ST(90,94,'S','end','#8a8578') + `<line x1="${_MX(30).toFixed(1)}" y1="${_MY(70).toFixed(1)}" x2="${_MX(70).toFixed(1)}" y2="${_MY(70).toFixed(1)}" stroke="#1c1b18" stroke-width="3"/>` + _MG(30,'Qd') + _MG(70,'Qs') + `<text x="${_MX(50).toFixed(1)}" y="${(_MY(70)-8).toFixed(1)}" font-size="8" fill="#9a958a" text-anchor="middle">Angebotsüberschuss</text>`),
   elasticity: _W(_SL(42,92,58,12) + _SL(8,56,92,44,'#8a8578') + _ST(60,14,'unelastisch','start') + _ST(90,42,'elastisch','end','#8a8578')),
   spectrum: `<svg viewBox="0 0 300 72" xmlns="http://www.w3.org/2000/svg"><line x1="24" y1="38" x2="276" y2="38" stroke="#1c1b18" stroke-width="2"/><polygon points="24,38 32,34 32,42" fill="#1c1b18"/><polygon points="276,38 268,34 268,42" fill="#1c1b18"/><circle cx="150" cy="38" r="4" fill="#1c1b18"/><circle cx="24" cy="38" r="3" fill="#1c1b18"/><circle cx="276" cy="38" r="3" fill="#1c1b18"/><text x="24" y="58" font-size="9" font-weight="600" fill="#1c1b18" text-anchor="middle">Freie MW</text><text x="150" y="22" font-size="9" font-weight="600" fill="#1c1b18" text-anchor="middle">Soziale MW</text><text x="276" y="58" font-size="9" font-weight="600" fill="#1c1b18" text-anchor="middle">Planwirtschaft</text></svg>`,
-  stateFunctions: `<svg viewBox="0 0 300 150" xmlns="http://www.w3.org/2000/svg"><rect x="100" y="8" width="100" height="22" rx="4" fill="#1c1b18"/><text x="150" y="23" font-size="11" font-weight="700" fill="#fbfaf6" text-anchor="middle">STAAT (CH)</text><line x1="150" y1="30" x2="150" y2="42" stroke="#c6c1b1"/><line x1="52" y1="42" x2="248" y2="42" stroke="#c6c1b1"/><line x1="52" y1="42" x2="52" y2="50" stroke="#c6c1b1"/><line x1="150" y1="42" x2="150" y2="50" stroke="#c6c1b1"/><line x1="248" y1="42" x2="248" y2="50" stroke="#c6c1b1"/><rect x="8" y="50" width="88" height="86" rx="6" fill="none" stroke="#c6c1b1"/><rect x="106" y="50" width="88" height="86" rx="6" fill="none" stroke="#c6c1b1"/><rect x="204" y="50" width="88" height="86" rx="6" fill="none" stroke="#c6c1b1"/><text x="52" y="68" font-size="10" font-weight="700" fill="#1c1b18" text-anchor="middle">Allokation</text><text x="150" y="68" font-size="10" font-weight="700" fill="#1c1b18" text-anchor="middle">Umverteilung</text><text x="248" y="68" font-size="10" font-weight="700" fill="#1c1b18" text-anchor="middle">Stabilisation</text><text x="52" y="86" font-size="8" fill="#5c594f" text-anchor="middle">Ressourcen</text><text x="52" y="97" font-size="8" fill="#5c594f" text-anchor="middle">effizient</text><text x="52" y="108" font-size="8" fill="#5c594f" text-anchor="middle">lenken</text><text x="52" y="124" font-size="7.5" fill="#9a958a" text-anchor="middle">Strassen, Bildung</text><text x="150" y="86" font-size="8" fill="#5c594f" text-anchor="middle">Einkommen</text><text x="150" y="97" font-size="8" fill="#5c594f" text-anchor="middle">ausgleichen</text><text x="150" y="124" font-size="7.5" fill="#9a958a" text-anchor="middle">Steuern, Renten</text><text x="248" y="86" font-size="8" fill="#5c594f" text-anchor="middle">Konjunktur</text><text x="248" y="97" font-size="8" fill="#5c594f" text-anchor="middle">glätten</text><text x="248" y="124" font-size="7.5" fill="#9a958a" text-anchor="middle">Zinsen, Programme</text></svg>`
+  stateFunctions: `<svg viewBox="0 0 300 150" xmlns="http://www.w3.org/2000/svg"><rect x="100" y="8" width="100" height="22" rx="4" fill="#1c1b18"/><text x="150" y="23" font-size="11" font-weight="700" fill="#fbfaf6" text-anchor="middle">STAAT (CH)</text><line x1="150" y1="30" x2="150" y2="42" stroke="#c6c1b1"/><line x1="52" y1="42" x2="248" y2="42" stroke="#c6c1b1"/><line x1="52" y1="42" x2="52" y2="50" stroke="#c6c1b1"/><line x1="150" y1="42" x2="150" y2="50" stroke="#c6c1b1"/><line x1="248" y1="42" x2="248" y2="50" stroke="#c6c1b1"/><rect x="8" y="50" width="88" height="86" rx="6" fill="none" stroke="#c6c1b1"/><rect x="106" y="50" width="88" height="86" rx="6" fill="none" stroke="#c6c1b1"/><rect x="204" y="50" width="88" height="86" rx="6" fill="none" stroke="#c6c1b1"/><text x="52" y="68" font-size="10" font-weight="700" fill="#1c1b18" text-anchor="middle">Allokation</text><text x="150" y="68" font-size="10" font-weight="700" fill="#1c1b18" text-anchor="middle">Umverteilung</text><text x="248" y="68" font-size="10" font-weight="700" fill="#1c1b18" text-anchor="middle">Stabilisation</text><text x="52" y="86" font-size="8" fill="#5c594f" text-anchor="middle">Ressourcen</text><text x="52" y="97" font-size="8" fill="#5c594f" text-anchor="middle">effizient</text><text x="52" y="108" font-size="8" fill="#5c594f" text-anchor="middle">lenken</text><text x="52" y="124" font-size="7.5" fill="#9a958a" text-anchor="middle">Strassen, Bildung</text><text x="150" y="86" font-size="8" fill="#5c594f" text-anchor="middle">Einkommen</text><text x="150" y="97" font-size="8" fill="#5c594f" text-anchor="middle">ausgleichen</text><text x="150" y="124" font-size="7.5" fill="#9a958a" text-anchor="middle">Steuern, Renten</text><text x="248" y="86" font-size="8" fill="#5c594f" text-anchor="middle">Konjunktur</text><text x="248" y="97" font-size="8" fill="#5c594f" text-anchor="middle">glätten</text><text x="248" y="124" font-size="7.5" fill="#9a958a" text-anchor="middle">Zinsen, Programme</text></svg>`,
+  magicSquare: `<svg viewBox="0 0 330 178" xmlns="http://www.w3.org/2000/svg"><polygon points="165,40 266,95 165,150 64,95" fill="none" stroke="#1c1b18" stroke-width="1.5"/><circle cx="165" cy="40" r="3" fill="#1c1b18"/><circle cx="266" cy="95" r="3" fill="#1c1b18"/><circle cx="165" cy="150" r="3" fill="#1c1b18"/><circle cx="64" cy="95" r="3" fill="#1c1b18"/><text x="165" y="92" text-anchor="middle" font-size="10" font-weight="600" fill="#5c594f">Magisches</text><text x="165" y="104" text-anchor="middle" font-size="10" font-weight="600" fill="#5c594f">Viereck</text><text x="165" y="30" text-anchor="middle" font-size="9" font-weight="600" fill="#1c1b18">Preisstabilität</text><text x="270" y="92" text-anchor="start" font-size="9" font-weight="600" fill="#1c1b18">Voll-</text><text x="270" y="103" text-anchor="start" font-size="9" font-weight="600" fill="#1c1b18">beschäftigung</text><text x="165" y="165" text-anchor="middle" font-size="9" font-weight="600" fill="#1c1b18">Wachstum</text><text x="60" y="92" text-anchor="end" font-size="9" font-weight="600" fill="#1c1b18">Aussen-</text><text x="60" y="103" text-anchor="end" font-size="9" font-weight="600" fill="#1c1b18">wirtschaft</text></svg>`
 };
 function econGraphicHtml(key){ const s = ECON_SVG[key]; return s ? `<figure class="econ-fig">${s}</figure>` : ''; }
 
@@ -5364,23 +5731,224 @@ async function goLeaderboard(){
 ================================================================ */
 function goCreator(){ renderCreator(); show('view-creator'); }
 function ccEsc(s){ return escapeHtml(String(s==null?'':s)); }
-function renderCreator(){
+/* ---- Inhalts-Kennzahlen (synchron aus den Daten der App) ---- */
+function ccContentStats(){
   const subjects = TOPICS.filter(t => (CONCEPTS_BY_TOPIC[t.id]||[]).length);
   let totLZ=0, totC=0, totMC=0;
+  const perSubject = {};
   subjects.forEach(t=>{
-    totLZ += (LZ_INFO[t.id]||[]).length;
+    const lz = (LZ_INFO[t.id]||[]).length;
     const cs = CONCEPTS_BY_TOPIC[t.id]||[];
-    totC += cs.length;
-    cs.forEach(c=> totMC += (MC_BY_ID[c.id]||[]).length);
+    let mc=0; cs.forEach(c=> mc += (MC_BY_ID[c.id]||[]).length);
+    perSubject[t.id] = {lz, concepts:cs.length, mc, write:cs.length*2};
+    totLZ+=lz; totC+=cs.length; totMC+=mc;
   });
-  const stats = [['Fächer',subjects.length],['Lernziele',totLZ],['Konzepte',totC],['MC-Fragen',totMC],['Schreibfragen',totC*2]];
-  document.getElementById('ccStats').innerHTML = stats.map(s=>`<div class="cc-stat"><b>${s[1]}</b><span>${s[0]}</span></div>`).join('');
-  creatorLeaderboard();
+  return {subjects, totLZ, totC, totMC, perSubject,
+    kpis:[['Fächer',subjects.length],['Lernziele',totLZ],['Konzepte',totC],['MC-Fragen',totMC],['Schreibfragen',totC*2]]};
+}
+
+function renderCreator(){
+  // Tabs verkabeln (einmalig)
+  if (!window.__ccTabsWired){
+    window.__ccTabsWired = true;
+    document.querySelectorAll('#ccTabs .cc-tab').forEach(btn=>{
+      btn.onclick = ()=>{
+        document.querySelectorAll('#ccTabs .cc-tab').forEach(b=>b.classList.toggle('active', b===btn));
+        ['overview','users','content'].forEach(id=>
+          document.getElementById('ccPanel-'+id).classList.toggle('hidden', id!==btn.dataset.tab));
+      };
+    });
+  }
+  window.__ccContent = ccContentStats();
+
+  // Inhalte-Tab (Liste + Inhalts-KPIs)
+  document.getElementById('ccStats').innerHTML =
+    window.__ccContent.kpis.map(s=>`<div class="cc-stat"><b>${s[1]}</b><span>${s[0]}</span></div>`).join('');
   window.__ccData = [];
-  subjects.forEach(t => (CONCEPTS_BY_TOPIC[t.id]||[]).forEach(c => window.__ccData.push({topic:t, c})));
+  window.__ccContent.subjects.forEach(t => (CONCEPTS_BY_TOPIC[t.id]||[]).forEach(c => window.__ccData.push({topic:t, c})));
   ccRenderList('');
   const f = document.getElementById('ccFilter');
   f.value=''; f.oninput = ()=> ccRenderList(f.value.trim().toLowerCase());
+
+  ccLoadData();
+}
+
+/* ---- Live-Daten vom Proxy laden + Modell bauen ---- */
+async function ccLoadData(){
+  document.getElementById('ccPanel-overview').innerHTML = '<div class="loading"><span class="dot"></span> lädt…</div>';
+  document.getElementById('ccPanel-users').innerHTML = '<div class="loading"><span class="dot"></span> lädt…</div>';
+  let raw = null;
+  try{
+    const r = await fetch(PROXY_URL, {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({action:'getLeaderboard'})});
+    const d = await r.json();
+    raw = d.leaderboard || d.entries || d.users || [];
+  }catch(e){ raw = null; }
+  if (!raw){
+    const msg = '<div class="empty"><div class="empty-title">Daten nicht erreichbar</div><div class="muted">Der Proxy hat nicht geantwortet.</div></div>';
+    document.getElementById('ccPanel-overview').innerHTML = msg;
+    document.getElementById('ccPanel-users').innerHTML = msg;
+    return;
+  }
+  window.__ccModel = ccBuildModel(raw);
+  ccRenderOverview();
+  ccRenderUsers('');
+}
+
+function ccBuildModel(raw){
+  const topicIds = TOPICS.map(t=>t.id);
+  const users = {};
+  const U = name => {
+    const key = String(name).toLowerCase();
+    if (!users[key]) users[key] = {name:key, key, subjects:{}, legacy:0, logins:0, kick:0, total:0, scoreKeys:[], loginKeys:[]};
+    return users[key];
+  };
+  (raw||[]).forEach(e=>{
+    const name = Array.isArray(e) ? String(e[0]||'') : String(e.user||e.name||'');
+    const p = Array.isArray(e) ? (Number(e[1])||0) : (Number(e.points||e.score)||0);
+    if (!name) return;
+    const idx = name.indexOf('__');
+    if (idx > -1){
+      const prefix = name.slice(0,idx), rest = name.slice(idx+2);
+      if (prefix==='logins'){ const u=U(rest); u.logins+=p; u.loginKeys.push([name,p]); return; }
+      if (prefix==='kick'){ U(rest).kick = p; return; }
+      if (topicIds.indexOf(prefix)>-1){ const u=U(rest); u.subjects[prefix]=(u.subjects[prefix]||0)+p; u.scoreKeys.push([name,p]); return; }
+      const u=U(rest); u.legacy+=p; u.scoreKeys.push([name,p]); return;
+    }
+    const u=U(name); u.legacy+=p; u.scoreKeys.push([name,p]);
+  });
+  const list = Object.values(users);
+  list.forEach(u=>{ u.total = u.legacy + Object.values(u.subjects).reduce((a,b)=>a+b,0); });
+  // Fach-Statistik
+  const subjStats = {};
+  topicIds.forEach(id=> subjStats[id] = {points:0, learners:0, top:null});
+  list.forEach(u=>{
+    Object.keys(u.subjects).forEach(id=>{
+      const p = u.subjects[id]; if(!subjStats[id]) subjStats[id]={points:0,learners:0,top:null};
+      subjStats[id].points += p;
+      if (p>0) subjStats[id].learners++;
+      if (p>0 && (!subjStats[id].top || p>subjStats[id].top.points)) subjStats[id].top = {name:u.name, points:p};
+    });
+  });
+  const totalPoints = list.reduce((a,u)=>a+Math.max(0,u.total),0);
+  const totalLogins = list.reduce((a,u)=>a+u.logins,0);
+  const realUsers = list.filter(u=> u.total!==0 || u.logins>0);
+  return {users:list, subjStats, totalPoints, totalLogins, userCount:realUsers.length};
+}
+
+/* ---- Grafik-Helfer (monochrom, flach) ---- */
+function ccBars(items){
+  if (!items.length) return '<div class="cc-bar-empty">keine Daten</div>';
+  const max = Math.max(1, ...items.map(i=>i.value));
+  return items.map(i=>`<div class="cc-bar-row"><div class="cc-bar-name" title="${ccEsc(i.name)}">${ccEsc(i.name)}</div><div class="cc-bar-track"><div class="cc-bar-fill" style="width:${i.value>0?Math.max(3,Math.round(i.value/max*100)):0}%"></div></div><div class="cc-bar-val">${i.value}</div></div>`).join('');
+}
+function ccDonut(segs){
+  segs = segs.filter(s=>s.value>0);
+  const total = segs.reduce((a,s)=>a+s.value,0);
+  if (!total) return '<div class="cc-bar-empty">noch keine Punkte</div>';
+  const shades = ['#1c1b18','#4a4740','#6e6a61','#928d82','#b4afa3','#cfcabd'];
+  const R=52, C=2*Math.PI*R; let off=0;
+  const circles = segs.map((s,i)=>{
+    const len = s.value/total*C;
+    const el = `<circle r="${R}" cx="70" cy="70" fill="none" stroke="${shades[i%shades.length]}" stroke-width="22" stroke-dasharray="${len.toFixed(2)} ${(C-len).toFixed(2)}" stroke-dashoffset="${(-off).toFixed(2)}" transform="rotate(-90 70 70)"></circle>`;
+    off += len; return el;
+  }).join('');
+  const legend = segs.map((s,i)=>`<div class="cc-leg"><span class="cc-leg-dot" style="background:${shades[i%shades.length]}"></span>${ccEsc(s.label)}<b>${s.value}</b></div>`).join('');
+  return `<div class="cc-donut-wrap"><svg viewBox="0 0 140 140" class="cc-donut">${circles}</svg><div class="cc-legend">${legend}</div></div>`;
+}
+
+/* ---- Übersicht rendern ---- */
+function ccRenderOverview(){
+  const m = window.__ccModel, c = window.__ccContent;
+  const kpis = [['Nutzer',m.userCount],['Logins',m.totalLogins],['Punkte',m.totalPoints],['Aktive Fächer',c.subjects.filter(t=>t.active).length]];
+  const subjArr = c.subjects.map(t=>({t, s:m.subjStats[t.id]||{points:0,learners:0,top:null}, info:c.perSubject[t.id]}));
+  const donut = ccDonut(subjArr.map(x=>({label:x.t.name, value:x.s.points})));
+  const topUsers = m.users.filter(u=>u.total>0).sort((a,b)=>b.total-a.total).slice(0,8).map(u=>({name:u.name, value:u.total}));
+  const topLogins = m.users.filter(u=>u.logins>0).sort((a,b)=>b.logins-a.logins).slice(0,8).map(u=>({name:u.name, value:u.logins}));
+  const subjCards = subjArr.map(x=>{
+    const maxP = Math.max(1, ...subjArr.map(y=>y.s.points));
+    return `<div class="cc-subj">
+      <div class="cc-subj-head"><span class="cc-subj-name">${ccEsc(x.t.name)}</span><span class="cc-subj-pts">${x.s.points}</span></div>
+      <div class="cc-subj-track"><div class="cc-subj-fill" style="width:${x.s.points>0?Math.max(3,Math.round(x.s.points/maxP*100)):0}%"></div></div>
+      <div class="cc-subj-meta">${x.s.learners} Lernende · Top: ${x.s.top?ccEsc(x.s.top.name)+' ('+x.s.top.points+')':'—'}<br>${x.info.concepts} Konzepte · ${x.info.mc} MC · ${x.info.lz} Lernziele</div>
+      <span class="cc-subj-badge">${x.t.active?'aktiv':(x.t.done?'abgeschlossen':'pausiert')}</span>
+    </div>`;
+  }).join('');
+  document.getElementById('ccPanel-overview').innerHTML = `
+    <div class="cc-kpis">${kpis.map(s=>`<div class="cc-kpi"><b>${s[1]}</b><span>${s[0]}</span></div>`).join('')}</div>
+    <div class="cc-card"><h3>Punkte pro Fach</h3>${donut}</div>
+    <div class="cc-flex2">
+      <div class="cc-card"><h3>Top Lernende</h3>${ccBars(topUsers)}</div>
+      <div class="cc-card"><h3>Logins pro Nutzer</h3>${ccBars(topLogins)}</div>
+    </div>
+    <div class="cc-section-title">Fächer im Detail</div>
+    <div class="cc-subj-grid">${subjCards}</div>`;
+}
+
+/* ---- Nutzer rendern + Verwaltung ---- */
+function ccRenderUsers(q){
+  const m = window.__ccModel;
+  const panel = document.getElementById('ccPanel-users');
+  const users = m.users.filter(u=> u.total!==0 || u.logins>0)
+    .filter(u=> !q || u.name.indexOf(q)!==-1)
+    .sort((a,b)=> b.total-a.total);
+  const rows = users.map((u,i)=>{
+    const subj = Object.keys(u.subjects).filter(id=>u.subjects[id])
+      .sort((a,b)=>u.subjects[b]-u.subjects[a])
+      .map(id=>{ const t=TOPICS.find(x=>x.id===id); return `<span class="cc-tag">${ccEsc(t?t.name:id)}: ${u.subjects[id]}</span>`; }).join('');
+    const legacy = u.legacy ? `<span class="cc-tag">alt: ${u.legacy}</span>` : '';
+    return `<div class="cc-user">
+      <div class="cc-user-rank">${i+1}</div>
+      <div class="cc-user-main">
+        <div class="cc-user-name">${ccEsc(u.name)}</div>
+        <div class="cc-user-sub"><span class="cc-tag">${u.logins} Logins</span>${subj}${legacy}</div>
+      </div>
+      <div class="cc-user-pts">${u.total}</div>
+      <div class="cc-acts">
+        <button class="cc-btn danger" data-act="reset" data-key="${ccEsc(u.key)}">Punkte → 0</button>
+        <button class="cc-btn" data-act="logins" data-key="${ccEsc(u.key)}">Logins → 0</button>
+        <button class="cc-btn danger" data-act="kick" data-key="${ccEsc(u.key)}">Ausloggen</button>
+      </div>
+    </div>`;
+  }).join('');
+  panel.innerHTML = `
+    <input class="cc-filter" id="ccUserFilter" placeholder="Nutzer suchen…" autocomplete="off" value="${ccEsc(q||'')}">
+    <p class="muted" style="font-size:13px;margin-bottom:6px">${users.length} Nutzer · „Ausloggen" meldet den Nutzer beim nächsten Laden/Fokus seiner Seite ab.</p>
+    ${users.length ? rows : '<div class="empty"><div class="empty-title">Keine Nutzer</div></div>'}`;
+  const uf = document.getElementById('ccUserFilter');
+  uf.oninput = ()=> ccRenderUsers(uf.value.trim().toLowerCase());
+  if (q) { uf.focus(); uf.setSelectionRange(uf.value.length, uf.value.length); }
+  if (!panel.__wired){
+    panel.__wired = true;
+    panel.addEventListener('click', e=>{
+      const b = e.target.closest('[data-act]'); if(!b) return;
+      const u = (window.__ccModel.users||[]).find(x=>x.key===b.getAttribute('data-key')); if(!u) return;
+      const act = b.getAttribute('data-act');
+      if (act==='reset') ccResetPoints(u);
+      else if (act==='logins') ccResetLogins(u);
+      else if (act==='kick') ccKick(u);
+    });
+  }
+}
+
+async function ccAddPoints(key, delta){
+  if (!delta) return;
+  await fetch(PROXY_URL, {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({action:'addPoints', user:key, points:delta})});
+}
+async function ccResetPoints(u){
+  if (!confirm(`Alle Punkte von „${u.name}" auf 0 setzen? (${u.total} Punkte)`)) return;
+  for (const [key,p] of u.scoreKeys){ if (p) await ccAddPoints(key, -p); }
+  await ccLoadData();
+}
+async function ccResetLogins(u){
+  if (!confirm(`Login-Zähler von „${u.name}" auf 0 setzen? (${u.logins})`)) return;
+  for (const [key,p] of u.loginKeys){ if (p) await ccAddPoints(key, -p); }
+  await ccLoadData();
+}
+async function ccKick(u){
+  if (!confirm(`„${u.name}" abmelden? Wird beim nächsten Laden oder Fokus seiner Seite ausgeloggt.`)) return;
+  await ccAddPoints('kick__'+u.key, 1);
+  alert(`„${u.name}" wird abgemeldet.`);
+  await ccLoadData();
 }
 function ccRenderList(q){
   const list = document.getElementById('ccList');
@@ -5421,19 +5989,52 @@ function ccConceptHtml(c){
      </div>
    </div>`;
 }
-async function creatorLeaderboard(){
-  const el = document.getElementById('ccLb');
-  el.innerHTML = '<div class="cc-label">Bestenliste (alle Fächer)</div><div class="loading"><span class="dot"></span> lädt…</div>';
+/* ================================================================
+   FORCE-LOGOUT ("Ausloggen" aus dem Dashboard)
+   Der Proxy kann nur addieren, daher zählt der Admin kick__<name>
+   hoch. Jeder Client merkt sich beim Login den Zählerstand und
+   meldet sich ab, sobald der Server-Zähler höher ist.
+================================================================ */
+function ccKickCount(raw, name){
+  const key = 'kick__' + String(name).toLowerCase();
+  let v = 0;
+  (raw||[]).forEach(e=>{
+    const n = Array.isArray(e) ? String(e[0]||'') : String(e.user||e.name||'');
+    if (n === key) v = Array.isArray(e) ? (Number(e[1])||0) : (Number(e.points||e.score)||0);
+  });
+  return v;
+}
+async function setKickBaseline(name){
   try{
     const r = await fetch(PROXY_URL, {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({action:'getLeaderboard'})});
     const d = await r.json();
-    const all = d.leaderboard || d.entries || d.users || [];
-    const rows = all.map(e=> Array.isArray(e) ? {u:String(e[0]||''), p:Number(e[1])||0} : {u:String(e.user||e.name||''), p:Number(e.points||e.score)||0})
-      .filter(e=> e.u && e.u.indexOf('logins__')!==0)
-      .sort((a,b)=> b.p-a.p).slice(0,25);
-    el.innerHTML = '<div class="cc-label">Bestenliste — alle Fächer (Top 25)</div>' +
-      (rows.length ? rows.map((e,i)=>`<div class="lb-row"><div class="lb-rank">${i+1}</div><div class="lb-name">${ccEsc(e.u)}</div><div class="lb-pts">${e.p}</div></div>`).join('') : '<div class="muted">keine Einträge</div>');
-  }catch(e){ el.innerHTML = '<div class="cc-label">Bestenliste</div><div class="muted">nicht erreichbar</div>'; }
+    localStorage.setItem(k('kickbase_'+String(name).toLowerCase()), String(ccKickCount(d.leaderboard||d.entries||d.users||[], name)));
+  }catch(e){ /* offline: keine Baseline, wird beim ersten Check gesetzt */ }
+}
+async function checkForcedLogout(){
+  const name = state.user; if (!name) return;
+  try{
+    const r = await fetch(PROXY_URL, {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({action:'getLeaderboard'})});
+    const d = await r.json();
+    const kc = ccKickCount(d.leaderboard||d.entries||d.users||[], name);
+    const baseKey = k('kickbase_'+String(name).toLowerCase());
+    const base = localStorage.getItem(baseKey);
+    if (base === null){ localStorage.setItem(baseKey, String(kc)); return; }   // erstes Mal: nur merken, nicht abmelden
+    if (kc > Number(base)){
+      localStorage.setItem(baseKey, String(kc));
+      alert('Du wurdest abgemeldet.');
+      logout();
+    }
+  }catch(e){ /* still */ }
+}
+function startKickWatch(){
+  if (window.__kickTimer) clearInterval(window.__kickTimer);
+  window.__kickTimer = setInterval(checkForcedLogout, 60000);
+  if (!window.__kickFocusWired){
+    window.__kickFocusWired = true;
+    window.addEventListener('focus', checkForcedLogout);
+    document.addEventListener('visibilitychange', ()=>{ if (!document.hidden) checkForcedLogout(); });
+  }
 }
 
 function init(){
@@ -5465,6 +6066,8 @@ function init(){
   const savedTopic = localStorage.getItem(k('topic'));
   if (savedUser){
     state.user = savedUser;
+    startKickWatch();
+    checkForcedLogout();
     if (savedTopic && TOPICS.find(t=>t.id===savedTopic && t.active)){
       state.topic = savedTopic;
       loadUserState();
